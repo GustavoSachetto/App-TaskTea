@@ -1,9 +1,10 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from '@/utils/useStorageState';
+import { createLogin, logout } from '@/services/api/auth';
 
 const AuthContext = createContext<{
-  signIn: () => void;
-  signOut: () => void;
+  signIn: (email: string, password: string) => Promise<string> | null;
+  signOut: (token?: string | null) => Promise<string> | null;
   session?: string | null;
   isLoading: boolean;
 }>({
@@ -29,12 +30,19 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          // Perform sign-in logic here
-          setSession('xxx');
+        signIn: async (email, password) => {
+          const response = await createLogin(email, password)
+          
+          setSession(response.token);
+
+          return response.token;
         },
-        signOut: () => {
+        signOut: async (token) => {
+          const response = await logout(token)
+          
           setSession(null);
+
+          return response.message;
         },
         session,
         isLoading,

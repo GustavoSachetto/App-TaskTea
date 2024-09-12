@@ -2,6 +2,13 @@ const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
 export default {
+  title: {
+    gray: '#737373',
+  },
+  button: {
+    lightBlue: '#177ff9',
+    lightGreen: '#00d46e',
+  },
   light: {
     text: '#000',
     background: '#fff',

@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { Text, View } from 'react-native';
-
+import TabNavigator from '../../components/TabNavigator.jsx';
 import { useSession } from '@/hooks/ctx';
 
 export default function SignIn() {
@@ -16,6 +16,8 @@ export default function SignIn() {
         }}>
         Entrar
       </Text>
+      <TabNavigator/>
+
     </View>
   );
 }

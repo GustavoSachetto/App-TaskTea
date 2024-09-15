@@ -2,7 +2,7 @@ import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton, 
 
 const ImageLogo = require('@/assets/images/logo.png');
 
-export default function HomePage() {
+export default function WelcomePage() {
   return (
     <Container>
       <Logo source={ImageLogo} />

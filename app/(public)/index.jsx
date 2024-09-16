@@ -12,7 +12,7 @@ export default function WelcomePage() {
     <Container>
       {modalVisible && <Overlay />}
       <Logo source={ImageLogo} />
-      <Title>Bem Vindo ao seu app de tratamento diário!</Title>
+      <Title>Bem-vindo ao seu app de tratamento diário!</Title>
       <SubTitle>Aqui iremos ajuda-lo a se desenvolver tanto psicologicamente quanto em sua cordenação motora.</SubTitle>
       <ContainerButton>
         <Button onPress={() => setModalVisible(true)}>Cadastrar</Button>

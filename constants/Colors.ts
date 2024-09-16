@@ -4,6 +4,7 @@ const tintColorDark = '#fff';
 export default {
   title: {
     gray: '#737373',
+    green: '#00d46e'
   },
   button: {
     lightBlue: '#177ff9',
@@ -23,4 +24,7 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },
+  colors: {
+    green: '#00d46e'
+  }
 };

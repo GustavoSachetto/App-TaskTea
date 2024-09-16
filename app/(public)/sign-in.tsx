@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButton, Button } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButton, Button, LinkStyled } from "@/styles/index";
 import { useSession } from '@/hooks/ctx';
 
 import Colors from '@/constants/Colors';
@@ -23,6 +23,8 @@ export default function SignIn() {
           <Button>Entrar</Button>
         </ContainerButton>
       </Border>
+
+      <LinkStyled href="/">Termos de serviços</LinkStyled>
     </Container>
   );
 }

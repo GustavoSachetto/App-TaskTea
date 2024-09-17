@@ -17,7 +17,7 @@ export const Container = styled.View`
 export const Logo = styled.Image`
   width: 100%;
   height: 200px;
-  margin-top: 9%;
+  margin-top: 5%;
   margin-bottom: 4vh;
 `;
 
@@ -83,7 +83,7 @@ export const Overlay = styled.View`
 `;
 
 export const Border = styled.View`
-  margin-top: 9%;
+  margin-top: 1%;
   width: 95%;
   align-items: flex-start;
   border: solid  ${(props) => props.customColor || dark.background} 4px;
@@ -118,10 +118,10 @@ export const ButtonSignIn = styled.Pressable`
 `;
 
 export const ContainerButtonsSignIn = styled.View`
-  width: 96%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   margin: 0 auto;
-  padding: 20px 10px;
+  padding: 5px 10px;
 `;

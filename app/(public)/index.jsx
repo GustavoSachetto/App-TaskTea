@@ -11,7 +11,7 @@ export default function WelcomePage() {
   return (
     <Container>
       {modalVisible && <Overlay />}
-      <Logo source={ImageLogo} />
+      <Logo source={ImageLogo} resizeMode="contain" />
       <Title>Bem-vindo ao seu app de tratamento diário!</Title>
       <SubTitle>Aqui iremos ajuda-lo a se desenvolver tanto psicologicamente quanto em sua cordenação motora.</SubTitle>
       <ContainerButton>

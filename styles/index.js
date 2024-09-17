@@ -127,6 +127,16 @@ export const ButtonSignIn = styled.Pressable`
   background-color: ${(props) => props.customColor}
 `;
 
+export const LinkedSignIn = styled(Link)`
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 35px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: ${(props) => props.customColor}
+`;
+
 export const ContainerButtonsSignIn = styled.View`
   width: 100%;
   display: flex;

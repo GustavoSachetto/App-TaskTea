@@ -1,7 +1,6 @@
-import { router } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkStyled, TextButton } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkedSignIn, LinkStyled, TextButton } from "@/styles/index";
 import { useSession } from '@/hooks/ctx';
 
 import Colors from '@/constants/Colors';
@@ -11,6 +10,11 @@ export default function SignIn() {
   const { signIn } = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    let debug = signIn(email, password);
+    console.log(debug);
+  };
   
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -33,10 +37,10 @@ export default function SignIn() {
             onChangeText={(text) => setPassword(text)}
             secureTextEntry />
           <ContainerButtonsSignIn>
-            <ButtonSignIn customColor={Colors.colors.red}>
+            <LinkedSignIn customColor={Colors.colors.red} href="/(public)/">
               <TextButton>Voltar</TextButton>
-            </ButtonSignIn>
-            <ButtonSignIn customColor={Colors.colors.green}>
+            </LinkedSignIn>
+            <ButtonSignIn customColor={Colors.colors.green} onPress={handleLogin}>
               <TextButton>Entrar</TextButton>
             </ButtonSignIn>
           </ContainerButtonsSignIn>
@@ -46,12 +50,3 @@ export default function SignIn() {
     </ScrollView>
   );
 }
-
-      {/* <Text
-        onPress={() => {
-          signIn('sistemateste@gmail.com', 'admin');
-
-          router.replace('/');
-        }}>
-        Entrar
-      </Text> */}

@@ -1,3 +1,5 @@
+import { blue } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
+
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
@@ -27,6 +29,9 @@ export default {
   colors: {
     green: '#00d46e',
     red: '#ff3131',
-    white: '#ffff'
+    white: '#ffff',
+    gray: '#a6a6a6',
+    blue: '#0060ff'
   }
+
 };

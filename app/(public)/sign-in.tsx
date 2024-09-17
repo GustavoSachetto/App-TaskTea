@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkedSignIn, LinkStyled, TextButton } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, LinkStyled, TextButton } from "@/styles/index";
+import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
-
 import Colors from '@/constants/Colors';
 const ImageLogo = require('@/assets/images/logo.png');
 
@@ -26,24 +26,27 @@ export default function SignIn() {
           <Title customColor={Colors.title.green} style={{padding:10}}>Entrar</Title>
           <Line customColor={Colors.colors.green} />
           <Input 
+          
+            placeholderTextColor={Colors.colors.gray}
             customColor={Colors.colors.green} 
             value={email}
             onChangeText={(text) => setEmail(text)}
-            placeholder='Email' />
+            placeholder='E-mail:' />
           <Input 
+            placeholderTextColor={Colors.colors.gray}
             customColor={Colors.colors.green}
             placeholder='Senha' 
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry />
-          <ContainerButtonsSignIn>
-            <LinkedSignIn customColor={Colors.colors.red} href="/(public)/">
+          <ContainerButtonsSign>
+            <LinkedSign customColor={Colors.colors.gray} href="/(public)/">
               <TextButton>Voltar</TextButton>
-            </LinkedSignIn>
-            <ButtonSignIn customColor={Colors.colors.green} onPress={handleLogin}>
+            </LinkedSign>
+            <ButtonSign customColor={Colors.colors.green} onPress={handleLogin}>
               <TextButton>Entrar</TextButton>
-            </ButtonSignIn>
-          </ContainerButtonsSignIn>
+            </ButtonSign>
+          </ContainerButtonsSign>
         </Border>
         <LinkStyled href="/">Termos de serviços</LinkStyled>
       </Container>

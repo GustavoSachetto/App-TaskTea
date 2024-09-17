@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton, LinkStyled, Overlay, TextButton } from "@/styles/index";
-import SignInOptions from "@/components/sign-in-options";
+import SignUpOptions from "@/components/sign-up-options";
 
 const ImageLogo = require('@/assets/images/logo.png');
 
@@ -22,7 +22,7 @@ export default function WelcomePage() {
           <TextButton>Entrar</TextButton> 
         </LinkButton>
       </ContainerButton>
-      <SignInOptions
+      <SignUpOptions
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
       />

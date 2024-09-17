@@ -64,7 +64,7 @@ export const Button = styled.Pressable`
   text-align: center;
   border-radius: 16px;
   margin:15px 0;
-  background-color: ${ button.lightGreen };
+  background-color: ${ button.lightBlue };
   font-family:  ${Fonts.RalewayBold};
 `;
 
@@ -75,7 +75,7 @@ export const LinkButton = styled(Link)`
   padding: 12px 0;
   text-align: center;
   border-radius: 16px;
-  background-color: ${ button.lightBlue };
+  background-color: ${ button.lightGreen };
   font-family: ${Fonts.RalewayBold}
 `;
 
@@ -96,58 +96,3 @@ export const Overlay = styled.View`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 `;
-
-export const Border = styled.View`
-  margin-top: 1%;
-  width: 95%;
-  align-items: flex-start;
-  border: solid  ${(props) => props.customColor || dark.background} 4px;
-  border-radius:16px;
-`;
-
-export const Line = styled.View`
-  padding:1px;
-  width:95%;
-  margin: 0 auto;
-  border-radius:13px;
-  background-color:${(props) => props.customColor || dark.background};
-`;
-
-export const Input = styled.TextInput`
-  width: 95%;
-  border-radius:13px;
-  padding:10px;
-  outline: 0;
-  margin: 10px auto;
-  border: solid  ${(props) => props.customColor || dark.background} 2px;
-`;
-
-export const ButtonSignIn = styled.Pressable`
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px 40px;
-  text-align: center;
-  border-radius: 20px;
-  background-color: ${(props) => props.customColor};
-`;
-
-export const LinkedSignIn = styled(Link)`
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px 40px;
-  text-align: center;
-  border-radius: 20px;
-  background-color: ${(props) => props.customColor};
-`;
-
-export const ContainerButtonsSignIn = styled.View`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin: 0 auto;
-  padding: 10px 10px 20px;
-`;
-

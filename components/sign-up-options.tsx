@@ -1,8 +1,9 @@
 import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Fonts } from '@/constants/Fonts';
+import { CenteredView, ModalView, CloseButton, ModalImage, Button, ButtonClose, TextStyle, ModalText } from '@/styles/sign-up-options';
 
-const SignInOptions = ({ visible, onClose }) => {
+export default SignUpOptions = ({ visible, onClose }) => {
   const router = useRouter();
 
   return (
@@ -11,28 +12,26 @@ const SignInOptions = ({ visible, onClose }) => {
       transparent={true}
       visible={visible}
       onRequestClose={onClose}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Pressable style={styles.closeButton} onPress={onClose}>
-            <Image
+      <CenteredView>
+        <ModalView>
+          <CloseButton onPress={onClose}>
+            <ModalImage
               source={require('../assets/icons/x.png')} 
-              style={styles.Image}
+              
             />
-          </Pressable>
-          <Text style={styles.modalText}>Que tipo de </Text>
-          <Text style={styles.modalText}>usuário você é?</Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
+          </CloseButton>
+          <ModalText>Que tipo de </ModalText>
+          <ModalText>usuário você é?</ModalText>
+          <Button
             onPress={() => router.push('/(public)/sign-up-child')}>
-            <Text style={styles.textStyle}>Criança</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
+            <TextStyle>Criança</TextStyle>
+          </Button>
+          <Button
             onPress={() => router.push('/(public)/sign-up-responsible')}>
-            <Text style={styles.textStyle}>Responsável</Text>
-          </Pressable>
-        </View>
-      </View>
+            <TextStyle>Responsável</TextStyle>
+          </Button>
+        </ModalView>
+      </CenteredView>
     </Modal>
   );
 };
@@ -95,5 +94,3 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.RalewayBold,
   },
 });
-
-export default SignInOptions;

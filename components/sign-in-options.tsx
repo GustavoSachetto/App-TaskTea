@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#00d46e',
+    borderStyle: 'solid',
     borderRadius: 20,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     color: '#737373',
     textAlign: 'center', 
-    marginBottom: 15,
+    marginBottom: 3,
     fontFamily: Fonts.RalewayBold,
   },
 });

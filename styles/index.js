@@ -9,10 +9,11 @@ const { button } = Colors;
 const { colors } = Colors;
 
 export const Container = styled.View`
-  margin: 15px;
+ margin: 15px;
   height:85%;
   display: flex;
-  font-family:  ${Fonts.RalewayRegular};
+  font-family: ${Fonts.RalewayBold};
+  justify-content:center;
   align-items: center;
   flex-direction: column;
 `;
@@ -29,6 +30,7 @@ export const TextButton = styled.Text`
   text-align: center;
   font-weight: 600;
   color: ${(props) => props.customColor || colors.white};
+  font-family: ${Fonts.RalewayBold};
 `;
 
 export const Title = styled.Text`
@@ -124,21 +126,20 @@ export const ButtonSignIn = styled.Pressable`
   color: white;
   font-size: 18px;
   font-weight: 600;
-  padding: 12px 35px;
+  padding: 12px 40px;
   text-align: center;
   border-radius: 20px;
-  background-color: ${(props) => props.customColor}
+  background-color: ${(props) => props.customColor};
 `;
 
 export const LinkedSignIn = styled(Link)`
   color: white;
   font-size: 18px;
   font-weight: 600;
-  padding: 12px 35px;
+  padding: 12px 40px;
   text-align: center;
   border-radius: 20px;
   background-color: ${(props) => props.customColor};
-  font-family:  ${Fonts.RalewayBold};
 `;
 
 export const ContainerButtonsSignIn = styled.View`
@@ -147,5 +148,6 @@ export const ContainerButtonsSignIn = styled.View`
   justify-content: space-between;
   flex-direction: row;
   margin: 0 auto;
-  padding: 5px 10px;
+  padding: 10px 10px 20px;
 `;
+

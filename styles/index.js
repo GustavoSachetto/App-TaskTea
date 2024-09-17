@@ -92,7 +92,7 @@ export const Border = styled.View`
 
 export const Line = styled.View`
   padding:1px;
-  width:90%;
+  width:95%;
   margin: 0 auto;
   border-radius:13px;
   background-color:${(props) => props.customColor || dark.background};

@@ -35,7 +35,6 @@ export default function SignIn() {
           <ButtonSignIn customColor={Colors.colors.green}>Entrar</ButtonSignIn>
         </ContainerButtonsSignIn>
       </Border>
-
       <LinkStyled href="/">Termos de serviços</LinkStyled>
     </Container>
   );

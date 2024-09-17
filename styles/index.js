@@ -22,7 +22,7 @@ export const Logo = styled.Image`
 `;
 
 export const Title = styled.Text`
-  color: ${(props) => props.customColor || title.gray};
+  color: ${(props) => props.customColor || title.gray};;
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -32,6 +32,7 @@ export const SubTitle = styled.Text`
   color: ${ title.gray };
   font-size: 18px;
   margin-top: 6vh;
+  margin-bottom: 5vh;
   text-align: center;
 `;
 
@@ -40,7 +41,6 @@ export const ContainerButton = styled.View`
   display: flex;
   justify-content: center;
   flex-direction: ${(props) => props.direction || 'column'};
-  margin-top: 5vh;
 `;
 
 export const Button = styled.Pressable`
@@ -86,8 +86,8 @@ export const Border = styled.View`
   margin-top: 9%;
   width: 95%;
   align-items: flex-start;
-  border: solid  ${(props) => props.customColor || dark.background} 2px;
-  border-radius:13px;
+  border: solid  ${(props) => props.customColor || dark.background} 4px;
+  border-radius:16px;
 `;
 
 export const Line = styled.View`
@@ -105,4 +105,23 @@ export const Input = styled.TextInput`
   outline: 0;
   margin: 10px auto;
   border: solid  ${(props) => props.customColor || dark.background} 2px;
+`;
+
+export const ButtonSignIn = styled.Pressable`
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 50px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: ${(props) => props.customColor}
+`;
+
+export const ContainerButtonsSignIn = styled.View`
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 20px 10px;
 `;

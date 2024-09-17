@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButton, Button, LinkStyled } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkStyled } from "@/styles/index";
 import { useSession } from '@/hooks/ctx';
 
 import Colors from '@/constants/Colors';
@@ -18,10 +18,10 @@ export default function SignIn() {
         <Line customColor={Colors.colors.green} />
         <Input customColor={Colors.colors.green} placeholder='Email' />
         <Input customColor={Colors.colors.green} placeholder='Senha' />
-        <ContainerButton direction={'row'}>
-          <Button>Voltar</Button>
-          <Button>Entrar</Button>
-        </ContainerButton>
+        <ContainerButtonsSignIn>
+          <ButtonSignIn customColor={Colors.colors.red}>Voltar</ButtonSignIn>
+          <ButtonSignIn customColor={Colors.colors.green}>Entrar</ButtonSignIn>
+        </ContainerButtonsSignIn>
       </Border>
 
       <LinkStyled href="/">Termos de serviços</LinkStyled>

@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import Colors from '@/constants/Colors';
+import { Fonts } from '@/constants/Fonts';
 import { Link } from 'expo-router';
 
 const { title } = Colors;
@@ -9,7 +10,7 @@ const { button } = Colors;
 export const Container = styled.View`
   margin: 15px;
   display: flex;
-  font-family: Arial;
+  font-family:  ${Fonts.RalewayRegular};
   align-items: center;
   flex-direction: column;
 `;
@@ -26,6 +27,7 @@ export const Title = styled.Text`
   font-size: 24px;
   font-weight: 600;
   text-align: center;
+  font-family:  ${Fonts.RalewayBold};
 `;
 
 export const SubTitle = styled.Text`
@@ -51,6 +53,7 @@ export const Button = styled.Pressable`
   text-align: center;
   border-radius: 16px;
   background-color: ${ button.lightGreen };
+  font-family:  ${Fonts.RalewayBold};
 `;
 
 export const LinkButton = styled(Link)`
@@ -62,6 +65,7 @@ export const LinkButton = styled(Link)`
   text-align: center;
   border-radius: 16px;
   background-color: ${ button.lightBlue };
+  font-family: ${Fonts.RalewayBold}
 `;
 
 export const LinkStyled = styled(Link)`
@@ -114,7 +118,8 @@ export const ButtonSignIn = styled.Pressable`
   padding: 12px 50px;
   text-align: center;
   border-radius: 20px;
-  background-color: ${(props) => props.customColor}
+  background-color: ${(props) => props.customColor};
+  font-family:  ${Fonts.RalewayBold};
 `;
 
 export const ContainerButtonsSignIn = styled.View`

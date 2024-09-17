@@ -9,8 +9,10 @@ const { colors } = Colors;
 
 export const Container = styled.View`
   margin: 15px;
+  height:85%;
   display: flex;
   font-family: Arial;
+  justify-content:center;
   align-items: center;
   flex-direction: column;
 `;

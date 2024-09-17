@@ -1,5 +1,6 @@
 import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Fonts } from '@/constants/Fonts';
 
 const SignInOptions = ({ visible, onClose }) => {
   const router = useRouter();
@@ -80,12 +81,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: Fonts.RalewayBold,
   },
   modalText: {
     fontWeight: '500',
     fontSize: 19,
     color: '#737373',
-    textAlign: 'center',
+    textAlign: 'center', 
+    marginBottom: 15,
+    fontFamily: Fonts.RalewayBold,
   },
 });
 

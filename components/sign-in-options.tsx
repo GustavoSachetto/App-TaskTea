@@ -2,7 +2,6 @@ import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 
 const SignInOptions = ({ visible, onClose }) => {
-
   const router = useRouter();
 
   return (
@@ -15,11 +14,12 @@ const SignInOptions = ({ visible, onClose }) => {
         <View style={styles.modalView}>
           <Pressable style={styles.closeButton} onPress={onClose}>
             <Image
-              source={require('../assets/icons/x.svg')}
+              source={require('../assets/icons/x.png')} 
               style={styles.Image}
             />
           </Pressable>
-          <Text style={styles.modalText}>Que tipo de <br/>usuário você é?</Text>
+          <Text style={styles.modalText}>Que tipo de </Text>
+          <Text style={styles.modalText}>usuário você é?</Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => router.push('/(public)/sign-up-child')}>
@@ -41,31 +41,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
     width: 225,
     height: 175,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 0,
     backgroundColor: 'white',
     borderRadius: 20,
     shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    borderWidth: 2,
-    borderColor: '#00d46e',
-    borderStyle: 'solid',
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    position: 'relative', 
   },
   closeButton: {
-    position: 'absolute', 
+    position: 'absolute',
     top: 10,
     right: 10,
   },
@@ -75,11 +66,10 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
-    marginVertical: 4,
+    marginTop: 10,
     width: 160,
     height: 30,
   },
@@ -92,11 +82,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   modalText: {
-    fontWeight: 500,
+    fontWeight: '500',
     fontSize: 19,
     color: '#737373',
-    textAlign: 'center', 
-    marginBottom: 15,
+    textAlign: 'center',
   },
 });
 

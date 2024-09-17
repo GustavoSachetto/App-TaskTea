@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkStyled } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, Border, Input, Line, ContainerButtonsSignIn, ButtonSignIn, LinkStyled, TextButton } from "@/styles/index";
 import { useSession } from '@/hooks/ctx';
 
 import Colors from '@/constants/Colors';
@@ -31,8 +31,12 @@ export default function SignIn() {
           onChangeText={(text) => setPassword(text)}
           secureTextEntry />
         <ContainerButtonsSignIn>
-          <ButtonSignIn customColor={Colors.colors.red}>Voltar</ButtonSignIn>
-          <ButtonSignIn customColor={Colors.colors.green}>Entrar</ButtonSignIn>
+          <ButtonSignIn customColor={Colors.colors.red}>
+            <TextButton>Voltar</TextButton>
+          </ButtonSignIn>
+          <ButtonSignIn customColor={Colors.colors.green}>
+            <TextButton>Entrar</TextButton>
+          </ButtonSignIn>
         </ContainerButtonsSignIn>
       </Border>
       <LinkStyled href="/">Termos de serviços</LinkStyled>

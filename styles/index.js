@@ -5,6 +5,7 @@ import { Link } from 'expo-router';
 const { title } = Colors;
 const { dark } = Colors;
 const { button } = Colors;
+const { colors } = Colors;
 
 export const Container = styled.View`
   margin: 15px;
@@ -18,11 +19,18 @@ export const Logo = styled.Image`
   width: 100%;
   height: 200px;
   margin-top: 5%;
-  margin-bottom: 4vh;
+  margin-bottom: 15px;
+`;
+
+export const TextButton = styled.Text`
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  color: ${(props) => props.customColor || colors.white};
 `;
 
 export const Title = styled.Text`
-  color: ${(props) => props.customColor || title.gray};;
+  color: ${(props) => props.customColor || title.gray};
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -31,8 +39,8 @@ export const Title = styled.Text`
 export const SubTitle = styled.Text`
   color: ${ title.gray };
   font-size: 18px;
-  margin-top: 6vh;
-  margin-bottom: 5vh;
+  margin-top: 10px;
+  margin-bottom: 13px;
   text-align: center;
 `;
 
@@ -50,6 +58,7 @@ export const Button = styled.Pressable`
   padding: 12px 80px;
   text-align: center;
   border-radius: 16px;
+  margin:15px 0;
   background-color: ${ button.lightGreen };
 `;
 
@@ -58,7 +67,6 @@ export const LinkButton = styled(Link)`
   font-size: 18px;
   font-weight: 600;
   padding: 12px 0;
-  margin-top: 3vh;
   text-align: center;
   border-radius: 16px;
   background-color: ${ button.lightBlue };
@@ -66,7 +74,7 @@ export const LinkButton = styled(Link)`
 
 export const LinkStyled = styled(Link)`
   color: ${ title.gray };
-  margin-top: 3vh;
+  margin-top: 5%;
   font-size: 18px;
   font-style: italic;
   text-decoration: underline;
@@ -101,7 +109,7 @@ export const Line = styled.View`
 export const Input = styled.TextInput`
   width: 95%;
   border-radius:13px;
-  padding:12px;
+  padding:10px;
   outline: 0;
   margin: 10px auto;
   border: solid  ${(props) => props.customColor || dark.background} 2px;
@@ -111,7 +119,7 @@ export const ButtonSignIn = styled.Pressable`
   color: white;
   font-size: 18px;
   font-weight: 600;
-  padding: 12px 50px;
+  padding: 12px 35px;
   text-align: center;
   border-radius: 20px;
   background-color: ${(props) => props.customColor}

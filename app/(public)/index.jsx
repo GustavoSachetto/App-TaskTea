@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton, LinkStyled, Overlay } from "@/styles/index";
+import React, { useState} from 'react';
+import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton, LinkStyled, Overlay, TextButton } from "@/styles/index";
 import SignInOptions from "@/components/sign-in-options";
 
 const ImageLogo = require('@/assets/images/logo.png');
@@ -15,8 +15,12 @@ export default function WelcomePage() {
       <Title>Bem-vindo ao seu app de tratamento diário!</Title>
       <SubTitle>Aqui iremos ajuda-lo a se desenvolver tanto psicologicamente quanto em sua cordenação motora.</SubTitle>
       <ContainerButton>
-        <Button onPress={() => setModalVisible(true)}>Cadastrar</Button>
-        <LinkButton href="/(public)/sign-in">Entrar</LinkButton>
+        <Button onPress={() => setModalVisible(true)}>
+         <TextButton>Cadastrar</TextButton> 
+        </Button>
+        <LinkButton href="/(public)/sign-in">
+          <TextButton>Entrar</TextButton> 
+        </LinkButton>
       </ContainerButton>
       <SignInOptions
         visible={modalVisible}

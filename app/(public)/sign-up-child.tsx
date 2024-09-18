@@ -7,56 +7,59 @@ import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } fro
 import Colors from '@/constants/Colors';
 const ImageLogo = require('@/assets/images/logo.png');
 
+const GrayColor  = Colors.colors.gray;
+const GreenColor = Colors.colors.green;
+
 export default function SignUpChild() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
         <Logo source={ImageLogo} resizeMode="contain"/>
         <SubTitle>Só precisamos de algumas informações e você já poderá começar!</SubTitle>
-        <Border customColor={Colors.colors.green}>
-          <Title customColor={Colors.colors.green} style={{padding:10}}>Cadastro</Title>
-          <Line customColor={Colors.colors.green} />
+        <Border customColor={GreenColor}>
+          <Title customColor={GreenColor} style={{padding:10}}>Cadastro</Title>
+          <Line customColor={GreenColor} />
           <Input 
             placeholder='Nome:'
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green} 
+            placeholderTextColor={GrayColor}
+            customColor={GreenColor} 
             // value={name}
             // onChangeText={(text) => setName(text)} 
             />
           <Input 
             placeholder='Nome de usuário:'
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green} 
+            placeholderTextColor={GrayColor}
+            customColor={GreenColor} 
             // value={nickname}
             // onChangeText={(text) => setNickname(text)} 
             />
           <Input 
             placeholder='Data de nascimento:'
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green} 
+            placeholderTextColor={GrayColor}
+            customColor={GreenColor} 
             // value={age}
             // onChangeText={(text) => setAge(text)} 
             />
           <Input 
             placeholder='E-mail:'
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green}
+            placeholderTextColor={GrayColor}
+            customColor={GreenColor}
             // value={email}
             // onChangeText={(text) => setEmail(text)} 
             />
           <Input 
             placeholder='Senha:'
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green}
+            placeholderTextColor={GrayColor}
+            customColor={GreenColor}
             // value={password}
             // onChangeText={(text) => setPassword(text)}
             // secureTextEntry 
             />
           <ContainerButtonsSign>
-            <LinkedSign customColor={Colors.colors.gray} href="/(public)/">
+            <LinkedSign customColor={GrayColor} href="/(public)/">
               <TextButton>Voltar</TextButton>
             </LinkedSign>
-            <ButtonSign customColor={Colors.colors.green} 
+            <ButtonSign customColor={GreenColor} 
             // onPress={}
             >
               <TextButton>Entrar</TextButton>

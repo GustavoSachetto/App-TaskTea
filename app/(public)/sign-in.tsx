@@ -6,6 +6,9 @@ import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
 const ImageLogo = require('@/assets/images/logo.png');
 
+const BlueColor  = Colors.colors.blue;
+const GrayColor = Colors.colors.gray;
+
 export default function SignIn() {
   const { signIn } = useSession();
   const [email, setEmail] = useState('');
@@ -15,6 +18,7 @@ export default function SignIn() {
     let debug = signIn(email, password);
     console.log(debug);
   };
+
   
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -22,28 +26,28 @@ export default function SignIn() {
         <Logo source={ImageLogo} resizeMode="contain"/>
         <Title>Bem-vindo de volta!</Title>
         <SubTitle>Ficamos muito felizes com seu empenho e vontade de prosseguir com seus desafios.</SubTitle>
-        <Border customColor={Colors.colors.blue}>
-          <Title customColor={Colors.colors.blue} style={{padding:10}}>Entrar</Title>
-          <Line customColor={Colors.colors.blue} />
+        <Border customColor={BlueColor}>
+          <Title customColor={BlueColor} style={{padding:10}}>Entrar</Title>
+          <Line customColor={BlueColor} />
           <Input 
           
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.blue} 
+            placeholderTextColor={GrayColor}
+            customColor={BlueColor} 
             value={email}
             onChangeText={(text) => setEmail(text)}
             placeholder='E-mail:' />
           <Input 
-            placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.blue}
+            placeholderTextColor={GrayColor}
+            customColor={BlueColor}
             placeholder='Senha:' 
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry />
           <ContainerButtonsSign>
-            <LinkedSign customColor={Colors.colors.gray} href="/(public)/">
+            <LinkedSign customColor={GrayColor} href="/(public)/">
               <TextButton>Voltar</TextButton>
             </LinkedSign>
-            <ButtonSign customColor={Colors.colors.blue} onPress={handleLogin}>
+            <ButtonSign customColor={BlueColor} onPress={handleLogin}>
               <TextButton>Entrar</TextButton>
             </ButtonSign>
           </ContainerButtonsSign>

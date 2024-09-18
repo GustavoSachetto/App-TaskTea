@@ -9,8 +9,9 @@ const { button } = Colors;
 const { colors } = Colors;
 
 export const Container = styled.View`
- margin: 15px;
-  height:85%;
+  flex: 1;
+  padding: 15px;
+  height: 85%;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   justify-content:center;
@@ -88,7 +89,7 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const Overlay = styled.View`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

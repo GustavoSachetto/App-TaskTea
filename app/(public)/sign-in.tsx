@@ -22,20 +22,20 @@ export default function SignIn() {
         <Logo source={ImageLogo} resizeMode="contain"/>
         <Title>Bem-vindo de volta!</Title>
         <SubTitle>Ficamos muito felizes com seu empenho e vontade de prosseguir com seus desafios.</SubTitle>
-        <Border customColor={Colors.colors.green}>
-          <Title customColor={Colors.title.green} style={{padding:10}}>Entrar</Title>
-          <Line customColor={Colors.colors.green} />
+        <Border customColor={Colors.colors.blue}>
+          <Title customColor={Colors.colors.blue} style={{padding:10}}>Entrar</Title>
+          <Line customColor={Colors.colors.blue} />
           <Input 
           
             placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green} 
+            customColor={Colors.colors.blue} 
             value={email}
             onChangeText={(text) => setEmail(text)}
             placeholder='E-mail:' />
           <Input 
             placeholderTextColor={Colors.colors.gray}
-            customColor={Colors.colors.green}
-            placeholder='Senha' 
+            customColor={Colors.colors.blue}
+            placeholder='Senha:' 
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry />
@@ -43,7 +43,7 @@ export default function SignIn() {
             <LinkedSign customColor={Colors.colors.gray} href="/(public)/">
               <TextButton>Voltar</TextButton>
             </LinkedSign>
-            <ButtonSign customColor={Colors.colors.green} onPress={handleLogin}>
+            <ButtonSign customColor={Colors.colors.blue} onPress={handleLogin}>
               <TextButton>Entrar</TextButton>
             </ButtonSign>
           </ContainerButtonsSign>

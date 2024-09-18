@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
+import Colors from '@/constants/Colors';
 
 export const CenteredView = styled.View`
   flex: 1;
@@ -13,7 +14,7 @@ export const ModalView = styled.View`
   justify-content: center;
   align-items: center;
   background-color: white;
-  border-width: 2px;
+  border-width: 3px;
   border-color: #00d46e;
   border-radius: 20px;
   shadow-color: black;
@@ -42,10 +43,6 @@ export const Button = styled.Pressable`
   width: 160px;
   height: 30px;
   background-color: #00d46e;
-`;
-
-export const ButtonClose = styled(Button)`
-  
 `;
 
 export const TextStyle = styled.Text`

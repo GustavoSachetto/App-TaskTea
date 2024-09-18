@@ -64,7 +64,7 @@ export const Button = styled.Pressable`
   text-align: center;
   border-radius: 16px;
   margin:15px 0;
-  background-color: ${ button.lightBlue };
+  background-color: ${ button.lightGreen };
   font-family:  ${Fonts.RalewayBold};
 `;
 
@@ -75,7 +75,7 @@ export const LinkButton = styled(Link)`
   padding: 12px 0;
   text-align: center;
   border-radius: 16px;
-  background-color: ${ button.lightGreen };
+  background-color: ${ button.lightBlue };
   font-family: ${Fonts.RalewayBold}
 `;
 

@@ -34,14 +34,14 @@ export default function SignIn() {
             placeholderTextColor={GrayColor}
             customColor={BlueColor} 
             value={email}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text: string) => setEmail(text)}
             placeholder='E-mail:' />
           <Input 
             placeholderTextColor={GrayColor}
             customColor={BlueColor}
             placeholder='Senha:' 
             value={password}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={(text: string) => setPassword(text)}
             secureTextEntry />
           <ContainerButtonsSign>
             <LinkedSign customColor={GrayColor} href="/(public)/">

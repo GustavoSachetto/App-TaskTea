@@ -31,7 +31,7 @@ export const Input = styled.TextInput<any>`
   border: solid  ${(props: any) => props.customColor || dark.background} 2px;
 `;
 
-export const ButtonSign = styled.Pressable`
+export const ButtonSign = styled.Pressable<any>`
   color: white;
   font-size: 18px;
   font-weight: 600;
@@ -41,7 +41,7 @@ export const ButtonSign = styled.Pressable`
   background-color: ${(props: any) => props.customColor};
 `;
 
-export const LinkedSign = styled(Link)`
+export const LinkedSign = styled(Link)<any>`
   color: white;
   font-size: 18px;
   font-weight: 600;

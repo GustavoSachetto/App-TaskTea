@@ -26,16 +26,16 @@ export const Logo = styled.Image`
   margin-bottom: 15px;
 `;
 
-export const TextButton = styled.Text`
+export const TextButton = styled.Text<any>`
   font-size: 18px;
   text-align: center;
   font-weight: 600;
-  color: ${(props) => props.customColor || colors.white};
+  color: ${(props: any) => props.customColor || colors.white};
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const Title = styled.Text`
-  color: ${(props) => props.customColor || title.gray};
+export const Title = styled.Text<any>`
+  color: ${(props: any) => props.customColor || title.gray};
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -50,11 +50,11 @@ export const SubTitle = styled.Text`
   text-align: center;
 `;
 
-export const ContainerButton = styled.View`
+export const ContainerButton = styled.View<any>`
   width: 96%;
   display: flex;
   justify-content: center;
-  flex-direction: ${(props) => props.direction || 'column'};
+  flex-direction: ${(props: any) => props.direction || 'column'};
 `;
 
 export const Button = styled.Pressable`

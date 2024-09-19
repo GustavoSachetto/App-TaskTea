@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Logo, QuebraCabeca, Text, Data, Calendario, Box } from '../../../styles/index-child';
+import { Logo, QuebraCabeca, Text, Data, Calendario, Box, GradientBackground, ScrollViewContainer } from '../../../styles/index-child';
 import { ScrollView } from "react-native";
 import { ContainerRow } from "@/styles";
 
@@ -18,7 +18,7 @@ const getCurrentDate = () => {
 
 export default function HomePage() {
   return (
-    <ScrollView>
+    <ScrollViewContainer>
       <QuebraCabeca source={ImageDesafios} resizeMode="contain" />
       <Logo source={ImageLogo} resizeMode="contain" />
       <Text>Olá, nome</Text>
@@ -27,6 +27,6 @@ export default function HomePage() {
         <Data>{getCurrentDate()}</Data>
       </ContainerRow>
       <Box></Box>
-    </ScrollView>
+    </ScrollViewContainer>
   )
 }

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { text } = Colors;
 
@@ -37,11 +38,20 @@ export const Data = styled.Text`
   font-size: 25px;
 `;
 export const Box = styled.View`
-height: 200px;
-width: 90%;
-margin: 0 auto;
-border: 3px solid transparent;
-border-radius: 50px;
-border-image: linear-gradient( #0060ff, #ffffff, #0060ff) 1; 
- 
+  height: 200px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 50px;
+  overflow: hidden; 
+`;
+
+export const GradientBackground = styled(LinearGradient).attrs({
+  colors: ['#0060ff', '#ffffff', '#0060ff'],
+})`
+  flex: 1;
+  border-radius: 50px;
+`;
+
+export const ScrollViewContainer = styled.ScrollView`
+  background-color:#fff;
 `;

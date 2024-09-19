@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { Tabs } from 'expo-router';
+import { View, StyleSheet, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from '.';
 import SettingsPage from './settings';
@@ -9,20 +7,17 @@ import TasksPage from './tasks';
 import ProfilePage from './profile';
 import { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
-import { Fonts } from '../../../constants/Fonts'; 
+import { Fonts } from '../../../constants/Fonts';
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      
-    },
-    logo: {
-      width: 30,
-      height: 30,
-    },
-  })
+  container: {
+    flex: 1,
+  },
+  logo: {
+    width: 30,
+    height: 30,
+  }
+});
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +25,11 @@ export function TabNavigator() {
   return (
       <Tab.Navigator screenOptions={{
         tabBarShowLabel: false,
-        headerShown: false, 
+        headerShown: false,
+        tabBarStyle: {
+          borderTopColor: '#d9d9d9', 
+          borderTopWidth: 2,
+        },
       }}>
         <Tab.Screen
           name="Home"
@@ -56,6 +55,7 @@ export function TabNavigator() {
             ),
           }}
         />
+        
         <Tab.Screen
           name="Profile"
           component={ProfilePage}
@@ -81,9 +81,9 @@ export function TabNavigator() {
           }}
         />
       </Tab.Navigator>
-  );
-}
 
+  );
+}
 
 export default function RootLayout() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -98,7 +98,7 @@ export default function RootLayout() {
       setFontsLoaded(true);
     } catch (error) {
       console.error('Error loading fonts', error);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -106,7 +106,6 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <TabNavigator></TabNavigator>
-  )
-
+    <TabNavigator />
+  );
 }

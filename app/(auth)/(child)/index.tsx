@@ -1,7 +1,6 @@
 import { View } from "react-native";
-import { Logo, QuebraCabeca, Text, Data, Calendario, Box, GradientBackground, ScrollViewContainer } from '../../../styles/index-child';
+import { ScrollViewContainer, Logo, QuebraCabeca, Text, Data, Calendario, Box, GradientBorderBox, ContainerRowChild } from '../../../styles/index-child';
 import { ScrollView } from "react-native";
-import { ContainerRow } from "@/styles";
 
 const ImageLogo = require('@/assets/images/logo.png');
 const ImageCalendario = require('@/assets/icons/calendario.svg');
@@ -22,11 +21,14 @@ export default function HomePage() {
       <QuebraCabeca source={ImageDesafios} resizeMode="contain" />
       <Logo source={ImageLogo} resizeMode="contain" />
       <Text>Olá, nome</Text>
-      <ContainerRow>
-        <Calendario source={ImageCalendario} resizeMode="contain" ></Calendario>
+      <ContainerRowChild>
+        <Calendario source={ImageCalendario} resizeMode="contain" />
         <Data>{getCurrentDate()}</Data>
-      </ContainerRow>
-      <Box></Box>
+      </ContainerRowChild>
+      <GradientBorderBox>
+        <Box>
+        </Box>
+      </GradientBorderBox>
     </ScrollViewContainer>
-  )
+  );
 }

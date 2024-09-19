@@ -19,6 +19,17 @@ export const Container = styled.View`
   flex-direction: column;
 `;
 
+export const ContainerRow = styled.View`
+  flex: 1;
+  padding: 15px;
+  height: 85%;
+  display: flex;
+  font-family: ${Fonts.RalewayBold};
+  justify-content:center;
+  align-items: center;
+  flex-direction: row;
+`;
+
 export const Logo = styled.Image`
   width: 100%;
   height: 200px;

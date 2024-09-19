@@ -7,6 +7,9 @@ import HomePage from '.';
 import SettingsPage from './settings';
 import TasksPage from './tasks';
 import ProfilePage from './profile';
+import { useEffect, useState } from 'react';
+import * as Font from 'expo-font';
+import { Fonts } from '../../../constants/Fonts'; 
 
 const styles = StyleSheet.create({
     container: {
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigator() {
+export function TabNavigator() {
   return (
       <Tab.Navigator screenOptions={{
         tabBarShowLabel: false,
@@ -79,4 +82,31 @@ export default function TabNavigator() {
         />
       </Tab.Navigator>
   );
+}
+
+
+export default function RootLayout() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  const fetchFonts = async () => {
+    try {
+      await Font.loadAsync({
+        [Fonts.RalewayRegular]: require('../../../assets/fonts/Raleway-Regular.ttf'),
+        [Fonts.RalewayBold]: require('../../../assets/fonts/Raleway-Bold.ttf'),
+        [Fonts.RalewayExtraBold]: require('../../../assets/fonts/Raleway-ExtraBold.ttf'),
+      });
+      setFontsLoaded(true);
+    } catch (error) {
+      console.error('Error loading fonts', error);
+    } 
+  };
+
+  useEffect(() => {
+    fetchFonts();
+  }, []);
+
+  return (
+    <TabNavigator></TabNavigator>
+  )
+
 }

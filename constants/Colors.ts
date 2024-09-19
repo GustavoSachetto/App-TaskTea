@@ -32,6 +32,9 @@ export default {
     white: '#ffff',
     gray: '#a6a6a6',
     blue: '#0060ff'
-  }
-
+  },
+  text: {
+    darkgray: '#545454',
+    red: '#fa4a49',
+  },
 };

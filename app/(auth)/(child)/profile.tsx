@@ -11,7 +11,7 @@ export default function ProfilePage() {
       resizeMode="contain"
       source={require('../../../assets/icons/perfil.png')}/>
       <SectionProfile>
-        <NameProfile>Meliante Nome</NameProfile>
+        <NameProfile>Nome</NameProfile>
         <About>Tarefas concluídas: 3</About>
         <About>Dias de atividade: 7 </About>
         <Button>

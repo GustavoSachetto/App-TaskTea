@@ -3,7 +3,10 @@ import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions } from 'react-native';
+import { Link } from 'expo-router';
 
+const { button } = Colors;
+const { colors } = Colors;
 const { height } = Dimensions.get('window');
 
 const { text } = Colors;
@@ -80,4 +83,24 @@ export const ContainerRowChild = styled.View`
   align-items: center;
   flex-direction: row;
   margin-bottom: 20px;
+`;
+
+export const LinkedStartTask = styled(Link)<any>`
+color: white;
+font-size: 18px;
+font-weight: 600;
+padding: 12px 80px;
+text-align: center;
+border-radius: 16px;
+margin-top: 100px;
+background-color: ${ button.lightGreen };
+font-family:  ${Fonts.RalewayBold};
+`;
+
+export const TextButtonStartTask = styled.Text`
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  color: ${colors.white};
+  font-family: ${Fonts.RalewayBold};
 `;

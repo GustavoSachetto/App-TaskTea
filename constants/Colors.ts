@@ -31,7 +31,8 @@ export default {
     red: '#ff3131',
     white: '#ffff',
     gray: '#a6a6a6',
-    blue: '#0060ff'
+    blue: '#0060ff',
+    yellow: '#ffca00',
   },
   text: {
     darkgray: '#545454',

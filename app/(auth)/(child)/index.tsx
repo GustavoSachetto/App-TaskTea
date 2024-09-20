@@ -28,8 +28,8 @@ export default function HomePage() {
       <GradientBorderBox>
         <Box>
           <Text>fwaafaf</Text>
-          <LinkedStartTask href="">
-          <TextButtonStartTask>Iniciar</TextButtonStartTask>
+          <LinkedStartTask href="./profile">
+            <TextButtonStartTask>Iniciar</TextButtonStartTask>
           </LinkedStartTask>
         </Box>
       </GradientBorderBox>

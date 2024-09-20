@@ -85,11 +85,11 @@ export const ContainerRowChild = styled.View`
   margin-bottom: 20px;
 `;
 
-export const LinkedStartTask = styled(Link)<any>`
+export const LinkedStartTask = styled(Link)`
 color: white;
 font-size: 18px;
 font-weight: 600;
-padding: 12px 80px;
+padding: 6px 80px;
 text-align: center;
 border-radius: 16px;
 margin-top: 100px;

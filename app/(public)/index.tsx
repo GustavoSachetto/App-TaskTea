@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
-import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton, LinkStyled, Overlay, TextButton } from "@/styles/index";
+import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton,
+  LinkStyled, Overlay, TextButton } from "@/styles/index";
 import SignUpOptions from "@/components/sign-up-options";
 
 const ImageLogo = require('@/assets/images/logo.png');

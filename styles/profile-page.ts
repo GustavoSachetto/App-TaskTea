@@ -21,7 +21,7 @@ export const ImageProfile = styled.Image`
     max-width:130px;
     height:130px;
     width:100%;
-    border-radius:100%;
+    border-radius: 65px;
     margin-top:-65px;
     margin-left:13px;
 `;
@@ -43,10 +43,17 @@ export const About = styled.Text`
 `;
 
 export const Button = styled.Pressable`
+    background-color: ${Colors.colors.blue};
+    border-radius: 15px;
+    padding: 7px;
+    margin-top: 9px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ButtonText = styled.Text`
     color: ${Colors.colors.white};
-    background-color:${Colors.colors.blue};
-    border-radius:15px;
-    text-align:center;
-    padding:7px;
-    margin-top:9px;
+    font-size: 17px;
+    text-align: center;
+    font-family: ${Fonts.RalewayBold};
 `;

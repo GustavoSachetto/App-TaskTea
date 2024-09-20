@@ -1,11 +1,11 @@
 import React from 'react'
-import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button } from '@/styles/profile-page'
+import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page'
 
 export default function ProfilePage() {
   return (
     <Container>
       <Banner 
-      source={require('../../../assets/images/fundoazul.jpg')}
+      source={require('../../../assets/images/fundoazul.png')}
       />
       <ImageProfile 
       resizeMode="contain"
@@ -14,9 +14,10 @@ export default function ProfilePage() {
         <NameProfile>Meliante Nome</NameProfile>
         <About>Tarefas concluídas: 3</About>
         <About>Dias de atividade: 7 </About>
-        <Button>Editar perfil</Button>
+        <Button>
+          <ButtonText>Editar perfil</ButtonText>
+        </Button>
       </SectionProfile>
-
     </Container>
   )
 }

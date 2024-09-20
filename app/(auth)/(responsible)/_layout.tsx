@@ -34,7 +34,7 @@ export default function TabNavigator() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('../../../assets/icons/casa.svg')}
+                source={require('../../../assets/icons/casa.png')}
                 style={[styles.logo]}
               />
             ),
@@ -46,7 +46,7 @@ export default function TabNavigator() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('../../../assets/icons/quebra-cabeca.svg')}
+                source={require('../../../assets/icons/quebra-cabeca.png')}
                 style={[styles.logo]}
               />
             ),
@@ -70,7 +70,7 @@ export default function TabNavigator() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('../../../assets/icons/configuracao.svg')}
+                source={require('../../../assets/icons/configuracao.png')}
                 style={[styles.logo]}
               />
             ),

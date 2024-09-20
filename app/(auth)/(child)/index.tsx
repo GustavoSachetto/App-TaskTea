@@ -3,8 +3,8 @@ import { ScrollViewContainer, Logo, QuebraCabeca, Text, Data, Calendario, Box, G
 import { ScrollView } from "react-native";
 
 const ImageLogo = require('@/assets/images/logo.png');
-const ImageCalendario = require('@/assets/icons/calendario.svg');
-const ImageDesafios = require('@/assets/icons/desafios-quebra-cabeca.svg');
+const ImageCalendario = require('@/assets/icons/calendario.png');
+const ImageDesafios = require('@/assets/icons/desafios-quebra-cabeca.png');
 
 const getCurrentDate = () => {
 
@@ -27,6 +27,7 @@ export default function HomePage() {
       </ContainerRowChild>
       <GradientBorderBox>
         <Box>
+          <Text>fwaafaf</Text>
         </Box>
       </GradientBorderBox>
     </ScrollViewContainer>

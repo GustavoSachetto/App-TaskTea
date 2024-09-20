@@ -9,7 +9,7 @@ export default function SettingsPage() {
       <Header>
         <Logo
         resizeMode='contain'
-        source={require('../../../assets/icons/configuracao.svg')}/>
+        source={require('../../../assets/icons/configuracao.png')}/>
         <Title>Configurações</Title>
       </Header>
       <Functions>

@@ -6,7 +6,7 @@ export default function Layout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen

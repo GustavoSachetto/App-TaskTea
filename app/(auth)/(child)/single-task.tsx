@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function ProfilePage() {
+export default function SingleTaskPage() {
   return (
     <View>
-      <Text>P</Text>
+      <Text>single tasks</Text>
     </View>
   )
 }

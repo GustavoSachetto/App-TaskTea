@@ -9,13 +9,25 @@ const { button } = Colors;
 const { colors } = Colors;
 
 export const Container = styled.View`
- margin: 15px;
-  height:85%;
+  flex: 1;
+  padding: 15px;
+  height: 85%;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   justify-content:center;
   align-items: center;
   flex-direction: column;
+`;
+
+export const ContainerRow = styled.View`
+  flex: 1;
+  padding: 15px;
+  height: 85%;
+  display: flex;
+  font-family: ${Fonts.RalewayBold};
+  justify-content:center;
+  align-items: center;
+  flex-direction: row;
 `;
 
 export const Logo = styled.Image`
@@ -25,16 +37,16 @@ export const Logo = styled.Image`
   margin-bottom: 15px;
 `;
 
-export const TextButton = styled.Text`
+export const TextButton = styled.Text<any>`
   font-size: 18px;
   text-align: center;
   font-weight: 600;
-  color: ${(props) => props.customColor || colors.white};
+  color: ${(props: any) => props.customColor || colors.white};
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const Title = styled.Text`
-  color: ${(props) => props.customColor || title.gray};
+export const Title = styled.Text<any>`
+  color: ${(props: any) => props.customColor || title.gray};
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -49,11 +61,11 @@ export const SubTitle = styled.Text`
   text-align: center;
 `;
 
-export const ContainerButton = styled.View`
+export const ContainerButton = styled.View<any>`
   width: 96%;
   display: flex;
   justify-content: center;
-  flex-direction: ${(props) => props.direction || 'column'};
+  flex-direction: ${(props: any) => props.direction || 'column'};
 `;
 
 export const Button = styled.Pressable`
@@ -88,7 +100,7 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const Overlay = styled.View`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -96,58 +108,3 @@ export const Overlay = styled.View`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 `;
-
-export const Border = styled.View`
-  margin-top: 1%;
-  width: 95%;
-  align-items: flex-start;
-  border: solid  ${(props) => props.customColor || dark.background} 4px;
-  border-radius:16px;
-`;
-
-export const Line = styled.View`
-  padding:1px;
-  width:95%;
-  margin: 0 auto;
-  border-radius:13px;
-  background-color:${(props) => props.customColor || dark.background};
-`;
-
-export const Input = styled.TextInput`
-  width: 95%;
-  border-radius:13px;
-  padding:10px;
-  outline: 0;
-  margin: 10px auto;
-  border: solid  ${(props) => props.customColor || dark.background} 2px;
-`;
-
-export const ButtonSignIn = styled.Pressable`
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px 40px;
-  text-align: center;
-  border-radius: 20px;
-  background-color: ${(props) => props.customColor};
-`;
-
-export const LinkedSignIn = styled(Link)`
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px 40px;
-  text-align: center;
-  border-radius: 20px;
-  background-color: ${(props) => props.customColor};
-`;
-
-export const ContainerButtonsSignIn = styled.View`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin: 0 auto;
-  padding: 10px 10px 20px;
-`;
-

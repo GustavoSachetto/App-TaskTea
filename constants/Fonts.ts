@@ -2,6 +2,6 @@ export const Fonts = {
     RalewayRegular: 'Raleway-Regular',
     RalewayBold: 'Raleway-Bold',
     RalewayExtraBold: 'Raleway-ExtraBold',
-} as const;
+    RalewayItalic: 'Raleway-Italic',
 
-export type FontName = keyof typeof Fonts;
+  };

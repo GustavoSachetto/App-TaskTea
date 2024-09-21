@@ -28,7 +28,7 @@ export const TextTarefa = styled.Text`
 `;
 
 export const GradientBorderBox = styled(LinearGradient).attrs({
-  colors: ['#0060ff', '#ffffff', '#0060ff'],
+  colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
   height: ${hp('60%')}px ;
   width: ${wp('90%')}px ;

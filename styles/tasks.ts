@@ -1,10 +1,13 @@
-import styled from 'styled-components/native';
-import Colors from '@/constants/Colors';
-import { Fonts } from '@/constants/Fonts';
-import { Link } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { Dimensions } from 'react-native';
+import styled from "styled-components/native";
+import Colors from "@/constants/Colors";
+import { Fonts } from "@/constants/Fonts";
+import { Link } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { Dimensions } from "react-native";
 
 const { title } = Colors;
 const { dark } = Colors;
@@ -15,7 +18,6 @@ export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
-
 `;
 
 export const QuebraCabeca = styled.Image`
@@ -32,18 +34,16 @@ export const ContainerRowTasks = styled.View`
   text-align: center;
   display: flex;
   flex-direction: row;
-
 `;
 
-  export const TextTask = styled.Text`
-  color: ${ Colors.colors.yellow };
+export const TextTask = styled.Text`
+  color: ${Colors.colors.yellow};
   font-size: 33px;
   font-weight: 600;
   padding: 12px 0;
   text-align: center;
   border-radius: 16px;
   align-items: center;
-
   font-family: ${Fonts.RalewayBold};
 `;
 
@@ -53,39 +53,36 @@ export const ContainerTasksDoing = styled.View`
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: ${hp('4%')}px ;
-  width: ${wp('73%')}px ;
+  height: ${hp("4%")}px;
+  width: ${wp("73%")}px;
   border-top-left-radius: 13px;
   border-top-right-radius: 13px;
   font-family: ${Fonts.RalewayBold};
-  background-color: ${ Colors.colors.lightYellow };
+  background-color: ${Colors.colors.lightYellow};
 `;
 
 export const TextDoing = styled.Text`
-color: ${ Colors.colors.white };
-font-size: 17px;
-font-weight: 600;
-text-align: center;
-font-family: ${Fonts.RalewayBold};
+  color: ${Colors.colors.white};
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  font-family: ${Fonts.RalewayBold};
 `;
 
 export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
-  colors: ['#f9d448', '#ffffff', '#ffffff', '#ffffff', '#f9d448'],
-  
+  colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
 })`
-  height: ${hp('60%')}px;
-  width: ${wp('80%')}px;
+  height: ${hp("60%")}px;
+  width: ${wp("80%")}px;
   align-self: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: center;
   border-radius: 23px;
   margin-bottom: 20px;
   margin-top: -2px;
-  position: relative; 
+  position: relative;
   z-index: 98;
-
 `;
-
 
 export const ScrollViewContainerTasks = styled.ScrollView`
   flex: 1;
@@ -95,16 +92,16 @@ export const ScrollViewContainerTasks = styled.ScrollView`
 
 export const BoxTasks = styled.View`
   flex: 1;
-  width: ${wp('77%')}px;
+  width: ${wp("77%")}px;
   border-radius: 23px;
   background-color: white;
   z-index: 2;
   bottom: 1%;
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 3%;
 `;
 
-export const Task1 = styled.View`
+export const Task1 = styled(Link)`
   margin-top: 0.1%;
   display: flex;
   margin-bottom: 18px;
@@ -113,11 +110,11 @@ export const Task1 = styled.View`
   width: 100%;
   border-radius: 7px;
   font-family: ${Fonts.RalewayBold};
-  background-color: ${ Colors.colors.lightYellow };
+  background-color: ${Colors.colors.lightYellow};
 `;
 
 export const Title = styled.Text`
-  color: ${ Colors.colors.white };
+  color: ${Colors.colors.white};
   margin-left: 15px;
   margin-top: 7px;
   font-size: 19px;
@@ -127,7 +124,7 @@ export const Title = styled.Text`
 `;
 
 export const Description = styled.Text`
-  color: ${ Colors.colors.white };
+  color: ${Colors.colors.white};
   margin-left: 15px;
   margin-top: 7px;
   font-size: 10px;
@@ -140,8 +137,8 @@ export const Clips = styled.Image`
   width: 70px;
   height: 70px;
   right: 0;
-  margin-top: -16px;
+  margin-top: -23px;
   margin-bottom: 15px;
   position: absolute;
-  z-index: 99;
+  z-index: 999999999;
 `;

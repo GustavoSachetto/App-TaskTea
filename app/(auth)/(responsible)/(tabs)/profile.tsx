@@ -9,7 +9,7 @@ export default function ProfilePage() {
       />
       <ImageProfile 
       resizeMode="contain"
-      source={require('../../../../assets/icons/perfil.png')}/>
+      source={require('../../../../assets/icons/perfil1.png')}/>
       <SectionProfile>
         <NameProfile>Nome</NameProfile>
         <About>Tarefas concluídas: 3</About>

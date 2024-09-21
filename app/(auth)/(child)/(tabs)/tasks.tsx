@@ -12,8 +12,8 @@ export default function TasksPage() {
   return (
     <ContainerAllTasks>
       <ContainerRowTasks>
-      <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
-      <TextTask>Desafios</TextTask>
+        <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
+        <TextTask>Desafios</TextTask>
       </ContainerRowTasks>
 
       <ContainerTasksDoing>
@@ -23,49 +23,49 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
               
             </Task1>
-            <Task1>
+            <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>

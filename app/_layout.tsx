@@ -1,21 +1,23 @@
 import { useEffect } from 'react';
 import { router, Slot } from 'expo-router';
 import { SessionProvider, useSession } from '@/hooks/ctx';
+import { FontProvider } from '../context/FontContext'; // Verifique se o caminho está correto
 
 function InitialLayout() {
   const { session } = useSession();
 
   useEffect(() => {
-    
     if (!session) {
-      router.replace("/(auth)/(child)")
+      router.replace("/(public)");
     } else {
-      router.replace("/(public)")
+      router.replace("/(auth)/(child)");
     }
-
-  }, [session])
-
-  return <Slot />
+  }, [session]);
+  return (
+    <FontProvider>
+      <Slot />
+    </FontProvider>
+  );
 }
 
 export default function Root() {

@@ -14,7 +14,7 @@ export default function SignUpResponsible() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
-        <Logo source={ImageLogo} resizeMode="contain" style={{marginTop:140}}/>
+        <Logo source={ImageLogo} resizeMode="contain"/>
         <SubTitle>Só precisamos de algumas informações e você já poderá começar!</SubTitle>
         <Border customColor={GreenColor}>
           <Title customColor={GreenColor} style={{padding:10}}>Cadastro responsável</Title>

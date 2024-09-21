@@ -5,11 +5,11 @@ export default function ProfilePage() {
   return (
     <Container>
       <Banner 
-      source={require('../../../assets/images/fundoazul.png')}
+      source={require('../../../../assets/images/fundoazul.png')}
       />
       <ImageProfile 
       resizeMode="contain"
-      source={require('../../../assets/icons/perfil.png')}/>
+      source={require('../../../../assets/icons/perfil.png')}/>
       <SectionProfile>
         <NameProfile>Nome</NameProfile>
         <About>Tarefas concluídas: 3</About>

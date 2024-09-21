@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { ContainerRow } from '../../../styles/index';
+import { ContainerRow } from '@/styles/index';
 import { QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   ContainerTasks, ContainerRowTasks, ContainerAllTasks } from '@/styles/tasks';
 

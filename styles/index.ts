@@ -19,6 +19,17 @@ export const Container = styled.View`
   flex-direction: column;
 `;
 
+export const ContainerScrollView = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+}))`
+  flex: 1;
+  padding: 15px;
+`;
+
+
 export const ContainerRow = styled.View`
   flex: 1;
   padding: 15px;

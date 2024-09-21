@@ -10,29 +10,6 @@ const { colors } = Colors;
 
 const { text } = Colors;
 
-export const Logo = styled.Image`
-  width: 180px;
-  height: 80px;
-  padding-top: 150px;
-  margin: 0 auto;
-`;
-
-export const QuebraCabeca = styled.Image`
-  width: 180px;
-  height: 165px;
-  position: absolute;
-  top: -28px;
-  left: -35px;
-  z-index: 99;
-  transform: rotate(35deg);
-`;
-
-export const Calendario = styled.Image`
-  width: 35px;
-  height: 35px;
-  z-index: 99;
-  margin-right: 10px;
-`;
 
 export const TarefaImage = styled.Image`
   height: 53%;
@@ -42,26 +19,12 @@ export const TarefaImage = styled.Image`
   top: 1%; 
 `;
 
-export const Text = styled.Text`
-  text-align: center;
-  font-family: ${Fonts.RalewayRegular};
-  color: ${Colors.text.darkgray};
-  font-size: 22px;
-`;
-
 export const TextTarefa = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
   font-size: 19px;
   margin-top: 0;
-`;
-
-export const Data = styled.Text`
-  color: ${Colors.text.red};
-  text-align: center;
-  font-family: ${Fonts.RalewayBold};
-  font-size: 20px;
 `;
 
 export const GradientBorderBox = styled(LinearGradient).attrs({
@@ -92,16 +55,6 @@ export const Box = styled.View`
 export const ScrollViewContainer = styled.ScrollView`
   background-color: #fff;
   flex: 1;
-`;
-
-export const ContainerRowChild = styled.View`
-  flex: 1;
-  padding: 15px;
-  height: 85%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-bottom: 20px;
 `;
 
 export const LinkedStartTask = styled(Link)`

@@ -4,5 +4,5 @@ export function CurrentDate() {
     const year = new Date().getFullYear();
   
     return `${date}/${month}/${year}`;
-  }
+}
   

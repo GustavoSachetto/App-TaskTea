@@ -1,7 +1,7 @@
 import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Fonts } from '@/constants/Fonts';
-import { CenteredView, ModalView, CloseButton, ModalImage, Button, ButtonClose, TextStyle, ModalText } from '@/styles/sign-up-options';
+import { CenteredView, ModalView, CloseButton, ModalImage, Button, TextStyle, ModalText } from '@/styles/sign-up-options';
 
 export default SignUpOptions = ({ visible, onClose }) => {
   const router = useRouter();

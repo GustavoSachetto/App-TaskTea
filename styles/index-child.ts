@@ -4,10 +4,10 @@ import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions } from 'react-native';
 import { Link } from 'expo-router';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const { button } = Colors;
 const { colors } = Colors;
-const { height } = Dimensions.get('window');
 
 const { text } = Colors;
 
@@ -35,11 +35,27 @@ export const Calendario = styled.Image`
   margin-right: 10px;
 `;
 
+export const TarefaImage = styled.Image`
+  height: 53%;
+  width: 97% ;
+  border-top-left-radius: 30px; 
+  border-top-right-radius: 30px; 
+  top: 1%; 
+`;
+
 export const Text = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
   font-size: 22px;
+`;
+
+export const TextTarefa = styled.Text`
+  text-align: center;
+  font-family: ${Fonts.RalewayRegular};
+  color: ${Colors.text.darkgray};
+  font-size: 19px;
+  margin-top: 0;
 `;
 
 export const Data = styled.Text`
@@ -52,22 +68,26 @@ export const Data = styled.Text`
 export const GradientBorderBox = styled(LinearGradient).attrs({
   colors: ['#0060ff', '#ffffff', '#0060ff'],
 })`
-  height: ${height * 0.50};
-  width: 90%;
-  margin-top: -20px;
+  height: ${hp('60%')}px ;
+  width: ${wp('90%')}px ;
   align-self: center;
-  display:flex;
-  justify-content:center;
+  justify-content: flex-start; 
   align-items: center;
-  border-radius:30px;
-  margin-bottom:30px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  position: relative; 
 `;
 
 export const Box = styled.View`
-  width:99%;
-  height:99%;
-  border-radius:30px;
+  height: 49%;
+  width: 97% ;
+  border-radius: 26px;
+  z-index: 2;
   background-color: white;
+  position: absolute; 
+  bottom: 1%;
+  padding: 5%;
+  justify-content: space-between;
 `;
 
 export const ScrollViewContainer = styled.ScrollView`
@@ -86,16 +106,19 @@ export const ContainerRowChild = styled.View`
 `;
 
 export const LinkedStartTask = styled(Link)`
-color: white;
-font-size: 18px;
-font-weight: 600;
-padding: 6px 80px;
-text-align: center;
-border-radius: 16px;
-margin-top: 100px;
-background-color: ${ button.lightGreen };
-font-family:  ${Fonts.RalewayBold};
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 0;
+  width: 50%;
+  text-align: center;
+  border-radius: 20px;
+  background-color: ${ button.lightGreen };
+  font-family: ${Fonts.RalewayBold};
+  align-self: center;
+  bottom: 2%;
 `;
+
 
 export const TextButtonStartTask = styled.Text`
   font-size: 18px;

@@ -1,10 +1,17 @@
 import { View } from "react-native";
 import { ScrollViewContainer, Logo, QuebraCabeca, Text, Data, Calendario,
-   Box, GradientBorderBox, ContainerRowChild, LinkedStartTask, TextButtonStartTask } from '@/styles/index-child';
-import { ScrollView } from "react-native";
+   Box, GradientBorderBox, ContainerRowChild, LinkedStartTask, TextButtonStartTask, 
+   TarefaImage,
+   TextTarefa} from '@/styles/index-child';
+import { SafeAreaView } from "react-native";
+import { Title } from "@/styles";
+import Colors from '@/constants/Colors';
+
 const ImageLogo = require('@/assets/images/logo.png');
 const ImageCalendario = require('@/assets/icons/calendario.png');
 const ImageDesafios = require('@/assets/icons/desafios-quebra-cabeca.png');
+const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
+const BlueColor  = Colors.colors.blue;
 
 const getCurrentDate = () => {
 
@@ -26,8 +33,10 @@ export default function HomePage() {
         <Data>{getCurrentDate()}</Data>
       </ContainerRowChild>
       <GradientBorderBox>
-        <Box>
-          <Text>fwaafaf</Text>
+         <TarefaImage source={ImageTarefa} ></TarefaImage>
+         <Box>
+          <Title customColor={BlueColor}>Desafio do Dia</Title>
+          <TextTarefa>Tarefa tal, boa sorte!</TextTarefa>
           <LinkedStartTask href="/(auth)/(child)/single-task">
             <TextButtonStartTask>Iniciar</TextButtonStartTask>
           </LinkedStartTask>

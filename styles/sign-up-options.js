@@ -17,10 +17,6 @@ export const ModalView = styled.View`
   border-width: 3px;
   border-color: #00d46e;
   border-radius: 20px;
-  shadow-color: black;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.25;
-  shadow-radius: 4px;
   elevation: 5;
 `;
 

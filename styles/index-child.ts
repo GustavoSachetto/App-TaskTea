@@ -2,9 +2,8 @@ import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions } from 'react-native';
 import { Link } from 'expo-router';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { button } = Colors;
 const { colors } = Colors;

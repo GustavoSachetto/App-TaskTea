@@ -23,6 +23,7 @@ export const FontProvider: React.FC<FontProviderProps> = ({ children }) => {
         [Fonts.RalewayRegular]: require('@/assets/fonts/Raleway-Regular.ttf'),
         [Fonts.RalewayBold]: require('@/assets/fonts/Raleway-Bold.ttf'),
         [Fonts.RalewayExtraBold]: require('@/assets/fonts/Raleway-ExtraBold.ttf'),
+        [Fonts.RalewayItalic]: require('@/assets/fonts/Raleway-Italic.ttf'),
       });
       setFontsLoaded(true);
     } catch (error) {

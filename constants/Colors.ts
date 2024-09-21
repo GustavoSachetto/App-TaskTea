@@ -33,6 +33,7 @@ export default {
     gray: '#a6a6a6',
     blue: '#0060ff',
     yellow: '#ffca00',
+    lightYellow: '#f9d448',
   },
   text: {
     darkgray: '#545454',

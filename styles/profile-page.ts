@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
 import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { getFontSize } from '@/utils/fontSize';
+import { h, w } from '@/utils/responsiveMesures';
 
 const { colors } = Colors;
 
@@ -14,46 +17,48 @@ export const Container = styled.View`
 
 export const Banner = styled.Image`
     width:100%;
-    height:20%;
+    height: ${h(20)}px ;
 `;
 
 export const ImageProfile = styled.Image`
-    max-width:130px;
-    height:130px;
-    width:100%;
+    height:${h(20)}px ;
+    width: ${h(20)}px ;
     border-radius: 65px;
-    margin-top:-65px;
-    margin-left:13px;
+    margin-top:-${h(10)}px;
+    margin-left:${w(4)}px;
 `;
 
 export const SectionProfile = styled.View`
     padding:10px;
     flex-direction:column;
+    margin-left:${w(4)}px;
 `;
 
 export const NameProfile = styled.Text`
     font-family: ${Fonts.RalewayBold};
     color: ${Colors.colors.blue};
-    font-size:22px;
+    font-size: ${getFontSize(11)}px;
 `;
 
 export const About = styled.Text`
-    margin:5px 0 5px 0;
+    margin:${w(1)}px 0 ${w(1)}px 0;
     font-family: ${Fonts.RalewayRegular};
+    font-size: ${getFontSize(8)}px;
 `;
 
 export const Button = styled.Pressable`
     background-color: ${Colors.colors.blue};
-    border-radius: 15px;
-    padding: 7px;
-    margin-top: 9px;
+    border-radius: ${w(12)}px;
+    padding:${w(1.8)}px;
+    margin-top: ${w(4)}px;
+    margin-right: ${w(4)}px;
     justify-content: center;
     align-items: center;
 `;
 
 export const ButtonText = styled.Text`
     color: ${Colors.colors.white};
-    font-size: 17px;
+    font-size: ${getFontSize(8)}px;
     text-align: center;
     font-family: ${Fonts.RalewayBold};
 `;

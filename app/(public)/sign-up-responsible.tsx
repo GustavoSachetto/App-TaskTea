@@ -2,8 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton } from "@/styles/index";
-import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
+import { ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import Colors from '@/constants/Colors';
 const ImageLogo = require('@/assets/images/logo.png');
 

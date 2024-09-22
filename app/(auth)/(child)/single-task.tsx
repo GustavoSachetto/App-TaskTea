@@ -1,10 +1,8 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa } from '@/styles/single-task';
-import {  GradientBorderBox } from '@/styles/index-child';
+import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
+  Dica, TextClick, TextTarefa, GradientBorderBox } from '@/styles/single-task';
 import Colors from '@/constants/Colors';
-import { Title } from "@/styles";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -30,7 +28,6 @@ export default function SingleTaskPage() {
           </TextTarefa>
           <ContainerRowTask>
             <TextClick>Clique para finalizar</TextClick>
-
             <Dica source={ImageDica} ></Dica>
           </ContainerRowTask>
         </BoxTask>

@@ -1,32 +1,32 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
+import { getFontSize } from '@/utils/fontSize';
+import { h, w } from '@/utils/responsiveMesures';
 
 const { text } = Colors;
 
 export const ContainerHeader = styled.View`
   flex: 1;
-  padding: 15px;
-  height: 85%;
+  padding: ${w(4)}px;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: ${w(4)}px;
 `;
 
 export const Logo = styled.Image`
-  width: 180px;
-  height: 80px;
-  padding-top: 150px;
-  margin: 0 auto;
+  height: ${h(20)}px;
+  width: ${w(50)}px;
+  margin: ${w(3)}px auto;
 `;
 
 export const QuebraCabeca = styled.Image`
-  width: 180px;
-  height: 165px;
+  height: ${h(23)}px;
+  width: ${w(45)}px;
   position: absolute;
-  top: -28px;
-  left: -35px;
+  top: -${h(5)}px;
+  left: -${w(11)}px;
   z-index: 99;
   transform: rotate(35deg);
 `;
@@ -35,19 +35,19 @@ export const Text = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
-  font-size: 22px;
+  font-size: ${getFontSize(12)}px;
 `;
 
 export const Data = styled.Text`
   color: ${Colors.text.red};
   text-align: center;
   font-family: ${Fonts.RalewayBold};
-  font-size: 20px;
+  font-size: ${getFontSize(12)}px;
 `;
 
 export const Calendario = styled.Image`
-  width: 35px;
-  height: 35px;
+  height: ${h(8)}px;
+  width: ${w(8)}px;
   z-index: 99;
-  margin-right: 10px;
+  margin-right: ${w(2)}px;;
 `;

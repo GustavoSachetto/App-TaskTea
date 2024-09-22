@@ -3,7 +3,8 @@ import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { h, w } from '@/utils/responsiveMesures';
+import { getFontSize } from '@/utils/fontSize';
 
 const { button } = Colors;
 const { colors } = Colors;
@@ -11,28 +12,28 @@ const { text } = Colors;
 const { title } = Colors;
 
 
+
 export const GradientBorderBox = styled(LinearGradient).attrs(props => ({
-  colors: props.colors || ['#0060ff', '#ffffff', '#0060ff'], // Pega as cores das props ou usa cores padrão
+  colors: props.colors || ['#0060ff', '#ffffff', '#0060ff'], 
 }))`
-  height: ${hp('15%')}px;
-  width: ${wp('90%')}px;
+  height: ${h(23)}px;
+  width: ${w(90)}px;
   align-self: center;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  border-radius: 30px;
-  margin-bottom: 30px;
+  border-radius: ${w(5)}px;
+  margin-bottom: ${w(10)}px;
   position: relative;
 `;
 
 export const Box = styled.View`
-  height: 98%;
+  height: 94%;
   width: 98% ;
   flex-direction:row;
-  border-radius: 26px;
+  border-radius: ${w(5)}px;
   z-index: 2;
   background-color: white;
   position: absolute; 
-  bottom: 1%;
   padding: 5%;
 `;
 
@@ -43,22 +44,24 @@ export const ScrollViewContainer = styled.ScrollView`
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor || title.gray};
-  font-size: 24px;
+  font-size: ${getFontSize(13)}px;
   font-weight: 600;
   text-align:center;
-  margin: 0 0 10px 0;
+  margin: 0 0 ${w(2)}px 0;
   font-family:  ${Fonts.RalewayBold};
 `;
 
 export const Button = styled.Pressable<any>`
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 8px 0;
-  text-align: center;
-  border-radius: 20px;
-  font-family:  ${Fonts.RalewayBold};
+  border-radius: ${w(6)}px;
   background-color: ${(props: any) => props.customColor};
+`;
+
+export const Text = styled.Text`
+  color: white;
+  font-size: ${getFontSize(10)}px;
+  padding: ${w(1.5)}px 0;
+  text-align: center;
+  font-family:  ${Fonts.RalewayBold};
 `;
 
 export const Icons = styled.Image`

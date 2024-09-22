@@ -1,7 +1,6 @@
 import { ScrollViewContainer,
   Box, GradientBorderBox, LinkedStartTask, TextButtonStartTask, 
-  TarefaImage, TextTarefa} from '@/styles/index-child';
-import { Title } from "@/styles";
+  TarefaImage, Title, TextTarefa} from '@/styles/index-child';
 import Colors from '@/constants/Colors';
 import HeaderIndex  from '@/components/header-index'
 

@@ -3,37 +3,49 @@ import Colors from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { getFontSize } from '@/utils/fontSize';
+import { h, w } from '@/utils/responsiveMesures';
+
+// estilo funciona no celular
 
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
+
 `;
 
 export const ContainerRowTask = styled.View`
-  padding: 10px;
+  padding: ${w(15)}px;
+  height: ${h(21)}px;
+  width: 100%;
   flex-direction: row;
 `;
 
+export const Title = styled.Text<any>`
+  color: ${(props: any) => props.customColor};
+  font-size: ${w(6.3)}px;
+  margin-top: ${h(1.6)}px;
+  font-weight: 600;
+  text-align: center;
+  font-family:  ${Fonts.RalewayBold};
+`;
+
 export const Voltar = styled.Image`
-  width: 35px;
-  height: 35px;
+  width: ${h(5)}px ;
+  height: ${h(5)}px ;
+  z-index: 99;
 `;
 
 export const Dica = styled.Image`
-  width: 58px;
-  height: 58px;
+  width: ${h(8)}px;
+  height: ${h(8)}px;
 `;
 
 export const TextTaskDay = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: 33px;
+  font-size: ${getFontSize(15)}px;
   font-weight: 600;
-  padding: 12px 0;
   text-align: center;
   margin: 0 auto;
   font-family: ${Fonts.RalewayBold};
@@ -41,45 +53,59 @@ export const TextTaskDay = styled.Text`
 
 export const LinkedSign = styled(Link)`
   align-self: center;
-  margin-right: 10px;
+  margin-right: ${w(2)}px;
+  margin-left: -${w(5)}px;
+  height: ${w(15)}px;
+  width: ${w(15)}px;
+`;
+
+export const GradientBorderBox = styled(LinearGradient).attrs({
+  colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
+})`
+  height: ${h(65)}px ;
+  width: ${w(85)}px ;
+  margin: ${w(5)}px auto;
+  justify-content: flex-start; 
+  align-items: center;
+  border-radius: ${w(5)}px ;
+  margin-bottom: ${w(4)}px ;
+  position: relative; 
 `;
 
 export const BoxTask = styled.View`
-  height: 51%;
-  width: 97%;
-  border-radius: 26px;
+  height: 56%;
+  width: 98% ;
+  border-radius: ${w(5)}px ;
   z-index: 2;
   background-color: white;
-  position: absolute;
+  position: absolute; 
   bottom: 1%;
   padding: 5%;
   justify-content: space-between;
 `;
 
 export const TarefaImage = styled.Image`
-  height: 53%;
+  height: 46%;
   width: 97%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: ${w(4.5)}px;
+  border-top-right-radius: ${w(4.5)}px;
   top: 1%;
 `;
 
 export const TextTarefa = styled.Text`
   color: ${ Colors.title.gray };
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 13px;
+  font-size: ${w(4.3)}px;
+  margin-top: ${h(2)}px;
+  margin-bottom: ${h(2)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  padding: 0px 16px 0px 16px;
+  padding: 0px ${w(2.5)}px 0px ${w(2.5)}px;
 `;
 
 export const TextClick = styled.Text`
   color: ${ Colors.title.gray };
-  font-size: 13px;
-  margin-top: 10px;
-  margin-bottom: 13px;
+  font-size: ${getFontSize(6.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  width: 80px;
+  width: ${w(20)}px;
 `;

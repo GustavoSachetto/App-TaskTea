@@ -1,44 +1,49 @@
 import styled from 'styled-components/native';
 import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
+import { getFontSize } from '@/utils/fontSize';
+import { w } from '@/utils/responsiveMesures';
 
 const { colors } = Colors;
 
 export const Container = styled.View`
     flex: 1;
-    padding: 10px 25px 0 25px;
+    padding: ${w(2)}px ${w(5)}px 0 ${w(5)}px;
     height: 85%;
     display: flex;
     font-family: ${Fonts.RalewayBold};
     background-color:${colors.white};
 `;
 export const Header = styled.View`
-    display:flex;
-    flex-direction:row;
-    align-items:center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     font-family: ${Fonts.RalewayBold};
+    padding: ${w(5)}px 0;
 `;
 
 export const Logo = styled.Image`
-    width:55px;
-    margin:10px;
+    width:${w(10)}px;
+    height:${w(10)}px;
 `;
 
 export const Title = styled.Text`
-    font-size:27px;
+    font-size: ${getFontSize(15)}px;
     font-family: ${Fonts.RalewayBold};
+    margin-left: ${w(2)}px;
 `;
 
 export const Functions = styled.View`
     background-color: #edeaea;
-    padding:10px;
-    margin:10px 0 10px 0;
-    border-radius: 20px;
+    padding:${w(2)}px;
+    margin:${w(2)}px 0${w(2)}px 0;
+    border-radius: ${w(12)}px;
     flex-direction:row;
     align-items:center;
 `;
 
 export const Text = styled.Text`
-    margin-left:12px;
+    margin-left:${w(2)}px;
     font-family: ${Fonts.RalewayBold};
+    font-size: ${getFontSize(8)}px;
 `;

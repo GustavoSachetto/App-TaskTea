@@ -27,20 +27,20 @@ export default function TasksPage() {
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
-              
             </Task1>
+
             <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
               <Description>Entre aqui para saber mais</Description>
-              
             </Task1>
+
             <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
+              <Description>Entre aqui para saber mais</Description>       
             </Task1>
+            
             <Task1 href="/(auth)/(child)/single-task">
               <Clips source={ImageClips} resizeMode="contain" />
               <Title>Bom dia!</Title>

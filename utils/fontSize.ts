@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 const { width } = Dimensions.get('window');
 
 export const getFontSize = (size : number) => {
-  if (width > 768) { 
+  if (width > 500) { 
     return wp(size * 0.35); 
   }
   return wp(size * 0.5); 

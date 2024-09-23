@@ -4,6 +4,7 @@ import { ContainerRow } from '@/styles/index';
 import { QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task1,
   BoxTasks, Title, Description, Clips } from '@/styles/tasks';
+import SignUpOptions from "@/components/tip";
 
 const ImageClips = require('@/assets/icons/clips.png');
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');

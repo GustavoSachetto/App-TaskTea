@@ -5,6 +5,7 @@ import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // estilo funciona no celular
 

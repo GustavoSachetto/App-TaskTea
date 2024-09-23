@@ -1,8 +1,11 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState} from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, TextClick, TextTarefa, GradientBorderBox } from '@/styles/single-task';
+import { Overlay } from "@/styles/index";
+import { Button } from '@/styles/tip';
 import Colors from '@/constants/Colors';
+import Tip from '@/components/tip';
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -10,8 +13,11 @@ const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const RedColor  = Colors.colors.red;
 
 export default function SingleTaskPage() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <Container>
+      {modalVisible && <Overlay />}
       <ContainerRowTask>
         <LinkedSign href="/(auth)/(child)/(tabs)">
           <Voltar source={ImageVoltar} resizeMode="contain" />
@@ -28,8 +34,14 @@ export default function SingleTaskPage() {
           </TextTarefa>
           <ContainerRowTask>
             <TextClick>Clique para finalizar</TextClick>
-            <Dica source={ImageDica} ></Dica>
+            <Button onPress={() => setModalVisible(true)}>
+              <Dica source={ImageDica} ></Dica>
+            </Button>
           </ContainerRowTask>
+          <Tip
+            visible={modalVisible}
+            onClose={() => setModalVisible(false)}
+          />
         </BoxTask>
       </GradientBorderBox>
     </Container>

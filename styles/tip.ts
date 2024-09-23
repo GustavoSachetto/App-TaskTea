@@ -1,0 +1,70 @@
+import styled from 'styled-components/native';
+import { Fonts } from '@/constants/Fonts';
+import Colors from '@/constants/Colors';
+import { getFontSize } from '@/utils/fontSize';
+import { h, w } from '@/utils/responsiveMesures';
+
+export const CenteredView = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalView = styled.View`
+  width: ${getFontSize(140)}px ;
+  height: ${getFontSize(160)}px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-width: 3px;
+  border-color: ${Colors.colors.lightYellow};
+  border-radius: ${getFontSize(12)}px;
+  elevation: 5;
+`;
+
+export const CloseButton = styled.Pressable`
+  position: absolute;
+  top: ${getFontSize(5)};
+  right: ${getFontSize(5)};
+`;
+
+export const ModalImage = styled.Image`
+  width:  ${getFontSize(18)}px;
+  height:  ${getFontSize(18)}px;
+`;
+
+export const DicaPopUp = styled.Image`
+  width:  ${getFontSize(35)}px;
+  height:  ${getFontSize(35)}px;
+  margin-top: ${w(-3)}%;
+`;
+
+export const Button = styled.Pressable`
+`;
+
+export const ModalText = styled.Text`
+  font-weight: 450;
+  font-size: ${getFontSize(10)}px;
+  color: #545454;
+  text-align: center;
+  margin-top: ${w(8)}px;
+  font-family: ${Fonts.RalewayBold};
+`;
+
+export const TextHelp = styled.Text`
+  font-weight: 200;
+  font-size: ${getFontSize(6)}px;
+  color: #737373;
+  text-align: center;
+  margin-top: ${w(5)}px;
+  font-family: ${Fonts.RalewayRegular};
+`;
+
+export const TextTip = styled.Text`
+  font-weight: 350;
+  font-size: ${getFontSize(8)}px;
+  color: #ff3131;
+  text-align: center;
+  margin-top: ${w(10)}px;
+  font-family: ${Fonts.RalewayBold};
+`;

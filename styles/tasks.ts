@@ -74,7 +74,7 @@ export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
   colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
 })`
   height: ${h(60)}px;
-  width: ${w(80)}px;
+  width: ${w(90)}px;
   align-self: center;
   justify-content: flex-start;
   align-items: center;
@@ -103,7 +103,7 @@ export const BoxTasks = styled.View`
   padding: 3%;
 `;
 
-export const Task1 = styled(Link)`
+export const Task1 = styled.View`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;

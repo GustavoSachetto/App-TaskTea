@@ -11,14 +11,15 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export const Container = styled.View`
   flex: 1;
+  width:100%;
   background-color: #fff;
   align-items: center;
-
+  padding: ${w(10)}px ${w(5)}px ${w(10)}px ${w(5)}px;
 `;
 
 export const ContainerRowTask = styled.View`
-  padding: ${w(15)}px;
-  height: ${h(21)}px;
+  align-items:center;
+  justify-content:center;
   width: 100%;
   flex-direction: row;
 `;
@@ -48,16 +49,15 @@ export const TextTaskDay = styled.Text`
   font-size: ${getFontSize(15)}px;
   font-weight: 600;
   text-align: center;
-  margin: 0 auto;
+  margin:0 auto;
   font-family: ${Fonts.RalewayBold};
 `;
 
 export const LinkedSign = styled(Link)`
-  align-self: center;
-  margin-right: ${w(2)}px;
-  margin-left: -${w(5)}px;
-  height: ${w(15)}px;
-  width: ${w(15)}px;
+  position:absolute;
+  left:0;
+  height: ${w(14)}px;
+  width: ${w(14)}px;
 `;
 
 export const GradientBorderBox = styled(LinearGradient).attrs({

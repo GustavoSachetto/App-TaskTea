@@ -1,15 +1,20 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity  } from 'react-native';
 import React from 'react';
 import { ContainerRow } from '@/styles/index';
-import { QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
+import { useRouter } from 'expo-router'; // para navegação manual
+import {
+  QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task1,
-  BoxTasks, Title, Description, Clips } from '@/styles/tasks';
+  BoxTasks, Title, Description, Clips
+} from '@/styles/tasks';
+import { Link } from 'expo-router';
 import SignUpOptions from "@/components/tip";
 
 const ImageClips = require('@/assets/icons/clips.png');
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
 
 export default function TasksPage() {
+  const router = useRouter();
   return (
     <ContainerAllTasks>
       <ContainerRowTasks>
@@ -24,55 +29,16 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-            </Task1>
-
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-            </Task1>
-
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>       
-            </Task1>
-            
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
-            </Task1>
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
-            </Task1>
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
-            </Task1>
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
-            </Task1>
-            <Task1 href="/(auth)/(child)/single-task">
-              <Clips source={ImageClips} resizeMode="contain" />
-              <Title>Bom dia!</Title>
-              <Description>Entre aqui para saber mais</Description>
-              
-            </Task1>
-
+          <TouchableOpacity 
+              style={{ width: '100%' }} 
+              onPress={() => router.push('/(auth)/(child)/single-task')}>
+              <Task1 style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Clips source={ImageClips} resizeMode="contain" />
+                <Title>Bom dia!</Title>
+                <Description>Entre aqui para saber mais</Description>
+              </Task1>
+            </TouchableOpacity>
+  
           </ScrollViewContainerTasks>
         </BoxTasks>
       </GradientBorderBoxTasks>

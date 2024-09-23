@@ -10,7 +10,7 @@ function InitialLayout() {
     if (!session) {
       router.replace("/(auth)/(child)");
     } else {
-      router.replace("/(public)");
+      router.replace("/(auth)/(child)");
     }
   }, [session]);
   return (

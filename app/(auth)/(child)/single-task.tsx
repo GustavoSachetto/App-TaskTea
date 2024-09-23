@@ -1,11 +1,16 @@
 import { View, Text } from 'react-native'
 import React, { useState} from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa, GradientBorderBox } from '@/styles/single-task';
+  Dica, TextClick, TextTarefa, GradientBorderBox, 
+  CheckboxContainer,
+  Checkbox,
+  ContainerRowHeader} from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
+import BouncyCheckbox from "react-native-bouncy-checkbox"; 
+import RNBounceable from "@freakycoder/react-native-bounceable";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -14,16 +19,18 @@ const RedColor  = Colors.colors.red;
 
 export default function SingleTaskPage() {
   const [modalVisible, setModalVisible] = useState(false);
+  let bouncyCheckboxRef: BouncyCheckbox | null = null;
+  const [checkboxState, setCheckboxState] = React.useState(false);
 
   return (
     <Container>
       {modalVisible && <Overlay />}
-      <ContainerRowTask>
+      <ContainerRowHeader>
         <LinkedSign href="/(auth)/(child)/(tabs)">
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <TextTaskDay>Desafio do dia</TextTaskDay>
-      </ContainerRowTask>
+      </ContainerRowHeader>
 
       <GradientBorderBox>
         <TarefaImage source={ImageTarefa} ></TarefaImage>
@@ -33,7 +40,18 @@ export default function SingleTaskPage() {
             Fale “Bom dia para alguém!”
           </TextTarefa>
           <ContainerRowTask>
-            <TextClick>Clique para finalizar</TextClick>
+            <TextClick>Clique para finalizar</TextClick> 
+              <BouncyCheckbox
+                  ref={bouncyCheckboxRef}
+                  disableText
+                  fillColor="#46f87c"
+                  size={50}
+                  innerIconStyle={{borderColor: '#46f87c', borderRadius: 15, borderWidth: 3.5}}
+                  iconStyle={{ borderRadius: 15}}
+                  onPress={isChecked => {
+                  
+                  }}
+          />
             <Button onPress={() => setModalVisible(true)}>
               <Dica source={ImageDica} ></Dica>
             </Button>

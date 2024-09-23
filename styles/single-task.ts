@@ -5,13 +5,14 @@ import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // estilo funciona no celular
 
 export const Container = styled.View`
   flex: 1;
-  width:100%;
+  width: 100%;
   background-color: #fff;
   align-items: center;
   padding: ${w(10)}px ${w(5)}px ${w(10)}px ${w(5)}px;
@@ -19,24 +20,33 @@ export const Container = styled.View`
 
 export const ContainerRowTask = styled.View`
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
   width: 100%;
   flex-direction: row;
+  padding: 0 ${w(3)}px 0 ${w(3)}px;
+`;
+
+export const ContainerRowHeader = styled.View`
+  
+  width: 100%;
+  flex-direction: row;
+  padding: 0 ${w(3)}px;
 `;
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
   font-size: ${w(6.3)}px;
-  margin-top: ${h(1.6)}px;
+  margin-top: ${h(2)}px;
   font-weight: 600;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};
 `;
 
 export const Voltar = styled.Image`
-  width: ${h(5)}px ;
-  height: ${h(5)}px ;
+  width: ${w(9)}px ;
+  height: ${w(9)}px ;
   z-index: 99;
+  margin: 0 auto;
 `;
 
 export const Dica = styled.Image`
@@ -46,7 +56,7 @@ export const Dica = styled.Image`
 
 export const TextTaskDay = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(15)}px;
+  font-size: ${getFontSize(17)}px;
   font-weight: 600;
   text-align: center;
   margin:0 auto;
@@ -57,15 +67,15 @@ export const LinkedSign = styled(Link)`
   position:absolute;
   left:0;
   height: ${w(14)}px;
-  width: ${w(14)}px;
+  width: 33%;
 `;
 
 export const GradientBorderBox = styled(LinearGradient).attrs({
   colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
-  height: ${h(65)}px ;
+  height: ${hp("65%")}px ;
   width: ${w(85)}px ;
-  margin: ${w(5)}px auto;
+  margin: ${w(8)}px auto;
   justify-content: flex-start; 
   align-items: center;
   border-radius: ${w(5)}px ;
@@ -96,11 +106,9 @@ export const TarefaImage = styled.Image`
 export const TextTarefa = styled.Text`
   color: ${ Colors.title.gray };
   font-size: ${w(4.3)}px;
-  margin-top: ${h(2)}px;
-  margin-bottom: ${h(2)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  padding: 0px ${w(2.5)}px 0px ${w(2.5)}px;
+  padding: 0px ${w(2)}px 0px ${w(2)}px;
 `;
 
 export const TextClick = styled.Text`
@@ -108,5 +116,6 @@ export const TextClick = styled.Text`
   font-size: ${getFontSize(6.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  width: ${w(20)}px;
+  width: 22%;
 `;
+

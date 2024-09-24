@@ -26,8 +26,7 @@ export const ContainerRowTask = styled.View`
   padding: 0 ${w(3)}px 0 ${w(3)}px;
 `;
 
-export const ContainerRowHeader = styled.View`
-  
+export const ContainerRowHeader = styled.View`  
   width: 100%;
   flex-direction: row;
   padding: 0 ${w(3)}px;

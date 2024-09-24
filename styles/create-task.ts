@@ -4,6 +4,8 @@ import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { LinearGradient } from "expo-linear-gradient";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Link } from 'expo-router';
 
 const { title } = Colors;
 const { colors } = Colors;
@@ -11,8 +13,9 @@ const { colors } = Colors;
 export const Container = styled.View`
   flex: 1;
   font-family: ${Fonts.RalewayBold};
-  padding-top: ${h(4)}px;
   flex-direction: column;
+  justify-content: center; 
+  
 `;
 
 export const Label = styled.Text<any>`
@@ -29,20 +32,22 @@ font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 2% ;
+  height: 8%;
   outline: 0;
-  margin: 4% auto;
+  padding-left: 2%;
+  margin:  ${w(2)}px auto  ${w(5)}px;
   border: solid #f9d54b 2px;
 `;
 
 export const InputDescription = styled.TextInput<any>`
-font-size: ${getFontSize(7)}px;
- font-family: ${Fonts.RalewayRegular};
+  font-size: ${getFontSize(7)}px;
+  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 10% ;
+  height: 15% ;
   outline: 0;
-  margin: 4% auto;
+  padding-left: 2%;
+  margin: ${w(2)}px auto  ${w(8)}px;
   border: solid #f9d54b 2px;
 `;
 
@@ -52,13 +57,15 @@ export const ButtonCreate = styled.Pressable<any>`
   padding: 3% 30%; 
   border-radius: ${w(9)}px;
   background-color: #f9d54b;
-  margin: 5% auto;
+  margin: ${w(4)}px auto;
+
 `;
 
 export const TarefaImage = styled.Image`
-  height: 30%;
+  height: ${hp("25%")}px;
   width: 98% ;
   border-radius: ${w(5)}px;
+  margin-bottom: ${w(3)}px;
   top: 1%; 
   z-index: 97;
 `;
@@ -80,26 +87,29 @@ export const EditImage = styled.Image`
   z-index: 99;
 `;
 
-export const Voltar = styled.Image`
-  width: ${w(9)}px ;
-  height: ${h(5)}px ;
+export const LinkBack = styled.View`
+  width: ${w(13)}px ;
+  height: ${w(13)}px ;
   z-index: 99;
-  margin-bottom: ${h(2.5)}px;
-  left: ${w(7.5)}px;
+`;
+
+export const Voltar = styled.Image`
+margin-top: ${w(7)}px;
+ margin-left: ${w(10)}px;
+  width: ${w(10)}px ;
+  height: ${w(10)}px ;
 `;
 
 export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
     colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
   })`
-    height: ${h(82)}px;
+    height: ${hp("80%")}px;
     width: ${w(80)}px;
     align-self: center;
     justify-content: flex-start;
     align-items: center;
     border-radius: ${w(4)}px;
-    margin-bottom: ${w(3)}px;
-    margin-top: ${w(4)}px;
-    position: relative;
+    margin: ${w(2.5)}px;
     z-index: 98;
   `;
 
@@ -120,5 +130,5 @@ export const ContainerButtonsSign = styled.View`
   justify-content: space-between;
   flex-direction: row;
   margin: 0 auto;
-  padding: ${w(2)}px ${w(3)}px ${w(2)}px ;
+
 `;

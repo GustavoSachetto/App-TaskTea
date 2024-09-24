@@ -26,7 +26,7 @@ export default function Layout() {
           tabBarIcon: () => (
             <Image
               source={require('../../../../assets/icons/quebra-cabeca.png')}
-              style={{ width: 30, height: 30 }}  resizeMode="contain"
+              style={{ width: 30, height: 30 }} resizeMode='contain'
             />
           ),
         }}
@@ -37,7 +37,7 @@ export default function Layout() {
           tabBarIcon: () => (
             <Image
               source={require('../../../../assets/icons/perfil1.png')}
-              style={{ width: 30, height: 30, borderRadius: 100 }} 
+              style={{ width: 30, height: 30, borderRadius: 100 }}
             />
           ),
         }}

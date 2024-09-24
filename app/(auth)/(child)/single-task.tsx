@@ -2,15 +2,12 @@ import { View, Text } from 'react-native'
 import React, { useState} from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, TextClick, TextTarefa, GradientBorderBox, 
-  CheckboxContainer,
-  Checkbox,
   ContainerRowHeader} from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
 import BouncyCheckbox from "react-native-bouncy-checkbox"; 
-import RNBounceable from "@freakycoder/react-native-bounceable";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');

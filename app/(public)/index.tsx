@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import { useState } from 'react';
 import { Container, ContainerButton, Logo, Title, SubTitle, Button, LinkButton,
   LinkStyled, Overlay, TextButton } from "@/styles/index";
 import SignUpOptions from "@/components/sign-up-options";

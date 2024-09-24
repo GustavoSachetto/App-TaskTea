@@ -1,17 +1,20 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
     "paths": {
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "jsx": "react-jsx"
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/(public)/index.tsx", "components/TabNavigator.jsx"  ]
+    "expo-env.d.ts",
+    "app/(public)/index.tsx",
+    "components/TabNavigator.jsx"
+  ],
+  "extends": "expo/tsconfig.base"
 }

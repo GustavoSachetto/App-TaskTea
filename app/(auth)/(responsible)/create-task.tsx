@@ -18,7 +18,7 @@ export default function SignIn() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
-       <Link href="/(auth)/(responsible)/(tabs)/index">
+        <Link href="/(auth)/(responsible)/(tabs)/">
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </Link>
         <GradientBorderBoxTasks>

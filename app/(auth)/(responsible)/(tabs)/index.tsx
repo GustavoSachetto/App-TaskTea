@@ -17,7 +17,7 @@ export default function HomePage() {
         <Box>
           <Icons
             resizeMode="contain" 
-            source={require('../../../../assets/icons/grafico.png')} />
+            source={require('../../../../assets/icons/estatistica.png')} />
           <View>
             <Title customColor={BlueColor}>Resultados</Title>
             <Button customColor={BlueColor}>

@@ -8,9 +8,9 @@ function InitialLayout() {
 
   useEffect(() => {
     if (!session) {
-      router.replace("/(public)");
+      router.replace("/(auth)/(responsible)/");
     } else {
-      router.replace("/(auth)/(child)");
+      router.replace("/(public)");
     }
   }, [session]);
   return (

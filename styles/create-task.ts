@@ -40,7 +40,7 @@ font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 10% ;
+  padding: 10%;
   outline: 0;
   margin: 4% auto;
   border: solid #f9d54b 2px;

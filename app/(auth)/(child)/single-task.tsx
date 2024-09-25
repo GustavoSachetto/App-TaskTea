@@ -19,8 +19,7 @@ const RedColor  = Colors.colors.red;
 
 export default function SingleTaskPage() {
   const [modalVisible, setModalVisible] = useState(false);
-  let bouncyCheckboxRef: BouncyCheckbox | null = null;
-  const [checkboxState, setCheckboxState] = React.useState(false);
+  let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
 
   return (
     <Container>

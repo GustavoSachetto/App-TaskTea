@@ -23,7 +23,7 @@ export const Banner = styled.Image`
 export const ImageProfile = styled.Image`
     height:${h(20)}px ;
     width: ${h(20)}px ;
-    border-radius: 65px;
+    border-radius: 100%;
     margin-top:-${h(10)}px;
     margin-left:${w(4)}px;
 `;

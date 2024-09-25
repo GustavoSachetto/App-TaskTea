@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page'
 
 export default function ProfilePage() {

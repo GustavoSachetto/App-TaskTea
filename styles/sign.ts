@@ -76,25 +76,27 @@ export const Line = styled.View<any>`
 `;
 
 export const Input = styled.TextInput<any>`
-font-size: ${getFontSize(7)}px;
- font-family: ${Fonts.RalewayRegular};
+  font-size: ${getFontSize(7)}px;
+  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(3)}px ;
-  padding: ${w(1)}px ;;
+  padding: ${w(2)}px ;
   outline: 0;
   margin: ${w(1)}px auto;
   border: solid  ${(props: any) => props.customColor || dark.background} 2px;
 `;
+
 export const ButtonSign = styled.Pressable<any>`
   color: white;
   font-size: ${getFontSize(12)}px;
   font-weight: 600;
+  align-self: center;
   padding: ${w(2)}px ${w(10)}px; 
   border-radius: ${w(9)}px;
   background-color: ${(props: any) => props.customColor};
 `;
 
-export const LinkedSign = styled(Link)<any>`
+export const LinkedSign = styled.View`
   color: white;
   font-size: ${getFontSize(12)}px;
   font-weight: 600;
@@ -109,4 +111,32 @@ export const ContainerButtonsSign = styled.View`
   flex-direction: row;
   margin: 0 auto;
   padding: ${w(2)}px ${w(3)}px ${w(2)}px ;
+`;
+
+export const LinkPopUp = styled.Text`
+  font-size: ${getFontSize(5)}px;
+  color: ${ Colors.colors.gray };
+  font-family: ${Fonts.RalewayRegular};
+  text-decoration: underline; 
+
+`;
+
+export const TextReadAndAgree = styled.Text`
+  font-size: ${getFontSize(5)}px;
+  color: ${ Colors.colors.gray };
+  font-family: ${Fonts.RalewayRegular};
+  margin-left: ${h(1)}px;
+
+`;
+
+export const ContainerRow = styled.View`
+  flex: 1;
+  padding: 15px;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: ${h(3)}px ;
+  margin-bottom: ${h(2.8)}px;
+  margin-left: ${h(3)}px;
 `;

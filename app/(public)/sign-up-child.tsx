@@ -1,15 +1,20 @@
 import { View, Text } from 'react-native'
-import React from 'react'
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton } from "@/styles/sign";
+import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign,
+  ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, TextReadAndAgree,
+  LinkPopUp, ContainerRow } from "@/styles/sign";
 import Colors from '@/constants/Colors';
+import { Link } from 'expo-router';
 const ImageLogo = require('@/assets/images/logo.png');
+import BouncyCheckbox from "react-native-bouncy-checkbox"; 
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
 
 export default function SignUpChild() {
+  let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
+
   return (
     <ContainerScrollView>
       <Logo source={ImageLogo} resizeMode="contain" />
@@ -53,10 +58,29 @@ export default function SignUpChild() {
         // onChangeText={(text) => setPassword(text)}
         // secureTextEntry 
         />
+        <ContainerRow>
+          <BouncyCheckbox
+                    ref={bouncyCheckboxRef}
+                    disableText
+                    fillColor="#46f87c"
+                    size={30}
+                    innerIconStyle={{borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5}}
+                    iconStyle={{ borderRadius: 5}}
+                    onPress={isChecked => {
+                    }}
+
+          />
+          <TextReadAndAgree> Eu li e concordo com a 
+          <LinkPopUp> Política de Privacidade </LinkPopUp>
+          e
+          <LinkPopUp>Termos de uso</LinkPopUp> </TextReadAndAgree> 
+        </ContainerRow>
         <ContainerButtonsSign>
-          <LinkedSign customColor={GrayColor} href="/(public)/">
-            <TextButton>Voltar</TextButton>
-          </LinkedSign>
+          <Link href="/(public)/">
+            <LinkedSign customColor={GrayColor}>
+              <TextButton>Voltar</TextButton>
+            </LinkedSign>
+          </Link>
           <ButtonSign customColor={GreenColor}
           // onPress={}
           >
@@ -64,7 +88,6 @@ export default function SignUpChild() {
           </ButtonSign>
         </ContainerButtonsSign>
       </Border>
-      <LinkStyled href="/">Termos de serviços</LinkStyled>
     </ContainerScrollView>
 
   )

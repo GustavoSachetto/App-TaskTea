@@ -74,13 +74,11 @@ export const createUserChild = async (data: PostUserChildProps, token: string) =
   return response.data;
 } 
 
-export const createUserResponsible = async (data: PostUserResponsibleProps, token: string) => {
+export const createUserResponsible = async (data: PostUserResponsibleProps) => {
   const response = await api.post<UserProps>(
-    `/users/responsible`, data,{
-    headers: { 'Authorization': `Bearer ${token}` }
-  })
+    `/users/responsible`, data)
 
-  return response.data;
+  return response;
 } 
 
 export const createUserRelationship = async (userId: number, token: string) => {

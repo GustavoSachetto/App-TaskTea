@@ -1,7 +1,11 @@
-import { View, Image } from 'react-native'
 import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settings'
-import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { logout } from '@/services/api/auth';
+
+async function Logout() {
+  const debug = logout();
+  console.log(debug);
+}
 
 export default function SettingsPage() {
   return (
@@ -20,7 +24,7 @@ export default function SettingsPage() {
         <Ionicons name="lock-closed-outline" size={25} />
          <Text>Segurança e informação</Text>
       </Functions>
-      <Functions>
+      <Functions onPress={Logout}>
         <Ionicons name="exit-outline" size={25} color="#ff3f00" />
          <Text style={{color:'#ff3f00'}}>Sair</Text>
       </Functions>

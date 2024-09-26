@@ -35,7 +35,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
           
           setSession(response.token);
 
-          return response.token;
+          return response.message;
         },
         signOut: async (token) => {
           const response = await logout(token)

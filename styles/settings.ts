@@ -33,7 +33,7 @@ export const Title = styled.Text`
     margin-left: ${w(2)}px;
 `;
 
-export const Functions = styled.View`
+export const Functions = styled.Pressable`
     background-color: #edeaea;
     padding:${w(2)}px;
     margin:${w(2)}px 0${w(2)}px 0;

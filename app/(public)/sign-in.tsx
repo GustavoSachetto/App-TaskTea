@@ -5,6 +5,7 @@ import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } fro
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
 const ImageLogo = require('@/assets/images/logo.png');
+import { Link } from 'expo-router';
 
 const BlueColor  = Colors.colors.blue;
 const GrayColor = Colors.colors.gray;
@@ -44,9 +45,11 @@ export default function SignIn() {
             onChangeText={(text: string) => setPassword(text)}
             secureTextEntry />
           <ContainerButtonsSign>
-            <LinkedSign customColor={GrayColor} href="/(public)/">
-              <TextButton>Voltar</TextButton>
-            </LinkedSign>
+            <Link href="/(public)/">
+              <LinkedSign customColor={GrayColor}>
+                <TextButton>Voltar</TextButton>
+              </LinkedSign>
+            </Link>
             <ButtonSign customColor={BlueColor} onPress={handleLogin}>
               <TextButton>Entrar</TextButton>
             </ButtonSign>

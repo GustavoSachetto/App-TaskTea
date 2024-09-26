@@ -3,11 +3,15 @@ import { ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, Bor
 import Colors from '@/constants/Colors';
 import { createUserResponsible } from '@/services/api/user'
 const ImageLogo = require('@/assets/images/logo.png');
-
+import { Link } from 'expo-router';
+import BouncyCheckbox from "react-native-bouncy-checkbox"; 
+import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
 
 export default function SignUpResponsible() {
+  let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
+
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [cpf, setCpf] = useState('');
@@ -17,6 +21,7 @@ export default function SignUpResponsible() {
   const [password, setPassword] = useState('');
 
   const handleSignUp = async () => {
+    
     const userData = {
       name,
       email,
@@ -91,10 +96,29 @@ export default function SignUpResponsible() {
           onChangeText={(text: string) => setPassword(text)}
           secureTextEntry
         />
+        <ContainerRow>
+          <BouncyCheckbox
+                    ref={bouncyCheckboxRef}
+                    disableText
+                    fillColor="#46f87c"
+                    size={30}
+                    innerIconStyle={{borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5}}
+                    iconStyle={{ borderRadius: 5}}
+                    onPress={isChecked => {
+                    }}
+
+          />
+          <TextReadAndAgree>Eu li e concordo com a&ensp;
+          <LinkPopUp>Política de Privacidade</LinkPopUp> 
+          &ensp; e &ensp; 
+          <LinkPopUp>Termos de uso</LinkPopUp></TextReadAndAgree> 
+        </ContainerRow>
         <ContainerButtonsSign>
+        <Link href="/(public)/">
           <LinkedSign customColor={GrayColor} href="/(public)/">
             <TextButton>Voltar</TextButton>
           </LinkedSign>
+        </Link>
           <ButtonSign customColor={GreenColor} onPress={handleSignUp}>
             <TextButton>Entrar</TextButton>
           </ButtonSign>

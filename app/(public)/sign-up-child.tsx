@@ -70,10 +70,10 @@ export default function SignUpChild() {
                     }}
 
           />
-          <TextReadAndAgree> Eu li e concordo com a 
-          <LinkPopUp> Política de Privacidade </LinkPopUp>
-          e
-          <LinkPopUp>Termos de uso</LinkPopUp> </TextReadAndAgree> 
+          <TextReadAndAgree>Eu li e concordo com a&ensp;
+          <LinkPopUp>Política de Privacidade</LinkPopUp> 
+          &ensp; e &ensp; 
+          <LinkPopUp>Termos de uso</LinkPopUp></TextReadAndAgree> 
         </ContainerRow>
         <ContainerButtonsSign>
           <Link href="/(public)/">

@@ -6,6 +6,7 @@ import { getFontSize } from '@/utils/fontSize';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { h, w } from '@/utils/responsiveMesures';
 
+const { text } = Colors;
 const { title } = Colors;
 const { dark } = Colors;
 const { button } = Colors;
@@ -114,15 +115,15 @@ export const ContainerButtonsSign = styled.View`
 `;
 
 export const LinkPopUp = styled.Text`
-  font-size: ${getFontSize(5)}px;
-  color: ${ Colors.colors.gray };
+  font-size: ${getFontSize(6)}px;
+  color: ${text.darkgray};
   font-family: ${Fonts.RalewayRegular};
   text-decoration: underline; 
 
 `;
 
 export const TextReadAndAgree = styled.Text`
-  font-size: ${getFontSize(5)}px;
+  font-size: ${getFontSize(6)}px;
   color: ${ Colors.colors.gray };
   font-family: ${Fonts.RalewayRegular};
   margin-left: ${h(1)}px;

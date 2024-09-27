@@ -66,15 +66,15 @@ export const getMyRelationships = async (token: string) => {
 } 
 
 export const createUserChild = async (data: PostUserChildProps) => {
-  const response = await api.post<{ message: string }>(
+  const response = await api.post<{ message: string}>(
     `/users/child`, data
   )
 
-  return response.data;
+  return response;
 } 
 
 export const createUserResponsible = async (data: PostUserResponsibleProps) => {
-  const response = await api.post<{ message: string }>(
+  const response = await api.post<{ message: string}>(
     `/users/responsible`, data
   )
 

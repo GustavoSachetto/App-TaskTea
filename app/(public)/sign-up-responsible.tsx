@@ -40,9 +40,8 @@ export default function SignUpResponsible() {
     if (response.data.message) 
       Toast.show({
         text1: 'Mensagem',
-        text2: response.data.message,
-      });
-
+        text2: response.data.message
+      });  
   };
 
   return (
@@ -116,7 +115,7 @@ export default function SignUpResponsible() {
                 size={30}
                 innerIconStyle={{ borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5 }}
                 iconStyle={{ borderRadius: 5 }}
-                onPress={isChecked => { }}
+                // onPress={isChecked => { }}
               />
               <TextReadAndAgree>
                 Eu li e concordo com a&ensp;

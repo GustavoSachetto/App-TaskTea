@@ -12,10 +12,10 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (response) => response, 
-  (error) =>error.response
+  (error) => error.response
 );
 
 api.interceptors.response.use(
   (response) => response, 
-  (error) =>error.response
+  (error) => error.response
 );

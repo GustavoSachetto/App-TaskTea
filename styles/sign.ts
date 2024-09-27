@@ -97,7 +97,7 @@ export const ButtonSign = styled.Pressable<any>`
   background-color: ${(props: any) => props.customColor};
 `;
 
-export const LinkedSign = styled.View`
+export const LinkedSign = styled.View<any>`
   color: white;
   font-size: ${getFontSize(12)}px;
   font-weight: 600;

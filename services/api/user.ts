@@ -10,7 +10,9 @@ type UserProps = {
   role?: Array<string>,
   phone_number?: string,
   created_at: string,
-  updated_at: string
+  updated_at: string,
+  message: string,
+  data: string
 }
 
 type UserRelationshipProps = {

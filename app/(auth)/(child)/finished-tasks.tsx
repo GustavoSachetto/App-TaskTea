@@ -2,7 +2,7 @@ import { TouchableOpacity  } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
-  GradientBorderBoxTasks, ContainerAllTasks, TextDoing, Task1,
+  GradientBorderBoxTasks, ContainerAllTasks, TextDoing, Task,
   BoxTasks, Title, Description, Clips
 } from '@/styles/tasks';
 import { LinkedSign, Voltar, ContainerRowTasks } from '@/styles/finished-tasks';
@@ -39,11 +39,11 @@ export default function TasksPage() {
           <TouchableOpacity 
               style={{ width: '100%' }} 
               onPress={() => router.push('/(auth)/(child)/single-task')}>
-              <Task1 customColor={green} style={{ flex: 1, alignSelf: 'stretch' }} >
+              <Task customColor={green} style={{ flex: 1, alignSelf: 'stretch' }} >
                 <Clips source={ImageClips} resizeMode="contain" />
                 <Title>Bom dia!</Title>
                 <Description>Entre aqui para saber mais</Description>
-              </Task1>
+              </Task>
             </TouchableOpacity>
   
           </ScrollViewContainerTasks>

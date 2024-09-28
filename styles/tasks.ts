@@ -108,7 +108,7 @@ export const BoxTasks = styled.View`
   padding: 3%;
 `;
 
-export const Task1 = styled.View<any>`
+export const Task = styled.View<any>`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;

@@ -22,7 +22,8 @@ export default function SignUpResponsible() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [age, setAge] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const handleSignUp = async () => {
     const userData = {
@@ -34,14 +35,13 @@ export default function SignUpResponsible() {
       cpf,
       phone_number: phoneNumber,
     };
-      setLoading(true)
+    setLoading(true);
     const response = await createUserResponsible(userData);
-      setLoading(false)
-    if (response.data.message) 
+    setLoading(false);
+    if (response.data.message)
       Toast.show({
         text1: 'Mensagem',
         text2: response.data.message
-      });  
   };
 
   return (
@@ -65,7 +65,7 @@ export default function SignUpResponsible() {
               onChangeText={(text: string) => setName(text)}
             />
             <Input
-              placeholder='Nome de usuário:'
+              placeholder='Nickname:'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={nickname}
@@ -115,12 +115,12 @@ export default function SignUpResponsible() {
                 size={30}
                 innerIconStyle={{ borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5 }}
                 iconStyle={{ borderRadius: 5 }}
-                // onPress={isChecked => { }}
+                onPress={(isChecked: boolean) => setIsCheckboxChecked(isChecked)}
               />
               <TextReadAndAgree>
                 Eu li e concordo com a&ensp;
                 <LinkPopUp>Política de Privacidade</LinkPopUp>
-                <Text>&ensp; e &ensp; </Text>
+                <Text> e </Text>
                 <LinkPopUp>Termos de uso</LinkPopUp>
               </TextReadAndAgree>
             </ContainerRow>
@@ -130,7 +130,11 @@ export default function SignUpResponsible() {
                   <TextButton>Voltar</TextButton>
                 </LinkedSign>
               </Link>
-              <ButtonSign customColor={GreenColor} onPress={handleSignUp}>
+              <ButtonSign
+                customColor={isCheckboxChecked ? GreenColor : GrayColor} 
+                onPress={handleSignUp}
+                disabled={!isCheckboxChecked}
+              >
                 <TextButton>Entrar</TextButton>
               </ButtonSign>
             </ContainerButtonsSign>

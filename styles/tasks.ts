@@ -15,8 +15,6 @@ const { dark } = Colors;
 const { button } = Colors;
 const { colors } = Colors;
 
-// estilo não funciona no celular
-
 export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;
@@ -40,15 +38,15 @@ export const ContainerRowTasks = styled.View`
   flex-direction: row;
 `;
 
-export const TextTask = styled.Text`
-  color: ${Colors.colors.yellow};
+export const TextTask = styled.Text<any>`
+  color: ${(props) => props.customColor || Colors.colors.lightYellow};
   font-size: ${getFontSize(17)}px;
   margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const ContainerTasksDoing = styled.View`
+export const ContainerTasksDoing = styled.View<any>`
   margin-top: 0;
   justify-content: center;
   text-align: center;
@@ -59,7 +57,7 @@ export const ContainerTasksDoing = styled.View`
   border-top-left-radius: ${w(3.5)}px;
   border-top-right-radius: ${w(3.5)}px;
   font-family: ${Fonts.RalewayBold};
-  background-color: ${Colors.colors.lightYellow};
+  background-color: ${(props) => props.customColor || Colors.colors.lightYellow};
 `;
 
 export const TextDoing = styled.Text`
@@ -70,9 +68,15 @@ export const TextDoing = styled.Text`
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
-  colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
-})`
+export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs((props) => ({
+  colors: [
+    props.customColor || Colors.colors.lightYellow,
+    "#ffffff",
+    "#ffffff",
+    "#ffffff",
+    props.customColor || Colors.colors.lightYellow
+  ],
+}))`
   height: ${h(60)}px;
   width: ${w(90)}px;
   align-self: center;
@@ -84,6 +88,7 @@ export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
   position: relative;
   z-index: 98;
 `;
+
 
 export const ScrollViewContainerTasks = styled.ScrollView`
   flex: 1;
@@ -103,7 +108,7 @@ export const BoxTasks = styled.View`
   padding: 3%;
 `;
 
-export const Task1 = styled.View`
+export const Task1 = styled.View<any>`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;
@@ -113,7 +118,7 @@ export const Task1 = styled.View`
   width: 100%;
   border-radius: ${h(1)}px;
   font-family: ${Fonts.RalewayBold};
-  background-color: ${Colors.colors.lightYellow};
+  background-color:  ${(props) => props.customColor || Colors.colors.lightYellow};
 `;
 
 export const Title = styled.Text`

@@ -1,11 +1,9 @@
 import styled from "styled-components/native";
 import Colors from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
-import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
-import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // estilo funciona no celular
@@ -63,11 +61,10 @@ export const TextTaskDay = styled.Text`
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const LinkedSign = styled(Link)`
-  position:absolute;
-  left:0;
-  height: ${w(14)}px;
-  width: 33%;
+export const LinkedSign = styled.Pressable`
+  margin-right: 0;
+  height: ${w(4)}px;
+  width: ${w(4)}px;
 `;
 
 export const GradientBorderBox = styled(LinearGradient).attrs({

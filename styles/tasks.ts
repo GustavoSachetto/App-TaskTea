@@ -38,7 +38,7 @@ export const ContainerRowTasks = styled.View`
   flex-direction: row;
 `;
 
-export const TextTask = styled.Text`
+export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
   font-size: ${getFontSize(17)}px;
   margin-top: -${w(3)}px;
@@ -46,7 +46,7 @@ export const TextTask = styled.Text`
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const ContainerTasksDoing = styled.View`
+export const ContainerTasksDoing = styled.View<any>`
   margin-top: 0;
   justify-content: center;
   text-align: center;
@@ -68,7 +68,7 @@ export const TextDoing = styled.Text`
   font-family: ${Fonts.RalewayBold};
 `;
 
-export const GradientBorderBoxTasks = styled(LinearGradient).attrs((props) => ({
+export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs((props) => ({
   colors: [
     props.customColor || Colors.colors.lightYellow,
     "#ffffff",
@@ -108,7 +108,7 @@ export const BoxTasks = styled.View`
   padding: 3%;
 `;
 
-export const Task1 = styled.View`
+export const Task1 = styled.View<any>`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;

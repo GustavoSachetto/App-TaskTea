@@ -38,7 +38,7 @@ export const Title = styled.Text<any>`
   font-family:  ${Fonts.RalewayBold};
 `;
 
-export const GradientBorderBox = styled(LinearGradient).attrs({
+export const GradientBorderBox = styled<any>(LinearGradient).attrs({
   colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
   height: ${hp('50%')}px ;

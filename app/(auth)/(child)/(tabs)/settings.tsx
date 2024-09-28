@@ -2,8 +2,13 @@ import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settin
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSession } from '@/hooks/ctx';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Image } from 'react-native';
+import { useRouter } from 'expo-router';
+
+const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 
 export default function SettingsPage() {
+  const router = useRouter();
   const { signOut, session } = useSession();
 
   const handleLogout = async () => {
@@ -24,9 +29,14 @@ export default function SettingsPage() {
         <Ionicons name="book-outline" size={wp('4.5%')} />
          <Text>Termos de serviço</Text>
       </Functions>
+     
       <Functions>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
          <Text>Segurança e informação</Text>
+      </Functions>
+      <Functions onPress={() => router.push('/(auth)/(child)/finished-tasks')}>
+        <Image source={ImageRelogio} style={{ width: wp('4.5%'), height: wp('4.5%') }} />
+         <Text>Histórico de Desafios</Text>
       </Functions>
       <Functions onPress={handleLogout}>
         <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />

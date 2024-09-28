@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import { useState } from 'react';
-import { ScrollView } from 'react-native';
 import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign,
   ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, TextReadAndAgree,
   LinkPopUp, ContainerRow } from "@/styles/sign";
@@ -14,6 +13,7 @@ const GreenColor = Colors.colors.green;
 
 export default function SignUpChild() {
   let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   return (
     <ContainerScrollView>
@@ -30,7 +30,7 @@ export default function SignUpChild() {
         // onChangeText={(text) => setName(text)} 
         />
         <Input
-          placeholder='Nome de usuário:'
+          placeholder='Nickname:'
           placeholderTextColor={GrayColor}
           customColor={GreenColor}
         // value={nickname}
@@ -59,31 +59,33 @@ export default function SignUpChild() {
         // secureTextEntry 
         />
         <ContainerRow>
-          <BouncyCheckbox
-                    ref={bouncyCheckboxRef}
-                    disableText
-                    fillColor="#46f87c"
-                    size={30}
-                    innerIconStyle={{borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5}}
-                    iconStyle={{ borderRadius: 5}}
-                    onPress={isChecked => {
-                    }}
-
-          />
-          <TextReadAndAgree>Eu li e concordo com a&ensp;
-          <LinkPopUp>Política de Privacidade</LinkPopUp> 
-          &ensp; e &ensp; 
-          <LinkPopUp>Termos de uso</LinkPopUp></TextReadAndAgree> 
-        </ContainerRow>
-        <ContainerButtonsSign>
-          <Link href="/(public)/">
-            <LinkedSign customColor={GrayColor}>
-              <TextButton>Voltar</TextButton>
-            </LinkedSign>
-          </Link>
-          <ButtonSign customColor={GreenColor}
-          // onPress={}
-          >
+        <BouncyCheckbox
+                ref={bouncyCheckboxRef}
+                disableText
+                fillColor="#46f87c"
+                size={30}
+                innerIconStyle={{ borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5 }}
+                iconStyle={{ borderRadius: 5 }}
+                onPress={(isChecked: boolean) => setIsCheckboxChecked(isChecked)}
+              />
+              <TextReadAndAgree>
+                <Text>Eu li e concordo com a </Text>
+                <LinkPopUp>Política de Privacidade</LinkPopUp>
+                <Text> e </Text>
+                <LinkPopUp>Termos de uso</LinkPopUp>
+              </TextReadAndAgree>
+            </ContainerRow>
+            <ContainerButtonsSign>
+              <Link href="/(public)/">
+                <LinkedSign customColor={GrayColor}>
+                  <TextButton>Voltar</TextButton>
+                </LinkedSign>
+              </Link>
+              <ButtonSign
+                customColor={isCheckboxChecked ? GreenColor : GrayColor} 
+                // onPress={}
+                disabled={!isCheckboxChecked}
+              >
             <TextButton>Entrar</TextButton>
           </ButtonSign>
         </ContainerButtonsSign>

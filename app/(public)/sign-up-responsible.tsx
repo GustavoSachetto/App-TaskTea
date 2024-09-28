@@ -7,6 +7,7 @@ import { Link } from 'expo-router';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 import Toast from 'react-native-toast-message';
+import { h, w } from '@/utils/responsiveMesures';
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
@@ -14,6 +15,8 @@ const ImageLogo = require('@/assets/images/logo.png');
 
 export default function SignUpResponsible() {
   let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
+  const [loading, setLoading] = useState(false);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
@@ -22,9 +25,7 @@ export default function SignUpResponsible() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [age, setAge] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
-
+  
   const handleSignUp = async () => {
     const userData = {
       name,
@@ -42,6 +43,7 @@ export default function SignUpResponsible() {
       Toast.show({
         text1: 'Mensagem',
         text2: response.data.message
+      });
   };
 
   return (
@@ -118,7 +120,7 @@ export default function SignUpResponsible() {
                 onPress={(isChecked: boolean) => setIsCheckboxChecked(isChecked)}
               />
               <TextReadAndAgree>
-                Eu li e concordo com a&ensp;
+              <Text>Eu li e concordo com a </Text>
                 <LinkPopUp>Política de Privacidade</LinkPopUp>
                 <Text> e </Text>
                 <LinkPopUp>Termos de uso</LinkPopUp>
@@ -139,7 +141,6 @@ export default function SignUpResponsible() {
               </ButtonSign>
             </ContainerButtonsSign>
           </Border>
-          <LinkStyled href="/">Termos de serviços</LinkStyled>
         </>
       )}
       <Toast />

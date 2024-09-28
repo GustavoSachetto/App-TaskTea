@@ -7,7 +7,6 @@ import { Link } from 'expo-router';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 import Toast from 'react-native-toast-message';
-import { h, w } from '@/utils/responsiveMesures';
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;

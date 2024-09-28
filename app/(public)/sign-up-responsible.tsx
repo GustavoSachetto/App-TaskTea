@@ -14,6 +14,8 @@ const ImageLogo = require('@/assets/images/logo.png');
 
 export default function SignUpResponsible() {
   let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
+  const [loading, setLoading] = useState(false);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
@@ -22,8 +24,7 @@ export default function SignUpResponsible() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [age, setAge] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false)
-
+  
   const handleSignUp = async () => {
     const userData = {
       name,
@@ -34,15 +35,15 @@ export default function SignUpResponsible() {
       cpf,
       phone_number: phoneNumber,
     };
-      setLoading(true)
+    setLoading(true);
     const response = await createUserResponsible(userData);
-      setLoading(false)
-    if (response.message) 
+    setLoading(false);
+    setIsCheckboxChecked(false)
+    if (response.data.message)
       Toast.show({
         text1: 'Mensagem',
-        text2: response.message,
+        text2: response.data.message
       });
-
   };
 
   return (
@@ -59,49 +60,60 @@ export default function SignUpResponsible() {
             <Title customColor={GreenColor} style={{ padding: 10 }}>Cadastro responsável</Title>
             <Line customColor={GreenColor} />
             <Input
-              placeholder='Nome:'
+              placeholder='Nome'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={name}
               onChangeText={(text: string) => setName(text)}
             />
             <Input
-              placeholder='Nome de usuário:'
+              placeholder='Nickname'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={nickname}
               onChangeText={(text: string) => setNickname(text)}
             />
             <Input
-              placeholder='CPF:'
+              placeholder='CPF'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={cpf}
-              onChangeText={(text: string) => setCpf(text)}
+              onChangeText={(text: string) => {
+                const numericValue = text.replace(/[^0-9]/g, '');
+                setCpf(numericValue.slice(0, 11))
+              }}
+              keyboardType="numeric"
             />
             <Input
-              placeholder='E-mail:'
+              placeholder='E-mail'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={email}
               onChangeText={(text: string) => setEmail(text)}
             />
             <Input
-              placeholder='Telefone:'
+              placeholder='Telefone'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={phoneNumber}
-              onChangeText={(text: string) => setPhoneNumber(text)}
+              onChangeText={(text: string) => {
+                const numericValue = text.replace(/[^0-9]/g, ''); 
+                setPhoneNumber(numericValue.slice(0, 11)); 
+              }}
+              keyboardType="numeric"
             />
             <Input
-              placeholder='Idade:'
+              placeholder='Idade'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={age}
-              onChangeText={(text: string) => setAge(text)}
+              onChangeText={(text: string) => {
+                const numericValue = text.replace(/[^0-9]/g, ''); 
+                setAge(numericValue.slice(0, 2))
+              }}
             />
             <Input
-              placeholder='Senha:'
+              placeholder='Senha'
               placeholderTextColor={GrayColor}
               customColor={GreenColor}
               value={password}
@@ -116,12 +128,12 @@ export default function SignUpResponsible() {
                 size={30}
                 innerIconStyle={{ borderColor: '#46f87c', borderRadius: 5, borderWidth: 2.5 }}
                 iconStyle={{ borderRadius: 5 }}
-                onPress={isChecked => { }}
+                onPress={(isChecked: boolean) => setIsCheckboxChecked(isChecked)}
               />
               <TextReadAndAgree>
-                Eu li e concordo com a&ensp;
+              <Text>Eu li e concordo com a </Text>
                 <LinkPopUp>Política de Privacidade</LinkPopUp>
-                <Text>&ensp; e &ensp; </Text>
+                <Text> e </Text>
                 <LinkPopUp>Termos de uso</LinkPopUp>
               </TextReadAndAgree>
             </ContainerRow>
@@ -131,12 +143,15 @@ export default function SignUpResponsible() {
                   <TextButton>Voltar</TextButton>
                 </LinkedSign>
               </Link>
-              <ButtonSign customColor={GreenColor} onPress={handleSignUp}>
+              <ButtonSign
+                customColor={isCheckboxChecked ? GreenColor : GrayColor} 
+                onPress={handleSignUp}
+                disabled={!isCheckboxChecked}
+              >
                 <TextButton>Entrar</TextButton>
               </ButtonSign>
             </ContainerButtonsSign>
           </Border>
-          <LinkStyled href="/">Termos de serviços</LinkStyled>
         </>
       )}
       <Toast />

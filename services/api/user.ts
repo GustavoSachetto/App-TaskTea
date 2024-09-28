@@ -65,22 +65,20 @@ export const getMyRelationships = async (token: string) => {
   return response.data;
 } 
 
-export const createUserChild = async (data: PostUserChildProps, token: string) => {
-  const response = await api.post<UserProps>(
-    `/users/child`, data,{
-    headers: { 'Authorization': `Bearer ${token}` }
-  })
+export const createUserChild = async (data: PostUserChildProps) => {
+  const response = await api.post<{ message: string}>(
+    `/users/child`, data
+  )
 
-  return response.data;
+  return response;
 } 
 
-export const createUserResponsible = async (data: PostUserResponsibleProps, token: string) => {
-  const response = await api.post<UserProps>(
-    `/users/responsible`, data,{
-    headers: { 'Authorization': `Bearer ${token}` }
-  })
+export const createUserResponsible = async (data: PostUserResponsibleProps) => {
+  const response = await api.post<{ message: string}>(
+    `/users/responsible`, data
+  )
 
-  return response.data;
+  return response;
 } 
 
 export const createUserRelationship = async (userId: number, token: string) => {
@@ -89,7 +87,7 @@ export const createUserRelationship = async (userId: number, token: string) => {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response.data;
+  return response;
 } 
 
 export const editMyUser = async (data: PutUserProps, token: string) => {

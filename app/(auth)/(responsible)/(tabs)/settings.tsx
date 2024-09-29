@@ -1,13 +1,22 @@
 import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settings'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { logout } from '@/services/api/auth';
+import { useSession } from '@/hooks/ctx';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Image } from 'react-native';
+import { useRouter } from 'expo-router';
 
-async function Logout() {
-  const debug = logout();
-  console.log(debug);
-}
+const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 
 export default function SettingsPage() {
+  const router = useRouter();
+  const { signOut, session } = useSession();
+
+  const handleLogout = async () => {
+    if (session) {
+      await signOut(session); 
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -17,15 +26,16 @@ export default function SettingsPage() {
         <Title>Configurações</Title>
       </Header>
       <Functions>
-        <Ionicons name="book-outline" size={25} />
+        <Ionicons name="book-outline" size={wp('4.5%')} />
          <Text>Termos de serviço</Text>
       </Functions>
+     
       <Functions>
-        <Ionicons name="lock-closed-outline" size={25} />
+        <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
          <Text>Segurança e informação</Text>
       </Functions>
-      <Functions onPress={Logout}>
-        <Ionicons name="exit-outline" size={25} color="#ff3f00" />
+      <Functions onPress={handleLogout}>
+        <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
          <Text style={{color:'#ff3f00'}}>Sair</Text>
       </Functions>
     </Container>

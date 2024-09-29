@@ -1,9 +1,10 @@
 import { api } from "@/services/api";
 
-type UserProps = {
+export type UserProps = {
   id: number,
   name: string,
   email: string,
+  image: string,
   nickname: string,
   age: number,
   cpf?: string,
@@ -48,12 +49,12 @@ type PutUserProps = {
 }
 
 export const getMyUser = async (token: string) => {
-  const response = await api.get<UserProps>(
+  const response = await api.get<{data : UserProps}>(
     `/users`,{
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response.data;
+  return response.data.data;
 } 
 
 export const getMyRelationships = async (token: string) => {

@@ -6,6 +6,5 @@ export async function verifyUserRole(session: any) {
     if (session) {
       response = await getMyUser(session);
     }
-    console.log(response?.role);
     return response?.role;
 }

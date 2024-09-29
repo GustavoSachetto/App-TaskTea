@@ -64,7 +64,7 @@ export const Title = styled.Text<any>`
 `;
 
 export const SubTitle = styled.Text`
-  color: ${ title.gray };
+  color: ${title.gray};
   font-size: ${getFontSize(9)}px;
   margin-top:  ${w(4)}px ;
   margin-bottom: ${h(3)}px ;
@@ -86,7 +86,7 @@ export const Button = styled.Pressable`
   text-align: center;
   border-radius: ${w(12)}px ;
   margin: ${h(3)}px auto;
-  background-color: ${ button.lightGreen };
+  background-color: ${button.lightGreen};
 `;
 
 export const LinkButton = styled(Link)`
@@ -96,16 +96,19 @@ export const LinkButton = styled(Link)`
   text-align: center;
   border-radius: ${w(12)}px ;
   margin: ${h(3)}px auto;
-  background-color: ${ button.lightBlue };
+  background-color: ${button.lightBlue};
 `;
 
-export const LinkStyled = styled(Link)`
-  color: ${ title.gray };
+export const LinkStyled = styled.Pressable`
+  bottom: ${h(4)}px ;
+  position:absolute;
+`;
+
+export const TextTerms = styled.Text`
+  color: ${title.gray};
   font-size: ${getFontSize(9)}px;
   font-style: italic;
   text-decoration: underline;
-  bottom: ${h(4)}px ;
-  position:absolute;
 `;
 
 export const Overlay = styled.View`

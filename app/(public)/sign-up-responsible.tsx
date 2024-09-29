@@ -39,10 +39,10 @@ export default function SignUpResponsible() {
     const response = await createUserResponsible(userData);
     setLoading(false);
     setIsCheckboxChecked(false)
-    if (response.data.message)
+    if (response)
       Toast.show({
         text1: 'Mensagem',
-        text2: response.data.message
+        text2: response
       });
   };
 

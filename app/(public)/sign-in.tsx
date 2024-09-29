@@ -4,9 +4,10 @@ import { Container, Logo, Title, SubTitle, LinkStyled, TextButton } from "@/styl
 import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
-const ImageLogo = require('@/assets/images/logo.png');
 import { Link } from 'expo-router';
+import Toast from 'react-native-toast-message';
 
+const ImageLogo = require('@/assets/images/logo.png');
 const BlueColor  = Colors.colors.blue;
 const GrayColor = Colors.colors.gray;
 
@@ -15,9 +16,14 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    let debug = signIn(email, password);
+  const handleLogin = async () => {
+    const debug = await signIn(email, password);
     console.log(debug);
+    if (debug)
+      Toast.show({
+        text1: 'Mensagem',
+        text2: debug
+      });
   };
 
   
@@ -57,6 +63,7 @@ export default function SignIn() {
         </Border>
         <LinkStyled href="/">Termos de serviços</LinkStyled>
       </Container>
+      <Toast/>
     </ScrollView>
   );
 }

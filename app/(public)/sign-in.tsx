@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Container, Logo, Title, SubTitle, LinkStyled, TextButton } from "@/styles/index";
+import { Container, Logo, Title, SubTitle, TextButton } from "@/styles/index";
 import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
@@ -61,7 +61,6 @@ export default function SignIn() {
             </ButtonSign>
           </ContainerButtonsSign>
         </Border>
-        <LinkStyled href="/">Termos de serviços</LinkStyled>
       </Container>
       <Toast/>
     </ScrollView>

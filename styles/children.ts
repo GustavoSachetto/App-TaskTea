@@ -78,8 +78,8 @@ export const GradientBorderBox = styled(LinearGradient).attrs({
   position: relative; 
 `;
 
-export const BoxTask = styled.View`
-  height: 56%;
+export const BoxChildren = styled.View`
+  height: 98%;
   width: 98% ;
   border-radius: ${w(5)}px ;
   z-index: 2;

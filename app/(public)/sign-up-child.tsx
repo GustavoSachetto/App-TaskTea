@@ -34,13 +34,12 @@ export default function SignUpChild() {
     };
     setLoading(true);
     const response = await createUserChild(userData);
-    console.log(response)
     setLoading(false);
     setIsCheckboxChecked(false)
-    if (response.data.message)
+    if (response)
       Toast.show({
         text1: 'Mensagem',
-        text2: response.data.message
+        text2: response
       });
   };
 

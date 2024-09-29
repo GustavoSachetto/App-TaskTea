@@ -70,7 +70,7 @@ export const createUserChild = async (data: PostUserChildProps) => {
     `/users/child`, data
   )
 
-  return response;
+  return response.data.message;
 } 
 
 export const createUserResponsible = async (data: PostUserResponsibleProps) => {
@@ -78,7 +78,7 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
     `/users/responsible`, data
   )
 
-  return response;
+  return response.data.message;
 } 
 
 export const createUserRelationship = async (userId: number, token: string) => {

@@ -36,7 +36,7 @@ export const Title = styled.Text`
 export const Functions = styled.Pressable`
     background-color: #edeaea;
     padding:${w(2)}px;
-    margin:${w(2)}px 0${w(2)}px 0;
+    margin:${w(5)}px 0${w(2)}px 0;
     border-radius: ${w(12)}px;
     flex-direction:row;
     align-items:center;

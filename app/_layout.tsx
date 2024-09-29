@@ -2,17 +2,28 @@ import { useEffect } from 'react';
 import { router, Slot } from 'expo-router';
 import { SessionProvider, useSession } from '@/hooks/ctx';
 import { FontProvider } from '@/context/FontContext'; 
+import { verifyUserRole } from '@/utils/verifyUserRole';
 
 function InitialLayout() {
   const { session } = useSession();
 
   useEffect(() => {
-    if (!session) {
-      router.replace("/(public)");
-    } else {
-      router.replace("/(auth)/(child)");
-    }
+    const checkUserRole = async () => {
+      const roles = await verifyUserRole(session);
+      
+      if (roles) {
+        const role = Array.isArray(roles) ? roles[0] : roles; 
+        if (typeof role === 'string') {
+          router.push(`/(auth)/(${role})` as any); 
+        }
+      } else {
+        router.push("/(public)");  
+      }
+    };
+
+    checkUserRole();
   }, [session]);
+
   return (
     <FontProvider>
       <Slot />
@@ -25,5 +36,5 @@ export default function Root() {
     <SessionProvider>
       <InitialLayout />
     </SessionProvider>
-  );
+  );  
 }

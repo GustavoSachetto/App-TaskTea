@@ -1,6 +1,6 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
-import { getMyUser, UserProps} from '@/services/api/user';
-import { fetchStatisticTotalById } from '@/services/api/statistic';
+import { getMyUser, UserProps} from '@/services/api/routes/user';
+import { fetchStatisticTotalById } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 

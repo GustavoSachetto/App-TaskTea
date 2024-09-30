@@ -1,6 +1,6 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from '@/utils/useStorageState';
-import { createLogin, logout } from '@/services/api/auth';
+import { createLogin, logout } from '@/services/api/routes/auth';
 
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<string> | null;

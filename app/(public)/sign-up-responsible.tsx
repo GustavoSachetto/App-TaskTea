@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import Colors from '@/constants/Colors';
-import { createUserResponsible } from '@/services/api/user';
+import { createUserResponsible } from '@/services/api/routes/user';
 import { Text, View, ActivityIndicator } from 'react-native';
 import { Link } from 'expo-router';
 import BouncyCheckbox from "react-native-bouncy-checkbox";

@@ -1,6 +1,6 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
 import { getMyUser, UserProps} from '@/services/api/user';
-import { getStatisticTotal, TotalProps } from '@/services/api/statistic';
+import { getProfileStatistic, TotalProps } from '@/services/api/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 
@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
     const fetchStatisticData = async () => {
       if (session) {
-        const response = await getStatisticTotal(null,session);
+        const response = await getProfileStatistic(null,session);
         setStatisticData(response) 
       }
     }
@@ -35,7 +35,7 @@ export default function ProfilePage() {
       <SectionProfile>
         <NameProfile>{userData ? userData.name : "Nome não disponível"}</NameProfile>
         <About>Tarefas concluídas: {statisticData ? statisticData.total_completed : "Dado não disponível"}</About>
-        <About>Tarefas Imcompletas: {statisticData ? statisticData.total_incomplete : "Dado não disponível"}</About>
+        <About>Tarefas Incompletas: {statisticData ? statisticData.total_incomplete : "Dado não disponível"}</About>
         <About>Média diária: {statisticData ? statisticData.user_daily_average : "Dado não disponível"}</About>
         <Button>
           <ButtonText>Editar perfil</ButtonText>

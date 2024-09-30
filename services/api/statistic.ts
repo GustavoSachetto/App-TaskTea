@@ -21,6 +21,16 @@ export type TotalProps = {
     user_daily_average: number;
 };
 
+export const getProfileStatistic = async (id?: number | null, token?: string | null) => {
+    const response = await api.get<TotalProps>(
+        `/statisticuser/mytotal/${id ? id : ''}`,
+        {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }
+    );
+    return response.data;
+};
+
 export const getStatisticTotal = async (id?: number | null, token?: string | null) => {
     const response = await api.get<TotalProps>(
         `/statisticuser/total/${id ? id : ''}`,

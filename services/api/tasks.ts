@@ -1,6 +1,7 @@
 import { api } from "@/services/api";
+import queryString from "query-string";
 
-type TaskProps = {
+export type TaskProps = {
   id: number,
   title: string,
   description: string,
@@ -9,7 +10,13 @@ type TaskProps = {
   categories_id: number,
   user_creator_id: number,
   created_at: string,
-  updated_at: string
+  updated_at: string | null
+}
+
+export type TaskPageProps = {
+  data: Array<TaskProps>,
+  links: object,
+  meta: object
 }
 
 type PostTaskProps = {
@@ -20,17 +27,21 @@ type PostTaskProps = {
   categories_id: number
 }
 
-export const getAllTasks = async () => {
-  const response = await api.get<TaskProps[]>(
-    `/tasks`
+export const getAllTasks = async (currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
+
+  const response = await api.get<TaskPageProps>(
+    `/tasks?${currentPageQuery}`, 
   )
 
   return response.data;
 } 
 
-export const getMyTasks = async (token: string) => {
-  const response = await api.get<TaskProps[]>(
-    `/tasks/mytasks`, {
+export const getMyTasks = async (token: string, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
+
+  const response = await api.get<TaskPageProps>(
+    `/tasks/mytasks?${currentPageQuery}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
@@ -38,15 +49,15 @@ export const getMyTasks = async (token: string) => {
 } 
 
 export const fetchTaskById = async (id: number) => {
-  const response = await api.get<TaskProps>(
-    `/tasks/${id}`
+  const response = await api.get<{ data: TaskProps }>(
+    `/tasks/by/${id}`
   )
 
   return response.data;
 } 
 
 export const searchTasksByCategoryId = async (categoryId: number) => {
-  const response = await api.get<TaskProps[]>(
+  const response = await api.get<{ data: TaskProps[] } >(
     `/tasks/category/${categoryId}`
   )
 
@@ -54,7 +65,7 @@ export const searchTasksByCategoryId = async (categoryId: number) => {
 } 
 
 export const createTask = async (data: PostTaskProps, token: string) => {
-  const response = await api.post<TaskProps>(
+  const response = await api.post<{ data: TaskProps }>(
     `/tasks`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -63,7 +74,7 @@ export const createTask = async (data: PostTaskProps, token: string) => {
 } 
 
 export const editTaskById = async (id: number, data: PostTaskProps, token: string) => {
-  const response = await api.put<TaskProps>(
+  const response = await api.put<{ data: TaskProps }>(
     `/tasks/${id}`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -72,7 +83,7 @@ export const editTaskById = async (id: number, data: PostTaskProps, token: strin
 } 
 
 export const deleteTaskById = async (id: number, token: string) => {
-  const response = await api.delete(
+  const response = await api.delete<{ message: string }>(
     `/tasks/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

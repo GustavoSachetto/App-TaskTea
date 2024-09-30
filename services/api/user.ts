@@ -4,14 +4,14 @@ export type UserProps = {
   id: number,
   name: string,
   email: string,
-  image: string,
+  image: string | null,
   nickname: string,
   age: number,
   cpf?: string,
   role?: Array<string>,
   phone_number?: string,
   created_at: string,
-  updated_at: string
+  updated_at: string | null
 }
 
 type UserRelationshipProps = {
@@ -22,7 +22,7 @@ type UserRelationshipProps = {
   age: number,
   image: string | null,
   created_at: string,
-  updated_at: string
+  updated_at: string | null
 }
 
 type PostUserChildProps = {
@@ -35,7 +35,7 @@ type PostUserChildProps = {
 
 type PostUserResponsibleProps = PostUserChildProps & {
   cpf: string,
-  phone_number: string,
+  phone_number: string
 }
 
 type PutUserProps = {
@@ -43,23 +43,23 @@ type PutUserProps = {
   email: string,
   nickname: string,
   age?: number,   
-  current_password: string,
-  new_password: string | null,
-  new_password_confirmation: string | null,
+  current_password?: string,
+  new_password?: string | null,
+  new_password_confirmation?: string | null
 }
 
 export const getMyUser = async (token: string) => {
-  const response = await api.get<{data : UserProps}>(
-    `/users`,{
+  const response = await api.get<{ data: UserProps }>(
+    `/users`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response.data.data;
+  return response.data;
 } 
 
 export const getMyRelationships = async (token: string) => {
-  const response = await api.get<UserRelationshipProps[]>(
-    `/users/relationship`,{
+  const response = await api.get<{ data: UserRelationshipProps[] }>(
+    `/users/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
@@ -67,33 +67,33 @@ export const getMyRelationships = async (token: string) => {
 } 
 
 export const createUserChild = async (data: PostUserChildProps) => {
-  const response = await api.post<{ message: string}>(
+  const response = await api.post<{ data: UserProps, message: string}>(
     `/users/child`, data
   )
 
-  return response.data.message;
+  return response.data;
 } 
 
 export const createUserResponsible = async (data: PostUserResponsibleProps) => {
-  const response = await api.post<{ message: string}>(
+  const response = await api.post<{ data: UserProps, message: string}>(
     `/users/responsible`, data
   )
 
-  return response.data.message;
+  return response.data;
 } 
 
-export const createUserRelationship = async (userId: number, token: string) => {
+export const createRelationship = async (userId: number, token: string) => {
   const response = await api.post<{ message: string }>(
-    `/users/relationship`, { userId },{
+    `/users/relationship`, { user_id: userId }, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response;
+  return response.data;
 } 
 
 export const editMyUser = async (data: PutUserProps, token: string) => {
-  const response = await api.put<UserProps>(
-    `/users`, data,{
+  const response = await api.put<{ data: UserProps }>(
+    `/users`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 

@@ -139,17 +139,9 @@ export const Description = styled.Text`
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
-  max-width: 85%; 
+  max-width: 95%; 
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis;
 `;
 
-export const Clips = styled.Image`
-  width: ${w(11)}px;
-  height: ${w(12)}px;
-  right: 0;
-  margin-top: -${w(5.1)}px;
-  position: absolute;
-  z-index: 99;
-`;

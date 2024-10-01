@@ -3,13 +3,12 @@ import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task,
-  BoxTasks, Title, Description, Clips
+  BoxTasks, Title, Description
 } from '@/styles/tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/taskuser';
 
-const ImageClips = require('@/assets/icons/clips.png');
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
 
 export default function TasksPage() {
@@ -48,7 +47,6 @@ export default function TasksPage() {
                 style={{ width: '100%' }} 
                 onPress={() => router.push('/(auth)/(child)/single-task')}>
                 <Task style={{ flex: 1, alignSelf: 'stretch' }}>
-                  <Clips source={ImageClips} resizeMode="contain" />
                   <Title>{task.task.title}</Title>
                   <Description>{task.task.description}</Description>
                 </Task>

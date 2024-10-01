@@ -21,6 +21,12 @@ export const ContainerAllTasks = styled.View`
   align-items: center;
 `;
 
+export const ContainerTasksResponsible = styled.View`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+`;
+
 export const QuebraCabeca = styled.Image`
   width: ${w(18)}px;
   height: ${w(18)}px;
@@ -28,6 +34,12 @@ export const QuebraCabeca = styled.Image`
   margin-right: ${w(1)}px;
   margin-left: -${w(11)}px;
   transform: rotate(120deg);
+`;
+
+export const AddTask = styled.Image`
+  width: ${getFontSize(21)}px;
+  height: ${getFontSize(21)}px;
+  margin: 0 auto;
 `;
 
 export const ContainerRowTasks = styled.View`
@@ -44,6 +56,13 @@ export const TextTask = styled.Text<any>`
   margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};
+`;
+
+export const TextAddTask = styled.Text<any>`
+  color: #737373;
+  text-align: center;
+  font-size: ${getFontSize(6)}px;
+  font-family: ${Fonts.RalewayRegular};
 `;
 
 export const ContainerTasksDoing = styled.View<any>`
@@ -89,6 +108,26 @@ export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs((props) 
   z-index: 98;
 `;
 
+export const GradientBorderBoxTasksResponsible = styled<any>(LinearGradient).attrs((props) => ({
+  colors: [
+    props.customColor || Colors.colors.lightYellow,
+    "#ffffff",
+    "#ffffff",
+    "#ffffff",
+    props.customColor || Colors.colors.lightYellow
+  ],
+}))`
+  height: ${h(50)}px;
+  width: ${w(80)}px;
+  align-self: center;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: ${w(4)}px;
+  margin-bottom: ${w(3)}px;
+  margin-top: -${w(0.5)}px;
+  position: relative;
+  z-index: 98;
+`;
 
 export const ScrollViewContainerTasks = styled.ScrollView`
   flex: 1;
@@ -135,7 +174,7 @@ export const Title = styled.Text`
 
 export const Description = styled.Text`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(5.8)}px;;
+  font-size: ${getFontSize(5.8)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
@@ -144,4 +183,9 @@ export const Description = styled.Text`
   overflow: hidden; 
   text-overflow: ellipsis;
 `;
+
+export const Button = styled.Pressable`
+
+`;
+
 

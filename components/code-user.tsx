@@ -1,7 +1,7 @@
 import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Fonts } from '@/constants/Fonts';
-import { CenteredView, ModalView, CloseButton, ModalImage, ModalText, TextCodigoUser } from '@/styles/codigo-user';
+import { CenteredView, ModalView, CloseButton, ModalImage, ModalText, TextCodeUser } from '@/styles/code-user';
 
 interface CodigoUserProps {
   visible: boolean;
@@ -13,7 +13,7 @@ export default function CodigoUser({ visible, onClose }: CodigoUserProps) {
 
   return (
     <Modal
-      animationType="slide"
+      animationType="none"
       transparent={true}
       visible={visible}
       onRequestClose={onClose}>
@@ -25,10 +25,10 @@ export default function CodigoUser({ visible, onClose }: CodigoUserProps) {
             />
           </CloseButton>
           <ModalText>Código do usuário:</ModalText>
-          <TextCodigoUser>
+          <TextCodeUser>
             123456
-            {/* {userCode ? userCode.name : "Nome não disponível"} */}
-            </TextCodigoUser>
+            {/* {userCode ? userCode.name : "Código não disponível"} */}
+            </TextCodeUser>
 
         </ModalView>
       </CenteredView>

@@ -2,7 +2,10 @@ import { Stack, Tabs } from 'expo-router';
 import { Image } from 'react-native';
 
 export default function Layout() {
+
   return (
+    
+    
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -19,6 +22,7 @@ export default function Layout() {
             />
           ),
         }}
+        
       />
       <Tabs.Screen
         name="tasks"
@@ -54,6 +58,7 @@ export default function Layout() {
           ),
         }}
       />
+      
     </Tabs>
   );
 }

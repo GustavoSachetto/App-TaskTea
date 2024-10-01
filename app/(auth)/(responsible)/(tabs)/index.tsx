@@ -4,12 +4,14 @@ import {
 } from '@/styles/index-responsible';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index'
-
+import { useRouter } from 'expo-router';
 
 const BlueColor = Colors.colors.blue;
 const YellowColor = Colors.colors.yellow;
 
 export default function HomePage() {
+  const router = useRouter();
+
   return (
     <ScrollViewContainer>
       <HeaderIndex />
@@ -34,8 +36,10 @@ export default function HomePage() {
             source={require('../../../../assets/icons/prancheta.png')} />
           <View>
             <Title customColor={YellowColor}>Desafios</Title>
-            <Button customColor={YellowColor}>
-            <Text>Ver</Text></Button>
+            <Button onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}
+            customColor={YellowColor}>
+              <Text>Ver</Text>
+            </Button>
           </View>
         </Box>
       </GradientBorderBox>

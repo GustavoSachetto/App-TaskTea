@@ -25,12 +25,12 @@ export default function TasksPage() {
       </LinkedSign>
 
         <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
-        <TextTask customColor={green}>Desafios</TextTask>
+        <TextTask customColor={green}>Desafios Realizados</TextTask>
         
       </ContainerRowTasks>
 
       <ContainerTasksDoing customColor={green}>
-        <TextDoing>Em andamento</TextDoing>
+        <TextDoing>Feitos</TextDoing>
       </ContainerTasksDoing>
 
       <GradientBorderBoxTasks customColor={green}>

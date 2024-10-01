@@ -127,6 +127,10 @@ export const Title = styled.Text`
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
+  max-width: 70%; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 `;
 
 export const Description = styled.Text`
@@ -135,6 +139,10 @@ export const Description = styled.Text`
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
+  max-width: 85%; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 `;
 
 export const Clips = styled.Image`

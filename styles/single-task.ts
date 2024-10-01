@@ -25,7 +25,6 @@ export const ContainerRowTask = styled.View`
 `;
 
 export const ContainerRowHeader = styled.View`
-  
   width: 100%;
   flex-direction: row;
   padding: 0 ${w(3)}px;
@@ -67,11 +66,12 @@ export const LinkedSign = styled.Pressable`
   width: ${w(4)}px;
 `;
 
-export const GradientBorderBox = styled(LinearGradient).attrs({
+export const GradientBorderBox = styled(LinearGradient).attrs<any>({
   colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
-  height: ${hp("65%")}px ;
-  width: ${w(85)}px ;
+  flex: 1;
+  height: ${hp("67%")}px;
+  width: ${w(85)}px;
   margin: ${w(8)}px auto;
   justify-content: flex-start; 
   align-items: center;
@@ -82,7 +82,7 @@ export const GradientBorderBox = styled(LinearGradient).attrs({
 
 export const BoxTask = styled.View`
   height: 56%;
-  width: 98% ;
+  width: 98%;
   border-radius: ${w(5)}px ;
   z-index: 2;
   background-color: white;
@@ -105,7 +105,8 @@ export const TextTarefa = styled.Text`
   font-size: ${w(4.3)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  padding: 0px ${w(2)}px 0px ${w(2)}px;
+  margin: ${hp("1%")}px 0;
+  padding: 0px ${w(2)}px;
 `;
 
 export const TextClick = styled.Text`
@@ -115,4 +116,3 @@ export const TextClick = styled.Text`
   font-family: ${Fonts.RalewayRegular};
   width: 22%;
 `;
-

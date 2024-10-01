@@ -1,4 +1,4 @@
-import { api } from "@/services/api";
+import { api } from "@/services/api/api";
 
 type LoginProps = {
   message: string,
@@ -7,15 +7,14 @@ type LoginProps = {
 
 export const createLogin = async (email: string, password: string) => {
   const response = await api.post<LoginProps>(
-    `/auth/login`, 
-    { email, password } 
+    `/auth/login`, { email, password } 
   )
 
   return response.data;
 }
 
 export const logout = async (token?: string | null) => {
-  const response = await api.post(
+  const response = await api.post<{ message: string }>(
     `/auth/logout`, {}, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

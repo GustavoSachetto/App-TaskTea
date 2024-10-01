@@ -11,7 +11,7 @@ import { Link } from 'expo-router';
 const ImageLogo = require('@/assets/images/logo.png');
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Toast from 'react-native-toast-message';
-import { createUserChild } from '@/services/api/user';
+import { createUserChild } from '@/services/api/routes/user';
 import ServiceTerms from '@/components/service-terms';
 
 const GrayColor = Colors.colors.gray;

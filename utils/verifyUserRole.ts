@@ -1,4 +1,4 @@
-import { getMyUser } from '@/services/api/user'
+import { getMyUser } from '@/services/api/routes/user'
 
 
 export async function verifyUserRole(session: any) {
@@ -6,5 +6,6 @@ export async function verifyUserRole(session: any) {
     if (session) {
       response = await getMyUser(session);
     }
-    return response?.role;
-}
+    return response?.data?.role; 
+
+  }

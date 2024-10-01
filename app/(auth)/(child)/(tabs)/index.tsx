@@ -6,7 +6,7 @@ import HeaderIndex from '@/components/header-index';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
-import { getUnfinishedTasks, TaskUserProps } from '@/services/api/taskuser';
+import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const BlueColor = Colors.colors.blue;

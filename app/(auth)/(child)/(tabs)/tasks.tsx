@@ -7,7 +7,7 @@ import {
 } from '@/styles/tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
-import { getUnfinishedTasks, TaskUserProps } from '@/services/api/taskuser';
+import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
 
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
 

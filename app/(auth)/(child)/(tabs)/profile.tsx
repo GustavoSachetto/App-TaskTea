@@ -1,6 +1,6 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
-import { getMyUser, UserProps} from '@/services/api/user';
-import { getProfileStatistic, TotalProps } from '@/services/api/statistic';
+import { getMyUser, UserProps} from '@/services/api/routes/user';
+import { getProfileStatistic, TotalProps } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 
@@ -12,10 +12,10 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       if (session) {
-          const response = await getMyUser(session);
-          setUserData(response); 
+        const response = await getMyUser(session);
+        setUserData(response.data); 
       }
-    };
+    }
 
     const fetchStatisticData = async () => {
       if (session) {

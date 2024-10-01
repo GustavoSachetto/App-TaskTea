@@ -3,11 +3,13 @@ import { getMyUser, UserProps} from '@/services/api/routes/user';
 import { fetchStatisticTotalById } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const [statisticData, setStatisticData] = useState();
   const { session } = useSession(); 
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -30,7 +32,7 @@ export default function ProfilePage() {
           <ButtonText>Editar perfil</ButtonText>
         </Button>
 
-        <Button>
+        <Button onPress={() => router.push('/(auth)/(responsible)/children')}>
           <ButtonText>Ver meus filhos</ButtonText>
         </Button>
       </SectionProfile>

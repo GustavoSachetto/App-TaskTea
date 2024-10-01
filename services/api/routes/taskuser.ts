@@ -3,7 +3,7 @@ import { UserProps } from "@/services/api/routes/user";
 import { TaskProps } from "@/services/api/routes/tasks";
 import queryString from "query-string";
 
-type TaskUserProps = {
+export type TaskUserProps = {
   id: number,
   done: boolean,
   finished_at: string | null,
@@ -73,3 +73,23 @@ export const responsibleAttachTask = async (data: PostAttachTask, token: string)
     
   return response.data;
 }
+
+export const getUnfinishedTasks = async (token?: string | null) => {
+  const response = await api.get<{ data: TaskUserProps[] }>(
+    `/taskuser/unfinishedtasks/`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }
+  );
+
+  return response.data.data;
+};
+
+export const getTaskDay = async (token?: string | null) => {
+    const response = await api.get<{ data: TaskUserProps[] }>(
+      `/taskuser/taskday/`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }
+    );
+  
+    return response.data.data;
+  };

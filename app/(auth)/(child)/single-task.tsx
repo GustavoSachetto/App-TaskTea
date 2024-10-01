@@ -1,10 +1,7 @@
 import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa, GradientBorderBox, 
-  CheckboxContainer,
-  Checkbox,
-  ContainerRowHeader } from '@/styles/single-task';
+  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
 import { router } from 'expo-router';
 import { Button } from '@/styles/tip';

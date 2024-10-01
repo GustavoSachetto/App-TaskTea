@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerAllTasks, TextDoing, Task,
-  BoxTasks, Title, Description, Clips
+  BoxTasks, Title, Description
 } from '@/styles/tasks';
 import { LinkedSign, Voltar, ContainerRowTasks } from '@/styles/finished-tasks';
 import Colors from '@/constants/Colors';
@@ -40,7 +40,6 @@ export default function TasksPage() {
               style={{ width: '100%' }} 
               onPress={() => router.push('/(auth)/(child)/single-task')}>
               <Task customColor={green} style={{ flex: 1, alignSelf: 'stretch' }} >
-                <Clips source={ImageClips} resizeMode="contain" />
                 <Title>Bom dia!</Title>
                 <Description>Entre aqui para saber mais</Description>
               </Task>

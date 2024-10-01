@@ -27,7 +27,8 @@ export const TextTarefa = styled.Text`
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
   font-size: ${getFontSize(9)}px;
-  margin-top: 0;
+  margin: auto;
+  max-width: 80%; 
 `;
 
 export const Title = styled.Text<any>`

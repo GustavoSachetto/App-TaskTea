@@ -45,3 +45,13 @@ export const getUnfinishedTasks = async (token?: string | null) => {
 
   return response.data.data;
 };
+
+export const getTaskDay = async (token?: string | null) => {
+    const response = await api.get<{ data: TaskUserProps[] }>(
+      `/taskuser/taskday/`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }
+    );
+  
+    return response.data.data;
+  };

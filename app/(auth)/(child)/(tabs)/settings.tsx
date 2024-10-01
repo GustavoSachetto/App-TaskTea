@@ -4,7 +4,7 @@ import { useSession } from '@/hooks/ctx';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
-import CodigoUser from "@/components/codigo-user";
+import CodigoUser from "@/components/code-user";
 import { useState } from 'react';
 import { Overlay } from "@/styles/index";
 
@@ -25,7 +25,7 @@ export default function SettingsPage() {
   return (
     <Container>
       {modalVisible && <Overlay/>}
-
+      
       <Header>
         <Logo
         resizeMode='contain'
@@ -58,5 +58,6 @@ export default function SettingsPage() {
         onClose={() => setModalVisible(false)}
       />
     </Container>
+    
   )
 }

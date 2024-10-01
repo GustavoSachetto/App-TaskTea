@@ -41,7 +41,7 @@ export const ModalText = styled.Text`
   font-family: ${Fonts.RalewayRegular};
 `;
 
-export const TextCodigoUser = styled.Text`
+export const TextCodeUser = styled.Text`
   font-weight: 900;
   font-size: ${getFontSize(35)}px;
   margin-top: ${getFontSize(10)}px;

@@ -88,7 +88,7 @@ export const Voltar = styled.Image`
   left: ${w(7.5)}px;
 `;
 
-export const GradientBorderBoxTasks = styled(LinearGradient).attrs({
+export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
     colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
   })`
     height: ${h(82)}px;

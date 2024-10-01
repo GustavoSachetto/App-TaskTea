@@ -5,6 +5,8 @@ import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 
+const ImageAdicionarAzul = require('@/assets/icons/templates-desafios.png');
+
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const [statisticData, setStatisticData] = useState();

@@ -14,7 +14,7 @@ export type UserProps = {
   updated_at: string | null
 }
 
-type UserRelationshipProps = {
+export type UserRelationshipProps = {
   id: number,
   name: string,
   email: string,
@@ -63,7 +63,7 @@ export const getMyRelationships = async (token: string) => {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response.data;
+  return response.data.data;
 } 
 
 export const createUserChild = async (data: PostUserChildProps) => {

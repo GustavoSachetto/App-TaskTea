@@ -36,7 +36,7 @@ export const getAllTaskUser = async (token: string, currentPage: number = 1) => 
   return response.data;
 }
 
-export const fetchTaskUserById = async (id: number, token: string) => {
+export const fetchTaskUserById = async (id: number, token?: string | null) => {
   const response = await api.get<{ data: TaskUserProps }>(
     `/taskuser/by/${id}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
@@ -56,7 +56,7 @@ export const searchTaskUser = async (text: string, token: string, currentPage: n
   return response.data;
 }
 
-export const childFinishTask = async (taskId: number, token: string) => {
+export const childFinishTask = async (taskId: number, token?: string | null) => {
   const response = await api.get<TaskUserPageProps>(
     `/taskuser/donetask/${taskId}`, { 
     headers: { 'Authorization': `Bearer ${token}` }

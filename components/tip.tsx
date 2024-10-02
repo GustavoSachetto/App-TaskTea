@@ -3,11 +3,17 @@ import { useRouter } from "expo-router";
 import { Fonts } from "@/constants/Fonts";
 import { CenteredView, ModalView, CloseButton, ModalImage, TextHelp, TextTip,
   ModalText, DicaPopUp } from "@/styles/tip";
-      
 
 const ImageDicaPopUp = require("@/assets/icons/dica-pop-up.png");
 
-export default Tip = ({ visible, onClose }) => {
+type TipProps = {
+  name: string,
+  text: string,
+  visible?: boolean, 
+  onClose: () => void
+}
+
+export default function Tip ({ visible, onClose, name, text }: TipProps) {
   const router = useRouter();
 
   return (
@@ -23,9 +29,9 @@ export default Tip = ({ visible, onClose }) => {
             <ModalImage source={require("../assets/icons/x.png")} />
           </CloseButton>
           <DicaPopUp source={ImageDicaPopUp} resizeMode="contain" />
-          <ModalText>Olá Nome!</ModalText>
+          <ModalText>Olá {name}!</ModalText>
           <TextHelp>Dica que pode te ajudar:</TextHelp>
-          <TextTip>Dica</TextTip>
+          <TextTip>{text}</TextTip>
         </ModalView>
       </CenteredView>
     </Modal>

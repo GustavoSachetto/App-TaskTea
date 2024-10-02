@@ -4,7 +4,7 @@ import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { w, h } from '@/utils/responsiveMesures';
 
-const { text } = Colors;
+const { text, colors} = Colors;
 
 export const Header = styled.View`
   flex-direction: row;
@@ -12,15 +12,6 @@ export const Header = styled.View`
   align-items: center;
   padding: ${w(4)}px
 `;
-
-export const Line = styled.View`
-  background-color: #000;
-  width: 85%;
-  height: 1px;
-  margin-top: ${w(4.5)}px;
-  margin: 0 auto;
-`;
-
 
 export const CenteredView = styled.View`
   width: 100%;
@@ -36,40 +27,9 @@ export const ModalView = styled.ScrollView`
   position: fixed;
   background-color: white;
   border-width: 3px;
-  border-color: transparent;
+  border-color: ${colors.gray};
   border-radius: ${getFontSize(9)}px;
   margin-bottom: ${w(4.5)}px;
-`;
-
-export const CloseButton = styled.Pressable`
-    position: absolute;
-    right: ${w(2)}px;
-    top:  ${w(2)}px;
-    z-index: 99;
-`;
-
-export const ModalImage = styled.Image`
-  width:  ${w(8)}px;
-  height:  ${w(8)}px;
-`;
-
-export const Button = styled.Pressable`
-  border-radius: ${getFontSize(12)}px;
-  align-items: center;
-  justify-content: center;
-  margin-top: ${getFontSize(3)}px;
-  margin-bottom: ${getFontSize(4)}px;
-  width: ${getFontSize(80)}px;
-  height: ${getFontSize(16)}px;
-  background-color: #00d46e;
-`;
-
-export const Text = styled.Text`
-  color: black;
-  text-align: justify;
-  font-size: ${getFontSize(5)}px;
-  font-family: ${Fonts.RalewayLight};
-  padding:  0 ${w(8)}px ${h(2)}px ${w(8)}px;
 `;
 
 export const Title = styled.Text`
@@ -82,3 +42,38 @@ export const Title = styled.Text`
 `;
 
 
+export const CloseButton = styled.Pressable`
+    position: absolute;
+    right: ${w(2)}px;
+    top:  ${w(2)}px;
+    z-index: 99;
+`;
+
+export const ButtonChild = styled.Pressable`
+    width:  95%;
+    flex-direction:row;
+    align-items:center;
+    height:  ${h(8)}px;
+    background-color: ${colors.lightYellow};
+    padding: ${w(3)}px;
+    margin: ${w(3)}px  auto;
+    border-radius:20px;
+`;
+
+export const ModalImage = styled.Image`
+  width:  ${w(8)}px;
+  height:  ${w(8)}px;
+`;
+
+export const ImageProfile = styled.Image`
+  width:  ${w(15)}px;
+  height:  ${w(15)}px;
+  margin-right:${w(3)}px;  
+  border-radius: 100px;
+`;
+
+export const TextName = styled.Text`
+  color: black;
+  font-size: ${getFontSize(13)}px;
+  font-family: ${Fonts.RalewayLight};   
+`;

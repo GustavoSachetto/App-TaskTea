@@ -45,7 +45,7 @@ export default function SignUpChild() {
     if (response)
       Toast.show({
         text1: 'Mensagem',
-        text2: response
+        text2: response.message
       });
   };
 

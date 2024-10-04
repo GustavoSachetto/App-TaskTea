@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, View, ActivityIndicator } from "react-native";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { fetchStatisticTotalById, fetchStatisticWeeklyById, TotalProps } from "@/services/api/routes/statistic";
 import { useSession } from "@/hooks/ctx";
-import { useLocalSearchParams } from "expo-router"; 
-import { Title } from "@/styles";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { TitlePage, TitleStatistics, ContainerStatistics, SquareLabel, LabelChart, Header, LinkedBack, Voltar, ContainerLabel } from "@/styles/statistics";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Statistics() {
-  const { userId } = useLocalSearchParams(); 
+  const router = useRouter();
+  const { userId } = useLocalSearchParams();
   const [getTotalStatistics, setGetTotalStatistics] = useState<TotalProps | undefined>(undefined);
   const [getWeeklyStatistics, setGetWeeklyStatistics] = useState<TotalProps | undefined>(undefined);
-  const { session } = useSession(); 
+  const { session } = useSession();
 
   useEffect(() => {
     const fetchWeeklyTasks = async () => {
       if (session && userId) {
         const response = await fetchStatisticWeeklyById(userId, session);
-        setGetWeeklyStatistics(response); 
-      } 
+        setGetWeeklyStatistics(response);
+      }
     };
 
     fetchWeeklyTasks();
-  }, [session, userId]); 
+  }, [session, userId]);
 
   const weeklyCompleted = Number(getWeeklyStatistics?.total_completed) || 0;
   const weeklyIncomplete = Number(getWeeklyStatistics?.total_incomplete) || 0;
 
   const weeklyData = {
-    labels: ["Tarefas concluídas = " + weeklyCompleted, "Tarefas não concluídas = " + weeklyIncomplete ],
     datasets: [
       {
         data: [weeklyCompleted, weeklyIncomplete],
@@ -44,18 +44,17 @@ export default function Statistics() {
     const fetchTotalTasks = async () => {
       if (session && userId) {
         const response = await fetchStatisticTotalById(userId, session);
-        setGetTotalStatistics(response); 
-      } 
+        setGetTotalStatistics(response);
+      }
     };
 
     fetchTotalTasks();
-  }, [session, userId]); 
+  }, [session, userId]);
 
   const totalCompleted = Number(getTotalStatistics?.total_completed) || 0;
   const totalIncomplete = Number(getTotalStatistics?.total_incomplete) || 0;
 
   const totalData = {
-    labels: ["Tarefas concluídas = " + totalCompleted , "Tarefas não concluídas = " + totalIncomplete ],
     datasets: [
       {
         data: [totalCompleted, totalIncomplete],
@@ -67,21 +66,41 @@ export default function Statistics() {
 
   return (
     <ScrollView>
-      <View style={{ padding: 20 }}>
-        <Text style={{ textAlign: "center", fontSize: 20 }}>Estatísticas</Text>
-        <Title>Resultado da semana</Title>
-        {getTotalStatistics ? (    
+      <Header>
+        <LinkedBack onPress={() => router.push('/(auth)/(responsible)/')}>
+          <Voltar source={require('@/assets/icons/voltar-verde.png')} />
+        </LinkedBack>
+        <TitlePage>Estatísticas</TitlePage>
+      </Header>
+
+        <TitleStatistics>Resultado da semana</TitleStatistics>
+        <ContainerStatistics>
           <Pie data={weeklyData} />
-        ) : (
-          <Text>Carregando...</Text>
-        )}
-        <Title>Resultado geral</Title>
-        {getTotalStatistics ? (
+          <ContainerLabel>
+            <SquareLabel customColor="#46f87c" />
+            <LabelChart>Tarefas Concluídas: {weeklyCompleted}</LabelChart>
+          </ContainerLabel>
+
+          <ContainerLabel>
+            <SquareLabel customColor="#ff3f00" />
+            <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
+          </ContainerLabel>
+        </ContainerStatistics>
+
+        <TitleStatistics>Resultado geral</TitleStatistics>
+        <ContainerStatistics>
           <Pie data={totalData} />
-        ) : (
-          <Text>Carregando...</Text>
-        )}
-      </View>
+          <ContainerLabel>
+            <SquareLabel customColor="#46f87c" />
+            <LabelChart>Tarefas Concluídas: {totalCompleted}</LabelChart>
+          </ContainerLabel>
+
+          <ContainerLabel>
+            <SquareLabel customColor="#ff3f00" />
+            <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
+          </ContainerLabel>
+
+        </ContainerStatistics>
     </ScrollView>
   );
 }

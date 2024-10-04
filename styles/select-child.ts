@@ -54,7 +54,7 @@ export const ButtonChild = styled.Pressable`
     flex-direction:row;
     align-items:center;
     height:  ${h(8)}px;
-    background-color: ${colors.lightYellow};
+    background-color: ${colors.blue};
     padding: ${w(3)}px;
     margin: ${w(3)}px  auto;
     border-radius:20px;
@@ -73,7 +73,7 @@ export const ImageProfile = styled.Image`
 `;
 
 export const TextName = styled.Text`
-  color: black;
+  color: white;
   font-size: ${getFontSize(13)}px;
   font-family: ${Fonts.RalewayLight};   
 `;

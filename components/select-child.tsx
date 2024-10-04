@@ -1,14 +1,18 @@
-import { Modal, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Modal} from 'react-native';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { useRouter } from 'expo-router';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
-import { CenteredView, ModalView, CloseButton, ModalImage, ModalText } from '@/styles/sign-up-options';
-import { ButtonCreate } from '@/styles/create-task';
-import { ImageProfile } from '@/styles/profile-page';
-import { TextDoing } from '@/styles/tasks';
+import { CenteredView, ModalView, Header, CloseButton, ModalImage, ButtonChild, TextName, ImageProfile, Title } from '@/styles/select-child';
 
-export default function SelectChild({ visible, onClose, onSelectUser }) {
+interface SelectChildProps {
+  visible: boolean;
+  onClose: () => void;
+  onSelectUser: (userId: string) => void;
+}
+
+
+export default function SelectChild({ visible, onClose, onSelectUser } : SelectChildProps) {
     const [userRelationships, setUserRelationships] = useState<UserRelationshipProps[]>([]);
     const { session } = useSession(); 
     const router = useRouter();
@@ -24,20 +28,26 @@ export default function SelectChild({ visible, onClose, onSelectUser }) {
       fetchUserRelationships();
     }, [session]); 
   
-    return (
+    return ( 
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={visible}
-        onRequestClose={onClose}>
-        <CenteredView>
+      animationType="slide"
+      transparent={true}
+      visible={visible}
+      onRequestClose={onClose}>
+      <CenteredView>
           <ModalView>
-            <CloseButton onPress={onClose}>
-              <ModalImage source={require('../assets/icons/x.png')} />
-            </CloseButton>
-            <ModalText>Escolha a criança:</ModalText>
-            {userRelationships.map((user: UserRelationshipProps) => (
-                  <ButtonCreate style={{ flex: 1, alignSelf: 'stretch' }} 
+              <Header>
+                <Title>
+                  Selecione o filho
+                </Title>
+                  <CloseButton onPress={onClose}>
+                      <ModalImage
+                          source={require('../assets/icons/x.png')}
+                      />
+                  </CloseButton>
+              </Header>
+              {userRelationships.map((user: UserRelationshipProps) => (
+                  <ButtonChild style={{ flex: 1, alignSelf: 'stretch' }} 
                   key={user.id}
                   onPress={() => {
                     onSelectUser(user.id); 
@@ -48,11 +58,11 @@ export default function SelectChild({ visible, onClose, onSelectUser }) {
                     });
                   }}>
                     <ImageProfile source={user?.image ? { uri: user.image } : require('../assets/icons/perfil.png')} />
-                    <TextDoing>{user.name}</TextDoing>
-                  </ButtonCreate>
-              ))}
+                    <TextName>{user.name}</TextName>
+                  </ButtonChild>
+                  ))}
           </ModalView>
-        </CenteredView>
-      </Modal>
+      </CenteredView>
+  </Modal>
     );
 }

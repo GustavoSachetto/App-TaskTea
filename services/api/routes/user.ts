@@ -48,7 +48,7 @@ type PutUserProps = {
   new_password_confirmation?: string | null
 }
 
-export const getMyUser = async (token: string) => {
+export const getMyUser = async (token?: string | null) => {
   const response = await api.get<{ data: UserProps }>(
     `/users`, {
     headers: { 'Authorization': `Bearer ${token}` }

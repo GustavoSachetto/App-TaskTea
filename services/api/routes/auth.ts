@@ -1,6 +1,6 @@
 import { api } from "@/services/api/api";
 
-type LoginProps = {
+export type LoginProps = {
   message: string,
   token: string
 }

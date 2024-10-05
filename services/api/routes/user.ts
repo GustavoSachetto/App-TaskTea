@@ -25,7 +25,7 @@ export type UserRelationshipProps = {
   updated_at: string | null
 }
 
-type PostUserChildProps = {
+export type PostUserChildProps = {
   name: string,
   email: string,
   nickname: string,
@@ -33,12 +33,12 @@ type PostUserChildProps = {
   age: number
 }
 
-type PostUserResponsibleProps = PostUserChildProps & {
+export type PostUserResponsibleProps = PostUserChildProps & {
   cpf: string,
   phone_number: string
 }
 
-type PutUserProps = {
+export type PutUserProps = {
   name: string,
   email: string,
   nickname: string,

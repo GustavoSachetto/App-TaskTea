@@ -20,9 +20,9 @@ export default function TasksPage() {
     const fetchTaskUser = async () => {
       if (session) {
         const response = await getUnfinishedTasks(session);
-        setTaskUser(response); 
+        setTaskUser(response.data); 
       }
-    };
+    }
 
     fetchTaskUser();
   }, [session]); 

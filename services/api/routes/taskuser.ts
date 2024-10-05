@@ -14,18 +14,23 @@ export type TaskUserProps = {
   user_receiver: UserProps,
 }
 
-type TaskUserPageProps = {
+export type TaskUserPageProps = {
   data: Array<TaskUserProps>,
   links: object,
   meta: object
 }
 
-type PostAttachTask = {
+export type PostTaskUserProps = {
   user_receiver_id: number,
   tasks_id: number
 }
 
-export const getAllTaskUser = async (token: string, currentPage: number = 1) => {
+export type PutTaskUserProps = {
+  done: boolean,
+  difficult_level: "very easy" | "easy" | "medium" | "hard" | "very hard" | null
+}
+
+export const getAllTaskUser = async (token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
   
   const response = await api.get<TaskUserPageProps>(
@@ -36,6 +41,33 @@ export const getAllTaskUser = async (token: string, currentPage: number = 1) => 
   return response.data;
 }
 
+export const getFinishedTasks = async (token?: string | null) => {
+  const response = await api.get<TaskUserPageProps>(
+    `/taskuser/finished/1`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+};
+
+export const getUnfinishedTasks = async (token?: string | null) => {
+  const response = await api.get<TaskUserPageProps>(
+    `/taskuser/finished/0`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+};
+
+export const getTaskDay = async (token?: string | null) => {
+  const response = await api.get<{ data: TaskUserProps[] }>(
+    `/taskuser/taskday/`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+  
+  return response.data;
+};
+
 export const fetchTaskUserById = async (id: number, token?: string | null) => {
   const response = await api.get<{ data: TaskUserProps }>(
     `/taskuser/by/${id}`, { 
@@ -45,7 +77,7 @@ export const fetchTaskUserById = async (id: number, token?: string | null) => {
   return response.data;
 }
 
-export const searchTaskUser = async (text: string, token: string, currentPage: number = 1) => {
+export const searchTaskUser = async (text: string, token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
   const response = await api.get<TaskUserPageProps>(
@@ -56,16 +88,7 @@ export const searchTaskUser = async (text: string, token: string, currentPage: n
   return response.data;
 }
 
-export const childFinishTask = async (taskId: number, token?: string | null) => {
-  const response = await api.get<TaskUserPageProps>(
-    `/taskuser/donetask/${taskId}`, { 
-    headers: { 'Authorization': `Bearer ${token}` }
-  })
-    
-  return response.data;
-}
-
-export const responsibleAttachTask = async (data: PostAttachTask, token: string) => {
+export const createTaskUser = async (data: PostTaskUserProps, token?: string | null) => {
   const response = await api.post<{ data: TaskUserProps }>(
     `/taskuser`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
@@ -74,22 +97,20 @@ export const responsibleAttachTask = async (data: PostAttachTask, token: string)
   return response.data;
 }
 
-export const getUnfinishedTasks = async (token?: string | null) => {
-  const response = await api.get<{ data: TaskUserProps[] }>(
-    `/taskuser/unfinishedtasks/`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    }
-  );
+export const editTaskUserById = async (id: number, data: PutTaskUserProps, token?: string | null) => {
+  const response = await api.put<TaskUserPageProps>(
+    `/taskuser/${id}`, data, { 
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+    
+  return response.data;
+}
 
-  return response.data.data;
-};
+export const deleteTaskUserById = async (id: number, token: string) => {
+  const response = await api.delete<{ message: string }>(
+    `/taskuser/${id}`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
 
-export const getTaskDay = async (token?: string | null) => {
-    const response = await api.get<{ data: TaskUserProps[] }>(
-      `/taskuser/taskday/`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }
-    );
-  
-    return response.data.data;
-  };
+  return response.data;
+} 

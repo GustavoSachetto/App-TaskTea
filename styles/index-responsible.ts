@@ -2,22 +2,16 @@ import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
 
-const { button } = Colors;
-const { colors } = Colors;
-const { text } = Colors;
 const { title } = Colors;
-
-
 
 export const GradientBorderBox = styled(LinearGradient).attrs(props => ({
   colors: props.colors || ['#0060ff', '#ffffff', '#0060ff'], 
 }))`
-  height: ${h(23)}px;
   width: ${w(90)}px;
+  height: ${h(23)}px;
   align-self: center;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
+import { ContainerScrollView, Logo, Title, SubTitle, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
 import Colors from '@/constants/Colors';
 import { createUserResponsible } from '@/services/api/routes/user';
 import { Text, View, ActivityIndicator } from 'react-native';
@@ -166,5 +166,5 @@ export default function SignUpResponsible() {
           onClose={() => setModalVisible(false)} />
       </ContainerScrollView>
     </>
-  );
+  )
 }

@@ -16,17 +16,19 @@ export default function TasksPage() {
   const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
   const { session } = useSession(); 
   const router = useRouter();
-
+  
   useEffect(() => {
-    const fetchTaskUser = async () => {
-      if (session) {
-        const response = await getUnfinishedTasks(session);
-        setTaskUser(response); 
-      }
-    };
 
     fetchTaskUser();
-  }, [session]); 
+  }, [session])
+
+  const fetchTaskUser = async () => {
+    if (session) {
+      const response = await getUnfinishedTasks(session);
+      setTaskUser(response.data); 
+    }
+  }
+
   return (
     <ContainerTasksResponsible>
       <ContainerRowTasks>
@@ -55,6 +57,7 @@ export default function TasksPage() {
           </ScrollViewContainerTasks>
         </BoxTasks>
       </GradientBorderBoxTasksResponsible>
+
       <Button onPress={() => router.push('/(auth)/(responsible)/create-task')}>
         <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
       </Button>

@@ -4,8 +4,6 @@ import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 
-const { text } = Colors;
-
 export const ContainerHeader = styled.View`
   flex: 1;
   padding: ${w(4)}px;

@@ -1,4 +1,4 @@
-import { Stack, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Image } from 'react-native';
 import { getMyUser, UserProps} from '@/services/api/routes/user';
 import { useEffect, useState } from 'react';
@@ -9,15 +9,15 @@ export default function Layout() {
   const { session } = useSession(); 
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (session) {
-        const response = await getMyUser(session);
-        setUserData(response.data); 
-      }
-    }
-
     fetchUserData(); 
-  }, []); 
+  }, [])
+
+  const fetchUserData = async () => {
+    if (session) {
+      const response = await getMyUser(session);
+      setUserData(response.data); 
+    }
+  }
   
   return (
     <Tabs
@@ -53,7 +53,7 @@ export default function Layout() {
         options={{
           tabBarIcon: () => (
             <Image
-            source={userData?.image ? { uri: userData.image } : require('../../../../assets/icons/perfil.png')}
+              source={userData?.image ? { uri: userData.image } : require('../../../../assets/icons/perfil.png')}
               style={{ width: 30, height: 30, borderRadius: 100 }} 
             />
           ),
@@ -72,5 +72,5 @@ export default function Layout() {
         }}
       />
     </Tabs>
-  );
+  )
 }

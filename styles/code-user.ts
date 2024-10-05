@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
-import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 
 export const CenteredView = styled.View`
@@ -10,7 +9,7 @@ export const CenteredView = styled.View`
 `;
 
 export const ModalView = styled.View`
-  width: ${getFontSize(170)}px ;
+  width: ${getFontSize(170)}px;
   height: ${getFontSize(130)}px;
   justify-content: center;
   align-items: center;

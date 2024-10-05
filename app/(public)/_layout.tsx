@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Slot } from 'expo-router';
 import * as Font from 'expo-font';
 import { Fonts } from '../../constants/Fonts'; 

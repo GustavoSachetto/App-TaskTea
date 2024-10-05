@@ -2,7 +2,7 @@ import { View, Text, ActivityIndicator } from 'react-native'
 import { useState } from 'react';
 import {
   Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign,
-  ContainerScrollView, Logo, Title, SubTitle, LinkStyled, TextButton, TextReadAndAgree,
+  ContainerScrollView, Logo, Title, SubTitle, TextButton, TextReadAndAgree,
   LinkPopUp, ContainerRow
 } from "@/styles/sign";
 import { Overlay } from "@/styles/index";

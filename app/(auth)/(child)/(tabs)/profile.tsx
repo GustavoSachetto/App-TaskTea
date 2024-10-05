@@ -10,23 +10,23 @@ export default function ProfilePage() {
   const { session } = useSession(); 
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (session) {
-        const response = await getMyUser(session);
-        setUserData(response.data); 
-      }
-    }
-
-    const fetchStatisticData = async () => {
-      if (session) {
-        const response = await getProfileStatistic(null,session);
-        setStatisticData(response) 
-      }
-    }
-
     fetchStatisticData();
     fetchUserData(); 
-  }, []); 
+  }, [])
+
+  const fetchUserData = async () => {
+    if (session) {
+      const response = await getMyUser(session);
+      setUserData(response.data); 
+    }
+  }
+
+  const fetchStatisticData = async () => {
+    if (session) {
+      const response = await getProfileStatistic(null,session);
+      setStatisticData(response) 
+    }
+  }
 
   return (
     <Container>
@@ -42,5 +42,5 @@ export default function ProfilePage() {
         </Button>
       </SectionProfile>
     </Container>
-  );
+  )
 }

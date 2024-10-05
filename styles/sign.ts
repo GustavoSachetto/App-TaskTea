@@ -3,13 +3,11 @@ import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { Link } from 'expo-router';
 import { getFontSize } from '@/utils/fontSize';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { h, w } from '@/utils/responsiveMesures';
 
 const { text } = Colors;
 const { title } = Colors;
 const { dark } = Colors;
-const { button } = Colors;
 const { colors } = Colors;
 
 export const ContainerScrollView = styled.ScrollView.attrs(() => ({

@@ -2,12 +2,10 @@ import styled from 'styled-components/native';
 import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { Link } from 'expo-router';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 
 const { title } = Colors;
-const { dark } = Colors;
 const { button } = Colors;
 const { colors } = Colors;
 
@@ -29,7 +27,6 @@ export const ContainerScrollView = styled.ScrollView.attrs(() => ({
   flex: 1;
   padding: 15px;
 `;
-
 
 export const ContainerRow = styled.View`
   flex: 1;

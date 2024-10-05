@@ -56,7 +56,7 @@ export default function SingleTaskPage() {
   }, [id])
 
   const fetchTaskUser = async () => {
-    const numId: number = typeof(id) === "string" ? parseInt(id) : 1;
+    const numId: number = typeof(id) === "string" ? await parseInt(id) : 1;
     const result = await fetchTaskUserById(numId, session);
    
     setTaskUser(result.data);

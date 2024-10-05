@@ -20,7 +20,7 @@ export default function SettingsPage() {
     if (session) {
       await signOut(session); 
     }
-  };
+  }
 
   return (
     <Container>
@@ -32,6 +32,7 @@ export default function SettingsPage() {
         source={require('../../../../assets/icons/configuracao.png')}/>
         <Title>Configurações</Title>
       </Header>
+
       <Functions>
         <Ionicons name="book-outline" size={wp('4.5%')} />
          <Text>Termos de serviço</Text>
@@ -41,23 +42,26 @@ export default function SettingsPage() {
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
          <Text>Segurança e informação</Text>
       </Functions>
+
       <Functions onPress={() => router.push('/(auth)/(child)/finished-tasks')}>
         <Image source={ImageRelogio} style={{ width: wp('5%'), height: wp('5%') }} />
          <Text>Histórico de Desafios</Text>
       </Functions>
+
       <Functions onPress={() => setModalVisible(true)}>
         <Image source={ImageCodigoUsuario} style={{ width: wp('5%'), height: wp('5%') }} />
          <Text >Código usuário</Text>
       </Functions>
+
       <Functions onPress={handleLogout}>
         <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
          <Text style={{color:'#ff3f00'}}>Sair</Text>
       </Functions>
+
       <CodigoUser
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
       />
     </Container>
-    
   )
 }

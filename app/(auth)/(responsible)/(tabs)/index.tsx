@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ScrollViewContainer, Box, GradientBorderBox, Title, Button, Icons, View, Text } from '@/styles/index-responsible';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
@@ -13,7 +13,7 @@ export default function HomePage() {
   const [modalVisible, setModalVisible] = useState(false); 
   const [selectedUserId, setSelectedUserId] = useState(null);
 
-  const handleSelectUser = (id) => {
+  const handleSelectUser = (id: any) => {
     setSelectedUserId(id);
     setModalVisible(false); 
     router.push({

@@ -18,15 +18,15 @@ export default function SignIn() {
 
   const handleLogin = async () => {
     const debug = await signIn(email, password);
-    console.log(debug);
-    if (debug)
+
+    if (debug) {
       Toast.show({
         text1: 'Mensagem',
         text2: debug
       });
-  };
+    }
+  }
 
-  
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
@@ -37,19 +37,20 @@ export default function SignIn() {
           <Title customColor={BlueColor} style={{padding:10}}>Entrar</Title>
           <Line customColor={BlueColor} />
           <Input 
-          
             placeholderTextColor={GrayColor}
             customColor={BlueColor} 
             value={email}
             onChangeText={(text: string) => setEmail(text)}
-            placeholder='E-mail:' />
+            placeholder='E-mail:' 
+          />
           <Input 
             placeholderTextColor={GrayColor}
             customColor={BlueColor}
             placeholder='Senha:' 
             value={password}
             onChangeText={(text: string) => setPassword(text)}
-            secureTextEntry />
+            secureTextEntry 
+          />
           <ContainerButtonsSign>
             <Link href="/(public)/">
               <LinkedSign customColor={GrayColor}>
@@ -64,5 +65,5 @@ export default function SignIn() {
       </Container>
       <Toast/>
     </ScrollView>
-  );
+  )
 }

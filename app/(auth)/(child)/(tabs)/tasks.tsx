@@ -41,14 +41,15 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            {taskUser.map((task: TaskUserProps) => (
+            {taskUser.map((taskUser: TaskUserProps) => (
               <TouchableOpacity 
-                key={task.id} 
+                key={taskUser.id} 
                 style={{ width: '100%' }} 
-                onPress={() => router.push({ pathname: "/single-task", params: { id: `${task.id}` } })}>
+                onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
+              >
                 <Task style={{ flex: 1, alignSelf: 'stretch' }}>
-                  <Title>{task.task.title}</Title>
-                  <Description>{task.task.description}</Description>
+                  <Title>{taskUser.task.title}</Title>
+                  <Description>{taskUser.task.description}</Description>
                 </Task>
               </TouchableOpacity>
             ))}
@@ -56,5 +57,5 @@ export default function TasksPage() {
         </BoxTasks>
       </GradientBorderBoxTasks>
     </ContainerAllTasks>
-  );
+  )
 }

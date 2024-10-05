@@ -7,12 +7,8 @@ import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-
 const { button } = Colors;
 const { colors } = Colors;
-
-const { text } = Colors;
-
 
 export const TarefaImage = styled.Image`
   height: 53%;

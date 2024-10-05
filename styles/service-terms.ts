@@ -1,16 +1,13 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
-import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { w, h } from '@/utils/responsiveMesures';
-
-const { text } = Colors;
 
 export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${w(4)}px
+  padding: ${w(4)}px;
 `;
 
 export const Line = styled.View`
@@ -42,10 +39,10 @@ export const ModalView = styled.ScrollView`
 `;
 
 export const CloseButton = styled.Pressable`
-    position: absolute;
-    right: ${w(2)}px;
-    top:  ${w(2)}px;
-    z-index: 99;
+  position: absolute;
+  right: ${w(2)}px;
+  top:  ${w(2)}px;
+  z-index: 99;
 `;
 
 export const ModalImage = styled.Image`

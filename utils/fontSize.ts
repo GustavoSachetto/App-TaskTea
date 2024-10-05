@@ -8,4 +8,4 @@ export const getFontSize = (size : number) => {
     return wp(size * 0.35); 
   }
   return wp(size * 0.5); 
-};
+}

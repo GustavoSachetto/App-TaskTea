@@ -6,7 +6,6 @@ import { h, w } from '@/utils/responsiveMesures';
 import { LinearGradient } from "expo-linear-gradient";
 
 const { title } = Colors;
-const { colors } = Colors;
 
 export const Container = styled.View`
   flex: 1;
@@ -19,7 +18,7 @@ export const Label = styled.Text<any>`
   color: ${title.gray};
   font-size: ${getFontSize(9)}px;
   text-align: left;
-  font-family:  ${Fonts.RalewayRegular};
+  font-family: ${Fonts.RalewayRegular};
   margin-left: 4%;
   margin-top: 4%;
 `;
@@ -57,7 +56,7 @@ export const ButtonCreate = styled.Pressable<any>`
 
 export const TarefaImage = styled.Image`
   height: 30%;
-  width: 98% ;
+  width: 98%;
   border-radius: ${w(5)}px;
   top: 1%; 
   z-index: 97;
@@ -65,7 +64,7 @@ export const TarefaImage = styled.Image`
 
 export const ButtonEdit = styled.Pressable`
   height: 6%; 
-  width: 12% ;  
+  width: 12%;  
   position: absolute;
   right: 5%;
   top: 2.5%; 
@@ -81,29 +80,29 @@ export const EditImage = styled.Image`
 `;
 
 export const Voltar = styled.Image`
-  width: ${w(9)}px ;
-  height: ${h(5)}px ;
+  width: ${w(9)}px;
+  height: ${h(5)}px;
   z-index: 99;
   margin-bottom: ${h(2.5)}px;
   left: ${w(7.5)}px;
 `;
 
 export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
-    colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
-  })`
-    height: ${h(82)}px;
-    width: ${w(80)}px;
-    align-self: center;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: ${w(4)}px;
-    margin-bottom: ${w(3)}px;
-    margin-top: ${w(4)}px;
-    position: relative;
-    z-index: 98;
-  `;
+  colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
+})`
+  height: ${h(82)}px;
+  width: ${w(80)}px;
+  align-self: center;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: ${w(4)}px;
+  margin-bottom: ${w(3)}px;
+  margin-top: ${w(4)}px;
+  position: relative;
+  z-index: 98;
+`;
 
-  export const BoxTasks = styled.View`
+export const BoxTasks = styled.View`
   flex: 1;
   width: 98%;
   height: 98%;
@@ -120,5 +119,5 @@ export const ContainerButtonsSign = styled.View`
   justify-content: space-between;
   flex-direction: row;
   margin: 0 auto;
-  padding: ${w(2)}px ${w(3)}px ${w(2)}px ;
+  padding: ${w(2)}px ${w(3)}px ${w(2)}px;
 `;

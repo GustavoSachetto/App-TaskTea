@@ -28,6 +28,7 @@ export default function ProfilePage() {
     <Container>
       <Banner source={require('../../../../assets/images/fundoazul.png')} />
       <ImageProfile  source={userData?.image ? { uri: userData.image } : require('../../../../assets/icons/perfil.png')} />
+      
       <SectionProfile>
         <NameProfile>{userData ? userData.name : "Nome não disponível"}</NameProfile>
         <Button>

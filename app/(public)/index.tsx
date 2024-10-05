@@ -19,6 +19,7 @@ export default function WelcomePage() {
       <Logo source={ImageLogo} resizeMode="contain" />
       <Title>Bem-vindo ao seu app de tratamento diário!</Title>
       <SubTitle>Aqui iremos ajudá-lo a se desenvolver tanto psicologicamente quanto em sua coordenação motora.</SubTitle>
+      
       <ContainerButton>
         <Button onPress={() => setModalVisible(true)}>
          <TextButton>Cadastrar</TextButton> 
@@ -29,14 +30,16 @@ export default function WelcomePage() {
       </ContainerButton>
       
       <LinkStyled onPress={() => setModalVisible1(true)}>
-      <TextTerms>Termos de serviços</TextTerms>
+        <TextTerms>Termos de serviços</TextTerms>
       </LinkStyled>
       <SignUpOptions
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
       />
-      <ServiceTerms visible={modalVisible1}
-      onClose={() => setModalVisible1(false)}/>
+      <ServiceTerms 
+        visible={modalVisible1}
+        onClose={() => setModalVisible1(false)}
+      />
     </Container>
   )
 }

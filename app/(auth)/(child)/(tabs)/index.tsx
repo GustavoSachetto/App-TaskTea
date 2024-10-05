@@ -35,7 +35,7 @@ export default function HomePage() {
             <>
               <Title customColor={BlueColor}>{taskDay[0].task.title}</Title>
               <TextTarefa numberOfLines={2}>{taskDay[0].task.description}</TextTarefa>
-              <LinkedStartTask href={`/single-task?id=${taskDay[0].task.id}`}>
+              <LinkedStartTask href={`/single-task?id=${taskDay[0].id}`}>
                 <TextButtonStartTask>Iniciar</TextButtonStartTask>
               </LinkedStartTask>
             </>

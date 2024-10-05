@@ -4,13 +4,13 @@ import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { w, h } from '@/utils/responsiveMesures';
 
-const { text, colors} = Colors;
+const { colors } = Colors;
 
 export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${w(4)}px
+  padding: ${w(4)}px;
 `;
 
 export const CenteredView = styled.View`
@@ -43,21 +43,21 @@ export const Title = styled.Text`
 
 
 export const CloseButton = styled.Pressable`
-    position: absolute;
-    right: ${w(2)}px;
-    top:  ${w(2)}px;
-    z-index: 99;
+  position: absolute;
+  right: ${w(2)}px;
+  top:  ${w(2)}px;
+  z-index: 99;
 `;
 
 export const ButtonChild = styled.Pressable`
-    width:  95%;
-    flex-direction:row;
-    align-items:center;
-    height:  ${h(8)}px;
-    background-color: ${colors.blue};
-    padding: ${w(3)}px;
-    margin: ${w(3)}px  auto;
-    border-radius:20px;
+  width:  95%;
+  flex-direction:row;
+  align-items:center;
+  height:  ${h(8)}px;
+  background-color: ${colors.blue};
+  padding: ${w(3)}px;
+  margin: ${w(3)}px  auto;
+  border-radius:20px;
 `;
 
 export const ModalImage = styled.Image`

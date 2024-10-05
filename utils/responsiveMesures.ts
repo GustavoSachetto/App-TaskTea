@@ -8,11 +8,11 @@ export const h = (size : number) => {
     return hp(size * 0.8); 
   }
   return hp(size * 1); 
-};
+}
 
 export const w = (size : number) => {
-    if (width > 768) { 
-      return wp(size * 0.8); 
-    }
-    return wp(size * 1); 
-  };
+  if (width > 768) { 
+    return wp(size * 0.8); 
+  }
+  return wp(size * 1); 
+}

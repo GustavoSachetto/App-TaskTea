@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import { Fonts } from '@/constants/Fonts';
-import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 
 export const CenteredView = styled.View`

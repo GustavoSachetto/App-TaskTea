@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, View, ActivityIndicator } from "react-native";
+import { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { fetchStatisticTotalById, fetchStatisticWeeklyById, TotalProps } from "@/services/api/routes/statistic";
@@ -11,19 +11,13 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Statistics() {
   const router = useRouter();
+  const { session } = useSession();
   const { userId } = useLocalSearchParams();
   const [getTotalStatistics, setGetTotalStatistics] = useState<TotalProps | undefined>(undefined);
   const [getWeeklyStatistics, setGetWeeklyStatistics] = useState<TotalProps | undefined>(undefined);
-  const { session } = useSession();
 
   useEffect(() => {
-    const fetchWeeklyTasks = async () => {
-      if (session && userId) {
-        const response = await fetchStatisticWeeklyById(userId, session);
-        setGetWeeklyStatistics(response);
-      }
-    };
-
+    fetchTotalTasks();
     fetchWeeklyTasks();
   }, [session, userId]);
 
@@ -38,18 +32,25 @@ export default function Statistics() {
         hoverBackgroundColor: ["#7dffa5", "#ff875f"],
       },
     ],
-  };
+  }
 
-  useEffect(() => {
-    const fetchTotalTasks = async () => {
-      if (session && userId) {
-        const response = await fetchStatisticTotalById(userId, session);
-        setGetTotalStatistics(response);
-      }
-    };
+  const fetchTotalTasks = async () => {
+    if (session && userId) {
+      const userNumId: number = typeof(userId) === "string" ? await parseInt(userId) : 1;
+      const response = await fetchStatisticTotalById(userNumId, session);
+      
+      setGetTotalStatistics(response);
+    }
+  }
 
-    fetchTotalTasks();
-  }, [session, userId]);
+  const fetchWeeklyTasks = async () => {
+    if (session && userId) {
+      const userNumId: number = typeof(userId) === "string" ? await parseInt(userId) : 1;
+      const response = await fetchStatisticWeeklyById(userNumId, session);
+
+      setGetWeeklyStatistics(response);
+    }
+  }
 
   const totalCompleted = Number(getTotalStatistics?.total_completed) || 0;
   const totalIncomplete = Number(getTotalStatistics?.total_incomplete) || 0;
@@ -62,7 +63,7 @@ export default function Statistics() {
         hoverBackgroundColor: ["#7dffa5", "#ff875f"],
       },
     ],
-  };
+  }
 
   return (
     <ScrollView>
@@ -73,34 +74,33 @@ export default function Statistics() {
         <TitlePage>Estatísticas</TitlePage>
       </Header>
 
-        <TitleStatistics>Resultado da semana</TitleStatistics>
-        <ContainerStatistics>
-          <Pie data={weeklyData} />
-          <ContainerLabel>
-            <SquareLabel customColor="#46f87c" />
-            <LabelChart>Tarefas Concluídas: {weeklyCompleted}</LabelChart>
-          </ContainerLabel>
+      <TitleStatistics>Resultado da semana</TitleStatistics>
+      <ContainerStatistics>
+        <Pie data={weeklyData} />
+        <ContainerLabel>
+          <SquareLabel customColor="#46f87c" />
+          <LabelChart>Tarefas Concluídas: {weeklyCompleted}</LabelChart>
+        </ContainerLabel>
 
-          <ContainerLabel>
-            <SquareLabel customColor="#ff3f00" />
-            <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
-          </ContainerLabel>
-        </ContainerStatistics>
+        <ContainerLabel>
+          <SquareLabel customColor="#ff3f00" />
+          <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
+        </ContainerLabel>
+      </ContainerStatistics>
 
-        <TitleStatistics>Resultado geral</TitleStatistics>
-        <ContainerStatistics>
-          <Pie data={totalData} />
-          <ContainerLabel>
-            <SquareLabel customColor="#46f87c" />
-            <LabelChart>Tarefas Concluídas: {totalCompleted}</LabelChart>
-          </ContainerLabel>
+      <TitleStatistics>Resultado geral</TitleStatistics>
+      <ContainerStatistics>
+        <Pie data={totalData} />
+        <ContainerLabel>
+          <SquareLabel customColor="#46f87c" />
+          <LabelChart>Tarefas Concluídas: {totalCompleted}</LabelChart>
+        </ContainerLabel>
 
-          <ContainerLabel>
-            <SquareLabel customColor="#ff3f00" />
-            <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
-          </ContainerLabel>
-
-        </ContainerStatistics>
+        <ContainerLabel>
+          <SquareLabel customColor="#ff3f00" />
+          <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
+        </ContainerLabel>
+      </ContainerStatistics>
     </ScrollView>
-  );
+  )
 }

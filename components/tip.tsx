@@ -1,6 +1,4 @@
-import { Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
-import { useRouter } from "expo-router";
-import { Fonts } from "@/constants/Fonts";
+import { Modal } from "react-native";
 import { CenteredView, ModalView, CloseButton, ModalImage, TextHelp, TextTip,
   ModalText, DicaPopUp } from "@/styles/tip";
 
@@ -14,8 +12,6 @@ type TipProps = {
 }
 
 export default function Tip ({ visible, onClose, name, text }: TipProps) {
-  const router = useRouter();
-
   return (
     <Modal
       animationType="slide"
@@ -28,6 +24,7 @@ export default function Tip ({ visible, onClose, name, text }: TipProps) {
           <CloseButton onPress={onClose}>
             <ModalImage source={require("../assets/icons/x.png")} />
           </CloseButton>
+          
           <DicaPopUp source={ImageDicaPopUp} resizeMode="contain" />
           <ModalText>Olá {name}!</ModalText>
           <TextHelp>Dica que pode te ajudar:</TextHelp>

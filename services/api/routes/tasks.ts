@@ -19,7 +19,7 @@ export type TaskPageProps = {
   meta: object
 }
 
-type PostTaskProps = {
+export type PostTaskProps = {
   title: string,
   description: string,
   tip: string,

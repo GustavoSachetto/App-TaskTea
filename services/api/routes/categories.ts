@@ -1,13 +1,13 @@
 import { api } from "@/services/api/api";
 
-type CategoryProps = {
+export type CategoryProps = {
   id: number,
   name: string,
   created_at: string,
   updated_at: string | null
 }
 
-type PostCategoryProps = {
+export type PostCategoryProps = {
   name: string
 }
 

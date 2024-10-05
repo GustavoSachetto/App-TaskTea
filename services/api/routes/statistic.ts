@@ -1,11 +1,11 @@
 import { api } from "@/services/api/api";
 
-type UserChallengeDifficultyProps = {
+export type UserChallengeDifficultyProps = {
   difficult_level: string,
   total: number
 }
 
-type WeeklyProps = {
+export type WeeklyProps = {
   user_receiver_id: number,
   total_completed: number,
   total_incomplete: number,

@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
-import { router } from 'expo-router';
 import { Button } from '@/styles/tip';
-import { childFinishTask, fetchTaskUserById } from '@/services/api/routes/taskuser';
+import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
 import BouncyCheckbox from "react-native-bouncy-checkbox"; 
@@ -51,8 +50,13 @@ export default function SingleTaskPage() {
   
   const { id } = useLocalSearchParams();
 
+  useEffect(() => {
+    fetchTaskUser();
+    setUserName();
+  }, [id])
+
   const fetchTaskUser = async () => {
-    const numId: number = typeof(id) === "string" ? parseInt(id) : 0;
+    const numId: number = typeof(id) === "string" ? parseInt(id) : 1;
     const result = await fetchTaskUserById(numId, session);
    
     setTaskUser(result.data);
@@ -66,23 +70,21 @@ export default function SingleTaskPage() {
   }
 
   const finishTask = async (id: number) => {
-    await childFinishTask(id, session);
+    await editTaskUserById(id, { 
+      done: taskUser.done ? false : true, 
+      difficult_level: null
+    }, session);
 
     router.back();
   }
-
-  useEffect(() => {
-    fetchTaskUser();
-    setUserName();
-  }, [id])
 
   return (
     <Container>
       {modalVisible && <Overlay />}
       <ContainerRowHeader>
-      <LinkedSign onPress={() => router.back()}>
-          <Voltar source={ImageVoltar} resizeMode="contain" />
-      </LinkedSign>
+        <LinkedSign onPress={() => router.back()}>
+            <Voltar source={ImageVoltar} resizeMode="contain" />
+        </LinkedSign>
         <TextTaskDay>Desafio do dia</TextTaskDay>
       </ContainerRowHeader>
 
@@ -115,5 +117,5 @@ export default function SingleTaskPage() {
         </BoxTask>
       </GradientBorderBox>
     </Container>
-  );
+  )
 }

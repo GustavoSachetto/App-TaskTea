@@ -3,7 +3,6 @@ import { ScrollViewContainer,
   TarefaImage, Title, TextTarefa } from '@/styles/index-child';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
-import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
@@ -14,13 +13,12 @@ const BlueColor = Colors.colors.blue;
 export default function HomePage() {
   const [taskDay, setTaskDay] = useState<TaskUserProps[]>([]);
   const { session } = useSession(); 
-  const router = useRouter();
 
   useEffect(() => {
     const fetchTaskDay = async () => {
       if (session) {
         const response = await getUnfinishedTasks(session);
-        setTaskDay(response); 
+        setTaskDay(response.data); 
       }
     };
 
@@ -37,7 +35,7 @@ export default function HomePage() {
             <>
               <Title customColor={BlueColor}>{taskDay[0].task.title}</Title>
               <TextTarefa numberOfLines={2}>{taskDay[0].task.description}</TextTarefa>
-              <LinkedStartTask href="/(auth)/(child)/single-task">
+              <LinkedStartTask href={`/single-task?id=${taskDay[0].task.id}`}>
                 <TextButtonStartTask>Iniciar</TextButtonStartTask>
               </LinkedStartTask>
             </>

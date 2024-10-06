@@ -39,4 +39,4 @@ export default {
     darkgray: '#545454',
     red: '#fa4a49',
   },
-};
+}

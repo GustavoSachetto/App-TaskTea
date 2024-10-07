@@ -65,7 +65,7 @@ export const LinkedSign = styled.Pressable`
   width: ${w(4)}px;
 `;
 
-export const GradientBorderBox = styled(LinearGradient).attrs({
+export const GradientBorderBox = styled<any>(LinearGradient).attrs({
   colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
   height: ${hp("65%")}px ;
@@ -87,6 +87,8 @@ export const BoxChildren = styled.View`
   position: absolute; 
   bottom: 1%;
   padding: 5%;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
 `;
 
@@ -113,4 +115,30 @@ export const TextClick = styled.Text`
   font-family: ${Fonts.RalewayRegular};
   width: 22%;
 `;
+
+export const Childs = styled.View`
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ProfilePhoto = styled.Image`
+  border-radius: 100%;
+  width: ${w(20)}px;
+  height: ${w(20)}px;
+`;
+
+export const Name = styled.Text.attrs(() => ({
+  numberOfLines: 1, 
+  ellipsizeMode: 'tail', 
+}))`
+  padding: 4px;
+  text-align: center;
+  color: #fff;
+  width: ${w(20)}px;
+  border-radius: ${w(4)}px;
+  font-family: ${Fonts.RalewayBold};
+  font-size: ${getFontSize(9)}px;
+  background-color: ${Colors.colors.blue};
+`;
+
 

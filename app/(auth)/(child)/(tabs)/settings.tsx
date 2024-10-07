@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import CodigoUser from "@/components/code-user";
 import { useState } from 'react';
 import { Overlay } from "@/styles/index";
+import ServiceTerms from '@/components/service-terms';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
@@ -15,6 +16,7 @@ export default function SettingsPage() {
   const router = useRouter();
   const { signOut, session } = useSession();
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalServiceTerms, setModalServiceTerms] = useState(false);
 
   const handleLogout = async () => {
     if (session) {
@@ -25,6 +27,7 @@ export default function SettingsPage() {
   return (
     <Container>
       {modalVisible && <Overlay/>}
+      {modalServiceTerms && <Overlay/>}
       
       <Header>
         <Logo
@@ -33,7 +36,7 @@ export default function SettingsPage() {
         <Title>Configurações</Title>
       </Header>
 
-      <Functions>
+      <Functions onPress={() => setModalServiceTerms(true)}>
         <Ionicons name="book-outline" size={wp('4.5%')} />
          <Text>Termos de serviço</Text>
       </Functions>
@@ -61,6 +64,11 @@ export default function SettingsPage() {
       <CodigoUser
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
+      />
+
+      <ServiceTerms 
+        visible={modalServiceTerms}
+        onClose={() => setModalServiceTerms(false)}
       />
     </Container>
   )

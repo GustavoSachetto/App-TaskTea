@@ -1,5 +1,6 @@
-import { Modal} from 'react-native';
+import { Modal } from 'react-native';
 import { useEffect, useState } from 'react';
+import { SubTitle } from '@/styles';
 import { useSession } from '@/hooks/ctx';
 import { useRouter } from 'expo-router';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
@@ -44,7 +45,7 @@ export default function SelectChild({ visible, onClose, onSelectUser } : SelectC
               <ModalImage source={require('../assets/icons/x.png')} />
             </CloseButton>
           </Header>
-          {userRelationships.map((user: UserRelationshipProps) => (
+          {userRelationships.length > 0 ? userRelationships.map((user: UserRelationshipProps) => (
             <ButtonChild style={{ flex: 1, alignSelf: 'stretch' }} 
               key={user.id}
               onPress={() => {
@@ -53,12 +54,14 @@ export default function SelectChild({ visible, onClose, onSelectUser } : SelectC
               router.push({
                 pathname: '/(auth)/(responsible)/statistics',
                 params: { userId: user.id }, 
-              });
+              }) 
             }}>
               <ImageProfile source={user?.image ? { uri: user.image } : require('../assets/icons/perfil.png')} />
               <TextName>{user.name}</TextName>
             </ButtonChild>
-          ))}
+          )):(
+            <SubTitle>Sem filhos cadastrados.</SubTitle>
+          )}
         </ModalView>
       </CenteredView>
     </Modal>

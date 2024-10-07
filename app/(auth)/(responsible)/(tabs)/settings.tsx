@@ -3,11 +3,15 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSession } from '@/hooks/ctx';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
+import { Overlay } from "@/styles/index";
+import { useState } from 'react';
+import ServiceTerms from '@/components/service-terms';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
 export default function SettingsPage() {
   const { signOut, session } = useSession();
+  const [modalServiceTerms, setModalServiceTerms] = useState(false);
 
   const handleLogout = async () => {
     if (session) {
@@ -16,7 +20,9 @@ export default function SettingsPage() {
   }
 
   return (
+    
     <Container>
+      {modalServiceTerms && <Overlay/>}
       <Header>
         <Logo
           resizeMode='contain'
@@ -25,7 +31,7 @@ export default function SettingsPage() {
         <Title>Configurações</Title>
       </Header>
 
-      <Functions>
+      <Functions onPress={() => setModalServiceTerms(true)}>
         <Ionicons name="book-outline" size={wp('4.5%')} />
          <Text>Termos de serviço</Text>
       </Functions>
@@ -44,6 +50,11 @@ export default function SettingsPage() {
         <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
         <Text style={{color:'#ff3f00'}}>Sair</Text>
       </Functions>
+
+      <ServiceTerms 
+        visible={modalServiceTerms}
+        onClose={() => setModalServiceTerms(false)}
+      />
     </Container>
   )
 }

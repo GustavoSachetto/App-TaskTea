@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
@@ -41,7 +41,7 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            {taskUser.map((taskUser: TaskUserProps) => (
+            {taskUser.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
               <TouchableOpacity 
                 key={taskUser.id} 
                 style={{ width: '100%' }} 
@@ -52,7 +52,9 @@ export default function TasksPage() {
                   <Description>{taskUser.task.description}</Description>
                 </Task>
               </TouchableOpacity>
-            ))}
+            )):(
+              <Text>Sem nenhuma tarefa em andamento.</Text>
+            )}
           </ScrollViewContainerTasks>
         </BoxTasks>
       </GradientBorderBoxTasks>

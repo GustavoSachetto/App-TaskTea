@@ -4,6 +4,7 @@ import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useRouter } from 'expo-router';
 import SelectChild from '@/components/select-child';
+import { Overlay } from "@/styles/index";
 
 const BlueColor = Colors.colors.blue;
 const YellowColor = Colors.colors.yellow;
@@ -24,6 +25,7 @@ export default function HomePage() {
 
   return (
     <ScrollViewContainer>
+    {modalVisible && <Overlay/>}
       <HeaderIndex />
       <GradientBorderBox colors={['#0060ff', '#ffffff', '#0060ff']}>
         <Box>

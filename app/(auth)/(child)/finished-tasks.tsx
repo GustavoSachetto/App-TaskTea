@@ -1,11 +1,10 @@
-import { TouchableOpacity  } from 'react-native';
+import { TouchableOpacity, Text  } from 'react-native';
 import { useRouter } from 'expo-router';
-import {
-  QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
+import { ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerAllTasks, TextDoing, Task,
   BoxTasks, Title, Description
 } from '@/styles/tasks';
-import { LinkedSign, Voltar, ContainerRowTasks } from '@/styles/finished-tasks';
+import { LinkedSign, Voltar, ContainerRowTasks, ContainerColumn } from '@/styles/finished-tasks';
 import { getFinishedTasks } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import { ReactNode, useEffect, useState } from 'react';
@@ -13,7 +12,6 @@ import { TaskUserPageProps } from '@/services/api/routes/taskuser';
 import { useSession } from '@/hooks/ctx';
 
 const ImageVoltar = require('@/assets/icons/voltar-verde.png');
-const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
 const green  = Colors.colors.green;
 
 export default function TasksPage() {
@@ -49,19 +47,20 @@ export default function TasksPage() {
         </Task>
       </TouchableOpacity>
     ) : (
-      <span>Sem tarefas</span>
+      <Text>Sem tarefas</Text>
     )
   }
 
   return (
     <ContainerAllTasks>
       <ContainerRowTasks>
-        <LinkedSign onPress={() => router.back()}>
+        <LinkedSign href="/(auth)/(child)/(tabs)/settings">
             <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
-
-        <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
-        <TextTask customColor={green}>Desafios Realizados</TextTask>
+        <ContainerColumn>
+          <TextTask customColor={green}>Tarefas </TextTask>
+          <TextTask customColor={green}>concluídas</TextTask>
+        </ContainerColumn>
       </ContainerRowTasks>
 
       <ContainerTasksDoing customColor={green}>

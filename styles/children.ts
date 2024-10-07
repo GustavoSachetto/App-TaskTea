@@ -144,5 +144,5 @@ export const View = styled.View`
   width: ${w(85)}px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;

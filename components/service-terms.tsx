@@ -17,7 +17,7 @@ export default function ServiceTerms ({ visible, onClose }: ServiceTermsProps) {
       <CenteredView>
         <ModalView>
           <Header>
-            <Title>Política de privacidade</Title>
+            <Title>Termos de serviço</Title>
             <CloseButton onPress={onClose}>
               <ModalImage source={require('../assets/icons/x.png')} />
             </CloseButton>

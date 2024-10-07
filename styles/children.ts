@@ -23,7 +23,6 @@ export const ContainerRowTask = styled.View`
 `;
 
 export const ContainerRowHeader = styled.View`
-  
   width: 100%;
   flex-direction: row;
   padding: 0 ${w(3)}px;
@@ -65,7 +64,7 @@ export const LinkedSign = styled.Pressable`
   width: ${w(4)}px;
 `;
 
-export const GradientBorderBox = styled(LinearGradient).attrs({
+export const GradientBorderBox = styled<any>(LinearGradient).attrs({
   colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
 })`
   height: ${hp("65%")}px ;
@@ -78,7 +77,7 @@ export const GradientBorderBox = styled(LinearGradient).attrs({
   position: relative; 
 `;
 
-export const BoxChildren = styled.View`
+export const BoxChildren = styled.ScrollView`
   height: 98%;
   width: 98% ;
   border-radius: ${w(5)}px ;
@@ -86,8 +85,8 @@ export const BoxChildren = styled.View`
   background-color: white;
   position: absolute; 
   bottom: 1%;
-  padding: 5%;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const TarefaImage = styled.Image`
@@ -114,3 +113,36 @@ export const TextClick = styled.Text`
   width: 22%;
 `;
 
+export const Childs = styled.View`
+  flex-direction: column;
+  align-items: center;
+  margin: ${w(2)}px;
+  
+`;
+
+export const ProfilePhoto = styled.Image`
+  border-radius: 100%;
+  width: ${w(20)}px;
+  height: ${w(20)}px;
+`;
+
+export const Name = styled.Text.attrs(() => ({
+  numberOfLines: 1, 
+  ellipsizeMode: 'tail', 
+}))`
+  padding: 4px;
+  text-align: center;
+  color: #fff;
+  width: ${w(20)}px;
+  border-radius: ${w(4)}px;
+  font-family: ${Fonts.RalewayBold};
+  font-size: ${getFontSize(9)}px;
+  background-color: ${Colors.colors.blue};
+`;
+
+export const View = styled.View`
+  width: ${w(85)}px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

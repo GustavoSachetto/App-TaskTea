@@ -1,5 +1,14 @@
 import styled from "styled-components/native";
 import { h, w } from '@/utils/responsiveMesures';
+import { Link } from "expo-router";
+
+export const ContainerColumn = styled.View`
+  flex: 1;
+  margin-top: ${h(3)}px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 export const Voltar = styled.Image`
   width: ${w(9)}px ;
@@ -7,7 +16,7 @@ export const Voltar = styled.Image`
   z-index: 99;
 `;
 
-export const LinkedSign = styled.Pressable`
+export const LinkedSign = styled(Link)`
   position: absolute;
   left:${w(8)}px;
   height: ${w(4)}px;

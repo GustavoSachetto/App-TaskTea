@@ -38,6 +38,7 @@ export const ContainerRow = styled.View`
   flex-direction: row;
 `;
 
+
 export const Logo = styled.Image`
   width: 100%;
   height:  ${h(25)}px ;

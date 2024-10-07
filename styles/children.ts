@@ -23,7 +23,6 @@ export const ContainerRowTask = styled.View`
 `;
 
 export const ContainerRowHeader = styled.View`
-  
   width: 100%;
   flex-direction: row;
   padding: 0 ${w(3)}px;
@@ -78,7 +77,7 @@ export const GradientBorderBox = styled<any>(LinearGradient).attrs({
   position: relative; 
 `;
 
-export const BoxChildren = styled.View`
+export const BoxChildren = styled.ScrollView`
   height: 98%;
   width: 98% ;
   border-radius: ${w(5)}px ;
@@ -86,10 +85,8 @@ export const BoxChildren = styled.View`
   background-color: white;
   position: absolute; 
   bottom: 1%;
-  padding: 5%;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 export const TarefaImage = styled.Image`
@@ -119,6 +116,8 @@ export const TextClick = styled.Text`
 export const Childs = styled.View`
   flex-direction: column;
   align-items: center;
+  margin: ${w(2)}px;
+  
 `;
 
 export const ProfilePhoto = styled.Image`
@@ -141,4 +140,9 @@ export const Name = styled.Text.attrs(() => ({
   background-color: ${Colors.colors.blue};
 `;
 
-
+export const View = styled.View`
+  width: ${w(85)}px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

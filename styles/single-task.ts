@@ -114,3 +114,10 @@ export const TextClick = styled.Text`
   font-family: ${Fonts.RalewayRegular};
   width: 22%;
 `;
+
+export const DataText = styled.Text`
+  color: ${ Colors.title.gray };
+  font-size: ${getFontSize(6.5)}px;
+  font-family: ${Fonts.RalewayRegular};
+`;
+

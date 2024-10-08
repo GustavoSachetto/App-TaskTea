@@ -19,7 +19,6 @@ export default function ChildrenPage() {
     const fetchUserRelationships = async () => {
       if (session) {
         const response = await getMyRelationships(session);
-        console.log(response)
         setUserRelationships(response);
       }
     }

@@ -1,36 +1,34 @@
-import { TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
-  GradientBorderBoxTasksResponsible, ContainerRowTasks, ContainerTasksResponsible, TextDoing, Task,
-  BoxTasks, Title, Description, AddTask, TextAddTask, Button
+  GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task,
+  BoxTasks, Title, Description
 } from '@/styles/tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
 
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
-const ImageAdicionarDesafio = require('@/assets/icons/botao-criar-amarelo.png');
 
 export default function TasksPage() {
   const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
   const { session } = useSession(); 
   const router = useRouter();
-  
+
   useEffect(() => {
+    const fetchTaskUser = async () => {
+      if (session) {
+        const response = await getUnfinishedTasks(session);
+        setTaskUser(response.data); 
+      }
+    }
 
     fetchTaskUser();
-  }, [session])
-
-  const fetchTaskUser = async () => {
-    if (session) {
-      const response = await getUnfinishedTasks(session);
-      setTaskUser(response.data); 
-    }
-  }
+  }, [session]); 
 
   return (
-    <ContainerTasksResponsible>
+    <ContainerAllTasks>
       <ContainerRowTasks>
         <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
         <TextTask>Desafios</TextTask>
@@ -40,28 +38,26 @@ export default function TasksPage() {
         <TextDoing>Em andamento</TextDoing>
       </ContainerTasksDoing>
 
-      <GradientBorderBoxTasksResponsible>
+      <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            {taskUser.map((task: TaskUserProps) => (
+            {taskUser.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
               <TouchableOpacity 
-                key={task.id} 
+                key={taskUser.id} 
                 style={{ width: '100%' }} 
-                onPress={() => router.push('/(auth)/(child)/single-task')}>
+                onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
+              >
                 <Task style={{ flex: 1, alignSelf: 'stretch' }}>
-                  <Title>{task.task.title}</Title>
-                  <Description>{task.task.description}</Description>
+                  <Title>{taskUser.task.title}</Title>
+                  <Description>{taskUser.task.description}</Description>
                 </Task>
               </TouchableOpacity>
-            ))}
+            )):(
+              <Text>Sem nenhuma tarefa em andamento.</Text>
+            )}
           </ScrollViewContainerTasks>
         </BoxTasks>
-      </GradientBorderBoxTasksResponsible>
-
-      <Button onPress={() => router.push('/(auth)/(responsible)/create-task')}>
-        <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
-      </Button>
-      <TextAddTask>Criar novo <br></br>desafio!</TextAddTask>
-    </ContainerTasksResponsible>
+      </GradientBorderBoxTasks>
+    </ContainerAllTasks>
   )
 }

@@ -3,13 +3,17 @@ import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task,
-  BoxTasks, Title, Description
+  BoxTasks, Title, Description,
+  Button,
+  AddTask,
+  TextAddTask
 } from '@/styles/tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
 
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
+const ImageAdicionarDesafio = require('@/assets/icons/botao-criar-amarelo.png');
 
 export default function TasksPage() {
   const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
@@ -58,6 +62,11 @@ export default function TasksPage() {
           </ScrollViewContainerTasks>
         </BoxTasks>
       </GradientBorderBoxTasks>
+      
+      <Button onPress={() => router.push('/(auth)/(responsible)/create-task')}>
+        <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
+      </Button>
+      <TextAddTask>Criar novo <br></br>desafio!</TextAddTask>
     </ContainerAllTasks>
   )
 }

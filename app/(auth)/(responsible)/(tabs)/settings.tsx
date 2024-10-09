@@ -6,12 +6,15 @@ import { Image } from 'react-native';
 import { useOverlay } from '@/context/OverlayContext';
 import { useState, useEffect } from 'react';
 import ServiceTerms from '@/components/service-terms';
+import LogoutMessage from '@/components/logout-message';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
 export default function SettingsPage() {
   const { signOut, session } = useSession();
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
+  const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
+
   const { showOverlay, hideOverlay } = useOverlay();
 
   const handleLogout = async () => {
@@ -27,6 +30,14 @@ export default function SettingsPage() {
       hideOverlay();
     }
   }, [modalServiceTerms, showOverlay, hideOverlay]);
+
+  useEffect(() => {
+    if (modalLogoutMessage) {
+      showOverlay();
+    } else {
+      hideOverlay();
+    }
+  }, [modalLogoutMessage, showOverlay, hideOverlay]);
 
   return (
     <>
@@ -54,14 +65,23 @@ export default function SettingsPage() {
           <Text>Templates de desafios</Text>
         </Functions>
 
-        <Functions onPress={handleLogout}>
+        <Functions onPress={() => setModalLogoutMessage(true)}>
           <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
           <Text style={{ color: '#ff3f00' }}>Sair</Text>
         </Functions>
+        
+        {/* <Functions onPress={handleLogout} >
+          <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
+          <Text style={{ color: '#ff3f00' }}>Sair</Text>
+        </Functions> */}
 
         <ServiceTerms
           visible={modalServiceTerms}
           onClose={() => setModalServiceTerms(false)}
+        />
+        <LogoutMessage
+          visible={modalLogoutMessage}
+          onClose={() => setModalLogoutMessage(false)}
         />
       </Container>
     </>

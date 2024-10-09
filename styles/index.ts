@@ -117,4 +117,5 @@ export const Overlay = styled.View`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
+  flex: 1;
 `;

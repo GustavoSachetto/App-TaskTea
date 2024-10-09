@@ -140,7 +140,7 @@ export const Name = styled.Text.attrs(() => ({
   background-color: ${Colors.colors.blue};
 `;
 
-export const View = styled.View`
+export const ViewChildren = styled.View`
   width: ${w(85)}px;
   flex-direction: row;
   flex-wrap: wrap;

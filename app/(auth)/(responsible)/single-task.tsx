@@ -71,7 +71,7 @@ export default function SingleTaskPage() {
         <LinkedSign onPress={() => router.back()}>
             <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
-        <TextTaskDay>Desafio do dia</TextTaskDay>
+        <TextTaskDay>Desafio</TextTaskDay>
       </ContainerRowHeader>
 
       <GradientBorderBox>

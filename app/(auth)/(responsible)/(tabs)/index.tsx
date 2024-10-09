@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ScrollViewContainer, Box, GradientBorderBox, Title, Button, Icons, View, Text } from '@/styles/index-responsible';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useRouter } from 'expo-router';
 import SelectChild from '@/components/select-child';
-import { Overlay } from "@/styles/index";
+import { useOverlay } from '@/context/OverlayContext';
 
 const BlueColor = Colors.colors.blue;
 const YellowColor = Colors.colors.yellow;
@@ -12,6 +12,7 @@ const YellowColor = Colors.colors.yellow;
 export default function HomePage() {
   const router = useRouter();
   const [modalVisible, setModalVisible] = useState(false); 
+  const { showOverlay, hideOverlay } = useOverlay();
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const handleSelectUser = (id: any) => {
@@ -23,9 +24,16 @@ export default function HomePage() {
     });
   };
 
+  useEffect(() => {
+    if (modalVisible) {
+      showOverlay();
+    } else {
+      hideOverlay();
+    }
+  }, [modalVisible, showOverlay, hideOverlay]);
+
   return (
     <ScrollViewContainer>
-    {modalVisible && <Overlay/>}
       <HeaderIndex />
       <GradientBorderBox colors={['#0060ff', '#ffffff', '#0060ff']}>
         <Box>

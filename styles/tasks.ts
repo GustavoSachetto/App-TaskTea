@@ -184,8 +184,4 @@ export const Description = styled.Text`
   text-overflow: ellipsis;
 `;
 
-export const Button = styled.Pressable`
-
-`;
-
 

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, Alert, Pressable } from 'react-native';
 import { Overlay, TextButton } from "@/styles/index";
-import { Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
-   TarefaImage, Voltar, BoxTasks, Input, ContainerButtonsSign,
-   ButtonCreate, Label } from "@/styles/create-task";
+import {
+  Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
+  TarefaImage, Voltar, BoxTasks, Input, ContainerButtonsSign,
+  ButtonCreate, Label
+} from "@/styles/create-task";
 import ServiceTerms from '@/components/service-terms';
 
 import { useRouter } from 'expo-router';
@@ -21,11 +23,11 @@ export default function CreateTask() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tip, setTip] = useState('');
-  const [difficulty, setDifficulty] = useState('easy'); 
-  const [categories, setCategories] = useState<CategoryProps[]>([]); 
-  const [selectedCategory, setSelectedCategory] = useState<string>(''); 
+  const [difficulty, setDifficulty] = useState('easy');
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [modalVisible, setModalVisible] = useState(false);
-  const { session } = useSession(); 
+  const { session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function CreateTask() {
     if (session) {
       try {
         const response = await getAllCategories();
-        setCategories(response.data); 
+        setCategories(response.data);
       } catch (error) {
         console.log('Erro', 'Não foi possível carregar as categorias.');
       }
@@ -54,14 +56,14 @@ export default function CreateTask() {
       description,
       tip,
       level: difficulty,
-      categories_id: Number(selectedCategory), 
+      categories_id: Number(selectedCategory),
     };
 
-  if (session){
-          await createTask(taskData, session);
-          console.log('Sucesso!', 'Tarefa criada!');
-  }
-    
+    if (session) {
+      await createTask(taskData, session);
+      console.log('Sucesso!', 'Tarefa criada!');
+    }
+
   };
 
   const handlePickerChange = (itemValue: string) => {
@@ -86,29 +88,30 @@ export default function CreateTask() {
         <GradientBorderBoxTasks>
           <ButtonEdit>
             <EditImage source={ImageEditar} resizeMode="contain" />
-          </ButtonEdit>  
+          </ButtonEdit>
           <TarefaImage source={ImageTarefa} />
           <BoxTasks>
             <Label>Título do desafio:</Label>
-            <Input 
+            <Input
               value={title}
               onChangeText={setTitle}
             />
-            <Label>Descrição:</Label> 
-            <InputDescription 
+            <Label>Descrição:</Label>
+            <InputDescription
               value={description}
               onChangeText={setDescription}
             />
-            <Label>Escreva uma dica:</Label>  
-            <Input 
+            <Label>Escreva uma dica:</Label>
+            <Input
               value={tip}
               onChangeText={setTip}
             />
+            
             <Label>Dificuldade:</Label>
             <Picker
               selectedValue={difficulty}
               onValueChange={setDifficulty}
-              style={{ height: 50, width: 150 }}
+              style={{ padding:7, marginTop:5 }}
             >
               <Picker.Item label="Fácil" value="easy" />
               <Picker.Item label="Médio" value="medium" />
@@ -117,12 +120,12 @@ export default function CreateTask() {
             <Label>Categoria:</Label>
             <Picker
               selectedValue={selectedCategory}
-              onValueChange={handlePickerChange} 
-              style={{ height: 50, width: 150 }}
+              onValueChange={handlePickerChange}
+              style={{ padding:7, marginTop:5 }}
             >
               <Picker.Item label="Selecione uma categoria" value="" />
               {categories.map((category) => (
-                <Picker.Item key={category.id} label={category.name} value={category.id.toString()} /> 
+                <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
               ))}
               <Picker.Item label="Criar nova categoria" value="createNew" />
             </Picker>
@@ -134,10 +137,10 @@ export default function CreateTask() {
           </BoxTasks>
         </GradientBorderBoxTasks>
         <CreateCategory
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        onCategoryCreated={handleCategoryCreated} 
-      />
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onCategoryCreated={handleCategoryCreated}
+        />
       </Container>
     </ScrollView>
   );

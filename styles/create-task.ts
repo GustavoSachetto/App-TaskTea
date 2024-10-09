@@ -90,22 +90,17 @@ export const Voltar = styled.Image`
 export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
   colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
 })`
-  height: ${h(82)}px;
-  width: ${w(80)}px;
+  width: ${w(90)}px;
   align-self: center;
   justify-content: flex-start;
   align-items: center;
   border-radius: ${w(4)}px;
-  margin-bottom: ${w(3)}px;
-  margin-top: ${w(4)}px;
   position: relative;
   z-index: 98;
 `;
 
 export const BoxTasks = styled.View`
-  flex: 1;
   width: 98%;
-  height: 98%;
   border-radius: ${w(4)}px;
   background-color: white;
   z-index: 2;

@@ -31,7 +31,7 @@ export default function HomePage() {
       <GradientBorderBox>
         <TarefaImage source={ImageTarefa} />
         <Box>
-          {taskDay.length > 0 ? (
+          {taskDay?.length > 0 ? (
             <>
               <Title customColor={BlueColor}>{taskDay[0].task.title}</Title>
               <TextTarefa numberOfLines={2}>{taskDay[0].task.description}</TextTarefa>

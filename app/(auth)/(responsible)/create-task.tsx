@@ -7,7 +7,6 @@ import { Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescript
 import ServiceTerms from '@/components/service-terms';
 
 import { useRouter } from 'expo-router';
-import { Button } from '@/styles/tasks';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
@@ -81,9 +80,9 @@ export default function CreateTask() {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {modalVisible}
       <Container>
-        <Button onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
+        <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
-        </Button>
+        </Pressable>
         <GradientBorderBoxTasks>
           <ButtonEdit>
             <EditImage source={ImageEditar} resizeMode="contain" />

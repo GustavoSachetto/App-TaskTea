@@ -10,8 +10,8 @@ export const CenteredView = styled.View`
 `;
 
 export const ModalView = styled.View`
-  width: ${getFontSize(170)}px;
-  height: ${getFontSize(130)}px;
+  width: ${getFontSize(190)}px;
+  height: ${getFontSize(100)}px;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -36,7 +36,7 @@ export const ModalText = styled.Text`
   font-size: ${getFontSize(15)}px;
   color: #0060ff;
   text-align: center;
-  margin-bottom: ${getFontSize(80)}px;
+  margin-bottom: ${getFontSize(60)}px;
   font-family: ${Fonts.RalewayRegular};
 `;
 

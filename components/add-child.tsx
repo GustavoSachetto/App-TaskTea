@@ -20,7 +20,8 @@ export default function AddChild({ visible, onClose }: AddChildProps) {
             <ModalImage source={require('../assets/icons/x.png')} />
           </CloseButton>
           <ModalText>Adicionar crianças</ModalText>
-          <Input placeholder='Código do usuário'/>
+          <Input placeholder='Código do usuário'   placeholderTextColor="#a6a6a6"
+ />
         </ModalView>
       </CenteredView>
     </Modal>

@@ -23,13 +23,12 @@ export type TotalProps = {
 
 export const getProfileStatistic = async (id?: number | null, token?: string | null) => {
   const response = await api.get<TotalProps>(
-      `/statisticuser/mytotal/${id ? id : ''}`,
-      {
-          headers: { 'Authorization': `Bearer ${token}` }
-      }
-  );
+    `/statisticuser/mytotal/${id ? id : ''}`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
   return response.data;
-};
+}
 
 export const getMyStatisticTotalById = async (token: string) => {
   const response = await api.get<TotalProps>(

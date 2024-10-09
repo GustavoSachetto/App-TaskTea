@@ -47,7 +47,7 @@ export default function ChildrenPage() {
       <GradientBorderBox>
         <BoxChildren>
           <ViewChildren>
-            {userRelationships.length > 0 ? (
+            {userRelationships?.length > 0 ? (
               userRelationships.map((child) => (
                 <Childs key={child.id}>
                   <ProfilePhoto

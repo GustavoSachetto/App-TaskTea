@@ -35,7 +35,7 @@ export default function TasksPage() {
   }
 
   const getFinishedTaskUsers: () => ReactNode = () => {
-    return taskUser.data.length > 0 ? taskUser.data.map((taskUser) =>  
+    return taskUser?.data.length > 0 ? taskUser.data.map((taskUser) =>  
       <TouchableOpacity 
         style={{ width: '100%' }} 
         onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}

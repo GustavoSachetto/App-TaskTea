@@ -41,7 +41,7 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            {taskUser.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
+            {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
               <TouchableOpacity 
                 key={taskUser.id} 
                 style={{ width: '100%' }} 

@@ -8,6 +8,7 @@ import {
   Imagem
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { getFontSize } from '@/utils/fontSize';
 
 import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
@@ -162,6 +163,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginVertical: 10,
     alignSelf: 'center',
-    width: '95%'
+    width: '95%',
+    fontSize: getFontSize(8),
+    color: '#737373'
   },
 });

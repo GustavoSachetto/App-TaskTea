@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, Pressable, StyleSheet } from 'react-native';
+import { ScrollView, Pressable, StyleSheet, Text } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
   Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
-  TarefaImage, Voltar, BoxTasks, Input, ContainerButtonsSign,
-  ButtonCreate, Label, ContainerTasks
+  TarefaImage, Voltar, Input,
+  ButtonCreate, Label, ContainerTasks,
+  Imagem
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
@@ -79,62 +80,66 @@ export default function CreateTask() {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      {modalVisible}
-      <Container>
+      <Container contentContainerStyle={{ flexGrow: 1 }}>
+        {modalVisible}
         <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </Pressable>
         <GradientBorderBoxTasks>
-          <ContainerTasks>
+          <Imagem>
             <ButtonEdit>
               <EditImage source={ImageEditar} resizeMode="contain" />
             </ButtonEdit>
             <TarefaImage source={ImageTarefa} />
-            <BoxTasks>
-              <Label>Título do desafio:</Label>
-              <Input
-                value={title}
-                onChangeText={setTitle}
-              />
-              <Label>Descrição:</Label>
-              <InputDescription
-                value={description}
-                onChangeText={setDescription}
-              />
-              <Label>Escreva uma dica:</Label>
-              <Input
-                value={tip}
-                onChangeText={setTip}
-              />
-              <Label>Dificuldade:</Label>
-              <Picker
-                selectedValue={difficulty}
-                onValueChange={setDifficulty}
-                style={styles.picker}
-              >
-                <Picker.Item label="Fácil" value="easy" />
-                <Picker.Item label="Médio" value="medium" />
-                <Picker.Item label="Difícil" value="hard" />
-              </Picker>
-              <Label>Categoria:</Label>
-              <Picker
-                selectedValue={selectedCategory}
-                onValueChange={handlePickerChange}
-                style={styles.picker}
-              >
-                <Picker.Item label="Selecione uma categoria" value="" />
-                {categories.map((category) => (
-                  <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
-                ))}
-                <Picker.Item label="Criar nova categoria" value="createNew" />
-              </Picker>
-              <ContainerButtonsSign>
-                <ButtonCreate onPress={handleSubmit}>
-                  <TextButton>Criar</TextButton>
-                </ButtonCreate>
-              </ContainerButtonsSign>
-            </BoxTasks>
+          </Imagem> 
+          <ContainerTasks >
+           
+            <Label>Título do desafio:</Label>
+            <Input
+              value={title}
+              onChangeText={setTitle}
+            />
+            <Label>Título do desafio:</Label>
+            <Input
+              value={title}
+              onChangeText={setTitle}
+            />
+            <Label>Descrição:</Label>
+            <InputDescription
+              value={description}
+              onChangeText={setDescription}
+            />
+            <Label>Escreva uma dica:</Label>
+            <Input
+              value={tip}
+              onChangeText={setTip}
+            />
+            
+            <Label>Dificuldade:</Label>
+            <Picker
+              selectedValue={difficulty}
+              onValueChange={setDifficulty}
+              style={styles.picker}
+            >
+              <Picker.Item label="Fácil" value="easy" />
+              <Picker.Item label="Médio" value="medium" />
+              <Picker.Item label="Difícil" value="hard" />
+            </Picker>
+            <Label>Categoria:</Label>
+            <Picker
+              selectedValue={selectedCategory}
+              onValueChange={handlePickerChange}
+              style={styles.picker}
+            >
+              <Picker.Item label="Selecione uma categoria" value="" />
+              {categories.map((category) => (
+                <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
+              ))}
+              <Picker.Item label="Criar nova categoria" value="createNew" />
+            </Picker>
+            <ButtonCreate onPress={handleSubmit}>
+                <TextButton>Criar</TextButton>
+              </ButtonCreate>
           </ContainerTasks>
 
         </GradientBorderBoxTasks>
@@ -144,7 +149,6 @@ export default function CreateTask() {
           onCategoryCreated={handleCategoryCreated}
         />
       </Container>
-    </ScrollView>
   );
 }
 

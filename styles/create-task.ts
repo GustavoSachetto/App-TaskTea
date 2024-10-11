@@ -4,10 +4,12 @@ import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { LinearGradient } from "expo-linear-gradient";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 
 const { title } = Colors;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   font-family: ${Fonts.RalewayBold};
   padding-top: ${h(4)}px;
@@ -21,9 +23,21 @@ export const Label = styled.Text<any>`
   font-family: ${Fonts.RalewayRegular};
   margin-left: 4%;
   margin-top: 4%;
+  width: 100%;
 `;
 
 export const Input = styled.TextInput<any>`
+font-size: ${getFontSize(7)}px;
+ font-family: ${Fonts.RalewayRegular};
+  width: 95%;
+  border-radius: ${w(4)}px ;
+  padding: 2%;
+  outline: 0;
+  margin: ${w(2)}px auto;
+  border: solid #f9d54b 2px;
+`;
+
+export const InputDescription = styled.TextInput<any>`
 font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
@@ -34,31 +48,24 @@ font-size: ${getFontSize(7)}px;
   border: solid #f9d54b 2px;
 `;
 
-export const InputDescription = styled.TextInput<any>`
-font-size: ${getFontSize(7)}px;
- font-family: ${Fonts.RalewayRegular};
-  width: 95%;
-  border-radius: ${w(4)}px ;
-  padding: 10% ;
-  outline: 0;
-  margin: 4% auto;
-  border: solid #f9d54b 2px;
-`;
-
 export const ButtonCreate = styled.Pressable<any>`
   color: white;
   font-size: ${getFontSize(12)}px;
-  padding: 3% 30%; 
+  padding: ${w(2)}px ${w(9)}px; 
   border-radius: ${w(9)}px;
   background-color: #f9d54b;
-  margin: 5% auto;
+  margin: ${h(2)}px;
+`;
+
+export const Imagem = styled.View`
+  height: ${w(58)}px;
+  width:  ${w(88)}px;
 `;
 
 export const TarefaImage = styled.Image`
-  height: 30%;
-  width: 98%;
+  height: 100%;
+  width:  100%;
   border-radius: ${w(5)}px;
-  top: 1%; 
   z-index: 97;
 `;
 
@@ -90,29 +97,15 @@ export const Voltar = styled.Image`
 export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
   colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
 })`
-
-  height: 100%;
+  padding: ${w(1)}px ;
   width: ${w(90)}px;
   align-self: center;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   border-radius: ${w(4)}px;
-  margin-bottom: ${w(3)}px;
-  margin-top: ${w(4)}px;
   position: relative;
   z-index: 98;
-`;
-
-export const BoxTasks = styled.View`
-  flex: 1;
-  width: 98%;
-  height: 100%;
-  border-radius: ${w(4)}px;
-  background-color: white;
-  z-index: 2;
-  bottom: 1%;
-  margin-top: 2.2%;
-  padding: 3%;
+  margin-bottom: ${h(6)}px;
 `;
 
 export const ContainerButtonsSign = styled.View`
@@ -123,7 +116,10 @@ export const ContainerButtonsSign = styled.View`
 `;
 
 export const ContainerTasks = styled.View`
-  flex:1;
-  border: solid red 2px;
-  ;
+  background-color: #fff;
+  justify-content: flex-start;;
+  align-items: center;
+  padding: ${w(2.5)}px;
+  border-radius: ${w(4)}px;
+  width: ${w(89)}px;
 `;

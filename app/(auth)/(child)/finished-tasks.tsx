@@ -35,7 +35,7 @@ export default function TasksPage() {
   }
 
   const getFinishedTaskUsers: () => ReactNode = () => {
-    return taskUser?.data.length > 0 ? taskUser.data.map((taskUser) =>  
+    return taskUser.data?.length > 0 ? taskUser.data.map((taskUser) =>  
       <TouchableOpacity 
         style={{ width: '100%' }} 
         onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
@@ -58,8 +58,7 @@ export default function TasksPage() {
             <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <ContainerColumn>
-          <TextTask customColor={green}>Tarefas </TextTask>
-          <TextTask customColor={green}>concluídas</TextTask>
+          <TextTask customColor={green}>Desafios feitos</TextTask>
         </ContainerColumn>
       </ContainerRowTasks>
 

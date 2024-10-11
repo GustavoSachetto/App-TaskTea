@@ -1,6 +1,5 @@
 import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settings'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useSession } from '@/hooks/ctx';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
 import { useOverlay } from '@/context/OverlayContext';
@@ -11,33 +10,18 @@ import LogoutMessage from '@/components/logout-message';
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
 export default function SettingsPage() {
-  const { signOut, session } = useSession();
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
 
   const { showOverlay, hideOverlay } = useOverlay();
 
-  const handleLogout = async () => {
-    if (session) {
-      await signOut(session);
-    }
-  }
-
   useEffect(() => {
-    if (modalServiceTerms) {
+    if (modalServiceTerms || modalLogoutMessage) {
       showOverlay();
     } else {
       hideOverlay();
     }
-  }, [modalServiceTerms, showOverlay, hideOverlay]);
-
-  useEffect(() => {
-    if (modalLogoutMessage) {
-      showOverlay();
-    } else {
-      hideOverlay();
-    }
-  }, [modalLogoutMessage, showOverlay, hideOverlay]);
+  }, [modalServiceTerms, modalLogoutMessage, showOverlay, hideOverlay]);
 
   return (
     <>
@@ -69,11 +53,6 @@ export default function SettingsPage() {
           <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
           <Text style={{ color: '#ff3f00' }}>Sair</Text>
         </Functions>
-        
-        {/* <Functions onPress={handleLogout} >
-          <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
-          <Text style={{ color: '#ff3f00' }}>Sair</Text>
-        </Functions> */}
 
         <ServiceTerms
           visible={modalServiceTerms}

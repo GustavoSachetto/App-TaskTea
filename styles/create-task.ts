@@ -28,7 +28,7 @@ font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 2% ;
+  padding: 2%;
   outline: 0;
   margin: 4% auto;
   border: solid #f9d54b 2px;
@@ -90,8 +90,9 @@ export const Voltar = styled.Image`
 export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
   colors: ["#f9d448", "#ffffff", "#ffffff", "#ffffff", "#f9d448"],
 })`
-  height: ${h(82)}px;
-  width: ${w(80)}px;
+
+  height: 100%;
+  width: ${w(90)}px;
   align-self: center;
   justify-content: flex-start;
   align-items: center;
@@ -105,7 +106,7 @@ export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs({
 export const BoxTasks = styled.View`
   flex: 1;
   width: 98%;
-  height: 98%;
+  height: 100%;
   border-radius: ${w(4)}px;
   background-color: white;
   z-index: 2;
@@ -118,6 +119,11 @@ export const ContainerButtonsSign = styled.View`
   width: 100%;
   justify-content: space-between;
   flex-direction: row;
-  margin: 0 auto;
   padding: ${w(2)}px ${w(3)}px ${w(2)}px;
+`;
+
+export const ContainerTasks = styled.View`
+  flex:1;
+  border: solid red 2px;
+  ;
 `;

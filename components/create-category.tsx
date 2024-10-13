@@ -1,4 +1,3 @@
-// CreateCategory.tsx
 import { useState } from 'react';
 import { Modal } from 'react-native';
 import { CenteredView, Header, ModalView, CloseButton, Button, TextStyle, Input, Label, ModalImage } from '@/styles/create-category';
@@ -6,13 +5,13 @@ import { createCategory } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
 
 type CreateCategoryProps = {
-  visible?: boolean; 
+  visible?: boolean;
   onClose: () => void;
-  onCategoryCreated: () => void; 
+  onCategoryCreated: () => void;
 };
 
 export default function CreateCategory({ visible, onClose, onCategoryCreated }: CreateCategoryProps) {
-  const { session } = useSession(); 
+  const { session } = useSession();
   const [newCategory, setNewCategory] = useState('');
 
   const handleSubmit = async () => {
@@ -28,13 +27,13 @@ export default function CreateCategory({ visible, onClose, onCategoryCreated }: 
         await createCategory(data, session);
         console.log('Sucesso', 'Categoria criada com sucesso!');
         setNewCategory('');
-        onCategoryCreated(); 
-        onClose(); 
+        onCategoryCreated();
+        onClose();
       } catch (error) {
         console.log('Erro ao criar categoria:', error);
         console.log('Erro', 'Ocorreu um erro ao criar a categoria. Tente novamente.');
       }
-    } 
+    }
   };
 
   const handleRequestClose = () => {
@@ -46,14 +45,14 @@ export default function CreateCategory({ visible, onClose, onCategoryCreated }: 
       animationType="slide"
       transparent={true}
       visible={visible}
-      onRequestClose={handleRequestClose} 
+      onRequestClose={handleRequestClose}
     >
       <CenteredView>
         <ModalView>
+          <CloseButton onPress={onClose}>
+            <ModalImage source={require('../assets/icons/x.png')} />
+          </CloseButton>
           <Header>
-            <CloseButton onPress={onClose}>
-              <ModalImage source={require('../assets/icons/x.png')} />
-            </CloseButton>
             <Label>Criar nova categoria</Label>
           </Header>
           <Input

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
   Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
@@ -9,7 +9,7 @@ import {
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { getFontSize } from '@/utils/fontSize';
-
+import { Overlay } from "@/styles/index";
 import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
@@ -63,7 +63,6 @@ export default function CreateTask() {
 
     if (session) {
       await createTask(taskData, session);
-      console.log('Sucesso!', 'Tarefa criada!');
     }
 
   };
@@ -80,9 +79,10 @@ export default function CreateTask() {
     fetchCategories();
   };
 
+
   return (
       <Container contentContainerStyle={{ flexGrow: 1 }}>
-        {modalVisible}
+        {modalVisible && <Overlay />}
         <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </Pressable>
@@ -95,11 +95,6 @@ export default function CreateTask() {
           </Imagem> 
           <ContainerTasks >
            
-            <Label>Título do desafio:</Label>
-            <Input
-              value={title}
-              onChangeText={setTitle}
-            />
             <Label>Título do desafio:</Label>
             <Input
               value={title}

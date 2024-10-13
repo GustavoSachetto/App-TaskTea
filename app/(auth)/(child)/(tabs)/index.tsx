@@ -1,6 +1,4 @@
-import { ScrollViewContainer,
-  Box, GradientBorderBox, LinkedStartTask, TextButtonStartTask, 
-  TarefaImage, Title, TextTarefa } from '@/styles/index-child';
+import { ScrollViewContainer, Box, GradientBorderBox, LinkedStartTask, TextButtonStartTask, TarefaImage, Title, TextTarefa } from '@/styles/index-child';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useEffect, useState } from 'react';
@@ -12,25 +10,31 @@ const BlueColor = Colors.colors.blue;
 
 export default function HomePage() {
   const [taskDay, setTaskDay] = useState<TaskUserProps[]>([]);
-  const { session } = useSession(); 
+  const { session } = useSession();
 
   useEffect(() => {
     const fetchTaskDay = async () => {
       if (session) {
         const response = await getUnfinishedTasks(session);
-        setTaskDay(response.data); 
+        setTaskDay(response.data);
       }
     };
 
     fetchTaskDay();
-  }, [session]); 
+  }, [session]);
 
   return (
     <ScrollViewContainer>
       <HeaderIndex />
       <GradientBorderBox>
         {taskDay?.length > 0 ? (
-          <TarefaImage source={{uri: taskDay[0].task.image?.toString() }} />
+          <>
+            {taskDay[0].task.image ? (
+              <TarefaImage source={{ uri: taskDay[0].task.image?.toString() }} />
+            ) : (
+              <TarefaImage source={ImageTarefa} />
+            )}
+          </>
         ) : (
           <TarefaImage source={ImageTarefa} />
         )}

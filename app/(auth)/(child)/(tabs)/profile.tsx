@@ -1,6 +1,6 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
 import { getMyUser, UserProps} from '@/services/api/routes/user';
-import { getProfileStatistic, TotalProps } from '@/services/api/routes/statistic';
+import { getMyStatisticTotal, TotalProps } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +23,7 @@ export default function ProfilePage() {
 
   const fetchStatisticData = async () => {
     if (session) {
-      const response = await getProfileStatistic(null,session);
+      const response = await getMyStatisticTotal(session);
       setStatisticData(response) 
     }
   }

@@ -29,7 +29,11 @@ export default function HomePage() {
     <ScrollViewContainer>
       <HeaderIndex />
       <GradientBorderBox>
-        <TarefaImage source={ImageTarefa} />
+        {taskDay?.length > 0 ? (
+          <TarefaImage source={{uri: taskDay[0].task.image?.toString() }} />
+        ) : (
+          <TarefaImage source={ImageTarefa} />
+        )}
         <Box>
           {taskDay?.length > 0 ? (
             <>

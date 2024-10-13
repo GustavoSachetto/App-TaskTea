@@ -3,6 +3,7 @@ import queryString from "query-string";
 
 export type TaskProps = {
   id: number,
+  image: string | null,
   title: string,
   description: string,
   tip: string,

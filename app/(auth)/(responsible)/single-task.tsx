@@ -4,17 +4,15 @@ import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, Bo
   Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
-import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
+import { fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
 import { useSession } from "@/hooks/ctx";
 import { TaskProps } from "@/services/api/routes/tasks";
-import { getMyUser } from "@/services/api/routes/user";
 import { useRouter } from "expo-router";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
-const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const RedColor = Colors.colors.red;
 
 type TaskUserCredential = {
@@ -25,13 +23,15 @@ type TaskUserCredential = {
     email: string;
   }
 }
+
 function initialTask() {
   return {
     id: 1,
-    title: "",
-    description: "",
-    tip: "",
-    level:  "",
+    title: "string",
+    description: "string",
+    tip: "string",
+    level:  "string",
+    image: "string",
     categories_id: 0,
     user_creator_id: 0,
     created_at: "",
@@ -60,9 +60,7 @@ export default function SingleTaskPage() {
     const result = await fetchTaskUserById(numId, session);
     setTaskUser(result.data);
     setTask(result.data.task);
-
   }
-
 
   return (
     <Container>
@@ -75,7 +73,7 @@ export default function SingleTaskPage() {
       </ContainerRowHeader>
 
       <GradientBorderBox>
-        <TarefaImage source={ImageTarefa} />
+        <TarefaImage source={{uri: task.image?.toString()}} />
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>

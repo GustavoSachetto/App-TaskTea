@@ -15,7 +15,6 @@ import { useRouter } from "expo-router";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
-const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const RedColor = Colors.colors.red;
 
 type TaskUserCredential = {
@@ -26,10 +25,11 @@ type TaskUserCredential = {
 function initialTask() {
   return {
     id: 1,
-    title: "",
-    description: "",
-    tip: "",
-    level:  "",
+    title: "string",
+    description: "string",
+    tip: "string",
+    level:  "string",
+    image: "string",
     categories_id: 0,
     user_creator_id: 0,
     created_at: "",
@@ -58,7 +58,7 @@ export default function SingleTaskPage() {
   const fetchTaskUser = async () => {
     const numId: number = typeof(id) === "string" ? await parseInt(id) : 1;
     const result = await fetchTaskUserById(numId, session);
-   
+
     setTaskUser(result.data);
     setTask(result.data.task);
   }
@@ -89,7 +89,7 @@ export default function SingleTaskPage() {
       </ContainerRowHeader>
 
       <GradientBorderBox>
-        <TarefaImage source={ImageTarefa} />
+        <TarefaImage source={{uri: task.image?.toString()}} />
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>

@@ -82,15 +82,6 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
   return response.data;
 } 
 
-export const createRelationship = async (userId: number, token: string) => {
-  const response = await api.post<{ message: string }>(
-    `/users/relationship`, { user_id: userId }, {
-    headers: { 'Authorization': `Bearer ${token}` }
-  })
-
-  return response.data;
-} 
-
 export const editMyUser = async (data: PutUserProps, token: string) => {
   const response = await api.put<{ data: UserProps }>(
     `/users`, data, {

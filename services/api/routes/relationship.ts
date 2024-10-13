@@ -1,0 +1,34 @@
+import { api } from "@/services/api/api";
+
+export type RelationshipTokenProps = {
+  token: string,
+  message: string,
+  expires_at: string
+}
+
+export const createToken = async (token: string) => {
+  const response = await api.get<RelationshipTokenProps>(
+    `/relationship`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+} 
+
+export const createRelationship = async (relationshipToken: string, token: string) => {
+  const response = await api.post<{ message: string }>(
+    `/relationship`, { token: relationshipToken }, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+} 
+
+export const deleteRelationshipById = async (id: number, token: string) => {
+  const response = await api.delete<{ message: string }>(
+    `/relationship/${id}`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+} 

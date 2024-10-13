@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
   Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
   TarefaImage, Voltar, Input,
-  ButtonCreate, Label, ContainerTasks,
-  Imagem
+  ButtonCreate, Label, ContainerTasks, Imagem
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { getFontSize } from '@/utils/fontSize';
@@ -15,7 +14,10 @@ import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
 import { createTask } from '@/services/api/routes/tasks';
+import { createTaskUser } from '@/services/api/routes/taskuser';
+import { getMyRelationships, UserRelationshipProps} from '@/services/api/routes/user';
 import CreateCategory from '@/components/create-category';
+import Toast from 'react-native-toast-message';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
@@ -25,15 +27,20 @@ export default function CreateTask() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tip, setTip] = useState('');
+  const [idTask, setIdTask] = useState<number | undefined>(undefined);
+  const [userReceiver, setUserReceiver] = useState('');
   const [difficulty, setDifficulty] = useState('easy');
+  const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[]>([]);
   const [categories, setCategories] = useState<CategoryProps[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedRelationship, setSelectedRelationship] = useState<string>('');
   const [modalVisible, setModalVisible] = useState(false);
   const { session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     fetchCategories();
+    fetchMyRelationship();
   }, [session]);
 
   const fetchCategories = async () => {
@@ -47,9 +54,23 @@ export default function CreateTask() {
     }
   };
 
+  const fetchMyRelationship = async () =>{
+    if (session) {
+      try {
+        const response = await getMyRelationships(session);
+        setMyRelationship(response);
+      } catch (error) {
+        console.log('Erro', 'Não foi pegar os seus relacionamentos');
+      }
+    }
+  }
+
   const handleSubmit = async () => {
     if (!title || !description || !tip || selectedCategory === '') {
-      console.log('Erro', 'Por favor, preencha todos os campos.');
+      Toast.show({
+        text1: 'Erro',
+        text2: 'Por favor, preencha todos os campos.'
+      });
       return;
     }
 
@@ -62,7 +83,19 @@ export default function CreateTask() {
     };
 
     if (session) {
-      await createTask(taskData, session);
+      const response = await createTask(taskData, session);
+    
+      const newTaskId = response.data.id;
+      setIdTask(newTaskId);
+      setUserReceiver(selectedRelationship);
+    
+      const taskUserData = {
+        tasks_id: newTaskId,             
+        user_receiver_id: Number(selectedRelationship) 
+      };
+    
+      await createTaskUser(taskUserData, session);
+      router.push('/(auth)/(responsible)/(tabs)/tasks');
     }
 
   };
@@ -75,12 +108,20 @@ export default function CreateTask() {
     }
   };
 
+  const handlePickerRelationship = (itemValue: string) => {
+    setSelectedRelationship(itemValue);
+  }
+
   const handleCategoryCreated = () => {
     fetchCategories();
   };
 
 
   return (
+    <>
+      <View style={{zIndex:100}}>
+        <Toast/>
+      </View>
       <Container contentContainerStyle={{ flexGrow: 1 }}>
         {modalVisible && <Overlay />}
         <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
@@ -92,9 +133,9 @@ export default function CreateTask() {
               <EditImage source={ImageEditar} resizeMode="contain" />
             </ButtonEdit>
             <TarefaImage source={ImageTarefa} />
-          </Imagem> 
+          </Imagem>
           <ContainerTasks >
-           
+
             <Label>Título do desafio:</Label>
             <Input
               value={title}
@@ -110,7 +151,7 @@ export default function CreateTask() {
               value={tip}
               onChangeText={setTip}
             />
-            
+
             <Label>Dificuldade:</Label>
             <Picker
               selectedValue={difficulty}
@@ -133,9 +174,21 @@ export default function CreateTask() {
               ))}
               <Picker.Item label="Criar nova categoria" value="createNew" />
             </Picker>
+
+            <Label>Selecionar Filho:</Label>
+            <Picker
+              selectedValue={selectedRelationship}
+              onValueChange={handlePickerRelationship}
+              style={styles.picker}
+            >
+              <Picker.Item label="Selecione o filho" value="" />
+              {myrelationship.map((data) => (
+                <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
+              ))}
+            </Picker>
             <ButtonCreate onPress={handleSubmit}>
-                <TextButton>Criar</TextButton>
-              </ButtonCreate>
+              <TextButton>Criar</TextButton>
+            </ButtonCreate>
           </ContainerTasks>
 
         </GradientBorderBoxTasks>
@@ -145,6 +198,7 @@ export default function CreateTask() {
           onCategoryCreated={handleCategoryCreated}
         />
       </Container>
+    </>
   );
 }
 

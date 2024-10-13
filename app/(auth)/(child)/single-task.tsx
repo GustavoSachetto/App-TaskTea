@@ -26,13 +26,13 @@ type TaskUserCredential = {
 function initialTask() {
   return {
     id: 1,
-    title: "string",
-    description: "string",
-    tip: "string",
-    level:  "string",
+    title: "",
+    description: "",
+    tip: "",
+    level:  "",
     categories_id: 0,
     user_creator_id: 0,
-    created_at: "string",
+    created_at: "",
     updated_at: null
   }
 }

@@ -99,12 +99,8 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
 } 
 
 export const createRelationship = async (tokenUser: string, token: string) => {
-  const requestBody = { token: `${tokenUser}` };
-  console.log('Corpo da requisição:', requestBody); // Loga o corpo da requisição
-
   const response = await api.post<{ message: string }>(
-    '/relationship',
-    requestBody,
+    '/relationship',{ token: `${tokenUser}` },
     {
       headers: { 'Authorization': `Bearer ${token}` },
     }

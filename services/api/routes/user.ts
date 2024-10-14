@@ -100,12 +100,12 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
 
 export const createRelationship = async (tokenUser: string, token: string) => {
   const response = await api.post<{ message: string }>(
-    '/users/relationship', { token: tokenUser },
+    '/relationship', 
+    { token: `${tokenUser}` },
     {
       headers: { 'Authorization': `Bearer ${token}` },
     }
   );
-
   return response.data;
 };
 

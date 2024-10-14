@@ -1,6 +1,5 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
 import { getMyUser, UserProps} from '@/services/api/routes/user';
-import { fetchStatisticTotalById } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
@@ -9,7 +8,6 @@ const ImageAdicionarAzul = require('@/assets/icons/templates-desafios.png');
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
-  const [statisticData, setStatisticData] = useState();
   const { session } = useSession(); 
   const router = useRouter();
 

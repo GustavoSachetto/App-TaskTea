@@ -6,7 +6,7 @@ import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import CodigoUser from "@/components/code-user";
 import { useState } from 'react';
-import { useOverlay } from '@/context/OverlayContext'; // Importar o contexto
+import { useOverlay } from '@/context/OverlayContext'; 
 import ServiceTerms from '@/components/service-terms';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');

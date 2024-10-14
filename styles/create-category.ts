@@ -24,7 +24,6 @@ export const ModalView = styled.View`
   border-width: 3px;
   border-color: #ffca00;
   border-radius: ${getFontSize(12)}px;
-  elevation: 5;
 `;
 
 export const CloseButton = styled.Pressable`
@@ -80,5 +79,8 @@ export const TextStyle = styled.Text`
 
 export const Header = styled.Text`
   flex-direction: row;
+  width:100%;
+  margin-top: ${getFontSize(12)}px;
+  text-align: center;
 `;
 

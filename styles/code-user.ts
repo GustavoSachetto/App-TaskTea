@@ -17,7 +17,6 @@ export const ModalView = styled.View`
   border-width: 1px;
   border-color: #a6a6a6;
   border-radius: ${getFontSize(12)}px;
-  elevation: 5;
 `;
 
 export const CloseButton = styled.Pressable`

@@ -4,13 +4,19 @@ import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 
+export const Header = styled.View`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ContainerHeader = styled.View`
   flex: 1;
-  padding: ${w(4)}px;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: ${w(3)}px 0;
+  margin-top: ${w(4)}px;
+  margin-bottom: ${w(6)}px;
 `;
 
 export const Logo = styled.Image`

@@ -1,9 +1,11 @@
+
 import { ScrollViewContainer, Box, GradientBorderBox, LinkedStartTask, TextButtonStartTask, TarefaImage, Title, TextTarefa } from '@/styles/index-child';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
+import LevelBar from '@/components/level-bar';
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const BlueColor = Colors.colors.blue;
@@ -25,7 +27,9 @@ export default function HomePage() {
 
   return (
     <ScrollViewContainer>
-      <HeaderIndex />
+      <HeaderIndex>
+        <LevelBar progress={0.5} currentLevel={0} />
+      </HeaderIndex>
       <GradientBorderBox>
         {taskDay?.length > 0 ? (
           <>

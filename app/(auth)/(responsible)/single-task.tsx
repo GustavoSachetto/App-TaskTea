@@ -91,7 +91,7 @@ export default function SingleTaskPage() {
           </ContainerRowTask>
           <Tip
             name={''}
-            text={task.description}
+            text={task.tip}
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
           />

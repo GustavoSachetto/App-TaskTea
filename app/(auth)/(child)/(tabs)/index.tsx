@@ -13,15 +13,15 @@ export default function HomePage() {
   const { session } = useSession();
 
   useEffect(() => {
-    const fetchTaskDay = async () => {
-      if (session) {
-        const response = await getUnfinishedTasks(session);
-        setTaskDay(response.data);
-      }
-    };
-
     fetchTaskDay();
   }, [session]);
+
+  const fetchTaskDay = async () => {
+    if (session) {
+      const response = await getUnfinishedTasks(session);
+      setTaskDay(response.data);
+    }
+  }
 
   return (
     <ScrollViewContainer>

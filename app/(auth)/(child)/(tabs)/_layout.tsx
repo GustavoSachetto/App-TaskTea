@@ -3,8 +3,8 @@ import { Image } from 'react-native';
 import { getMyUser, UserProps } from '@/services/api/routes/user';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
-import { useOverlay } from '@/context/OverlayContext';
 import { Overlay } from '@/styles';
+import { useOverlay } from '@/context/OverlayContext';
 
 export default function Layout() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -13,14 +13,14 @@ export default function Layout() {
 
   useEffect(() => {
     fetchUserData();
-  }, [])
+  }, []);
 
   const fetchUserData = async () => {
     if (session) {
       const response = await getMyUser(session);
       setUserData(response.data);
     }
-  }
+  };
 
   return (
     <>
@@ -78,6 +78,5 @@ export default function Layout() {
         />
       </Tabs>
     </>
-
-  )
+  );
 }

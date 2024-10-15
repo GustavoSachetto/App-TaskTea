@@ -1,6 +1,5 @@
 import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settings';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useSession } from '@/hooks/ctx';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -8,41 +7,24 @@ import CodigoUser from "@/components/code-user";
 import { useState } from 'react';
 import { useOverlay } from '@/context/OverlayContext'; 
 import ServiceTerms from '@/components/service-terms';
+import LogoutMessage from '@/components/logout-message';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { signOut, session } = useSession();
   const { showOverlay, hideOverlay } = useOverlay();
-  const [modalServiceTerms, setModalServiceTerms] = useState(false);
-  const [modalCode, setModalCode] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
-  const handleLogout = async () => {
-    if (session) {
-      await signOut(session);
+  const handleModal = (modalName: any) => {
+    if (modalName) {
+      setActiveModal(modalName);  
+      showOverlay();
+    } else {
+      setActiveModal(null); 
+      hideOverlay();
     }
-  };
-
-  const handleShowTerms = () => {
-    setModalServiceTerms(true);
-    showOverlay();
-  };
-
-  const handleCloseTerms = () => {
-    setModalServiceTerms(false);
-    hideOverlay();
-  };
-
-  const handleShowUserCode = () => {
-    setModalCode(true)
-    showOverlay();
-  };
-
-  const handleCloseUserCode = () => {
-    setModalCode(false)
-    hideOverlay(); 
   };
 
   return (
@@ -55,7 +37,7 @@ export default function SettingsPage() {
         <Title>Configurações</Title>
       </Header>
 
-      <Functions onPress={handleShowTerms}>
+      <Functions onPress={() => handleModal('terms')}>
         <Ionicons name="book-outline" size={wp('4.5%')} />
         <Text>Termos de serviço</Text>
       </Functions>
@@ -70,18 +52,19 @@ export default function SettingsPage() {
         <Text>Histórico de Desafios</Text>
       </Functions>
 
-      <Functions onPress={handleShowUserCode}>
+      <Functions onPress={() => handleModal('userCode')}>
         <Image source={ImageCodigoUsuario} style={{ width: wp('5%'), height: wp('5%') }} />
         <Text>Código usuário</Text>
       </Functions>
 
-      <Functions onPress={handleLogout}>
+      <Functions onPress={() => handleModal('logout')}>
         <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
         <Text style={{ color: '#ff3f00' }}>Sair</Text>
       </Functions>
 
-      <CodigoUser visible={modalCode} onClose={handleCloseUserCode} />
-      <ServiceTerms visible={modalServiceTerms} onClose={handleCloseTerms} />
+      <CodigoUser visible={activeModal === 'userCode'} onClose={() => handleModal(null)} />
+      <ServiceTerms visible={activeModal === 'terms'} onClose={() => handleModal(null)} />
+      <LogoutMessage visible={activeModal === 'logout'} onClose={() => handleModal(null)} />
     </Container>
   );
 }

@@ -2,17 +2,16 @@ import { useSession } from '@/hooks/ctx';
 import { getMyUser, UserProps } from '@/services/api/routes/user';
 import {
   Logo, QuebraCabeca, Text, Data, Calendario,
-  ContainerHeader
+  ContainerHeader, Header
 } from '@/styles/header-index';
 import { CurrentDate } from '@/utils/currentDate';
-import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 const ImageLogo = require('@/assets/images/logo.png');
 const ImageCalendario = require('@/assets/icons/calendario.png');
 const ImageDesafios = require('@/assets/icons/desafios-quebra-cabeca.png');
 
-export default function HeaderIndex() {
+export default function HeaderIndex({ children }: PropsWithChildren) {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const { session } = useSession();
 
@@ -28,16 +27,17 @@ export default function HeaderIndex() {
   }
 
   return (
-    <View>
+    <Header>
       <QuebraCabeca source={ImageDesafios} resizeMode="contain" />
       <Logo source={ImageLogo} resizeMode="contain" />
       <Text>Olá, {userData?.name ?? "name"}!</Text>
+      { children }
       <ContainerHeader>
         <Calendario source={ImageCalendario} resizeMode="contain" />
         <Data>
           <CurrentDate />
         </Data>
       </ContainerHeader>
-    </View>
+    </Header>
   )
 }

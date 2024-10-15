@@ -5,6 +5,7 @@ export type UserProps = {
   name: string,
   email: string,
   image: string | null,
+  banner: string | null,
   nickname: string,
   age: number,
   cpf?: string,

@@ -30,13 +30,13 @@ export default function ProfilePage() {
 
   return (
     <Container>
-      <Banner source={require('../../../../assets/images/fundoazul.png')} />
-      <ImageProfile  source={userData?.image ? { uri: userData.image } : require('../../../../assets/icons/perfil.png')} />
+      <Banner source={userData?.banner ?? require('../../../../assets/images/fundoazul.png')} />
+      <ImageProfile source={userData?.image ?? require('../../../../assets/icons/perfil.png')} />
       <SectionProfile>
-        <NameProfile>{userData ? userData.name : "Nome não disponível"}</NameProfile>
-        <About>Tarefas concluídas: {statisticData ? statisticData.total_completed : "Dado não disponível"}</About>
-        <About>Tarefas Incompletas: {statisticData ? statisticData.total_incomplete : "Dado não disponível"}</About>
-        <About>Média diária: {statisticData ? statisticData.user_daily_average : "Dado não disponível"}</About>
+        <NameProfile>{userData?.name ?? "Nome não disponível"}</NameProfile>
+        <About>Tarefas concluídas: {statisticData?.total_completed ?? "Dado não disponível"}</About>
+        <About>Tarefas Incompletas: {statisticData?.total_incomplete ?? "Dado não disponível"}</About>
+        <About>Média diária: {statisticData?.user_daily_average ?? "Dado não disponível"}</About>
         <Button>
           <ButtonText>Editar perfil</ButtonText>
         </Button>

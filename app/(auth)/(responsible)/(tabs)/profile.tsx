@@ -1,5 +1,5 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, About, Button, ButtonText } from '@/styles/profile-page';
-import { getMyUser, UserProps} from '@/services/api/routes/user';
+import { getMyUser, UserProps } from '@/services/api/routes/user';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
@@ -24,11 +24,11 @@ export default function ProfilePage() {
 
   return (
     <Container>
-      <Banner source={require('../../../../assets/images/fundoazul.png')} />
-      <ImageProfile  source={userData?.image ? { uri: userData.image } : require('../../../../assets/icons/perfil.png')} />
+      <Banner source={userData?.banner ?? require('../../../../assets/images/fundoazul.png')} />
+      <ImageProfile source={userData?.image ?? require('../../../../assets/icons/perfil.png')} />
       
       <SectionProfile>
-        <NameProfile>{userData ? userData.name : "Nome não disponível"}</NameProfile>
+        <NameProfile>{userData?.name ?? "Nome não disponível"}</NameProfile>
         <Button>
           <ButtonText>Editar perfil</ButtonText>
         </Button>

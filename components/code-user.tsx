@@ -1,9 +1,8 @@
 import { _View, Modal, Text } from 'react-native';
 import { CenteredView, ModalView, CloseButton, ModalImage, ModalText, TextCodeUser } from '@/styles/code-user';
-import { getCodeUser } from '@/services/api/routes/user';
+import { createToken } from '@/services/api/routes/relationship';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
-import { View } from '@/styles/index-responsible';
 import { Container } from '@/styles';
 
 interface CodigoUserProps {
@@ -17,7 +16,7 @@ export default function CodigoUser({ visible, onClose }: CodigoUserProps) {
 
   const fetchToken = async () => {
     if (session) {
-      const data = await getCodeUser(session);
+      const data = await createToken(session);
       setToken(data.token);
     }
   }

@@ -1,6 +1,6 @@
 import { Modal } from 'react-native';
 import { CenteredView, ModalView, CloseButton, ModalImage, ModalText, Input } from '@/styles/add-child';
-import { createRelationship } from '@/services/api/routes/user';
+import { createRelationship } from '@/services/api/routes/relationship';
 import { useSession } from '@/hooks/ctx';
 import { useState } from 'react';
 import Toast from 'react-native-toast-message';

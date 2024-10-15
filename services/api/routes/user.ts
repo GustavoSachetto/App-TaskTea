@@ -14,13 +14,6 @@ export type UserProps = {
   updated_at: string | null
 }
 
-
-export type TokenMessage = {
-  token: string,
-  message: string,
-  expires_at: string
-}
-
 export type UserRelationshipProps = {
   id: number,
   name: string,
@@ -55,15 +48,6 @@ export type PutUserProps = {
   new_password_confirmation?: string | null
 }
 
-
-export const getCodeUser = async(token?: string | null) =>{
-  const response = await api.get<TokenMessage>(
-    `relationship`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    return response.data;
-}
-
 export const getMyUser = async (token?: string | null) => {
   const response = await api.get<{ data: UserProps }>(
     `/users`, {
@@ -79,7 +63,7 @@ export const getMyRelationships = async (token: string) => {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  return response.data.data;
+  return response.data;
 } 
 
 export const createUserChild = async (data: PostUserChildProps) => {
@@ -97,17 +81,6 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
 
   return response.data;
 } 
-
-export const createRelationship = async (tokenUser: string, token: string) => {
-  const response = await api.post<{ message: string }>(
-    '/relationship',{ token: `${tokenUser}` },
-    {
-      headers: { 'Authorization': `Bearer ${token}` },
-    }
-  );
-  
-  return response.data;
-};
 
 export const editMyUser = async (data: PutUserProps, token: string) => {
   const response = await api.put<{ data: UserProps }>(

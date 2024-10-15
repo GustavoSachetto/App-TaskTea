@@ -6,7 +6,7 @@ export type RelationshipTokenProps = {
   expires_at: string
 }
 
-export const createToken = async (token: string) => {
+export const createToken = async (token?: string | null) => {
   const response = await api.get<RelationshipTokenProps>(
     `/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }

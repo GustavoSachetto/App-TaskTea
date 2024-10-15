@@ -15,7 +15,7 @@ import { CategoryProps, getAllCategories } from '@/services/api/routes/categorie
 import { useSession } from '@/hooks/ctx';
 import { createTask } from '@/services/api/routes/tasks';
 import { createTaskUser } from '@/services/api/routes/taskuser';
-import { getMyRelationships, UserRelationshipProps} from '@/services/api/routes/user';
+import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
 
@@ -58,7 +58,7 @@ export default function CreateTask() {
     if (session) {
       try {
         const response = await getMyRelationships(session);
-        setMyRelationship(response);
+        setMyRelationship(response.data);
       } catch (error) {
         console.log('Erro', 'Não foi pegar os seus relacionamentos');
       }
@@ -114,8 +114,7 @@ export default function CreateTask() {
 
   const handleCategoryCreated = () => {
     fetchCategories();
-  };
-
+  }
 
   return (
     <>

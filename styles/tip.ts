@@ -11,7 +11,7 @@ export const CenteredView = styled.View`
 `;
 
 export const ModalView = styled.View`
-  width: ${getFontSize(140)}px ;
+  width: ${getFontSize(150)}px ;
   height: ${getFontSize(160)}px;
   justify-content: center;
   align-items: center;

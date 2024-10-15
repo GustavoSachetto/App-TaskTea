@@ -10,7 +10,7 @@ export const ContainerHeader = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-bottom: ${w(4)}px;
+  margin: ${w(3)}px 0;
 `;
 
 export const Logo = styled.Image`

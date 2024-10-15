@@ -5,6 +5,7 @@ export type UserProps = {
   name: string,
   email: string,
   image: string | null,
+  banner: string | null,
   nickname: string,
   age: number,
   cpf?: string,
@@ -121,6 +122,40 @@ export const editMyUser = async (data: PutUserProps, token: string) => {
 export const deleteMyUser = async (token: string) => {
   const response = await api.delete<{ message: string }>(
     `/users`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+} 
+
+export const storeImage = async (image: string, token: string) => {
+    const formData = new FormData();
+
+        formData.append('file[image]', {
+          uri: image,
+          name: 'photo.jpg',
+        });
+
+
+    console.log(formData);
+
+    try {
+        const response = await api.post<{ message: string, image_path: string }>('/users/image', formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao enviar a imagem:', error);
+        throw error; 
+    }
+};
+
+export const storeBanner = async (banner: string, token: string) => {
+  const response = await api.post<{ banner: string }>(
+    `/banner`, banner, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 

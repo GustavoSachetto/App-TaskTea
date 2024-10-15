@@ -3,11 +3,13 @@ import { getMyUser, UserProps} from '@/services/api/routes/user';
 import { getMyStatisticTotal, TotalProps } from '@/services/api/routes/statistic';
 import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const [statisticData, setStatisticData] = useState<TotalProps | undefined>(undefined);
   const { session } = useSession(); 
+  const router = useRouter();
 
   useEffect(() => {
     fetchStatisticData();
@@ -37,7 +39,7 @@ export default function ProfilePage() {
         <About>Tarefas concluídas: {statisticData ? statisticData.total_completed : "Dado não disponível"}</About>
         <About>Tarefas Incompletas: {statisticData ? statisticData.total_incomplete : "Dado não disponível"}</About>
         <About>Média diária: {statisticData ? statisticData.user_daily_average : "Dado não disponível"}</About>
-        <Button>
+        <Button onPress={() => router.push('/(auth)/(child)/edit-profile')}>
           <ButtonText>Editar perfil</ButtonText>
         </Button>
       </SectionProfile>

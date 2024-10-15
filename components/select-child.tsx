@@ -21,7 +21,7 @@ export default function SelectChild({ visible, onClose, onSelectUser } : SelectC
     const fetchUserRelationships = async () => {
       if (session) {
         const response = await getMyRelationships(session);
-        setUserRelationships(response); 
+        setUserRelationships(response.data); 
       }
     }
 

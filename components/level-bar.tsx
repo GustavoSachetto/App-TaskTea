@@ -1,4 +1,5 @@
 import * as Progress from 'react-native-progress';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ContainerLevel, Level, LevelText } from "@/styles/level-bar";
 import { LevelProps, calculateLevel } from '@/utils/calculateLevel';
 import { useEffect, useState } from 'react';
@@ -27,8 +28,8 @@ export default function LevelBar({ totalPoints }: LevelBarProps) {
 
       <Progress.Bar 
         progress={level.progress}
-        width={230} 
-        height={26}
+        width={wp(60)} 
+        height={wp(7)}
         borderRadius={50}
         borderColor='#d9d9d9'
         borderWidth={2}

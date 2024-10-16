@@ -11,8 +11,8 @@ export const ContainerLevel = styled.View`
 `;
 
 export const Level = styled.View<{$activate: boolean; }>`
-  width: ${wp(10)}px;
-  height: ${wp(10)}px;
+  width: ${wp(8)}px;
+  height: ${wp(8)}px;
   padding-bottom: 4px;
   align-items: center;
   justify-content: center;

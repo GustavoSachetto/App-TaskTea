@@ -131,10 +131,7 @@ export const deleteMyUser = async (token: string) => {
 export const storeImage = async (image: string, token: string) => {
     const formData = new FormData();
 
-        formData.append('file[image]', {
-          uri: image,
-          name: 'photo.jpg',
-        });
+    formData.append('image', image);
 
 
     console.log(formData);

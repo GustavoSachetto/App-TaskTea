@@ -17,6 +17,7 @@ export type TotalProps = {
   user_receiver_id: number,
   total_completed: number,
   total_incomplete: number,
+  total_points: number,
   user_challenge_difficulty: UserChallengeDifficultyProps[],
   user_daily_average: number
 }

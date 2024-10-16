@@ -15,7 +15,7 @@ export const ContainerHeader = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: ${w(4)}px;
+  margin-top: ${w(6)}px;
   margin-bottom: ${w(6)}px;
 `;
 

@@ -7,7 +7,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export const ContainerLevel = styled.View`
   flex-direction: row;
   align-items: center;
-  margin: ${hp(1)}px;
+  margin: ${hp(2)}px 0 ${hp(0.5)}px 0;
 `;
 
 export const Level = styled.View<{$activate: boolean; }>`

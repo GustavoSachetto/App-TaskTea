@@ -1,24 +1,34 @@
 import * as Progress from 'react-native-progress';
 import { ContainerLevel, Level, LevelText } from "@/styles/level-bar";
+import { LevelProps, calculateLevel } from '@/utils/calculateLevel';
+import { useEffect, useState } from 'react';
 
-interface LevelProps {
-  progress: number,
-  currentLevel: number
+interface LevelBarProps {
+  totalPoints: number
 }
 
-export default function LevelBar({ progress, currentLevel }: LevelProps) {
+export default function LevelBar({ totalPoints }: LevelBarProps) {
+  const [level, setLevel] = useState<LevelProps>({
+    progress: 0,
+    currentLevel: 0
+  })
+  
+  useEffect(() => {
+    setLevel(calculateLevel(totalPoints));
+  }, [totalPoints])
+  
   return (
     <ContainerLevel>
       <Level $activate={false}>
         <LevelText $activate={false}>
-          {currentLevel}
+          {level.currentLevel}
         </LevelText>
       </Level>
 
       <Progress.Bar 
-        progress={progress}
+        progress={level.progress}
         width={230} 
-        height={30}
+        height={26}
         borderRadius={50}
         borderColor='#d9d9d9'
         borderWidth={2}
@@ -28,7 +38,7 @@ export default function LevelBar({ progress, currentLevel }: LevelProps) {
 
       <Level $activate={true}>
         <LevelText $activate={true}>
-          {currentLevel + 1}
+          {level.currentLevel + 1}
         </LevelText>
       </Level>
     </ContainerLevel>

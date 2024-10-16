@@ -1,22 +1,39 @@
-
 import { ScrollViewContainer, Box, GradientBorderBox, LinkedStartTask, TextButtonStartTask, TarefaImage, Title, TextTarefa } from '@/styles/index-child';
 import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
+import { TotalProps, getMyStatisticTotal } from '@/services/api/routes/statistic';
 import LevelBar from '@/components/level-bar';
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const BlueColor = Colors.colors.blue;
 
 export default function HomePage() {
+  const [myStatisticTotal, setMyStatisticTotal] = useState<TotalProps>({
+    user_receiver_id: 0,
+    total_completed: 0,
+    total_incomplete: 0,
+    total_points: 0,
+    user_challenge_difficulty: [],
+    user_daily_average: 0
+  });
   const [taskDay, setTaskDay] = useState<TaskUserProps[]>([]);
   const { session } = useSession();
 
   useEffect(() => {
+    fetchMyLevel();
     fetchTaskDay();
   }, [session]);
+
+  const fetchMyLevel = async () => {
+    if (session) {
+      const response = await getMyStatisticTotal(session);
+      
+      setMyStatisticTotal(response);
+    }
+  }
 
   const fetchTaskDay = async () => {
     if (session) {
@@ -28,7 +45,7 @@ export default function HomePage() {
   return (
     <ScrollViewContainer>
       <HeaderIndex>
-        <LevelBar progress={0.5} currentLevel={0} />
+        <LevelBar totalPoints={myStatisticTotal.total_points} />
       </HeaderIndex>
       <GradientBorderBox>
         {taskDay?.length > 0 ? (

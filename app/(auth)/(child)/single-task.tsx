@@ -12,6 +12,7 @@ import { useSession } from "@/hooks/ctx";
 import { TaskProps } from "@/services/api/routes/tasks";
 import { getMyUser } from "@/services/api/routes/user";
 import { useRouter } from "expo-router";
+import Congratulations from "@/components/congratulations";
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -40,6 +41,7 @@ function initialTask() {
 
 export default function SingleTaskPage() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [congratulationsVisible, setCongratulationsVisible] = useState(false);
   const [name, setName] = useState<string>("");
   const [task, setTask] = useState<TaskProps>(initialTask);
   const [taskUser, setTaskUser] = useState<TaskUserCredential>({
@@ -75,13 +77,14 @@ export default function SingleTaskPage() {
       done: taskUser.done ? false : true, 
       difficult_level: null
     }, session);
-
-    router.back();
+    
+    setCongratulationsVisible(true);
+    // router.back();
   }
 
   return (
     <Container>
-      {modalVisible && <Overlay />}
+      {modalVisible && congratulationsVisible && <Overlay /> }
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
             <Voltar source={ImageVoltar} resizeMode="contain" />
@@ -117,6 +120,10 @@ export default function SingleTaskPage() {
           />
         </BoxTask>
       </GradientBorderBox>
+      <Congratulations
+      visible={congratulationsVisible}
+      onClose={() => setCongratulationsVisible(false)}
+       />
     </Container>
   )
 }

@@ -43,14 +43,15 @@ export const CloseButton = styled.Pressable`
 
 export const Title = styled.Text<any>`
   color: ${colors.red};
-  font-size: ${getFontSize(12)}px;
+  margin-left: ${wp(2)}px ;
+  font-size: ${wp(6)}px ;
   text-align: center;
   font-family: ${Fonts.RalewayBold};
 `;
 
 export const ModalText = styled.Text<any>`
   color: ${colors.red};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${wp(4)}px ;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
 `;

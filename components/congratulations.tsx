@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal } from 'react-native';
-import { CenteredView, Header, ModalView, CloseButton, Button, TextStyle, Input, Title, Image, ModalImage, ModalText, Confete, ContentContainer } from '@/styles/congratulations';
+import { CenteredView, Header, ModalView, CloseButton, Button, TextStyle, Input, Title, Image, ModalImage, ModalText, Confete, ContentContainer, GradientBorderBox } from '@/styles/congratulations';
 import { createCategory } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
 
@@ -32,14 +32,15 @@ export default function Congratulations({ visible, onClose } : CongratulationsPr
         <ModalView>
           <Header>
             <Confete source={ImageConfete}/> 
-            <Title >Parabéns,</Title>
-            <Confete source={ImageConfete} style={{position: 'absolute'}}/> 
+            <Title>Parabéns,</Title>
+            <Confete source={ImageConfete} style={{position: 'absolute', transform: 'rotateY(180deg)', zIndex: '9999'}}/> 
             <Title>{"\n"} amiguinho!</Title>     
             <ModalText>{"\n"}Continue assim, você{"\n"}está indo muito bem!</ModalText>
           </Header>  
           <Image source={ImageTeo}/> 
+          <GradientBorderBox />
         </ModalView>
-        
+          
       </CenteredView>
     </Modal>
   );

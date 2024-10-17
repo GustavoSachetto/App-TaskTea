@@ -4,6 +4,8 @@ import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import Colors from '@/constants/Colors';
 import { w, h } from '@/utils/responsiveMesures';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 
 const { title } = Colors;
 const { button } = Colors;
@@ -16,25 +18,27 @@ export const CenteredView = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: ${w(50)}px ;
-  height: ${w(50)}px;
-  margin-top: -${w(10)}px;
+  width: ${wp(50)}px ;
+  height: ${wp(50)}px;
+  margin-top: -${wp(8)}px;
+  z-index: 98;
   `;
 
 export const ModalView = styled.View`
-  width: ${w(97)}px;
-  height: ${w(40)}px;
-  margin-bottom: ${w(10)}px;
+  width: ${wp(97)}px;
+  height: ${wp(40)}px;
+  margin-bottom: ${wp(10)}px;
   background-color: white;
   border-width: 3px;
   border-color: ${title.green};
   border-radius: ${getFontSize(12)}px;
   flex-direction: row;
+  z-index: 96;
 `;
 
 export const CloseButton = styled.Pressable`
- width: ${w(100)}px ;
-  height: ${h(70)}px;
+ width: ${wp(100)}px ;
+  height: ${hp(70)}px;
 `;
 
 export const Title = styled.Text<any>`
@@ -51,33 +55,12 @@ export const ModalText = styled.Text<any>`
   font-family: ${Fonts.RalewayRegular};
 `;
 
-export const Input = styled.TextInput<any>`
-font-size: ${getFontSize(7)}px;
- font-family: ${Fonts.RalewayRegular};
- color: ${title.gray};
-  width: 85%;
-  border-radius: ${w(4)}px ;
-  padding: 2% ;
-  outline: 0;
-  margin: 4% auto;
-  border: solid #f9d54b 2px;
-`;
 
 export const Confete = styled.Image`
   width:  ${getFontSize(18)}px;
   height:  ${getFontSize(18)}px;
 `;
 
-export const Button = styled.Pressable`
-  border-radius: ${getFontSize(12)}px;
-  align-items: center;
-  justify-content: center;
-  margin-top: ${getFontSize(3)}px;
-  margin-bottom: ${getFontSize(4)}px;
-  width: ${getFontSize(80)}px;
-  height: ${getFontSize(16)}px;
-  background-color: #ffca00;
-`;
 
 export const TextStyle = styled.Text`
   color: white;
@@ -89,8 +72,19 @@ export const TextStyle = styled.Text`
 
 export const Header = styled.Text`
   flex-direction: row;
-  width: ${w(50)}px;
+  width: ${wp(50)}px;
   margin-top: ${getFontSize(12)}px;
   text-align: center;
+  z-index: 98;
 `;
 
+export const GradientBorderBox = styled.View`
+  background-image: radial-gradient(circle, #48f97d 16%, #ffffff 50%);
+  width: ${wp(75)}px;
+  height: ${wp(75)}px;;
+  position: absolute;
+  z-index: 97;
+  right:  -${wp(30)}px;
+  bottom:  -${wp(35)}px;
+  transform: rotate(180deg);
+`;

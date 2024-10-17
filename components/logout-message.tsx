@@ -11,12 +11,12 @@ import {
   ContainerButtons
 } from '@/styles/logout-message';
 import { useSession } from '@/hooks/ctx';
-import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+
 
 type LogoutMessageProps = {
   visible?: boolean, 
   onClose: () => void,
-  buttonColor?: string // Adiciona a prop para a cor dos botões
+  buttonColor?: string 
 }
 
 export default function LogoutMessage ({ visible, onClose, buttonColor }: LogoutMessageProps) {

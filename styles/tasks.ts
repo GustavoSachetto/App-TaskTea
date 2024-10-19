@@ -162,7 +162,7 @@ export const Task = styled.View<any>`
 
 export const Title = styled.Text`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(10)}px;
+  font-size: ${getFontSize(8.5)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
@@ -175,7 +175,6 @@ export const Title = styled.Text`
 export const Description = styled.Text`
   color: ${Colors.colors.white};
   font-size: ${getFontSize(5.8)}px;
-  font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
   max-width: 95%; 

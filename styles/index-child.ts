@@ -22,14 +22,14 @@ export const TextTarefa = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
-  font-size: ${getFontSize(9)}px;
+  font-size: ${getFontSize(8)}px;
   margin: auto;
   max-width: 80%; 
 `;
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
-  font-size: ${getFontSize(12)}px;
+  font-size: ${getFontSize(10)}px;
   font-weight: 600;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};

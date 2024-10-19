@@ -36,13 +36,13 @@ export const SectionProfile = styled.View`
 export const NameProfile = styled.Text`
   font-family: ${Fonts.RalewayBold};
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(11)}px;
+  font-size: ${getFontSize(10)}px;
 `;
 
 export const About = styled.Text`
   margin:${w(1)}px 0 ${w(1)}px 0;
   font-family: ${Fonts.RalewayRegular};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(7)}px;
 `;
 
 export const Button = styled.Pressable`

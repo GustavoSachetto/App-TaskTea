@@ -13,6 +13,7 @@ export const CenteredView = styled.View`
   flex: 1;
   align-items:flex-end ;
   justify-content:flex-end ;
+  text-transform: uppercase;
 `;
 
 export const Image = styled.Image`
@@ -46,7 +47,7 @@ export const Title = styled.Text<any>`
 
 export const ModalText = styled.Text<any>`
   color: ${colors.red};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(6)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
 `;

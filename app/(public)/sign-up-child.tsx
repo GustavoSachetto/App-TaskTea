@@ -72,7 +72,7 @@ export default function SignUpChild() {
             <Logo source={ImageLogo} resizeMode="contain" />
             <SubTitle>Só precisamos de algumas informações e você já poderá começar!</SubTitle>
             <Border customColor={GreenColor}>
-              <Title customColor={GreenColor} style={{ padding: 10 }}>Cadastro</Title>
+              <Title customColor={GreenColor} style={{ padding: 10 }}>Cadastro usuário</Title>
               <Line customColor={GreenColor} />
               <Input
                 placeholder='Nome:'

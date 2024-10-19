@@ -8,6 +8,7 @@ export const CenteredView = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 `;
 
 export const ModalView = styled.View`
@@ -36,7 +37,7 @@ export const ModalImage = styled.Image`
 export const DicaPopUp = styled.Image`
   width:  ${getFontSize(35)}px;
   height:  ${getFontSize(35)}px;
-  margin-top: ${w(-3)}%;
+  margin-bottom: ${w(3)}px;
 `;
 
 export const Button = styled.Pressable`
@@ -47,7 +48,7 @@ export const ModalText = styled.Text`
   font-size: ${getFontSize(10)}px;
   color: #545454;
   text-align: center;
-  margin-top: ${w(8)}px;
+  margin: 0 ${w(2)}px 0px ${w(2)}px;
   font-family: ${Fonts.RalewayBold};
 `;
 
@@ -65,6 +66,6 @@ export const TextTip = styled.Text`
   font-size: ${getFontSize(8)}px;
   color: #ff3131;
   text-align: center;
-  margin-top: ${w(10)}px;
+  margin: ${w(10)}px ${w(5)}px 0px ${w(5)}px;
   font-family: ${Fonts.RalewayBold};
 `;

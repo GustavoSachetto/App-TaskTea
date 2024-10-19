@@ -171,7 +171,7 @@ export default function CreateTask() {
               {categories.map((category) => (
                 <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
               ))}
-              <Picker.Item label="Criar nova categoria" value="createNew" />
+              <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
             </Picker>
 
             <Label>Selecionar Filho:</Label>

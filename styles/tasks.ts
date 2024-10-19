@@ -52,7 +52,7 @@ export const ContainerRowTasks = styled.View`
 
 export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
-  font-size: ${getFontSize(17)}px;
+  font-size: ${getFontSize(14)}px;
   margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};

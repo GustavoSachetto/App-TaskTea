@@ -9,7 +9,7 @@ const { colors } = Colors;
 export const TitlePage = styled.Text`
   color: ${colors.green};
   font-weight: bold;
-  font-size: ${getFontSize(18)}px;
+  font-size: ${getFontSize(15)}px;
   font-family: ${Fonts.RalewayBold};
 `;
 
@@ -53,7 +53,7 @@ export const LabelChart = styled.Text`
   text-align: center;
   font-size: ${getFontSize(8)}px;
   font-family: ${Fonts.RalewayRegular};
-  margin: 0 0 ${w(3)}px;
+  margin: ${w(3)}px 0 ${w(3)}px;
 `;
 
 export const SquareLabel = styled.View<any>`
@@ -61,6 +61,7 @@ export const SquareLabel = styled.View<any>`
   height: ${w(4)}px;
   background-color: ${(props: any) => props.customColor};
   margin-right: ${w(3)}px;
+    margin-top: ${w(3)}px;
 `;
 
 export const ContainerLabel = styled.View`

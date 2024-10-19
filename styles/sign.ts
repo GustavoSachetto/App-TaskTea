@@ -25,6 +25,7 @@ export const Title = styled.Text<CustomColorProps>`
   font-size: ${getFontSize(11.5)}px;
   font-weight: 600;
   text-align: center;
+  text-transform: none;
   font-family: ${Fonts.RalewayBold};
 `;
 
@@ -34,6 +35,16 @@ export const SubTitle = styled.Text`
   margin-top: ${w(8)}px;
   margin-bottom: ${w(8)}px;
   text-align: center;
+  text-transform: none;
+`;
+
+export const Text = styled.Text`
+  color: ${title.gray};
+  font-size: ${getFontSize(7)}px;
+  margin-top: ${w(8)}px;
+  margin-bottom: ${w(8)}px;
+  text-align: center;
+  text-transform: none;
 `;
 
 export const Logo = styled.Image`
@@ -49,6 +60,7 @@ export const LinkStyled = styled(Link)`
   text-decoration: underline;
   margin-top: ${h(3)}px;
   margin-bottom: ${h(2.8)}px;
+  text-transform: none;
 `;
 
 export const TextButton = styled.Text<CustomColorProps>`
@@ -56,6 +68,7 @@ export const TextButton = styled.Text<CustomColorProps>`
   color: ${(props) => props.customColor || colors.white};
   font-family: ${Fonts.RalewayBold};
   margin: 0 auto;
+  text-transform: none;
 `;
 
 export const Border = styled.View<CustomColorProps>`
@@ -82,6 +95,7 @@ export const Input = styled.TextInput<CustomColorProps>`
   outline: 0;
   margin: ${w(1)}px auto;
   border: solid ${(props) => props.customColor} 2px;
+  text-transform: none;
 `;
 
 export const PasswordContainer = styled.View`
@@ -104,6 +118,7 @@ export const InputPassword = styled.TextInput<CustomColorProps>`
   font-size: ${getFontSize(7)}px;
   font-family: ${Fonts.RalewayRegular};
   padding: ${w(2)}px;
+  text-transform: none;
 `;
 
 export const ButtonSign = styled.Pressable<CustomColorProps>`
@@ -138,6 +153,7 @@ export const LinkPopUp = styled.Text`
   color: ${text.darkgray};
   font-family: ${Fonts.RalewayRegular};
   text-decoration: underline;
+  text-transform: none;
 `;
 
 export const TextReadAndAgree = styled.Text`
@@ -145,6 +161,7 @@ export const TextReadAndAgree = styled.Text`
   color: ${Colors.colors.gray};
   font-family: ${Fonts.RalewayRegular};
   margin-left: ${h(1)}px;
+  text-transform: none;
 `;
 
 export const ContainerRow = styled.View`

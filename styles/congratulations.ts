@@ -22,7 +22,7 @@ export const Image = styled.Image`
   height: ${wp(50)}px;
   margin-top: -${wp(8)}px;
   z-index: 98;
-  `;
+`;
 
 export const ModalView = styled.View`
   width: ${wp(97)}px;

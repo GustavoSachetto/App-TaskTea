@@ -1,23 +1,30 @@
 import * as Progress from 'react-native-progress';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { ContainerLevel, Level, LevelText } from "@/styles/level-bar";
 import { LevelProps, calculateLevel } from '@/utils/calculateLevel';
 import { useEffect, useState } from 'react';
 
 interface LevelBarProps {
-  totalPoints: number
+  totalPoints: number;
 }
 
 export default function LevelBar({ totalPoints }: LevelBarProps) {
   const [level, setLevel] = useState<LevelProps>({
     progress: 0,
-    currentLevel: 0
-  })
-  
+    currentLevel: 0,
+  });
+
   useEffect(() => {
-    setLevel(calculateLevel(totalPoints));
-  }, [totalPoints])
-  
+    const calculatedLevel = calculateLevel(totalPoints);
+
+    if (!isNaN(calculatedLevel.progress) && calculatedLevel.progress >= 0 && calculatedLevel.progress <= 1) {
+      setLevel(calculatedLevel);
+    } else {
+      console.error('Progresso inválido calculado:', calculatedLevel.progress);
+      setLevel({ progress: 0, currentLevel: calculatedLevel.currentLevel });
+    }
+  }, [totalPoints]);
+
   return (
     <ContainerLevel>
       <Level $activate={false}>
@@ -26,15 +33,14 @@ export default function LevelBar({ totalPoints }: LevelBarProps) {
         </LevelText>
       </Level>
 
-      <Progress.Bar 
+      <Progress.Bar
         progress={level.progress}
-        width={wp(60)} 
+        width={wp(60)}
         height={wp(7)}
         borderRadius={50}
         borderColor='#d9d9d9'
         borderWidth={2}
         color='#48f97c'
-        useNativeDriver={true}
       />
 
       <Level $activate={true}>
@@ -43,5 +49,5 @@ export default function LevelBar({ totalPoints }: LevelBarProps) {
         </LevelText>
       </Level>
     </ContainerLevel>
-  )
+  );
 }

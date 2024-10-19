@@ -26,6 +26,11 @@ export type UserRelationshipProps = {
   updated_at: string | null
 }
 
+export type ImageUserProps = {
+  message: string,
+  image_path: string
+}
+
 export type PostUserChildProps = {
   name: string,
   email: string,
@@ -82,6 +87,30 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
 
   return response.data;
 } 
+
+export const saveImageUser = async (imageFile: File, token?: string | null) => {
+  const response = await api.postForm<ImageUserProps>(
+    `/users/image`, { image: imageFile }, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return response.data;
+}
+
+export const saveBannerUser = async (imageFile: File, token?: string | null) => {
+  const response = await api.postForm<ImageUserProps>(
+    `/users/banner`, { image: imageFile }, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return response.data;
+}
 
 export const editMyUser = async (data: PutUserProps, token: string) => {
   const response = await api.put<{ data: UserProps }>(

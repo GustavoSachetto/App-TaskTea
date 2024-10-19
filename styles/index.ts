@@ -51,6 +51,7 @@ export const TextButton = styled.Text<any>`
   font-weight: 600;
   color: ${(props: any) => props.customColor || colors.white};
   font-family: ${Fonts.RalewayBold};
+  text-transform: none;
 `;
 
 export const Title = styled.Text<any>`
@@ -59,6 +60,7 @@ export const Title = styled.Text<any>`
   font-weight: 600;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};
+  text-transform: none;
 `;
 
 export const SubTitle = styled.Text`
@@ -67,6 +69,7 @@ export const SubTitle = styled.Text`
   margin-top:  ${w(4)}px ;
   margin-bottom: ${h(3)}px ;
   text-align: center;
+  text-transform: none;
 `;
 
 export const ContainerButton = styled.View<any>`
@@ -107,6 +110,7 @@ export const TextTerms = styled.Text`
   font-size: ${getFontSize(9)}px;
   font-style: italic;
   text-decoration: underline;
+  text-transform: none;
 `;
 
 export const Overlay = styled.View`

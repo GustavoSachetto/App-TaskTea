@@ -48,6 +48,7 @@ export const TextStyle = styled.Text`
   text-align: center;
   font-size: ${getFontSize(8)}px;
   font-family: ${Fonts.RalewayBold};
+  text-transform: none;
 `;
 
 export const ModalText = styled.Text`
@@ -57,4 +58,5 @@ export const ModalText = styled.Text`
   text-align: center;
   margin-bottom: ${getFontSize(1)}px;
   font-family: ${Fonts.RalewayBold};
+  text-transform: none;
 `;

@@ -98,13 +98,13 @@ export default function SingleTaskPage() {
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
-            <TextClick>Clique para finalizar</TextClick>
+            <TextClick>Clique para finalizar seu desafio</TextClick>
             <BouncyCheckbox
               disableText
               fillColor="#46f87c"
               size={50}
               innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: 3.5 }}
-              iconStyle={{ borderRadius: 15 }}
+              iconStyle={{ borderRadius: 15, marginLeft: '-10%' }}
               isChecked={taskUser.done}
               onPress={() => finishTask(taskUser.id)}
             />

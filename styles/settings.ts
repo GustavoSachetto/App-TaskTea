@@ -25,12 +25,13 @@ export const Header = styled.View`
 export const Logo = styled.Image`
   width:${w(10)}px;
   height:${w(10)}px;
+  position: absolute;
 `;
 
 export const Title = styled.Text`
-  font-size: ${getFontSize(15)}px;
+  font-size: ${getFontSize(13)}px;
   font-family: ${Fonts.RalewayBold};
-  margin-left: ${w(2)}px;
+  margin: 0 auto;
 `;
 
 export const Functions = styled.Pressable`

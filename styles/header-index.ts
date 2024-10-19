@@ -39,7 +39,7 @@ export const Text = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   color: ${Colors.text.darkgray};
-  font-size: ${getFontSize(12)}px;
+  font-size: ${getFontSize(10)}px;
 `;
 
 export const Data = styled.Text`

@@ -30,7 +30,7 @@ export const ContainerRowHeader = styled.View`
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
-  font-size: ${w(6.3)}px;
+  font-size: ${w(5.5)}px;
   margin-top: ${h(2)}px;
   font-weight: 600;
   text-align: center;
@@ -51,7 +51,7 @@ export const Dica = styled.Image`
 
 export const TextTaskDay = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(17)}px;
+  font-size: ${getFontSize(14)}px;
   font-weight: 600;
   text-align: center;
   margin:0 auto;
@@ -112,7 +112,7 @@ export const TextClick = styled.Text`
   font-size: ${getFontSize(6.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  width: 22%;
+  width: 27%;
 `;
 
 export const DataText = styled.Text`

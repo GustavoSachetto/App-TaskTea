@@ -11,12 +11,11 @@ export const ContainerLevel = styled.View`
 `;
 
 export const Level = styled.View<{$activate: boolean; }>`
-  width: ${wp(8)}px;
-  height: ${wp(8)}px;
-  padding-bottom: 4px;
-  align-items: center;
+  width: ${wp(10)}px;
+  height: ${wp(10)}px;
   justify-content: center;
-  border-radius: 50%;
+  align-items: center;
+  border-radius: ${wp(50)}px;
   border: 2px solid ${Colors.colors.veryLightGreen};
   border-color: ${props => props.$activate ? Colors.colors.veryLightGreen : Colors.colors.lightGray };
 `;

@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import { router, Slot } from 'expo-router';
 import { SessionProvider, useSession } from '@/hooks/ctx';
-import { FontProvider } from '@/context/FontContext';
+import { FontProvider, useFonts } from '@/context/FontContext';  
 import { verifyUserRole } from '@/utils/verifyUserRole';
 import { OverlayProvider } from '@/context/OverlayContext';
 import '@/styles/uppercase.css';
 
 function InitialLayout() {
   const { session } = useSession();
+  const { fontsLoaded } = useFonts(); 
+  const [ isMounted, setIsMounted ] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const checkUserRole = async () => {
@@ -23,14 +30,18 @@ function InitialLayout() {
       }
     };
 
-    checkUserRole();
-  }, [session]);
+    if (isMounted && fontsLoaded) {
+      checkUserRole(); 
+    }
+  }, [session, isMounted, fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <OverlayProvider>
-      <FontProvider>
-        <Slot />
-      </FontProvider>
+      <Slot />
     </OverlayProvider>
   );
 }
@@ -38,7 +49,9 @@ function InitialLayout() {
 export default function Root() {
   return (
     <SessionProvider>
-      <InitialLayout />
+      <FontProvider>
+        <InitialLayout />
+      </FontProvider>
     </SessionProvider>
   );
 }

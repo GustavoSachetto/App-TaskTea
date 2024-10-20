@@ -19,13 +19,15 @@ export const TitleStatistics = styled.Text`
   text-align: center;
   font-size: ${getFontSize(12)}px;
   font-family: ${Fonts.RalewayBold};
-  margin: 0 auto ${w(5)}px;
+  margin: 0 auto -${w(7)}px;
 `;
 
 export const ContainerStatistics = styled.View`
   height: 49%;
-  width: 60% ;
-  margin: 0 auto;
+  width: 100% ;
+  justify-content: center;
+  align-item: center;
+  margin: 0 auto ${w(7)}px;
 `;
 
 export const LinkedBack = styled.Pressable`

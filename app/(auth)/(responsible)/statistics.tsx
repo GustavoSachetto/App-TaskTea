@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { fetchStatisticTotalById, fetchStatisticWeeklyById, TotalProps } from "@/services/api/routes/statistic";
 import { useSession } from "@/hooks/ctx";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { TitlePage, TitleStatistics, ContainerStatistics, SquareLabel, LabelChart, Header, LinkedBack, Voltar, ContainerLabel } from "@/styles/statistics";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { PieChart } from "react-native-chart-kit";
+import { h, w } from '@/utils/responsiveMesures';
 
 export default function Statistics() {
   const router = useRouter();
@@ -21,31 +19,43 @@ export default function Statistics() {
     fetchWeeklyTasks();
   }, [session, userId]);
 
+  const chartConfig = {
+    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#08130D",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2,
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false
+  };
+
   const weeklyCompleted = Number(getWeeklyStatistics?.total_completed) || 0;
   const weeklyIncomplete = Number(getWeeklyStatistics?.total_incomplete) || 0;
 
-  const weeklyData = {
-    datasets: [
-      {
-        data: [weeklyCompleted, weeklyIncomplete],
-        backgroundColor: ["#46f87c", "#ff3f00"],
-        hoverBackgroundColor: ["#7dffa5", "#ff875f"],
-      },
-    ],
-  }
+  const weeklyData = [
+    {
+      data: [weeklyCompleted],
+      color: ["#46f87c", "#ff3f00"],
+    },
+    {
+      data: [weeklyIncomplete],
+      color: "#ff3f00",
+    }
+  ]
 
   const fetchTotalTasks = async () => {
     if (session && userId) {
-      const userNumId: number = typeof(userId) === "string" ? await parseInt(userId) : 1;
+      const userNumId: number = typeof (userId) === "string" ? await parseInt(userId) : 1;
       const response = await fetchStatisticTotalById(userNumId, session);
-      
+
       setGetTotalStatistics(response);
     }
   }
 
   const fetchWeeklyTasks = async () => {
     if (session && userId) {
-      const userNumId: number = typeof(userId) === "string" ? await parseInt(userId) : 1;
+      const userNumId: number = typeof (userId) === "string" ? await parseInt(userId) : 1;
       const response = await fetchStatisticWeeklyById(userNumId, session);
 
       setGetWeeklyStatistics(response);
@@ -55,15 +65,16 @@ export default function Statistics() {
   const totalCompleted = Number(getTotalStatistics?.total_completed) || 0;
   const totalIncomplete = Number(getTotalStatistics?.total_incomplete) || 0;
 
-  const totalData = {
-    datasets: [
-      {
-        data: [totalCompleted, totalIncomplete],
-        backgroundColor: ["#46f87c", "#ff3f00"],
-        hoverBackgroundColor: ["#7dffa5", "#ff875f"],
-      },
-    ],
-  }
+  const totalData = [
+    {
+      data: [totalCompleted],
+      color: ["#46f87c"],
+    },
+    {
+      data: [totalIncomplete],
+      color: "#ff3f00",
+    }
+  ]
 
   return (
     <ScrollView>
@@ -76,7 +87,18 @@ export default function Statistics() {
 
       <TitleStatistics>Resultado da semana</TitleStatistics>
       <ContainerStatistics>
-        <Pie data={weeklyData} />
+        <PieChart
+          data={weeklyData}
+          width={w(70)}
+          height={w(70)}
+          chartConfig={chartConfig}
+          accessor={"data"}
+          backgroundColor={"#fff"}
+          paddingLeft={w(17)}
+          style={{ alignSelf: 'center' }}
+          absolute
+          hasLegend={false}
+        />
         <ContainerLabel>
           <SquareLabel customColor="#46f87c" />
           <LabelChart>Tarefas Concluídas: {weeklyCompleted}</LabelChart>
@@ -90,7 +112,18 @@ export default function Statistics() {
 
       <TitleStatistics>Resultado geral</TitleStatistics>
       <ContainerStatistics>
-        <Pie data={totalData} />
+        <PieChart
+          data={totalData}
+          width={w(70)}
+          height={w(70)}
+          chartConfig={chartConfig}
+          accessor={"data"}
+          backgroundColor={"#fff"}
+          paddingLeft={w(17)}
+          style={{ alignSelf: 'center' }}
+          absolute
+          hasLegend={false}
+        />
         <ContainerLabel>
           <SquareLabel customColor="#46f87c" />
           <LabelChart>Tarefas Concluídas: {totalCompleted}</LabelChart>

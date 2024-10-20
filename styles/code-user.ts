@@ -17,12 +17,14 @@ export const ModalView = styled.View`
   border-width: 1px;
   border-color: #a6a6a6;
   border-radius: ${getFontSize(12)}px;
+  elevation: 5;
 `;
 
 export const CloseButton = styled.Pressable`
   position: absolute;
-  top: ${getFontSize(5)};
-  right: ${getFontSize(5)};
+  top: ${getFontSize(5)}px;
+  right: ${getFontSize(5)}px;
+  z-index: 99;
 `;
 
 export const ModalImage = styled.Image`

@@ -122,7 +122,7 @@ export const Childs = styled.View`
 `;
 
 export const ProfilePhoto = styled.Image`
-  border-radius: 100%;
+  border-radius: ${w(100)}px;
   width: ${w(20)}px;
   height: ${w(20)}px;
 `;

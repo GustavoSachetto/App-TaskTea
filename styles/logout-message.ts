@@ -20,8 +20,9 @@ export const ModalView = styled.View`
 
 export const CloseButton = styled.Pressable`
   position: absolute;
-  top: ${getFontSize(5)};
-  right: ${getFontSize(5)};
+  top: ${getFontSize(5)}px;
+  right: ${getFontSize(5)}px;
+  z-index: 99;
 `;
 
 export const ModalImage = styled.Image`

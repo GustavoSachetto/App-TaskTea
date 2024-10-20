@@ -10,6 +10,7 @@ import Colors from '@/constants/Colors';
 import { ReactNode, useEffect, useState } from 'react';
 import { TaskUserPageProps } from '@/services/api/routes/taskuser';
 import { useSession } from '@/hooks/ctx';
+import { router } from 'expo-router';
 
 const ImageVoltar = require('@/assets/icons/voltar-verde.png');
 const green  = Colors.colors.green;
@@ -53,8 +54,8 @@ export default function TasksPage() {
 
   return (
     <ContainerAllTasks>
-      <ContainerRowTasks>
-        <LinkedSign href="/(auth)/(child)/(tabs)/settings">
+      <ContainerRowTasks >
+        <LinkedSign onPress={()=> {router.push('/(auth)/(child)/(tabs)/settings')}} >
             <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <ContainerColumn>

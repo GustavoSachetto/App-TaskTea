@@ -34,7 +34,7 @@ export default function CodigoUser({ visible, onClose }: CodigoUserProps) {
     >
       <CenteredView>
         <ModalView>
-          <CloseButton onPress={onClose} >
+          <CloseButton onPress={() => { onClose(); }}>
             <ModalImage source={require('../assets/icons/x.png')}  />
           </CloseButton>
           <Container>

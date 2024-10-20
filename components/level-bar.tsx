@@ -20,7 +20,6 @@ export default function LevelBar({ totalPoints }: LevelBarProps) {
     if (!isNaN(calculatedLevel.progress) && calculatedLevel.progress >= 0 && calculatedLevel.progress <= 1) {
       setLevel(calculatedLevel);
     } else {
-      console.error('Progresso inválido calculado:', calculatedLevel.progress);
       setLevel({ progress: 0, currentLevel: calculatedLevel.currentLevel });
     }
   }, [totalPoints]);

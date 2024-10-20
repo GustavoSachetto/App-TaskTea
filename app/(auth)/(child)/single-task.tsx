@@ -1,13 +1,15 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
-import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
+import {
+  Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
+  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader
+} from '@/styles/single-task';
 import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
 import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
-import BouncyCheckbox from "react-native-bouncy-checkbox"; 
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useSession } from "@/hooks/ctx";
 import { TaskProps } from "@/services/api/routes/tasks";
 import { getMyUser } from "@/services/api/routes/user";
@@ -20,7 +22,7 @@ const ImageDica = require('@/assets/icons/dica.png');
 const RedColor = Colors.colors.red;
 
 type TaskUserCredential = {
-  id: number, 
+  id: number,
   done: boolean
 }
 
@@ -30,7 +32,7 @@ function initialTask() {
     title: "string",
     description: "string",
     tip: "string",
-    level:  "string",
+    level: "string",
     image: "string",
     categories_id: 0,
     user_creator_id: 0,
@@ -50,7 +52,7 @@ export default function SingleTaskPage() {
   });
   const { session } = useSession();
   const router = useRouter();
-  
+
   const { id } = useLocalSearchParams();
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function SingleTaskPage() {
   }, [id])
 
   const fetchTaskUser = async () => {
-    const numId: number = typeof(id) === "string" ? await parseInt(id) : 1;
+    const numId: number = typeof (id) === "string" ? await parseInt(id) : 1;
     const result = await fetchTaskUserById(numId, session);
 
     setTaskUser(result.data);
@@ -68,46 +70,49 @@ export default function SingleTaskPage() {
 
   const setUserName = async () => {
     const result = await getMyUser(session);
-   
+
     setName(result.data.name);
   }
 
   const finishTask = async (id: number) => {
-    await editTaskUserById(id, { 
-      done: taskUser.done ? false : true, 
+    await editTaskUserById(id, {
+      done: taskUser.done ? false : true,
       difficult_level: null
     }, session);
-    
+
     setCongratulationsVisible(true);
     // router.back();
   }
 
   return (
     <Container>
-      {modalVisible && congratulationsVisible && <Overlay /> }
+      {modalVisible && congratulationsVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
-            <Voltar source={ImageVoltar} resizeMode="contain" />
+          <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <TextTaskDay>Desafio do dia</TextTaskDay>
       </ContainerRowHeader>
 
       <GradientBorderBox>
-      <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+        <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
             <TextClick>Clique para finalizar seu desafio</TextClick>
+
             <BouncyCheckbox
               disableText
               fillColor="#46f87c"
               size={50}
               innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: 3.5 }}
-              iconStyle={{ borderRadius: 15, marginLeft: '-10%' }}
+              iconStyle={{ borderRadius: 15 }}
+              style={{ alignSelf: 'center', marginVertical: 10 }}
               isChecked={taskUser.done}
               onPress={() => finishTask(taskUser.id)}
             />
+
             <Button onPress={() => setModalVisible(true)}>
               <Dica source={ImageDica} />
             </Button>
@@ -121,9 +126,9 @@ export default function SingleTaskPage() {
         </BoxTask>
       </GradientBorderBox>
       <Congratulations
-      visible={congratulationsVisible}
-      onClose={() => setCongratulationsVisible(false)}
-       />
+        visible={congratulationsVisible}
+        onClose={() => setCongratulationsVisible(false)}
+      />
     </Container>
   )
 }

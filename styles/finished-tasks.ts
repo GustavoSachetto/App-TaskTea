@@ -16,7 +16,7 @@ export const Voltar = styled.Image`
   z-index: 99;
 `;
 
-export const LinkedSign = styled(Link)`
+export const LinkedSign = styled.Pressable`
   position: absolute;
   left:${w(8)}px;
   height: ${w(4)}px;

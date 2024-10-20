@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
 import { router, Slot } from 'expo-router';
 import { SessionProvider, useSession } from '@/hooks/ctx';
 import { FontProvider, useFonts } from '@/context/FontContext';  

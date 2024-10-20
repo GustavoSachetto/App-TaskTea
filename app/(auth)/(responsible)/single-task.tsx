@@ -74,7 +74,7 @@ export default function SingleTaskPage() {
       </ContainerRowHeader>
 
       <GradientBorderBox>
-          <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+      <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>

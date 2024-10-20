@@ -4,29 +4,30 @@ import { useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 
-const ImageAdicionarAzul = require('@/assets/icons/templates-desafios.png');
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
-  const { session } = useSession(); 
+  const { session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
       if (session) {
         const response = await getMyUser(session);
-        setUserData(response.data); 
+        setUserData(response.data);
       }
     }
 
-    fetchUserData(); 
-  }, []); 
+    fetchUserData();
+  }, []);
+
+  const defaultBanner = require('../../../../assets/images/fundoazul.png');
+  const defaultImage = require('../../../../assets/icons/perfil.png');
 
   return (
     <Container>
-      <Banner source={userData?.banner ?? require('../../../../assets/images/fundoazul.png')} />
-      <ImageProfile source={userData?.image ?? require('../../../../assets/icons/perfil.png')} />
-      
+      <Banner source={userData?.banner ? { uri: userData.banner } : defaultBanner}/>
+      <ImageProfile source={userData?.image ? { uri: userData.image } : defaultImage}/>
       <SectionProfile>
         <NameProfile>{userData?.name ?? "Nome não disponível"}</NameProfile>
         <Button>

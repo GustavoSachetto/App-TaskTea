@@ -160,27 +160,26 @@ export const Task = styled.View<any>`
   background-color:  ${(props) => props.customColor || Colors.colors.lightYellow};
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text.attrs(() => ({
+  numberOfLines: 1,
+  ellipsizeMode: 'tail', 
+}))`
   color: ${Colors.colors.white};
   font-size: ${getFontSize(8.5)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
-  max-width: 70%; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis;
+  max-width: 100%;
 `;
-
-export const Description = styled.Text`
+export const Description = styled.Text.attrs(()=>({
+  numberOfLines: 1,
+  ellipsizeMode: 'tail', 
+}))`
   color: ${Colors.colors.white};
   font-size: ${getFontSize(5.8)}px;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
-  max-width: 95%; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis;
+  max-width: 100%; 
 `;
 
 

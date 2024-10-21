@@ -29,11 +29,11 @@ type TaskUserCredential = {
 function initialTask() {
   return {
     id: 1,
-    title: "string",
-    description: "string",
-    tip: "string",
-    level: "string",
-    image: "string",
+    title: "",
+    description: "",
+    tip: "",
+    level: "",
+    image: "",
     categories_id: 0,
     user_creator_id: 0,
     created_at: "",
@@ -79,9 +79,14 @@ export default function SingleTaskPage() {
       done: taskUser.done ? false : true,
       difficult_level: null
     }, session);
-
-    setCongratulationsVisible(true);
-    // router.back();
+    
+    if(taskUser.done == false){
+      setCongratulationsVisible(true);
+    }
+  
+    setTimeout(() => {
+      router.push('/(auth)/(child)/(tabs)/'); 
+    }, 1500);
   }
 
   return (

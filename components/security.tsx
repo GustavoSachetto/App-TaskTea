@@ -80,7 +80,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 onChangeText={setInputTelephoneValue}
                             />
                         </ContainerRow>
-                    )}
+                )}
 
                     {userData?.cpf && (
                         <ContainerRow>

@@ -38,7 +38,7 @@ export const ScrollViewContainer = styled.ScrollView`
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor || title.gray};
-  font-size: ${getFontSize(11)}px;
+  font-size: ${getFontSize(14)}px;
   font-weight: 600;
   text-align:center;
   margin: 0 0 ${w(2)}px 0;
@@ -52,7 +52,7 @@ export const Button = styled.Pressable<any>`
 
 export const Text = styled.Text`
   color: white;
-  font-size: ${getFontSize(9)}px;
+  font-size: ${getFontSize(11)}px;
   padding: ${w(1.5)}px 0;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};

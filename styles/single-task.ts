@@ -30,7 +30,7 @@ export const ContainerRowHeader = styled.View`
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
-  font-size: ${w(5.5)}px;
+  font-size: ${w(6)}px;
   margin-top: ${h(2)}px;
   font-weight: 600;
   text-align: center;
@@ -51,7 +51,7 @@ export const Dica = styled.Image`
 
 export const TextTaskDay = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(14)}px;
+  font-size: ${getFontSize(17)}px;
   font-weight: 600;
   text-align: center;
   margin:0 auto;
@@ -100,7 +100,7 @@ export const TarefaImage = styled.Image`
 
 export const TextTarefa = styled.Text`
   color: ${ Colors.title.gray };
-  font-size: ${w(4.3)}px;
+  font-size: ${w(4.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   margin: ${hp("1%")}px 0;
@@ -109,7 +109,7 @@ export const TextTarefa = styled.Text`
 
 export const TextClick = styled.Text`
   color: ${ Colors.title.gray };
-  font-size: ${getFontSize(6.5)}px;
+  font-size: ${getFontSize(8)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   width: 27%;
@@ -117,7 +117,7 @@ export const TextClick = styled.Text`
 
 export const DataText = styled.Text`
   color: ${ Colors.title.gray };
-  font-size: ${getFontSize(6.5)}px;
+  font-size: ${getFontSize(7)}px;
   font-family: ${Fonts.RalewayRegular};
 `;
 

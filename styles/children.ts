@@ -51,12 +51,11 @@ export const Dica = styled.Image`
 
 export const TextChildren = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(14)}px;
+  font-size: ${getFontSize(17)}px;
   font-weight: 600;
   text-align: center;
   margin:0 auto;
   font-family: ${Fonts.RalewayBold};
-  text-transform: uppercase;
 `;
 
 export const LinkedSign = styled.Pressable`

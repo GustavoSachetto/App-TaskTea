@@ -52,7 +52,7 @@ export const ContainerRowTasks = styled.View`
 
 export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
-  font-size: ${getFontSize(14)}px;
+  font-size: ${getFontSize(17)}px;
   margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};
@@ -61,7 +61,7 @@ export const TextTask = styled.Text<any>`
 export const TextAddTask = styled.Text<any>`
   color: #737373;
   text-align: center;
-  font-size: ${getFontSize(6)}px;
+  font-size: ${getFontSize(8)}px;
   font-family: ${Fonts.RalewayRegular};
 `;
 
@@ -81,7 +81,7 @@ export const ContainerTasksDoing = styled.View<any>`
 
 export const TextDoing = styled.Text`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(11)}px;
+  font-size: ${getFontSize(12)}px;
   font-weight: 600;
   text-align: center;
   font-family: ${Fonts.RalewayBold};
@@ -165,7 +165,7 @@ export const Title = styled.Text.attrs(() => ({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(8.5)}px;
+  font-size: ${getFontSize(10)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
@@ -176,7 +176,7 @@ export const Description = styled.Text.attrs(()=>({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(5.8)}px;
+  font-size: ${getFontSize(8)}px;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
   max-width: 100%; 

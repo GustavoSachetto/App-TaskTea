@@ -29,7 +29,7 @@ export const Logo = styled.Image`
 `;
 
 export const Title = styled.Text`
-  font-size: ${getFontSize(13)}px;
+  font-size: ${getFontSize(14)}px;
   font-family: ${Fonts.RalewayBold};
   margin: 0 auto;
 `;
@@ -46,5 +46,5 @@ export const Functions = styled.Pressable`
 export const Text = styled.Text`
   margin-left:${w(2)}px;
   font-family: ${Fonts.RalewayBold};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(9)}px;
 `;

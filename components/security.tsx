@@ -31,6 +31,16 @@ export default function Security({ visible, onClose }: SecurityProps) {
         fetchUserData();
     }, []);
 
+    useEffect(() => {
+        if (userData) {
+            setInputNameValue(userData.name || "");
+            setInputNicknameValue(userData.nickname || "");
+            setInputAgeValue(userData.age || "");
+            setInputTelephoneValue(userData.phone_number || "");
+            setInputEmailValue(userData.email || "");
+        }
+    }, [userData]);
+
     return (
         <Modal
             animationType="slide"

@@ -1,8 +1,8 @@
 import { useSession } from "@/hooks/ctx";
-import { UserProps } from "@/services/api/routes/user";
+import { getMyUser, UserProps } from "@/services/api/routes/user";
 import { ButtonSave, CenteredView, CloseButton, ContainerRow, Header, Label, Line, ModalImage, ModalView, TextButton, Title } from "@/styles/security";
-import { useState } from "react";
-import { Modal, TextInput} from "react-native";
+import { useEffect, useState } from "react";
+import { Modal, TextInput } from "react-native";
 
 type SecurityProps = {
     visible?: boolean,
@@ -18,6 +18,18 @@ export default function Security({ visible, onClose }: SecurityProps) {
     const [inputEmailValue, setInputEmailValue] = useState("");
     const [inputPasswordValue, setInputPasswordValue] = useState("");
     const { session } = useSession();
+
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (session) {
+                const response = await getMyUser(session);
+                setUserData(response.data);
+            }
+        }
+
+        fetchUserData();
+    }, []);
 
     return (
         <Modal
@@ -60,13 +72,15 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         />
                     </ContainerRow>
 
-                    <ContainerRow>
-                        <Label>Telefone:</Label>
-                        <TextInput
-                            value={inputTelephoneValue}
-                            onChangeText={setInputTelephoneValue}
-                        />
-                    </ContainerRow>
+                    {userData?.phone_number && (
+                        <ContainerRow>
+                            <Label>Telefone:</Label>
+                            <TextInput
+                                value={inputTelephoneValue}
+                                onChangeText={setInputTelephoneValue}
+                            />
+                        </ContainerRow>
+                    )}
 
                     {userData?.cpf && (
                         <ContainerRow>

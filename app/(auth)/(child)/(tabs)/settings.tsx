@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useOverlay } from '@/context/OverlayContext'; 
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
+import Security from '@/components/security';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
@@ -16,6 +17,7 @@ export default function SettingsPage() {
   const router = useRouter();
   const { showOverlay, hideOverlay } = useOverlay();
   const [activeModal, setActiveModal] = useState(null);
+  const [modalSecurity, setModalSecurity] = useState(false);
 
   const handleModal = (modalName: any) => {
     if (modalName) {
@@ -42,7 +44,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions>
+      <Functions onPress={() => setModalSecurity(true)}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>
@@ -65,6 +67,11 @@ export default function SettingsPage() {
       <CodigoUser visible={activeModal === 'userCode'} onClose={() => handleModal(null)} />
       <ServiceTerms visible={activeModal === 'terms'} onClose={() => handleModal(null)} />
       <LogoutMessage visible={activeModal === 'logout'} onClose={() => handleModal(null)} />
+        
+      <Security 
+        visible={modalSecurity}
+        onClose={() => setModalSecurity(false)}
+        />
     </Container>
   );
 }

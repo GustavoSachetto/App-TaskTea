@@ -35,14 +35,20 @@ export default function Statistics() {
 
   const weeklyData = [
     {
-      data: [weeklyCompleted],
-      color: ["#46f87c", "#ff3f00"],
+      name: "Tarefas Concluídas",
+      data: weeklyCompleted,
+      color: "#46f87c",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
     },
     {
-      data: [weeklyIncomplete],
+      name: "Tarefas Incompletas",
+      data: weeklyIncomplete,
       color: "#ff3f00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
     }
-  ]
+  ];
 
   const fetchTotalTasks = async () => {
     if (session && userId) {
@@ -67,14 +73,20 @@ export default function Statistics() {
 
   const totalData = [
     {
-      data: [totalCompleted],
-      color: ["#46f87c"],
+      name: "Tarefas Concluídas",
+      data: totalCompleted,
+      color: "#46f87c",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
     },
     {
-      data: [totalIncomplete],
+      name: "Tarefas Incompletas",
+      data: totalIncomplete,
       color: "#ff3f00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
     }
-  ]
+  ];
 
   return (
     <ScrollView>

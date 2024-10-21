@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
 import Security from '@/components/security';
+import { router, useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
@@ -46,8 +47,9 @@ export default function SettingsPage() {
           <Text>Segurança e informação</Text>
         </Functions>
 
-        <Functions>
-          <Image source={ImageTemplates} style={{ width: wp('6%'), height: wp('6%') }} />
+        <Functions onPress={() => router.push('/(auth)/(responsible)/template-tasks')}>
+          <Image source={ImageTemplates} style={{ width: wp('6%'), height: wp('6%') }}
+           />
           <Text>Templates de desafios</Text>
         </Functions>
 

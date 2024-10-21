@@ -33,7 +33,7 @@ export default function Layout() {
           tabBarIcon: ({ focused }) => {
             let iconSource;
             let customStyle = styles.icon; 
-            let resize = "contain"; 
+            let resize: "cover" | "contain" = "contain"; 
 
             switch (route.name) {
               case 'index':

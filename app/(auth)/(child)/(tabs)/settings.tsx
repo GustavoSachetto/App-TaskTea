@@ -17,7 +17,6 @@ export default function SettingsPage() {
   const router = useRouter();
   const { showOverlay, hideOverlay } = useOverlay();
   const [activeModal, setActiveModal] = useState(null);
-  const [modalSecurity, setModalSecurity] = useState(false);
 
   const handleModal = (modalName: any) => {
     if (modalName) {
@@ -44,7 +43,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions onPress={() => setModalSecurity(true)}>
+      <Functions onPress={() => handleModal('security')}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>
@@ -66,12 +65,8 @@ export default function SettingsPage() {
 
       <CodigoUser visible={activeModal === 'userCode'} onClose={() => handleModal(null)} />
       <ServiceTerms visible={activeModal === 'terms'} onClose={() => handleModal(null)} />
-      <LogoutMessage visible={activeModal === 'logout'} onClose={() => handleModal(null)} />
-        
-      <Security 
-        visible={modalSecurity}
-        onClose={() => setModalSecurity(false)}
-        />
+      <LogoutMessage visible={activeModal === 'logout'} onClose={() => handleModal(null)} /> 
+      <Security visible={activeModal === 'security'} onClose={() => handleModal(null)}/>
     </Container>
   );
 }

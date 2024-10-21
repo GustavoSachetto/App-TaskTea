@@ -91,7 +91,8 @@ export default function SingleTaskPage() {
 
   return (
     <Container>
-      {modalVisible && congratulationsVisible && <Overlay />}
+      {modalVisible &&  <Overlay />}
+      {congratulationsVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
           <Voltar source={ImageVoltar} resizeMode="contain" />

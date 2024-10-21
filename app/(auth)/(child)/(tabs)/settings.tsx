@@ -64,9 +64,9 @@ export default function SettingsPage() {
         <Text style={{ color: '#ff3f00' }}>Sair</Text>
       </Functions>
 
-      <CodigoUser
-        visible={modalCode}
-        onClose={() => setModalCode(false)}
+      <CodigoUser 
+        visible={modalCode} 
+        onClose={() => setModalCode(false)} 
       />
       <ServiceTerms
         visible={modalServiceTerms}

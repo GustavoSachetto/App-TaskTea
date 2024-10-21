@@ -19,11 +19,10 @@ export const TitleStatistics = styled.Text`
   text-align: center;
   font-size: ${getFontSize(12)}px;
   font-family: ${Fonts.RalewayBold};
-  margin: 0 auto -${w(7)}px;
+  margin: 0 auto ;
 `;
 
 export const ContainerStatistics = styled.View`
-  height: 49%;
   width: 100% ;
   justify-content: center;
   align-item: center;
@@ -63,7 +62,7 @@ export const SquareLabel = styled.View<any>`
   height: ${w(4)}px;
   background-color: ${(props: any) => props.customColor};
   margin-right: ${w(3)}px;
-    margin-top: ${w(3)}px;
+  margin-top: ${w(3)}px;
 `;
 
 export const ContainerLabel = styled.View`

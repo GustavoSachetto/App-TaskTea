@@ -22,7 +22,6 @@ export const Line = styled.View`
   margin: 0 auto;
 `;
 
-
 export const CenteredView = styled.View`
   width: 100%;
   height: 100%;
@@ -32,18 +31,17 @@ export const CenteredView = styled.View`
 `;
 
 export const ContainerRow = styled.View`
-  flex: 1;
-  padding: 15px;
+  width:  ${w(80)}px;
+  padding: 0 15px ;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   align-items: center;
   flex-direction: row;
-  margin-top: ${getFontSize(10)}px;
+  margin-top: ${w(4.5)}px;
 `;
 
 export const ModalView = styled.ScrollView`
   width:  ${w(80)}px;
-  height:  auto;
   position: fixed;
   background-color: #fff;
   border-width: 3px;
@@ -105,14 +103,15 @@ export const ButtonPassword = styled.Pressable`
 `;
 
 export const UserDataInput = styled.TextInput`
- 
   font-size: ${getFontSize(8)}px;
   color: #737373;
-  padding: ${w(2)}px 0;
+  padding: ${w(1)}px;
   margin-right:  ${getFontSize(1)}px;
   text-align: left;
   font-family: ${Fonts.RalewayRegular};
-  width: 100%;
+  flex: 1;
+  border: black 1px solid;
+  border-radius: ${w(2)}px;
 `;
 
 export const ButtonSave = styled.Pressable`

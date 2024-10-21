@@ -1,5 +1,5 @@
 import { useSession } from "@/hooks/ctx";
-import { getMyUser, UserProps } from "@/services/api/routes/user";
+import { editMyUser, getMyUser, UserProps } from "@/services/api/routes/user";
 import {
     ButtonSave, CenteredView, CloseButton, ButtonPassword, ContainerRow,
     Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title,
@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { h, w } from '@/utils/responsiveMesures';
+import Toast from 'react-native-toast-message';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 type SecurityProps = {
     visible?: boolean,
@@ -17,9 +19,11 @@ type SecurityProps = {
 
 export default function Security({ visible, onClose }: SecurityProps) {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
+    const [originalUserData, setOriginalUserData] = useState<UserProps | undefined>(undefined);
     const [inputNameValue, setInputNameValue] = useState("");
     const [inputNicknameValue, setInputNicknameValue] = useState("");
-    const [inputAgeValue, setInputAgeValue] = useState("");
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [inputBirthDateValue, setInputBirthDateValue] = useState(new Date());
     const [inputTelephoneValue, setInputTelephoneValue] = useState("");
     const [inputEmailValue, setInputEmailValue] = useState("");
     const [inputCurrentPassword, setInputCurrentPassword] = useState("");
@@ -52,21 +56,72 @@ export default function Security({ visible, onClose }: SecurityProps) {
             if (session) {
                 const response = await getMyUser(session);
                 setUserData(response.data);
+                setOriginalUserData(response.data);
             }
         }
 
         fetchUserData();
-    }, []);
+    }, [session]);
 
     useEffect(() => {
         if (userData) {
             setInputNameValue(userData.name || "");
             setInputNicknameValue(userData.nickname || "");
-            setInputAgeValue(userData.age || "");
+            setInputBirthDateValue(new Date(userData.age) || new Date());
             setInputTelephoneValue(userData.phone_number || "");
             setInputEmailValue(userData.email || "");
         }
     }, [userData]);
+
+    const handleSubmit = async () => {
+        if (session) {
+            const cleanedTelephone = inputTelephoneValue.replace(/\D/g, '');
+            const formattedBirthDate = inputBirthDateValue.toISOString().split('T')[0];
+
+            const hasChanges = (
+                inputNameValue !== originalUserData?.name ||
+                inputNicknameValue !== originalUserData?.nickname ||
+                formattedBirthDate !== originalUserData?.age ||
+                cleanedTelephone !== originalUserData?.phone_number ||
+                inputEmailValue !== originalUserData?.email ||
+                (inputCurrentPassword && inputNewPassword && inputNewPassword === inputConfirmPassword)
+            );
+
+            if (hasChanges) {
+                const response = await editMyUser({
+                    name: inputNameValue,
+                    nickname: inputNicknameValue,
+                    age: formattedBirthDate,
+                    phone_number: cleanedTelephone,
+                    email: inputEmailValue,
+                    currentPassword: inputCurrentPassword,
+                    newPassword: inputNewPassword,
+                    confirmPassword: inputConfirmPassword,
+                }, session);
+
+                if (response) {
+                    Toast.show({
+                        text1: 'Mensagem',
+                        text2: "sucesso"
+                    });
+                    setOriginalUserData({
+                        ...originalUserData,
+                        name: inputNameValue,
+                        nickname: inputNicknameValue,
+                        age: formattedBirthDate,
+                        phone_number: cleanedTelephone,
+                        email: inputEmailValue,
+                    });
+                }
+            }
+        }
+    }
+
+    const onChange = (selectedDate) => {
+        const currentDate = selectedDate || inputBirthDateValue;
+        setShowDatePicker(false);
+        setInputBirthDateValue(currentDate);
+    };
 
     return (
         <Modal
@@ -101,12 +156,23 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         />
                     </ContainerRow>
 
+                    {/* no celular aparece o calendario para escolher a data */}
                     <ContainerRow>
-                        <Label>Idade:</Label>
+                        <Label>Data de Nascimento:</Label>
                         <UserDataInput
-                            value={inputAgeValue}
-                            onChangeText={setInputAgeValue}
+                            value={inputBirthDateValue.toLocaleDateString("pt-BR")}
+                            onFocus={() => setShowDatePicker(true)}
+                            placeholder="Selecione a data"
+                            editable={true}
                         />
+                        {showDatePicker && (
+                            <DateTimePicker
+                                value={inputBirthDateValue}
+                                mode="date"
+                                display="default"
+                                onChange={onChange}
+                            />
+                        )}
                     </ContainerRow>
 
                     {userData?.phone_number && (
@@ -134,18 +200,20 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         />
                     </ContainerRow>
 
-                    <ButtonPassword onPress={renderChangePassword}>
-                        <Label>Alterar senha</Label>
-                    </ButtonPassword>
+                    <ContainerRow>
+                        <ButtonPassword onPress={renderChangePassword}>
+                            <Label style={{ textDecorationLine: 'underline' }}>Alterar senha</Label>
+                        </ButtonPassword>
+                    </ContainerRow>
 
-                    {changePassword && ( 
+                    {changePassword && (
                         <>
                             <ContainerRow>
                                 <Label>Senha Atual:</Label>
                                 <UserDataInput
                                     value={inputCurrentPassword}
                                     onChangeText={setInputCurrentPassword}
-                                    secureTextEntry={!showCurrentPassword} 
+                                    secureTextEntry={!showCurrentPassword}
                                 />
                                 <Ionicons
                                     name={showCurrentPassword ? "eye-off" : "eye"}
@@ -155,12 +223,13 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 />
                             </ContainerRow>
 
+                            {/* senha ainda não atualiza */}
                             <ContainerRow>
                                 <Label>Nova Senha:</Label>
                                 <UserDataInput
                                     value={inputNewPassword}
                                     onChangeText={setInputNewPassword}
-                                    secureTextEntry={!showNewPassword} 
+                                    secureTextEntry={!showNewPassword}
                                 />
                                 <Ionicons
                                     name={showNewPassword ? "eye-off" : "eye"}
@@ -175,7 +244,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 <UserDataInput
                                     value={inputConfirmPassword}
                                     onChangeText={setInputConfirmPassword}
-                                    secureTextEntry={!showConfirmPassword} 
+                                    secureTextEntry={!showConfirmPassword}
                                 />
                                 <Ionicons
                                     name={showConfirmPassword ? "eye-off" : "eye"}
@@ -187,7 +256,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         </>
                     )}
 
-                    <ButtonSave >
+                    <ButtonSave onPress={handleSubmit}>
                         <TextButton>Salvar</TextButton>
                     </ButtonSave>
                 </ModalView>

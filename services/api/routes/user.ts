@@ -44,7 +44,8 @@ export type PutUserProps = {
   email: string,
   nickname: string,
   age?: number,   
-  current_password?: string,
+  phone_number: string | null,
+  current_password?: string | null,
   new_password?: string | null,
   new_password_confirmation?: string | null
 }

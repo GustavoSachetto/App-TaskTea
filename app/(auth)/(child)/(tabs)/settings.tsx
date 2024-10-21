@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useOverlay } from '@/context/OverlayContext'; 
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
+import Security from '@/components/security';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
@@ -42,7 +43,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions>
+      <Functions onPress={() => handleModal('security')}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>

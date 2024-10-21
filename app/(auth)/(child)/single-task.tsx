@@ -79,14 +79,18 @@ export default function SingleTaskPage() {
       done: taskUser.done ? false : true,
       difficult_level: null
     }, session);
-
+  
     setCongratulationsVisible(true);
-    // router.back();
+  
+    setTimeout(() => {
+      router.back(); 
+    }, 1500);
   }
 
   return (
     <Container>
-      {modalVisible && congratulationsVisible && <Overlay />}
+      {modalVisible &&  <Overlay />}
+      {congratulationsVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
           <Voltar source={ImageVoltar} resizeMode="contain" />

@@ -106,7 +106,7 @@ export const ButtonPassword = styled.Pressable`
 
 export const UserDataInput = styled.TextInput`
  
-  font-size: ${getFontSize(6)}px;
+  font-size: ${getFontSize(8)}px;
   color: #737373;
   padding: ${w(2)}px 0;
   margin-right:  ${getFontSize(1)}px;

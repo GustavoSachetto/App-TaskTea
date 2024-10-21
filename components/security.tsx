@@ -1,17 +1,19 @@
 import { useSession } from "@/hooks/ctx";
 import { getMyUser, UserProps } from "@/services/api/routes/user";
-import { ButtonSave, CenteredView, CloseButton, ButtonPassword, ContainerRow, 
-         Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title, 
-         UserDataInput} from "@/styles/security";
+import {
+    ButtonSave, CenteredView, CloseButton, ButtonPassword, ContainerRow,
+    Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title,
+    UserDataInput
+} from "@/styles/security";
 import { useEffect, useState } from "react";
 import { Modal } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { h, w } from '@/utils/responsiveMesures';
 
 type SecurityProps = {
     visible?: boolean,
     onClose: () => void
 }
-
-
 
 export default function Security({ visible, onClose }: SecurityProps) {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -25,13 +27,25 @@ export default function Security({ visible, onClose }: SecurityProps) {
     const [inputConfirmPassword, setInputConfirmPassword] = useState("");
     const [changePassword, setChangePassword] = useState(false);
     const { session } = useSession();
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const toggleShowCurrentPassword = () => {
+        setShowCurrentPassword(!showCurrentPassword);
+    };
 
-  const renderChangePassword = () => {
-    setChangePassword(!changePassword);
-  }
-    
+    const toggleShowNewPassword = () => {
+        setShowNewPassword(!showNewPassword);
+    };
 
+    const toggleShowConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+
+    const renderChangePassword = () => {
+        setChangePassword(!changePassword);
+    }
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -103,7 +117,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 onChangeText={setInputTelephoneValue}
                             />
                         </ContainerRow>
-                )}
+                    )}
 
                     {userData?.cpf && (
                         <ContainerRow>
@@ -124,14 +138,20 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         <Label>Alterar senha</Label>
                     </ButtonPassword>
 
-                    {changePassword && ( // Condicional para exibir os campos de senha
+                    {changePassword && ( 
                         <>
                             <ContainerRow>
                                 <Label>Senha Atual:</Label>
                                 <UserDataInput
                                     value={inputCurrentPassword}
                                     onChangeText={setInputCurrentPassword}
-                                    secureTextEntry={true} // Oculta a senha
+                                    secureTextEntry={!showCurrentPassword} 
+                                />
+                                <Ionicons
+                                    name={showCurrentPassword ? "eye-off" : "eye"}
+                                    onPress={toggleShowCurrentPassword}
+                                    color="#808080"
+                                    size={w(5)}
                                 />
                             </ContainerRow>
 
@@ -140,7 +160,13 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 <UserDataInput
                                     value={inputNewPassword}
                                     onChangeText={setInputNewPassword}
-                                    secureTextEntry={true} // Oculta a senha
+                                    secureTextEntry={!showNewPassword} 
+                                />
+                                <Ionicons
+                                    name={showNewPassword ? "eye-off" : "eye"}
+                                    onPress={toggleShowNewPassword}
+                                    color="#808080"
+                                    size={w(5)}
                                 />
                             </ContainerRow>
 
@@ -149,7 +175,13 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 <UserDataInput
                                     value={inputConfirmPassword}
                                     onChangeText={setInputConfirmPassword}
-                                    secureTextEntry={true} // Oculta a senha
+                                    secureTextEntry={!showConfirmPassword} 
+                                />
+                                <Ionicons
+                                    name={showConfirmPassword ? "eye-off" : "eye"}
+                                    onPress={toggleShowConfirmPassword}
+                                    color="#808080"
+                                    size={w(5)}
                                 />
                             </ContainerRow>
                         </>

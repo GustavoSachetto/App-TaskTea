@@ -1,13 +1,17 @@
 import { useSession } from "@/hooks/ctx";
 import { getMyUser, UserProps } from "@/services/api/routes/user";
-import { ButtonSave, CenteredView, CloseButton, ContainerRow, Header, Label, Line, ModalImage, ModalView, TextButton, Title } from "@/styles/security";
+import { ButtonSave, CenteredView, CloseButton, ButtonPassword, ContainerRow, 
+         Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title, 
+         UserDataInput} from "@/styles/security";
 import { useEffect, useState } from "react";
-import { Modal, TextInput } from "react-native";
+import { Modal } from "react-native";
 
 type SecurityProps = {
     visible?: boolean,
     onClose: () => void
 }
+
+
 
 export default function Security({ visible, onClose }: SecurityProps) {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -16,8 +20,17 @@ export default function Security({ visible, onClose }: SecurityProps) {
     const [inputAgeValue, setInputAgeValue] = useState("");
     const [inputTelephoneValue, setInputTelephoneValue] = useState("");
     const [inputEmailValue, setInputEmailValue] = useState("");
-    const [inputPasswordValue, setInputPasswordValue] = useState("");
+    const [inputCurrentPassword, setInputCurrentPassword] = useState("");
+    const [inputNewPassword, setInputNewPassword] = useState("");
+    const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+    const [changePassword, setChangePassword] = useState(false);
     const { session } = useSession();
+
+
+  const renderChangePassword = () => {
+    setChangePassword(!changePassword);
+  }
+    
 
 
     useEffect(() => {
@@ -60,7 +73,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
                     <ContainerRow>
                         <Label>Nome:</Label>
-                        <TextInput
+                        <UserDataInput
                             value={inputNameValue}
                             onChangeText={setInputNameValue}
                         />
@@ -68,7 +81,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
                     <ContainerRow>
                         <Label>Apelido:</Label>
-                        <TextInput
+                        <UserDataInput
                             value={inputNicknameValue}
                             onChangeText={setInputNicknameValue}
                         />
@@ -76,7 +89,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
                     <ContainerRow>
                         <Label>Idade:</Label>
-                        <TextInput
+                        <UserDataInput
                             value={inputAgeValue}
                             onChangeText={setInputAgeValue}
                         />
@@ -85,7 +98,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                     {userData?.phone_number && (
                         <ContainerRow>
                             <Label>Telefone:</Label>
-                            <TextInput
+                            <UserDataInput
                                 value={inputTelephoneValue}
                                 onChangeText={setInputTelephoneValue}
                             />
@@ -95,26 +108,52 @@ export default function Security({ visible, onClose }: SecurityProps) {
                     {userData?.cpf && (
                         <ContainerRow>
                             <Label>CPF:</Label>
-                            <Title>{userData.cpf}</Title>
+                            <Text>{userData.cpf}</Text>
                         </ContainerRow>
                     )}
 
                     <ContainerRow>
-                        <Label>E-mail:</Label>
-                        <TextInput
+                        <Label>Email:</Label>
+                        <UserDataInput
                             value={inputEmailValue}
                             onChangeText={setInputEmailValue}
                         />
                     </ContainerRow>
 
-                    <ContainerRow>
-                        <Label>Senha:</Label>
-                        <TextInput
-                            value={inputPasswordValue}
-                            onChangeText={setInputPasswordValue}
-                            secureTextEntry={true}
-                        />
-                    </ContainerRow>
+                    <ButtonPassword onPress={renderChangePassword}>
+                        <Label>Alterar senha</Label>
+                    </ButtonPassword>
+
+                    {changePassword && ( // Condicional para exibir os campos de senha
+                        <>
+                            <ContainerRow>
+                                <Label>Senha Atual:</Label>
+                                <UserDataInput
+                                    value={inputCurrentPassword}
+                                    onChangeText={setInputCurrentPassword}
+                                    secureTextEntry={true} // Oculta a senha
+                                />
+                            </ContainerRow>
+
+                            <ContainerRow>
+                                <Label>Nova Senha:</Label>
+                                <UserDataInput
+                                    value={inputNewPassword}
+                                    onChangeText={setInputNewPassword}
+                                    secureTextEntry={true} // Oculta a senha
+                                />
+                            </ContainerRow>
+
+                            <ContainerRow>
+                                <Label>Confirmar Nova Senha:</Label>
+                                <UserDataInput
+                                    value={inputConfirmPassword}
+                                    onChangeText={setInputConfirmPassword}
+                                    secureTextEntry={true} // Oculta a senha
+                                />
+                            </ContainerRow>
+                        </>
+                    )}
 
                     <ButtonSave >
                         <TextButton>Salvar</TextButton>

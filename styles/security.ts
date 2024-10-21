@@ -34,7 +34,6 @@ export const CenteredView = styled.View`
 export const ContainerRow = styled.View`
   flex: 1;
   padding: 15px;
-  height: 85%;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   align-items: center;
@@ -43,14 +42,13 @@ export const ContainerRow = styled.View`
 `;
 
 export const ModalView = styled.ScrollView`
-  width:  ${w(70)}px;
+  width:  ${w(80)}px;
   height:  auto;
   position: fixed;
   background-color: #fff;
   border-width: 3px;
   border-color: transparent;
   border-radius: ${getFontSize(9)}px;
-  margin-bottom: ${w(4.5)}px;
 `;
 
 export const CloseButton = styled.Pressable`
@@ -66,11 +64,13 @@ export const ModalImage = styled.Image`
 `;
 
 export const Text = styled.Text`
-  color: black;
-  text-align: justify;
-  font-size: ${getFontSize(5)}px;
-  font-family: ${Fonts.RalewayLight};
-  padding:  0 ${w(8)}px ${h(2)}px ${w(8)}px;
+  font-weight: 500;
+  font-size: ${getFontSize(8)}px;
+  color: #737373;
+  padding: ${w(4)}px;
+  margin-right:  ${getFontSize(1)}px;
+  text-align: center;
+  font-family: ${Fonts.RalewayRegular};
 `;
 
 export const Title = styled.Text`
@@ -87,18 +87,32 @@ export const Label = styled.Text`
   font-size: ${getFontSize(8)}px;
   color: #000;
   margin-right:  ${getFontSize(1)}px;
-  text-align: center;
+  text-align: left;
   font-family: ${Fonts.RalewayBold};
 `;
 
+export const ButtonPassword = styled.Pressable`
+  font-size: ${getFontSize(8)}px;
+  padding: 15px;
+  color: #000;
+  text-decoration: underline;
+  height: 85%;
+  display: flex;
+  font-family: ${Fonts.RalewayBold};
+  align-items: center;
+  flex-direction: row;
+  margin-top: ${getFontSize(10)}px;
+`;
+
 export const UserDataInput = styled.TextInput`
-  font-weight: 500;
-  font-size: ${getFontSize(11)}px;
+ 
+  font-size: ${getFontSize(6)}px;
   color: #737373;
-  padding: ${w(4)}px;
+  padding: ${w(2)}px 0;
   margin-right:  ${getFontSize(1)}px;
-  text-align: center;
+  text-align: left;
   font-family: ${Fonts.RalewayRegular};
+  width: 100%;
 `;
 
 export const ButtonSave = styled.Pressable`

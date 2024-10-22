@@ -20,6 +20,11 @@ export type TaskPageProps = {
   meta: object
 }
 
+export type ImageTaskProps = {
+  message: string,
+  image_path: string
+}
+
 export type PostTaskProps = {
   title: string,
   description: string,
@@ -73,6 +78,18 @@ export const createTask = async (data: PostTaskProps, token: string) => {
 
   return response.data;
 } 
+
+export const saveImageTask = async (id: number, base64Image: string, token?: string | null) => {
+  const response = await api.post<ImageTaskProps>(
+    `/tasks/image/${id}`, { image: base64Image }, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return response.data;
+}
 
 export const editTaskById = async (id: number, data: PostTaskProps, token: string) => {
   const response = await api.put<{ data: TaskProps }>(

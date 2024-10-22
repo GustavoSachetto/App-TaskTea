@@ -13,11 +13,12 @@ import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
-import { createTask } from '@/services/api/routes/tasks';
+import { createTask, saveImageTask } from '@/services/api/routes/tasks';
 import { createTaskUser } from '@/services/api/routes/taskuser';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
+import * as ImagePicker from 'expo-image-picker';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
@@ -30,6 +31,7 @@ export default function CreateTask() {
   const [idTask, setIdTask] = useState<number | undefined>(undefined);
   const [userReceiver, setUserReceiver] = useState('');
   const [difficulty, setDifficulty] = useState('easy');
+  const [image, setImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
   const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[]>([]);
   const [categories, setCategories] = useState<CategoryProps[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -52,7 +54,7 @@ export default function CreateTask() {
         console.log('Erro', 'Não foi possível carregar as categorias.');
       }
     }
-  };
+  }
 
   const fetchMyRelationship = async () =>{
     if (session) {
@@ -63,6 +65,17 @@ export default function CreateTask() {
         console.log('Erro', 'Não foi pegar os seus relacionamentos');
       }
     }
+  }
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) setImage(result.assets[0]);
   }
 
   const handleSubmit = async () => {
@@ -88,6 +101,8 @@ export default function CreateTask() {
       const newTaskId = response.data.id;
       setIdTask(newTaskId);
       setUserReceiver(selectedRelationship);
+
+      if (image != null) saveImageTask(newTaskId, image.uri, session);
     
       const taskUserData = {
         tasks_id: newTaskId,             
@@ -128,10 +143,10 @@ export default function CreateTask() {
         </Pressable>
         <GradientBorderBoxTasks>
           <Imagem>
-            <ButtonEdit>
+            <ButtonEdit onPress={pickImage}>
               <EditImage source={ImageEditar} resizeMode="contain" />
             </ButtonEdit>
-            <TarefaImage source={ImageTarefa} />
+            <TarefaImage source={image?.uri ?? ImageTarefa} />
           </Imagem>
           <ContainerTasks >
 

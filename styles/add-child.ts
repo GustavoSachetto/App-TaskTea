@@ -41,10 +41,10 @@ export const ModalText = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-    margin-top: 30px;
-    border:solid #0060ff 2px;
-    position: absolute;
-    width:80%;
-    border-radius: ${w(5)}px;
-    padding: ${w(2)}px;
+  margin-top: 30px;
+  border:solid #0060ff 2px;
+  position: absolute;
+  width:80%;
+  border-radius: ${w(5)}px;
+  padding: ${w(2)}px;
 `;

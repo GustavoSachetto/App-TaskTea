@@ -79,9 +79,9 @@ export const createTask = async (data: PostTaskProps, token: string) => {
   return response.data;
 } 
 
-export const saveImageTask = async (id: number, imageFile: File, token?: string | null) => {
-  const response = await api.postForm<ImageTaskProps>(
-    `/tasks/image/${id}`, { image: imageFile }, {
+export const saveImageTask = async (id: number, base64Image: string, token?: string | null) => {
+  const response = await api.post<ImageTaskProps>(
+    `/tasks/image/${id}`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
       "Content-Type": "multipart/form-data"

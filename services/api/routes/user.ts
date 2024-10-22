@@ -88,9 +88,9 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
   return response.data;
 } 
 
-export const saveImageUser = async (imageFile: File, token?: string | null) => {
-  const response = await api.postForm<ImageUserProps>(
-    `/users/image`, { image: imageFile }, {
+export const saveImageTask = async (id: number, base64Image: string, token?: string | null) => {
+  const response = await api.post<ImageUserProps>(
+    `/tasks/image/${id}`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
       "Content-Type": "multipart/form-data"
@@ -100,9 +100,21 @@ export const saveImageUser = async (imageFile: File, token?: string | null) => {
   return response.data;
 }
 
-export const saveBannerUser = async (imageFile: File, token?: string | null) => {
-  const response = await api.postForm<ImageUserProps>(
-    `/users/banner`, { image: imageFile }, {
+export const saveImageUser = async (base64Image: string, token?: string | null) => {
+  const response = await api.post<ImageUserProps>(
+    `/users/image`, { image: base64Image }, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return response.data;
+}
+
+export const saveBannerUser = async (base64Image: string, token?: string | null) => {
+  const response = await api.post<ImageUserProps>(
+    `/users/banner`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
       "Content-Type": "multipart/form-data"

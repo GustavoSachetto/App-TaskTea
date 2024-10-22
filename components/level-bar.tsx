@@ -35,7 +35,7 @@ export default function LevelBar({ totalPoints }: LevelBarProps) {
       <Progress.Bar
         progress={level.progress}
         width={wp(60)}
-        height={wp(7)}
+        height={wp(9)}
         borderRadius={50}
         borderColor='#d9d9d9'
         borderWidth={2}

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Container, Logo, Title, SubTitle, TextButton } from "@/styles/index";
-import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
+import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, InputPassword, PasswordContainer, InputWrapper } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
 import Toast from 'react-native-toast-message';
+import { Ionicons } from '@expo/vector-icons';
+import { h, w } from '@/utils/responsiveMesures';
 
 const ImageLogo = require('@/assets/images/logo.png');
 const BlueColor  = Colors.colors.blue;
@@ -15,6 +17,11 @@ export default function SignIn() {
   const { signIn } = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+      const toggleShowPassword = () => {
+          setShowPassword(!showPassword);
+      };
 
   const handleLogin = async () => {
     const debug = await signIn(email, password);
@@ -43,14 +50,23 @@ export default function SignIn() {
             onChangeText={(text: string) => setEmail(text)}
             placeholder='E-mail:' 
           />
-          <Input 
-            placeholderTextColor={GrayColor}
-            customColor={BlueColor}
-            placeholder='Senha:' 
-            value={password}
-            onChangeText={(text: string) => setPassword(text)}
-            secureTextEntry 
-          />
+           <PasswordContainer>
+      <InputWrapper customColor={BlueColor}>
+        <InputPassword
+          placeholderTextColor={GrayColor}
+          placeholder='Senha:'
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={!showPassword}
+        />
+        <Ionicons
+          name={showPassword ? "eye-off" : "eye"}
+          onPress={toggleShowPassword}
+          color="#808080"
+          size={w(5)} 
+        />
+      </InputWrapper>
+    </PasswordContainer>
           <ContainerButtonsSign>
             <Link href="/(public)/">
               <LinkedSign customColor={GrayColor}>

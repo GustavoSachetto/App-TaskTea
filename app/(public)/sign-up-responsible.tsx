@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContainerScrollView, Logo, Title, SubTitle, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign } from "@/styles/sign";
+import { ContainerScrollView, Logo, Title, SubTitle, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, PasswordContainer, InputWrapper, InputPassword } from "@/styles/sign";
 import Colors from '@/constants/Colors';
 import { createUserResponsible } from '@/services/api/routes/user';
 import { Text, View, ActivityIndicator } from 'react-native';
@@ -9,6 +9,8 @@ import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 import Toast from 'react-native-toast-message';
 import ServiceTerms from '@/components/service-terms';
 import { Overlay } from '@/styles';
+import { Ionicons } from '@expo/vector-icons';
+import { h, w } from '@/utils/responsiveMesures';
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
@@ -28,6 +30,11 @@ export default function SignUpResponsible() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [age, setAge] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+      setShowPassword(!showPassword);
+  };
 
   const handleSignUp = async () => {
     const userData = {
@@ -119,14 +126,24 @@ export default function SignUpResponsible() {
                   setAge(numericValue.slice(0, 2))
                 }}
               />
-              <Input
+                 <PasswordContainer>
+                 <InputWrapper customColor={GreenColor}>
+              <InputPassword
                 placeholder='Senha'
                 placeholderTextColor={GrayColor}
                 customColor={GreenColor}
                 value={password}
                 onChangeText={(text: string) => setPassword(text)}
-                secureTextEntry
+                secureTextEntry={!showPassword}
               />
+                 <Ionicons
+          name={showPassword ? "eye-off" : "eye"}
+          onPress={toggleShowPassword}
+          color="#808080"
+          size={w(5)} 
+        />
+          </InputWrapper>
+          </PasswordContainer>
               <ContainerRow>
                 <BouncyCheckbox
                   ref={bouncyCheckboxRef}

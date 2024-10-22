@@ -3,7 +3,10 @@ import { useState } from 'react';
 import {
   Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign,
   ContainerScrollView, Logo, Title, SubTitle, TextButton, TextReadAndAgree,
-  LinkPopUp, ContainerRow
+  LinkPopUp, ContainerRow,
+  PasswordContainer,
+  InputWrapper,
+  InputPassword
 } from "@/styles/sign";
 import { Overlay } from "@/styles/index";
 import Colors from '@/constants/Colors';
@@ -13,6 +16,8 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Toast from 'react-native-toast-message';
 import { createUserChild } from '@/services/api/routes/user';
 import ServiceTerms from '@/components/service-terms';
+import { Ionicons } from '@expo/vector-icons';
+import { h, w } from '@/utils/responsiveMesures';
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
@@ -29,6 +34,11 @@ export default function SignUpChild() {
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+      setShowPassword(!showPassword);
+  };
 
   const handleSignUp = async () => {
     const userData = {
@@ -95,14 +105,24 @@ export default function SignUpChild() {
                 value={email}
                 onChangeText={(text: string) => setEmail(text)}
               />
-              <Input
+              <PasswordContainer>
+              <InputWrapper customColor={GreenColor}>
+              <InputPassword
                 placeholder='Senha:'
                 placeholderTextColor={GrayColor}
                 customColor={GreenColor}
                 value={password}
                 onChangeText={(text: string) => setPassword(text)}
-                secureTextEntry
+                secureTextEntry={!showPassword}
               />
+               <Ionicons
+          name={showPassword ? "eye-off" : "eye"}
+          onPress={toggleShowPassword}
+          color="#808080"
+          size={w(5)} 
+        />
+              </InputWrapper>
+              </PasswordContainer>
               <ContainerRow>
                 <BouncyCheckbox
                   ref={bouncyCheckboxRef}

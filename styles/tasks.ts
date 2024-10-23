@@ -9,6 +9,9 @@ import {
 } from "react-native-responsive-screen";
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 const { dark } = Colors;
@@ -19,6 +22,7 @@ export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
+  margin-top: ${statusBar}px;
 `;
 
 export const ContainerTasksResponsible = styled.View`

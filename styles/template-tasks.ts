@@ -9,6 +9,9 @@ import {
 } from "react-native-responsive-screen";
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 const { dark } = Colors;
@@ -32,6 +35,7 @@ export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
+  margin-top: ${statusBar}px;
 `;
 
 export const ContainerTasksResponsible = styled.View`
@@ -138,8 +142,7 @@ export const GradientBorderBoxTasksResponsible = styled<any>(LinearGradient).att
 export const ScrollViewContainerTasks = styled.ScrollView`
   flex: 1;
   z-index: 98;
-  border-radius: ${w(2.6)}px;
-`;
+  border-radius: ${w(2.6)}px;`;
 
 export const BoxTasks = styled.View`
   flex: 1;

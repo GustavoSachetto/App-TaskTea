@@ -3,6 +3,9 @@ import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { colors } = Colors;
 
@@ -13,6 +16,7 @@ export const Container = styled.View`
   display: flex;
   font-family: ${Fonts.RalewayBold};
   background-color:${colors.white};
+  margin-top: ${statusBar}px;
 `;
 export const Header = styled.View`
   flex-direction: row;

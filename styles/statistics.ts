@@ -3,6 +3,9 @@ import Colors from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { colors } = Colors;
 
@@ -11,6 +14,7 @@ export const TitlePage = styled.Text`
   font-weight: bold;
   font-size: ${getFontSize(17)}px;
   font-family: ${Fonts.RalewayBold};
+  margin-top: ${statusBar}px;
 `;
 
 export const TitleStatistics = styled.Text`

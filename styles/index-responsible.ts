@@ -4,6 +4,9 @@ import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 
@@ -34,6 +37,7 @@ export const Box = styled.View`
 export const ScrollViewContainer = styled.ScrollView`
   background-color: #fff;
   flex: 1;
+  margin-top: ${statusBar}px;
 `;
 
 export const Title = styled.Text<any>`

@@ -5,6 +5,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 export const Container = styled.View`
   flex: 1;
@@ -12,6 +15,7 @@ export const Container = styled.View`
   background-color: #fff;
   align-items: center;
   padding: ${w(10)}px ${w(5)}px ${w(10)}px ${w(5)}px;
+  margin-top: ${statusBar}px;
 `;
 
 export const ContainerRowTask = styled.View`

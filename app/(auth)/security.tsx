@@ -1,9 +1,10 @@
 import { useSession } from "@/hooks/ctx";
 import { editMyUser, getMyUser, UserProps, PutUserProps } from "@/services/api/routes/user";
 import {
-    ButtonSave, CenteredView, CloseButton, ButtonPassword, ContainerRow,
+    ButtonSave, CenteredView, CloseButton, ButtonPassword, Container,
     Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title,
-    UserDataInput
+    UserDataInput, ContainerRow,
+    InputWrapper
 } from "@/styles/security";
 import { useEffect, useState } from "react";
 import { Modal } from "react-native";
@@ -84,7 +85,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
         if (session) {
             const cleanedTelephone = inputTelephoneValue.replace(/\D/g, '');
             const formattedBirthDate = inputBirthDateValue.toISOString().split('T')[0];
-    
+
             const hasChanges = (
                 inputNameValue !== originalUserData?.name ||
                 inputNicknameValue !== originalUserData?.nickname ||
@@ -93,7 +94,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                 inputEmailValue !== originalUserData?.email ||
                 (inputCurrentPassword && inputNewPassword && inputNewPassword === inputConfirmPassword)
             );
-    
+
             if (hasChanges) {
                 let data: PutUserProps = {
                     name: inputNameValue,
@@ -102,15 +103,15 @@ export default function Security({ visible, onClose }: SecurityProps) {
                     phone_number: cleanedTelephone,
                     email: inputEmailValue,
                 };
-    
+
                 if (inputCurrentPassword) {
                     data.current_password = inputCurrentPassword;
                     data.new_password = inputNewPassword;
                     data.new_password_confirmation = inputConfirmPassword;
                 }
-    
+
                 const response = await editMyUser(data, session);
-    
+
                 if (response) {
                     setOriginalUserData({
                         ...originalUserData,
@@ -124,7 +125,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
             }
         }
     };
-    
+
 
     const onChange = (event: DateTimePickerEvent, date?: Date) => {
         if (date) {
@@ -135,33 +136,33 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
     return (
         <>
+            <Header>
+                <Title>Segurança e informação</Title>
+                <CloseButton onPress={() => router.back()}>
+                    <ModalImage source={require('@/assets/icons/x.png')} />
+                </CloseButton>
+            </Header>
             <CenteredView>
-                <ModalView>
-                    <Header>
-                        <Title>Segurança e informação</Title>
-                        <CloseButton onPress={() => router.back()}>
-                            <ModalImage source={require('@/assets/icons/x.png')} />
-                        </CloseButton>
-                    </Header>
-                    <Line />
 
-                    <ContainerRow>
+                <ModalView>
+
+                    <Container>
                         <Label>Nome:</Label>
                         <UserDataInput
                             value={inputNameValue}
                             onChangeText={setInputNameValue}
                         />
-                    </ContainerRow>
+                    </Container>
 
-                    <ContainerRow>
+                    <Container>
                         <Label>Apelido:</Label>
                         <UserDataInput
                             value={inputNicknameValue}
                             onChangeText={setInputNicknameValue}
                         />
-                    </ContainerRow>
+                    </Container>
 
-                    <ContainerRow>
+                    <Container>
                         <Label>Data de Nascimento:</Label>
                         <UserDataInput
                             value={inputBirthDateValue.toLocaleDateString("pt-BR")}
@@ -177,17 +178,17 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                 onChange={onChange}
                             />
                         )}
-                    </ContainerRow>
+                    </Container>
 
 
                     {userData?.phone_number && (
-                        <ContainerRow>
+                        <Container>
                             <Label>Telefone:</Label>
                             <UserDataInput
                                 value={inputTelephoneValue}
                                 onChangeText={setInputTelephoneValue}
                             />
-                        </ContainerRow>
+                        </Container>
                     )}
 
                     {userData?.cpf && (
@@ -197,66 +198,75 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         </ContainerRow>
                     )}
 
-                    <ContainerRow>
+                    <Container>
                         <Label>Email:</Label>
                         <UserDataInput
                             value={inputEmailValue}
                             onChangeText={setInputEmailValue}
                         />
-                    </ContainerRow>
+                    </Container>
 
-                    <ContainerRow>
+                    <Container>
                         <ButtonPassword onPress={renderChangePassword}>
                             <Label style={{ textDecorationLine: 'underline' }}>Alterar senha</Label>
                         </ButtonPassword>
-                    </ContainerRow>
+                    </Container>
 
                     {changePassword && (
                         <>
-                            <ContainerRow>
+                            <Container>
                                 <Label>Senha Atual:</Label>
-                                <UserDataInput
-                                    value={inputCurrentPassword}
-                                    onChangeText={setInputCurrentPassword}
-                                    secureTextEntry={!showCurrentPassword}
-                                />
-                                <Ionicons
-                                    name={showCurrentPassword ? "eye-off" : "eye"}
-                                    onPress={toggleShowCurrentPassword}
-                                    color="#808080"
-                                    size={w(5)}
-                                />
-                            </ContainerRow>
+                                <InputWrapper>
+                                    <UserDataInput
+                                        value={inputCurrentPassword}
+                                        onChangeText={setInputCurrentPassword}
+                                        secureTextEntry={!showCurrentPassword}
+                                        style={{ borderStyle: "none" }}
+                                    />
+                                    <Ionicons
+                                        name={showCurrentPassword ? "eye-off" : "eye"}
+                                        onPress={toggleShowCurrentPassword}
+                                        color="#808080"
+                                        size={w(5)}
+                                    />
+                                </InputWrapper>
+                            </Container>
 
-                            <ContainerRow>
+                            <Container>
                                 <Label>Nova Senha:</Label>
-                                <UserDataInput
-                                    value={inputNewPassword}
-                                    onChangeText={setInputNewPassword}
-                                    secureTextEntry={!showNewPassword}
-                                />
-                                <Ionicons
-                                    name={showNewPassword ? "eye-off" : "eye"}
-                                    onPress={toggleShowNewPassword}
-                                    color="#808080"
-                                    size={w(5)}
-                                />
-                            </ContainerRow>
+                                <InputWrapper>
+                                    <UserDataInput
+                                        value={inputNewPassword}
+                                        onChangeText={setInputNewPassword}
+                                        secureTextEntry={!showNewPassword}
+                                        style={{ borderStyle: "none" }}
+                                    />
+                                    <Ionicons
+                                        name={showNewPassword ? "eye-off" : "eye"}
+                                        onPress={toggleShowNewPassword}
+                                        color="#808080"
+                                        size={w(5)}
+                                    />
+                                </InputWrapper>
+                            </Container>
 
-                            <ContainerRow>
+                            <Container>
                                 <Label>Confirmar Nova Senha:</Label>
-                                <UserDataInput
-                                    value={inputConfirmPassword}
-                                    onChangeText={setInputConfirmPassword}
-                                    secureTextEntry={!showConfirmPassword}
-                                />
-                                <Ionicons
-                                    name={showConfirmPassword ? "eye-off" : "eye"}
-                                    onPress={toggleShowConfirmPassword}
-                                    color="#808080"
-                                    size={w(5)}
-                                />
-                            </ContainerRow>
+                                <InputWrapper>
+                                    <UserDataInput
+                                        value={inputConfirmPassword}
+                                        onChangeText={setInputConfirmPassword}
+                                        secureTextEntry={!showConfirmPassword}
+                                        style={{ borderStyle: "none" }}
+                                    />
+                                    <Ionicons
+                                        name={showConfirmPassword ? "eye-off" : "eye"}
+                                        onPress={toggleShowConfirmPassword}
+                                        color="#808080"
+                                        size={w(5)}
+                                    />
+                                </InputWrapper>
+                            </Container>
                         </>
                     )}
 

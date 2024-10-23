@@ -11,7 +11,7 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${w(4)}px;
+  padding: ${w(7)}px;
 `;
 
 export const Line = styled.View`
@@ -22,12 +22,27 @@ export const Line = styled.View`
   margin: 0 auto;
 `;
 
-export const CenteredView = styled.View`
+export const CenteredView = styled.ScrollView`
   width: 100%;
   height: 100%;
-  padding: ${h(9)}px ${w(5)}px ${h(9)}px ${w(5)}px;
-  justify-content: center;
+  padding: 0 ${w(5)}px ${h(9)}px ${w(5)}px;
+  
+`;
+
+export const InputWrapper = styled.View`
+  flex-direction: row;
   align-items: center;
+  border: solid black 1px;
+  border-radius: ${w(3)}px;
+  padding-right: ${w(2)}px;
+`;
+
+export const InputPassword = styled.TextInput`
+  flex: 1;
+  font-size: ${getFontSize(7)}px;
+  font-family: ${Fonts.RalewayRegular};
+  padding: ${w(2)}px;
+  text-transform: none;
 `;
 
 export const ContainerRow = styled.View`
@@ -35,15 +50,26 @@ export const ContainerRow = styled.View`
   padding: 0 15px ;
   display: flex;
   font-family: ${Fonts.RalewayBold};
-  align-items: center;
+  margin-top: ${w(4.5)}px;
   flex-direction: row;
+`;
+
+
+export const Container = styled.View`
+  width:  ${w(80)}px;
+  padding: 0 15px ;
+  display: flex;
+  font-family: ${Fonts.RalewayBold};
+  justify-content: center;
   margin-top: ${w(4.5)}px;
 `;
 
-export const ModalView = styled.ScrollView`
-  width:  ${w(80)}px;
-  position: fixed;
+export const ModalView = styled.View`
+  width:  ${w(90)}px;
   background-color: #fff;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
   border-width: 3px;
   border-color: transparent;
   border-radius: ${getFontSize(9)}px;
@@ -52,7 +78,7 @@ export const ModalView = styled.ScrollView`
 export const CloseButton = styled.Pressable`
   position: absolute;
   right: ${w(2)}px;
-  top:  ${w(2)}px;
+  top:  ${w(0)}px;
   z-index: 99;
 `;
 
@@ -65,15 +91,14 @@ export const Text = styled.Text`
   font-weight: 500;
   font-size: ${getFontSize(8)}px;
   color: #737373;
-  padding: ${w(4)}px;
-  margin-right:  ${getFontSize(1)}px;
+  margin-left:  ${getFontSize(4)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
 `;
 
 export const Title = styled.Text`
   font-weight: 500;
-  font-size: ${getFontSize(11)}px;
+  font-size: ${getFontSize(13)}px;
   color: #737373;
   margin-right:  ${getFontSize(1)}px;
   text-align: center;
@@ -91,7 +116,6 @@ export const Label = styled.Text`
 
 export const ButtonPassword = styled.Pressable`
   font-size: ${getFontSize(8)}px;
-  padding: 15px;
   color: #000;
   text-decoration: underline;
   height: 85%;
@@ -99,7 +123,7 @@ export const ButtonPassword = styled.Pressable`
   font-family: ${Fonts.RalewayBold};
   align-items: center;
   flex-direction: row;
-  margin-top: ${getFontSize(10)}px;
+  margin-top: ${getFontSize(5)}px;
 `;
 
 export const UserDataInput = styled.TextInput`

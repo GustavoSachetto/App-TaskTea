@@ -18,6 +18,19 @@ const { dark } = Colors;
 const { button } = Colors;
 const { colors } = Colors;
 
+export const LinkedSign = styled.Pressable`
+  margin-left: 0;
+  height: ${w(4)}px;
+  width: ${w(4)}px;
+`;
+
+export const Voltar = styled.Image`
+  width: ${w(9)}px ;
+  height: ${w(9)}px ;
+  z-index: 99;
+
+`;
+
 export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;
@@ -40,32 +53,25 @@ export const QuebraCabeca = styled.Image`
   transform: rotate(120deg);
 `;
 
-export const AddTask = styled.Image`
-  width: ${getFontSize(21)}px;
-  height: ${getFontSize(21)}px;
-  margin: 0 auto;
-`;
-
 export const ContainerRowTasks = styled.View`
   padding: ${w(5)}px;
-  justify-content: center;
-  align-items: center;
-  text-align:center;
+  width: 100%;
   flex-direction: row;
 `;
 
 export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
-  font-size: ${getFontSize(17)}px;
-  margin-top: -${w(3)}px;
+  font-size: ${getFontSize(14)}px;
   font-weight: 600;
+  text-align: center;
+  margin:0 auto;
   font-family: ${Fonts.RalewayBold};
 `;
 
 export const TextAddTask = styled.Text<any>`
   color: #737373;
   text-align: center;
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(6)}px;
   font-family: ${Fonts.RalewayRegular};
 `;
 
@@ -85,7 +91,7 @@ export const ContainerTasksDoing = styled.View<any>`
 
 export const TextDoing = styled.Text`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(12)}px;
+  font-size: ${getFontSize(11)}px;
   font-weight: 600;
   text-align: center;
   font-family: ${Fonts.RalewayBold};
@@ -136,8 +142,7 @@ export const GradientBorderBoxTasksResponsible = styled<any>(LinearGradient).att
 export const ScrollViewContainerTasks = styled.ScrollView`
   flex: 1;
   z-index: 98;
-  border-radius: ${w(2.6)}px;
-`;
+  border-radius: ${w(2.6)}px;`;
 
 export const BoxTasks = styled.View`
   flex: 1;
@@ -169,7 +174,7 @@ export const Title = styled.Text.attrs(() => ({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(10)}px;
+  font-size: ${getFontSize(8.5)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
@@ -180,7 +185,7 @@ export const Description = styled.Text.attrs(()=>({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(5.8)}px;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
   max-width: 100%; 

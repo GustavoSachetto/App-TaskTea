@@ -3,21 +3,25 @@ import Colors from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { colors } = Colors;
 
 export const TitlePage = styled.Text`
   color: ${colors.green};
   font-weight: bold;
-  font-size: ${getFontSize(15)}px;
+  font-size: ${getFontSize(17)}px;
   font-family: ${Fonts.RalewayBold};
+  margin-top: ${statusBar}px;
 `;
 
 export const TitleStatistics = styled.Text`
   color: ${colors.gray};
   font-weight: bold;
   text-align: center;
-  font-size: ${getFontSize(12)}px;
+  font-size: ${getFontSize(13)}px;
   font-family: ${Fonts.RalewayBold};
   margin: 0 auto ;
 `;
@@ -52,7 +56,7 @@ export const LabelChart = styled.Text`
   color: ${colors.gray};
   font-weight: bold;
   text-align: center;
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(7)}px;
   font-family: ${Fonts.RalewayRegular};
   margin: ${w(3)}px 0 ${w(3)}px;
 `;

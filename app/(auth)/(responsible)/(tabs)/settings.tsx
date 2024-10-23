@@ -6,12 +6,14 @@ import { useOverlay } from '@/context/OverlayContext';
 import { useState, useEffect } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
+import { router, useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
 export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
+  const router = useRouter();
 
   const { showOverlay, hideOverlay } = useOverlay();
 
@@ -39,13 +41,14 @@ export default function SettingsPage() {
           <Text>Termos de serviço</Text>
         </Functions>
 
-        <Functions>
+        <Functions onPress={() => router.push('/(auth)/security')}>
           <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
           <Text>Segurança e informação</Text>
         </Functions>
 
-        <Functions>
-          <Image source={ImageTemplates} style={{ width: wp('6%'), height: wp('6%') }} />
+        <Functions onPress={() => router.push('/(auth)/(responsible)/template-tasks')}>
+          <Image source={ImageTemplates} style={{ width: wp('6%'), height: wp('6%') }}
+           />
           <Text>Templates de desafios</Text>
         </Functions>
 

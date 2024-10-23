@@ -5,15 +5,18 @@ import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { LinearGradient } from "expo-linear-gradient";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { StatusBar } from 'react-native';
 
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 
 export const Container = styled.ScrollView`
   flex: 1;
   font-family: ${Fonts.RalewayBold};
-  padding-top: ${h(4)}px;
+  padding-top: ${h(2)}px;
   flex-direction: column;
+  margin-top: ${statusBar}px;
 `;
 
 export const Label = styled.Text<any>`

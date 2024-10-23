@@ -7,7 +7,7 @@ export type UserProps = {
   image: string | null,
   banner: string | null,
   nickname: string,
-  age: number,
+  birthdate: string,
   cpf?: string,
   role?: Array<string>,
   phone_number?: string,
@@ -20,7 +20,7 @@ export type UserRelationshipProps = {
   name: string,
   email: string,
   nickname: string,
-  age: number,
+  birthdate: string,
   image: string | null,
   created_at: string,
   updated_at: string | null
@@ -36,7 +36,7 @@ export type PostUserChildProps = {
   email: string,
   nickname: string,
   password: string,
-  age: number
+  birthdate: string
 }
 
 export type PostUserResponsibleProps = PostUserChildProps & {
@@ -48,8 +48,9 @@ export type PutUserProps = {
   name: string,
   email: string,
   nickname: string,
-  age?: number,   
-  current_password?: string,
+  birthdate?: string,   
+  phone_number: string | null,
+  current_password?: string | null,
   new_password?: string | null,
   new_password_confirmation?: string | null
 }
@@ -129,7 +130,7 @@ export const editMyUser = async (data: PutUserProps, token: string) => {
     `/users`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
-
+  console.log(response.data);
   return response.data;
 } 
 

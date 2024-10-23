@@ -5,7 +5,7 @@ import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import CodigoUser from "@/components/code-user";
 import { useEffect, useState } from 'react';
-import { useOverlay } from '@/context/OverlayContext'; 
+import { useOverlay } from '@/context/OverlayContext';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
 
@@ -18,6 +18,7 @@ export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
   const [modalCode, setModalCode] = useState(false);
+  const [modalSecurity, setModalSecurity] = useState(false);
 
   useEffect(() => {
     if (modalServiceTerms || modalLogoutMessage || modalCode) {
@@ -25,7 +26,7 @@ export default function SettingsPage() {
     } else {
       hideOverlay();
     }
-  }, [modalServiceTerms, modalLogoutMessage,modalCode, showOverlay, hideOverlay]);
+  }, [modalServiceTerms, modalLogoutMessage, modalCode, showOverlay, hideOverlay]);
 
   return (
     <Container>
@@ -42,7 +43,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions>
+      <Functions onPress={() => router.push('/(auth)/security')}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>
@@ -66,13 +67,13 @@ export default function SettingsPage() {
         visible={modalCode} 
         onClose={() => setModalCode(false)} 
       />
-      <ServiceTerms 
-        visible={modalServiceTerms} 
-        onClose={() => setModalServiceTerms(false)} 
+      <ServiceTerms
+        visible={modalServiceTerms}
+        onClose={() => setModalServiceTerms(false)}
       />
-      <LogoutMessage 
-        visible={modalLogoutMessage} 
-        onClose={() => setModalLogoutMessage(false)} 
+      <LogoutMessage
+        visible={modalLogoutMessage}
+        onClose={() => setModalLogoutMessage(false)}
       />
     </Container>
   );

@@ -1,8 +1,9 @@
 export function CurrentDate() {
-  const date = new Date().getDate();
-  const month = new Date().getMonth() + 1;
-  const year = new Date().getFullYear();
-  
-  return `${date}/${month}/${year}`;
+  const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  const date = new Date();
+  const dayName = days[date.getDay()];
+  const day = date.getDate();
+
+  return `${dayName}, dia ${day}`;
+
 }
-  

@@ -80,9 +80,10 @@ export const LinkedStartTask = styled(Link)`
 
 
 export const TextButtonStartTask = styled.Text`
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(9)}px;
   text-align: center;
   font-weight: 600;
   color: ${colors.white};
   font-family: ${Fonts.RalewayBold};
+  margin-top: ${w(3)}px;
 `;

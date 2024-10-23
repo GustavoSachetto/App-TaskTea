@@ -4,6 +4,9 @@ import Colors from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 
@@ -34,11 +37,12 @@ export const Box = styled.View`
 export const ScrollViewContainer = styled.ScrollView`
   background-color: #fff;
   flex: 1;
+  margin-top: ${statusBar}px;
 `;
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor || title.gray};
-  font-size: ${getFontSize(11)}px;
+  font-size: ${getFontSize(14)}px;
   font-weight: 600;
   text-align:center;
   margin: 0 0 ${w(2)}px 0;
@@ -52,7 +56,7 @@ export const Button = styled.Pressable<any>`
 
 export const Text = styled.Text`
   color: white;
-  font-size: ${getFontSize(9)}px;
+  font-size: ${getFontSize(11)}px;
   padding: ${w(1.5)}px 0;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};

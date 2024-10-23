@@ -6,7 +6,6 @@ import { useOverlay } from '@/context/OverlayContext';
 import { useState, useEffect } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
-import Security from '@/components/security';
 import { router, useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
@@ -14,17 +13,17 @@ const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
-  const [modalSecurity, setModalSecurity] = useState(false);
+  const router = useRouter();
 
   const { showOverlay, hideOverlay } = useOverlay();
 
   useEffect(() => {
-    if (modalServiceTerms || modalLogoutMessage || modalSecurity) {
+    if (modalServiceTerms || modalLogoutMessage) {
       showOverlay();
     } else {
       hideOverlay();
     }
-  }, [modalServiceTerms, modalLogoutMessage, modalSecurity, showOverlay, hideOverlay]);
+  }, [modalServiceTerms, modalLogoutMessage, showOverlay, hideOverlay]);
 
   return (
     <>
@@ -42,7 +41,7 @@ export default function SettingsPage() {
           <Text>Termos de serviço</Text>
         </Functions>
 
-        <Functions onPress={() => setModalSecurity(true)}>
+        <Functions onPress={() => router.push('/(auth)/security')}>
           <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
           <Text>Segurança e informação</Text>
         </Functions>
@@ -57,11 +56,6 @@ export default function SettingsPage() {
           <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />
           <Text style={{ color: '#ff3f00' }}>Sair</Text>
         </Functions>
-
-        <Security 
-        visible={modalSecurity}
-        onClose={() => setModalSecurity(false)}
-        />
 
         <ServiceTerms
           visible={modalServiceTerms}

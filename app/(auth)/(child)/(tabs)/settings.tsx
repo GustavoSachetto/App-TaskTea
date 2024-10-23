@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 import { useOverlay } from '@/context/OverlayContext';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
-import Security from '@/components/security';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
@@ -22,12 +21,12 @@ export default function SettingsPage() {
   const [modalSecurity, setModalSecurity] = useState(false);
 
   useEffect(() => {
-    if (modalServiceTerms || modalLogoutMessage || modalCode || modalSecurity) {
+    if (modalServiceTerms || modalLogoutMessage || modalCode) {
       showOverlay();
     } else {
       hideOverlay();
     }
-  }, [modalServiceTerms, modalLogoutMessage, modalCode, modalSecurity, showOverlay, hideOverlay]);
+  }, [modalServiceTerms, modalLogoutMessage, modalCode, showOverlay, hideOverlay]);
 
   return (
     <Container>
@@ -44,7 +43,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions onPress={() => setModalSecurity(true)}>
+      <Functions onPress={() => router.push('/(auth)/security')}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>
@@ -75,10 +74,6 @@ export default function SettingsPage() {
       <LogoutMessage
         visible={modalLogoutMessage}
         onClose={() => setModalLogoutMessage(false)}
-      />
-      <Security
-        visible={modalSecurity}
-        onClose={() => setModalSecurity(false)}
       />
     </Container>
   );

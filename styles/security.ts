@@ -3,6 +3,9 @@ import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { w, h } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { colors } = Colors;
 
@@ -25,8 +28,8 @@ export const Line = styled.View`
 export const CenteredView = styled.ScrollView`
   width: 100%;
   height: 100%;
-  padding: 0 ${w(5)}px ${h(9)}px ${w(5)}px;
-  
+  padding: 0;  
+  margin-top: ${statusBar}px;
 `;
 
 export const InputWrapper = styled.View`
@@ -66,16 +69,11 @@ export const Container = styled.View`
 
 export const ModalView = styled.View`
   width:  ${w(90)}px;
-  background-color: #fff;
-  margin: 0 auto;
+  margin: 0  auto;
   align-items: center;
-  justify-content: center;
-  border-width: 3px;
-  border-color: transparent;
-  border-radius: ${getFontSize(9)}px;
 `;
 
-export const CloseButton = styled.Pressable`
+export const BackButton = styled.Pressable`
   position: absolute;
   right: ${w(2)}px;
   top:  ${w(0)}px;
@@ -118,12 +116,11 @@ export const ButtonPassword = styled.Pressable`
   font-size: ${getFontSize(8)}px;
   color: #000;
   text-decoration: underline;
-  height: 85%;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   align-items: center;
   flex-direction: row;
-  margin-top: ${getFontSize(5)}px;
+
 `;
 
 export const UserDataInput = styled.TextInput`

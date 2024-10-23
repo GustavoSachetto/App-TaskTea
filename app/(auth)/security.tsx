@@ -1,7 +1,7 @@
 import { useSession } from "@/hooks/ctx";
 import { editMyUser, getMyUser, UserProps, PutUserProps } from "@/services/api/routes/user";
 import {
-    ButtonSave, CenteredView, CloseButton, ButtonPassword, Container,
+    ButtonSave, CenteredView, BackButton, ButtonPassword, Container,
     Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title,
     UserDataInput, ContainerRow,
     InputWrapper
@@ -136,14 +136,14 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
     return (
         <>
-            <Header>
-                <Title>Segurança e informação</Title>
-                <CloseButton onPress={() => router.back()}>
-                    <ModalImage source={require('@/assets/icons/x.png')} />
-                </CloseButton>
-            </Header>
-            <CenteredView>
 
+            <CenteredView>
+                <Header>
+                    <BackButton onPress={() => router.back()}>
+                        <ModalImage source={require('@/assets/icons/x.png')} />
+                    </BackButton>
+                    <Title>Segurança e informação</Title>
+                </Header>
                 <ModalView>
 
                     <Container>
@@ -221,7 +221,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                         value={inputCurrentPassword}
                                         onChangeText={setInputCurrentPassword}
                                         secureTextEntry={!showCurrentPassword}
-                                        style={{ borderStyle: "none" }}
+                                        style={{ borderWidth: 0 }}
                                     />
                                     <Ionicons
                                         name={showCurrentPassword ? "eye-off" : "eye"}
@@ -239,7 +239,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                         value={inputNewPassword}
                                         onChangeText={setInputNewPassword}
                                         secureTextEntry={!showNewPassword}
-                                        style={{ borderStyle: "none" }}
+                                        style={{ borderWidth: 0 }}
                                     />
                                     <Ionicons
                                         name={showNewPassword ? "eye-off" : "eye"}
@@ -257,7 +257,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                                         value={inputConfirmPassword}
                                         onChangeText={setInputConfirmPassword}
                                         secureTextEntry={!showConfirmPassword}
-                                        style={{ borderStyle: "none" }}
+                                        style={{ borderWidth: 0 }}
                                     />
                                     <Ionicons
                                         name={showConfirmPassword ? "eye-off" : "eye"}

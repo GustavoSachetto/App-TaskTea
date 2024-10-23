@@ -15,6 +15,7 @@ export const Header = styled.View`
   justify-content: center;
   align-items: center;
   padding: ${w(7)}px;
+  margin-top: ${w(4.5)}px;
 `;
 
 export const Line = styled.View`
@@ -75,7 +76,7 @@ export const ModalView = styled.View`
 
 export const BackButton = styled.Pressable`
   position: absolute;
-  right: ${w(2)}px;
+  right: ${w(4.5)}px;
   top:  ${w(0)}px;
   z-index: 99;
 `;

@@ -140,7 +140,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
             <CenteredView>
                 <Header>
                     <BackButton onPress={() => router.back()}>
-                        <ModalImage source={require('@/assets/icons/x.png')} />
+                        <ModalImage source={require('@/assets/icons/voltar.png')} />
                     </BackButton>
                     <Title>Segurança e informação</Title>
                 </Header>

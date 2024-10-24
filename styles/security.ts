@@ -14,7 +14,7 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${w(7)}px;
+  padding: ${w(7)}px 0 0 0; 
   margin-top: ${w(4.5)}px;
 `;
 
@@ -51,7 +51,6 @@ export const InputPassword = styled.TextInput`
 
 export const ContainerRow = styled.View`
   width:  ${w(80)}px;
-  padding: 0 15px ;
   display: flex;
   font-family: ${Fonts.RalewayBold};
   margin-top: ${w(4.5)}px;
@@ -60,7 +59,7 @@ export const ContainerRow = styled.View`
 
 
 export const Container = styled.View`
-  width:  ${w(80)}px;
+  width:  ${w(90)}px;
   padding: 0 15px ;
   display: flex;
   font-family: ${Fonts.RalewayBold};
@@ -69,15 +68,14 @@ export const Container = styled.View`
 `;
 
 export const ModalView = styled.View`
-  width:  ${w(90)}px;
+  width:  ${w(95)}px;
   margin: 0  auto;
   align-items: center;
 `;
 
 export const BackButton = styled.Pressable`
   position: absolute;
-  right: ${w(4.5)}px;
-  top:  ${w(0)}px;
+  left: ${w(4.5)}px;
   z-index: 99;
 `;
 
@@ -97,7 +95,7 @@ export const Text = styled.Text`
 
 export const Title = styled.Text`
   font-weight: 500;
-  font-size: ${getFontSize(13)}px;
+  font-size: ${getFontSize(11)}px;
   color: #737373;
   margin-right:  ${getFontSize(1)}px;
   text-align: center;

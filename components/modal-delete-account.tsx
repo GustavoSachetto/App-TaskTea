@@ -52,7 +52,7 @@ export default function LogoutMessage({ visible, onClose, buttonColor }: LogoutM
               </Button>
 
               <Button onPress={handleDelete} style={{ backgroundColor: "#e43b17" }}>
-                <TextStyle>Sair</TextStyle>
+                <TextStyle>Sim</TextStyle>
               </Button>
             </ContainerButtons>
           </ModalView>

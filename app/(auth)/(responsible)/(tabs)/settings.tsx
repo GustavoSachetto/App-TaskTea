@@ -2,11 +2,10 @@ import { Container, Header, Logo, Title, Functions, Text } from '@/styles/settin
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
-import { useOverlay } from '@/context/OverlayContext';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 
@@ -14,16 +13,6 @@ export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
   const router = useRouter();
-
-  const { showOverlay, hideOverlay } = useOverlay();
-
-  useEffect(() => {
-    if (modalServiceTerms || modalLogoutMessage) {
-      showOverlay();
-    } else {
-      hideOverlay();
-    }
-  }, [modalServiceTerms, modalLogoutMessage, showOverlay, hideOverlay]);
 
   return (
     <>

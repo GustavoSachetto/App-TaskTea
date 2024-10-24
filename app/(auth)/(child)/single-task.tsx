@@ -4,7 +4,6 @@ import {
   Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader
 } from '@/styles/single-task';
-import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
 import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
@@ -91,8 +90,6 @@ export default function SingleTaskPage() {
 
   return (
     <Container>
-      {modalVisible &&  <Overlay />}
-      {congratulationsVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
           <Voltar source={ImageVoltar} resizeMode="contain" />

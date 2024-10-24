@@ -3,14 +3,11 @@ import { Image, StyleSheet, View } from 'react-native';
 import { getMyUser, UserProps } from '@/services/api/routes/user';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
-import { Overlay } from '@/styles';
-import { useOverlay } from '@/context/OverlayContext';
 import { h, w } from '@/utils/responsiveMesures';
 
 export default function Layout() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const { session } = useSession();
-  const { isVisible } = useOverlay(); 
 
   useEffect(() => {
     fetchUserData();
@@ -25,7 +22,6 @@ export default function Layout() {
 
   return (
     <>
-      {isVisible && <Overlay />}
       <Tabs
         screenOptions={({ route }) => ({
           headerShown: false,

@@ -21,6 +21,7 @@ export const LinkedSign = styled.Pressable`
   left:${w(8)}px;
   height: ${w(4)}px;
   width: ${w(4)}px;
+  z-index:99;
 `;
 
 export const ContainerRowTasks = styled.View`

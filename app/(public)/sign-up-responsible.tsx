@@ -8,7 +8,6 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 import Toast from 'react-native-toast-message';
 import ServiceTerms from '@/components/service-terms';
-import { Overlay } from '@/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { h, w } from '@/utils/responsiveMesures';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
@@ -63,7 +62,6 @@ export default function SignUpResponsible() {
 
   return (
     <>
-      {modalVisible && <Overlay />}
       <ContainerScrollView>
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

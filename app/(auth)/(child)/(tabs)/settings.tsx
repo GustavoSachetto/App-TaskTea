@@ -4,8 +4,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import CodigoUser from "@/components/code-user";
-import { useEffect, useState } from 'react';
-import { useOverlay } from '@/context/OverlayContext';
+import { useState } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
 
@@ -14,19 +13,9 @@ const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { showOverlay, hideOverlay } = useOverlay();
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
   const [modalCode, setModalCode] = useState(false);
-  const [modalSecurity, setModalSecurity] = useState(false);
-
-  useEffect(() => {
-    if (modalServiceTerms || modalLogoutMessage || modalCode) {
-      showOverlay();
-    } else {
-      hideOverlay();
-    }
-  }, [modalServiceTerms, modalLogoutMessage, modalCode, showOverlay, hideOverlay]);
 
   return (
     <Container>

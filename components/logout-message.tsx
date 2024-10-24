@@ -10,16 +10,17 @@ import {
   ModalText,
   ContainerButtons
 } from '@/styles/logout-message';
+import { ModalOverlay } from '@/styles/overlay';
 import { useSession } from '@/hooks/ctx';
 
 
 type LogoutMessageProps = {
-  visible?: boolean, 
+  visible?: boolean,
   onClose: () => void,
-  buttonColor?: string 
+  buttonColor?: string
 }
 
-export default function LogoutMessage ({ visible, onClose, buttonColor }: LogoutMessageProps) {
+export default function LogoutMessage({ visible, onClose, buttonColor }: LogoutMessageProps) {
   const router = useRouter();
   const { signOut, session } = useSession();
 
@@ -31,30 +32,32 @@ export default function LogoutMessage ({ visible, onClose, buttonColor }: Logout
 
   return (
     <Modal
-      animationType="slide"
+      animationType="none"
       transparent={true}
       visible={visible}
       onRequestClose={onClose}
     >
-      <CenteredView>
-        <ModalView>
-          <CloseButton onPress={onClose}>
-            <ModalImage source={require('../assets/icons/x.png')} />
-          </CloseButton>
-          
-          <ModalText>Realmente deseja </ModalText>
-          <ModalText>sair?</ModalText>
-          <ContainerButtons>
-            <Button onPress={onClose} style={{ backgroundColor: "#737373" }}>
-              <TextStyle>Não</TextStyle>
-            </Button>
-            
-            <Button onPress={handleLogout} style={{ backgroundColor: "#e43b17"  }}>
-              <TextStyle>Sair</TextStyle>
-            </Button>
-          </ContainerButtons>
-        </ModalView>
-      </CenteredView>
+      <ModalOverlay>
+        <CenteredView>
+          <ModalView>
+            <CloseButton onPress={onClose}>
+              <ModalImage source={require('../assets/icons/x.png')} />
+            </CloseButton>
+
+            <ModalText>Realmente deseja </ModalText>
+            <ModalText>sair?</ModalText>
+            <ContainerButtons>
+              <Button onPress={onClose} style={{ backgroundColor: "#737373" }}>
+                <TextStyle>Não</TextStyle>
+              </Button>
+
+              <Button onPress={handleLogout} style={{ backgroundColor: "#e43b17" }}>
+                <TextStyle>Sair</TextStyle>
+              </Button>
+            </ContainerButtons>
+          </ModalView>
+        </CenteredView>
+      </ModalOverlay>
     </Modal>
   )
 }

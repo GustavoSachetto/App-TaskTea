@@ -8,7 +8,6 @@ import {
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { getFontSize } from '@/utils/fontSize';
-import { Overlay } from "@/styles/index";
 import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
@@ -137,7 +136,6 @@ export default function CreateTask() {
         <Toast/>
       </View>
       <Container contentContainerStyle={{ flexGrow: 1 }}>
-        {modalVisible && <Overlay />}
         <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </Pressable>

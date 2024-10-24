@@ -2,7 +2,6 @@ import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
-import { Overlay } from "@/styles/index";
 import { Button } from '@/styles/tip';
 import { fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
@@ -65,7 +64,6 @@ export default function SingleTaskPage() {
 
   return (
     <Container>
-      {modalVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
             <Voltar source={ImageVoltar} resizeMode="contain" />

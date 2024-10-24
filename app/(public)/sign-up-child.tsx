@@ -8,7 +8,6 @@ import {
   InputWrapper,
   InputPassword
 } from "@/styles/sign";
-import { Overlay } from "@/styles/index";
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
 const ImageLogo = require('@/assets/images/logo.png');
@@ -62,7 +61,6 @@ export default function SignUpChild() {
 
   return (
     <>
-      {modalVisible && <Overlay />}
       <ContainerScrollView>
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

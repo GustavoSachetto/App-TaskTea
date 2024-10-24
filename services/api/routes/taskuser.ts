@@ -57,7 +57,6 @@ export const getUnfinishedTasks = async (token?: string | null) => {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
-  console.log(response.data)
   return response.data;
 };
 

@@ -8,6 +8,7 @@ import LogoutMessage from '@/components/logout-message';
 import { useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
+const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 
 export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
@@ -40,6 +41,11 @@ export default function SettingsPage() {
            />
           <Text>Templates de desafios</Text>
         </Functions>
+
+        <Functions onPress={() => router.push('/(auth)/(responsible)/finished-tasks')}>
+        <Image source={ImageRelogio} style={{ width: wp('5%'), height: wp('5%') }} />
+        <Text>Histórico de Desafios</Text>
+      </Functions>
 
         <Functions onPress={() => setModalLogoutMessage(true)}>
           <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />

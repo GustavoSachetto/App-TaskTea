@@ -63,13 +63,20 @@ export default function TasksPage() {
           </BoxTasks>
         </GradientBorderBoxTasks>
 
-        <View style={{paddingBottom:15}}>
-          <Pressable onPress={() => router.push('/(auth)/(responsible)/create-task')}>
-            <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
-          </Pressable>
-          <TextAddTask>Criar novo desafio!</TextAddTask>
+        <View style={{ paddingBottom: 15, flexDirection: 'row', justifyContent:'space-between', width:'75%'}}>
+          <View >
+            <Pressable onPress={() => router.push('/(auth)/(responsible)/create-task')}>
+              <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
+            </Pressable>
+            <TextAddTask>Criar novo {"\n"}desafio!</TextAddTask>
+          </View>
+          <View>
+            <Pressable onPress={() => router.push('/(auth)/(responsible)/create-task')}> 
+              <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
+            </Pressable>
+            <TextAddTask>Enviar desafio{"\n"}existente!</TextAddTask>
+          </View>
         </View>
-
       </ContainerAllTasks>
     </ScrollView>
 

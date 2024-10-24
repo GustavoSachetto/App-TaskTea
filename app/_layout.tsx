@@ -38,9 +38,7 @@ function InitialLayout() {
   }
 
   return (
-    <OverlayProvider>
       <Slot />
-    </OverlayProvider>
   );
 }
 

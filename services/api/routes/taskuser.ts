@@ -38,6 +38,7 @@ export const getAllTaskUser = async (token?: string | null, currentPage: number 
     headers: { 'Authorization': `Bearer ${token}` }
   })
     
+
   return response.data;
 }
 
@@ -56,6 +57,7 @@ export const getUnfinishedTasks = async (token?: string | null) => {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
+  console.log(response.data)
   return response.data;
 };
 

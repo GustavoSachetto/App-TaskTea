@@ -2,7 +2,7 @@ import { useSession } from "@/hooks/ctx";
 import { editMyUser, getMyUser, UserProps, PutUserProps } from "@/services/api/routes/user";
 import {
     ButtonSave, CenteredView, BackButton, ButtonPassword, Container,
-    Text, Header, Label, Line, ModalImage, ModalView, TextButton, Title,
+    Text, Header, Label, ButtonDelete, ModalImage, ModalView, TextButton, Title,
     UserDataInput, ContainerRow,
     InputWrapper
 } from "@/styles/security";
@@ -12,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { h, w } from '@/utils/responsiveMesures';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { router } from "expo-router";
+import ModalDeleteAccount from '@/components/modal-delete-account';
 
 type SecurityProps = {
     visible?: boolean,
@@ -35,6 +36,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [modalDelete, setModalDelete] = useState(false);
 
     const toggleShowCurrentPassword = () => {
         setShowCurrentPassword(!showCurrentPassword);
@@ -80,6 +82,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
             setInputEmailValue(userData.email || "");
         }
     }, [userData]);
+
 
     const handleSubmit = async () => {
         if (session) {
@@ -145,7 +148,6 @@ export default function Security({ visible, onClose }: SecurityProps) {
                     <Title>Segurança e informação</Title>
                 </Header>
                 <ModalView>
-
                     <Container>
                         <Label>Nome:</Label>
                         <UserDataInput
@@ -270,10 +272,23 @@ export default function Security({ visible, onClose }: SecurityProps) {
                         </>
                     )}
 
+
+
                     <ButtonSave onPress={handleSubmit}>
                         <TextButton>Salvar</TextButton>
                     </ButtonSave>
+
+
+                    <ButtonDelete onPress={() => setModalDelete(true)}>
+                        <TextButton>Apagar conta</TextButton>
+                    </ButtonDelete>
+
                 </ModalView>
+
+                <ModalDeleteAccount
+                onClose={() => setModalDelete(false)}
+                visible={modalDelete}
+                />
             </CenteredView>
         </>
     );

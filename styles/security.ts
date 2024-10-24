@@ -134,8 +134,18 @@ export const UserDataInput = styled.TextInput`
   border-radius: ${w(2)}px;
 `;
 
+export const ButtonDelete = styled.Pressable`
+  width:  50%;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+  background-color: ${colors.red};
+  padding: ${w(2)}px ${w(7)}px;
+  border-radius: ${w(8)}px;
+`;
+
 export const ButtonSave = styled.Pressable`
-  width:  35%;
+  width:  50%;
   flex-direction:row;
   align-items:center;
   justify-content: center;

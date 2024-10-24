@@ -56,7 +56,7 @@ export const ContainerRowTasks = styled.View`
 
 export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
-  font-size: ${getFontSize(17)}px;
+  font-size: ${(props) => props.customFontSize || getFontSize(17)}px;
   margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};
@@ -100,7 +100,7 @@ export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs((props) 
     props.customColor || Colors.colors.lightYellow
   ],
 }))`
-  height: ${h(60)}px;
+  height: ${(props) => props.customHeight || h(60)};
   width: ${w(90)}px;
   align-self: center;
   justify-content: flex-start;

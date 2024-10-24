@@ -9,6 +9,7 @@ import { useRouter } from 'expo-router';
 
 const ImageTemplates = require('@/assets/icons/templates-desafios.png');
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
+const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-cinza.png');
 
 export default function SettingsPage() {
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
@@ -45,6 +46,11 @@ export default function SettingsPage() {
         <Functions onPress={() => router.push('/(auth)/(responsible)/finished-tasks')}>
         <Image source={ImageRelogio} style={{ width: wp('5%'), height: wp('5%') }} />
         <Text>Histórico de Desafios</Text>
+      </Functions>
+
+      <Functions onPress={() => router.push('/(auth)/(responsible)/all-tasks')}>
+        <Image source={ImageQuebraCabeca} style={{ width: wp('5%'), height: wp('5%') }} resizeMode='contain' />
+        <Text>Todos os desafios</Text>
       </Functions>
 
         <Functions onPress={() => setModalLogoutMessage(true)}>

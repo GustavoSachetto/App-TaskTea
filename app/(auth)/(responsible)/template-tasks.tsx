@@ -34,11 +34,11 @@ export default function TemplateTasks() {
             <LinkedSign onPress={() => router.back()}>
                 <Voltar source={ImageVoltar} resizeMode="contain" />
             </LinkedSign>
-            <TextTask>TEMPLATES</TextTask>
+            <TextTask>Templates</TextTask>
         </ContainerRowTasks>
 
         <ContainerTasksDoing>
-          <TextDoing>DESAFIOS PRONTOS</TextDoing>
+          <TextDoing>Desafios prontos</TextDoing>
         </ContainerTasksDoing>
 
         <GradientBorderBoxTasks>

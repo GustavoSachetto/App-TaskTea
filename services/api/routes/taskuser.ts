@@ -85,7 +85,7 @@ export const searchTaskUser = async (text: string, token?: string | null, curren
     `/taskuser/search/${text}?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
-    
+    console.log(response)
   return response.data;
 }
 

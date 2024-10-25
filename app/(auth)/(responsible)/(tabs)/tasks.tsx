@@ -13,6 +13,7 @@ import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuse
 
 const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
 const ImageAdicionarDesafio = require('@/assets/icons/botao-criar-amarelo.png');
+const ImageEnviarDesafio = require('@/assets//icons/icon_aviao.png')
 
 export default function TasksPage() {
   const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
@@ -71,8 +72,8 @@ export default function TasksPage() {
             <TextAddTask>Criar novo {"\n"}desafio!</TextAddTask>
           </View>
           <View>
-            <Pressable onPress={() => router.push('/(auth)/(responsible)/create-task')}> 
-              <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
+            <Pressable onPress={() => router.push('/(auth)/(responsible)/send-task')}> 
+              <AddTask source={ImageEnviarDesafio} resizeMode="contain" />
             </Pressable>
             <TextAddTask>Enviar desafio{"\n"}existente!</TextAddTask>
           </View>

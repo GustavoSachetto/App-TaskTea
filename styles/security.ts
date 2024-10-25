@@ -142,6 +142,7 @@ export const ButtonDelete = styled.Pressable`
   background-color: ${colors.red};
   padding: ${w(2)}px ${w(7)}px;
   border-radius: ${w(8)}px;
+  margin-bottom: ${h(7)}px
 `;
 
 export const ButtonSave = styled.Pressable`

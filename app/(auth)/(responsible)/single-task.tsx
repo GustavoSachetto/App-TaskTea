@@ -117,6 +117,10 @@ export default function SingleTaskPage() {
       <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
         <TextButton>Editar desafio</TextButton>
       </ButtonEdit>
+      
+      <ButtonEdit style={{marginTop: -5}} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
+        <TextButton>Enviar desafio</TextButton>
+      </ButtonEdit>
     </Container>
   )
 }

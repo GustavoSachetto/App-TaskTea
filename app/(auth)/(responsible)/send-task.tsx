@@ -7,7 +7,7 @@ import {
 } from "@/styles/create-task";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { getFontSize } from '@/utils/fontSize';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { useSession } from '@/hooks/ctx';
 import { getMyTasks, saveImageTask, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
@@ -23,14 +23,28 @@ export default function CreateTask() {
   const [selectedRelationship, setSelectedRelationship] = useState<string>('');
   const [task, setTask] = useState<TaskProps[]>([]);
   const [selectedTask, setSelectedTask] = useState<TaskProps[]>([]);
+  const [selectedTaskValue, setSelectedTaskValue] = useState(''); // Estado para valor selecionado no Picker
   const { session } = useSession();
   const router = useRouter();
+  const { id } = useLocalSearchParams();
 
   useEffect(() => {
     fetchMyRelationship();
     fetchAllTasks();
   }, [session]);
 
+  useEffect(() => {
+    if (id) {
+      const foundTask = task.find((t) => t.id.toString() === id);
+      if (foundTask) {
+        setSelectedTask([foundTask]);
+        setSelectedTaskValue(foundTask.id.toString()); // Define o valor do Picker
+      } else {
+        setSelectedTask([]);
+        setSelectedTaskValue(''); // Limpa o valor se não encontrado
+      }
+    }
+  }, [id, task]);
 
   const fetchAllTasks = async () => {
     if (session) {
@@ -46,7 +60,6 @@ export default function CreateTask() {
       } while (currentPage <= lastPage);
 
       setTask(allTasks);
-
     }
   };
 
@@ -60,7 +73,6 @@ export default function CreateTask() {
       }
     }
   }
-
 
   const handleSubmit = async () => {
     if (!selectedRelationship || !selectedTask) {
@@ -102,20 +114,17 @@ export default function CreateTask() {
           text2: 'Ocorreu um erro ao enviar o desafio.'
         });
       }
-
     }
   };
-
 
   const handlePickerRelationship = (itemValue: string) => {
     setSelectedRelationship(itemValue);
   }
 
   const handlePickerTask = (itemValue: string) => {
-    if (itemValue) {
-      const selectedTaskData = task.find((taskData) => taskData.id.toString() === itemValue);
-      setSelectedTask(selectedTaskData ? [selectedTaskData] : []);
-    }
+    const selectedTaskData = task.find((taskData) => taskData.id.toString() === itemValue);
+    setSelectedTask(selectedTaskData ? [selectedTaskData] : []);
+    setSelectedTaskValue(itemValue); 
   };
 
   return (
@@ -148,6 +157,7 @@ export default function CreateTask() {
 
             <Label>Minhas tarefas existentes:</Label>
             <Picker
+              selectedValue={selectedTaskValue} // Use o novo estado aqui
               onValueChange={handlePickerTask}
               style={styles.picker}
             >
@@ -174,7 +184,6 @@ export default function CreateTask() {
             </ButtonCreate>
           </ContainerTasks>
         </GradientBorderBoxTasks>
-
       </Container>
     </>
   );
@@ -195,3 +204,4 @@ const styles = StyleSheet.create({
     color: '#737373'
   },
 });
+

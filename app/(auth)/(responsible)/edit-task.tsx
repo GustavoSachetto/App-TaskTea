@@ -50,23 +50,26 @@ export default function CreateTask() {
 
 
     const fetchTask = async () => {
-        const result = await fetchTaskById(numericId);
-        const category = await fetchCategoryById(result.data.categories_id)
-
-        console.log(category.data.name)
-        setTitle(result.data.title);
-        setDescription(result.data.description)
-        setTip(result.data.tip)
-        setDifficulty(result.data.level)
-        setCategoriesPicker([category.data]);
-
-        const editedCategory = category.data;
-
-        const allCategories = await getAllCategories();
+        if(session){
+            const result = await fetchTaskById(session,numericId);
+            const category = await fetchCategoryById(result.data.categories_id)
     
-        const categoriesToDisplay = [editedCategory, ...allCategories.data.filter(cat => cat.id !== editedCategory.id)];
+            console.log(category.data.name)
+            setTitle(result.data.title);
+            setDescription(result.data.description)
+            setTip(result.data.tip)
+            setDifficulty(result.data.level)
+            setCategoriesPicker([category.data]);
     
-        setCategoriesPicker(categoriesToDisplay);
+            const editedCategory = category.data;
+    
+            const allCategories = await getAllCategories();
+        
+            const categoriesToDisplay = [editedCategory, ...allCategories.data.filter(cat => cat.id !== editedCategory.id)];
+        
+            setCategoriesPicker(categoriesToDisplay);
+        }
+
  }
 
     const fetchCategories = async () => {

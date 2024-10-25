@@ -42,16 +42,18 @@ export const getAllTaskUser = async (token?: string | null, currentPage: number 
   return response.data;
 }
 
-export const getFinishedTasks = async (token?: string | null) => {
+export const getFinishedTasks = async (token?: string | null, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
   const response = await api.get<TaskUserPageProps>(
-    `/taskuser/finished/1`, {
+    `/taskuser/finished/1?${currentPageQuery}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
   return response.data;
 };
 
-export const getUnfinishedTasks = async (token?: string | null) => {
+export const getUnfinishedTasks = async (token?: string | null, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
   const response = await api.get<TaskUserPageProps>(
     `/taskuser/finished/0`, {
     headers: { 'Authorization': `Bearer ${token}` }

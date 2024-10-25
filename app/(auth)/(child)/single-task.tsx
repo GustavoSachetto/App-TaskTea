@@ -85,7 +85,7 @@ export default function SingleTaskPage() {
   
     setTimeout(() => {
       router.push('/(auth)/(child)/(tabs)/'); 
-    }, 1500);
+    }, 2000);
   }
 
   return (

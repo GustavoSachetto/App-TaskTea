@@ -69,14 +69,14 @@ export const fetchTaskById = async (token: string, id: number) => {
   return response.data;
 }
 
-export const searchTask = async (text: string, token?: string | null, currentPage: number = 1) => {
+export const searchMyTasksByTitleOrDescription = async (text: string, token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
   const response = await api.get<TaskPageProps>(
     `/tasks/search/${text}?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
-  console.log(response.data)
+
   return response.data;
 }
 
@@ -127,7 +127,3 @@ export const deleteTaskById = async (id: number, token: string) => {
 
   return response.data;
 }
-
-
-
-

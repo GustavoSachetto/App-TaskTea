@@ -13,7 +13,7 @@ import { useSession } from '@/hooks/ctx';
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
 import { InputSearch, SectionSearch } from '@/styles/all-tasks';
-import { getAllTasks, getMyTasks, searchTask, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
+import { getAllTasks, getMyTasks, searchMyTasksByTitleOrDescription, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const blue = Colors.colors.blue;
@@ -28,7 +28,7 @@ export default function TasksPage() {
         if (searchText.trim() === '') {
             fetchTask()
         } else {
-            const filteredTasks = await searchTask(searchText, session);
+            const filteredTasks = await searchMyTasksByTitleOrDescription(searchText, session);
             setTask(filteredTasks);
         }
     };

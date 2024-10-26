@@ -155,8 +155,8 @@ export const Task = styled.View<any>`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;
-  justify-content: space-between;
-  padding: ${w(2.8)}px ${w(5)}px;
+  justify-content: center;
+  padding: 0 ${w(5)}px;
   height: ${getFontSize(33)}px;
   width: 100%;
   border-radius: ${h(1)}px;

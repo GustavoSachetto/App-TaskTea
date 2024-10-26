@@ -27,7 +27,6 @@ export default function CreateTask() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tip, setTip] = useState('');
-    const [idTask, setIdTask] = useState<number | undefined>(undefined);
     const [userReceiver, setUserReceiver] = useState('');
     const [difficulty, setDifficulty] = useState('easy');
     const [image, setImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
@@ -50,27 +49,29 @@ export default function CreateTask() {
 
 
     const fetchTask = async () => {
-        if(session){
-            const result = await fetchTaskById(session,numericId);
+        if (session) {
+            const result = await fetchTaskById(session, numericId);
             const category = await fetchCategoryById(result.data.categories_id)
-    
+
             console.log(category.data.name)
             setTitle(result.data.title);
             setDescription(result.data.description)
             setTip(result.data.tip)
             setDifficulty(result.data.level)
             setCategoriesPicker([category.data]);
-    
+
             const editedCategory = category.data;
-    
+
             const allCategories = await getAllCategories();
-        
+
             const categoriesToDisplay = [editedCategory, ...allCategories.data.filter(cat => cat.id !== editedCategory.id)];
-        
+
             setCategoriesPicker(categoriesToDisplay);
+
+            setSelectedCategory(result.data.categories_id.toString());
         }
 
- }
+    }
 
     const fetchCategories = async () => {
         if (session) {
@@ -124,20 +125,16 @@ export default function CreateTask() {
                 tasks_id: numericId,
                 user_receiver_id: Number(selectedRelationship)
             };
- console.log(response)
-            await createTaskUser(taskUserData, session);
-            router.push('/(auth)/(responsible)/(tabs)/tasks');
+            console.log(response)
         }
 
-       
+
     };
 
-    const handlePickerChange = (itemValue: string) => {
+    const handlePickerChange = (itemValue: string | number) => {
         if (itemValue === 'createNew') {
             setModalVisible(true);
-        } else {
-            setSelectedCategory(itemValue);
-        }
+        } 
     };
 
     const handlePickerRelationship = (itemValue: string) => {
@@ -192,6 +189,7 @@ export default function CreateTask() {
                             <Picker.Item label="Médio" value="medium" />
                             <Picker.Item label="Difícil" value="hard" />
                         </Picker>
+
                         <Label>Categoria:</Label>
                         <Picker
                             selectedValue={selectedCategory}
@@ -204,19 +202,8 @@ export default function CreateTask() {
                             <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
                         </Picker>
 
-                        <Label>Selecionar Filho:</Label>
-                        <Picker
-                            selectedValue={selectedRelationship}
-                            onValueChange={handlePickerRelationship}
-                            style={styles.picker}
-                        >
-                            <Picker.Item label="Selecione o filho" value="" />
-                            {myrelationship.map((data) => (
-                                <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
-                            ))}
-                        </Picker>
                         <ButtonCreate onPress={handleSubmit}>
-                            <TextButton>Criar</TextButton>
+                            <TextButton>Salvar alterações</TextButton>
                         </ButtonCreate>
                     </ContainerTasks>
 

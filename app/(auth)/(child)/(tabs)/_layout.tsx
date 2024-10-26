@@ -11,7 +11,7 @@ export default function Layout() {
 
   useEffect(() => {
     fetchUserData();
-  }, [session]);
+  }, [session, userData]);
 
   const fetchUserData = async () => {
     if (session) {

@@ -1,9 +1,10 @@
-import styled from 'styled-components/native';
-import Colors from '@/constants/Colors';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { StatusBar } from 'react-native';
+import styled from 'styled-components/native';
+import Colors from '@/constants/Colors';
 
 const statusBar = StatusBar.currentHeight;
 
@@ -16,6 +17,34 @@ export const Container = styled.View`
   font-family: ${Fonts.RalewayBold};
   background-color:${colors.white};
   margin-top: ${statusBar}px;
+`;
+
+export const ButtonEditBanner = styled.Pressable`
+  height: ${wp(10)}px; 
+  width: ${wp(10)}px; 
+  position: absolute;
+  right: 5%;
+  top: 8%; 
+  z-index: 98;
+  align-items: center; 
+  justify-content: center; 
+`;
+
+export const ButtonEditProfile = styled.Pressable`
+  height: ${wp(10)}px; 
+  width: ${wp(10)}px; 
+  position: absolute;
+  left: 37%;
+  bottom: 140%;
+  z-index: 98;
+  align-items: center; 
+  justify-content: center; 
+`;
+
+export const EditImage = styled.Image`
+  height: 100%;
+  width: 100%; 
+  z-index: 99;
 `;
 
 export const Banner = styled.Image`
@@ -57,6 +86,10 @@ export const Button = styled.Pressable`
   margin-right: ${w(4)}px;
   justify-content: center;
   align-items: center;
+`;
+
+export const ButtonExit = styled(Button)`
+  background-color: ${Colors.colors.red};
 `;
 
 export const ButtonText = styled.Text`

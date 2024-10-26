@@ -101,7 +101,7 @@ export const saveImageTask = async (id: number, base64Image: string, token?: str
   return response.data;
 }
 
-export const saveImageUser = async (base64Image: string, token?: string | null) => {
+export const saveImageUser = async (base64Image?: string | null, token?: string | null) => {
   const response = await api.post<ImageUserProps>(
     `/users/image`, { image: base64Image }, {
     headers: {
@@ -113,7 +113,7 @@ export const saveImageUser = async (base64Image: string, token?: string | null) 
   return response.data;
 }
 
-export const saveBannerUser = async (base64Image: string, token?: string | null) => {
+export const saveBannerUser = async (base64Image?: string | null, token?: string | null) => {
   const response = await api.post<ImageUserProps>(
     `/users/banner`, { image: base64Image }, {
     headers: {

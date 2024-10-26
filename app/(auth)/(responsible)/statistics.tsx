@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { fetchStatisticTotalById, fetchStatisticWeeklyById, TotalProps } from "@/services/api/routes/statistic";
+import { fetchStatisticTotalById, fetchStatisticWeeklyById, TotalProps, WeeklyProps } from "@/services/api/routes/statistic";
 import { useSession } from "@/hooks/ctx";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { TitlePage, TitleStatistics, ContainerStatistics, SquareLabel, LabelChart, Header, LinkedBack, Voltar, ContainerLabel } from "@/styles/statistics";
@@ -12,7 +12,7 @@ export default function Statistics() {
   const { session } = useSession();
   const { userId } = useLocalSearchParams();
   const [getTotalStatistics, setGetTotalStatistics] = useState<TotalProps | undefined>(undefined);
-  const [getWeeklyStatistics, setGetWeeklyStatistics] = useState<TotalProps | undefined>(undefined);
+  const [getWeeklyStatistics, setGetWeeklyStatistics] = useState<WeeklyProps | undefined>(undefined);
 
   useEffect(() => {
     fetchTotalTasks();

@@ -120,7 +120,7 @@ export default function CreateTask() {
     } else {
       setSelectedCategory(itemValue);
     }
-  };
+  }
 
   const handlePickerRelationship = (itemValue: string) => {
     setSelectedRelationship(itemValue);

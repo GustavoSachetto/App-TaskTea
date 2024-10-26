@@ -69,6 +69,18 @@ export const fetchTaskById = async (token: string, id: number) => {
   return response.data;
 }
 
+export const searchTask = async (text: string, token?: string | null, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
+
+  const response = await api.get<TaskPageProps>(
+    `/tasks/search/${text}?${currentPageQuery}`, { 
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+  console.log(response.data)
+  return response.data;
+}
+
+
 export const searchTasksByCategoryId = async (categoryId: number) => {
   const response = await api.get<{ data: TaskProps[] }>(
     `/tasks/category/${categoryId}`

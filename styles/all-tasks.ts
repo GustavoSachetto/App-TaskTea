@@ -13,13 +13,13 @@ export const SectionSearch = styled.View`
 `;
 
 export const InputSearch = styled.TextInput`
-  padding: ${w(5)}px 40px ${w(5)}px 12px;
   border-radius: ${w(3)}px;
   border: 2px solid blue;
   font-family: ${Fonts.RalewayRegular};
   color: #808080;
   width: 90%;
   margin: 0 auto;
-  height: ${w(9)}px; 
+  padding-left: ${w(3)}px;
+  height: ${w(10)}px; 
   font-size: ${w(3)}px;
 `;

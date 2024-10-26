@@ -6,7 +6,6 @@ import {
     BoxTasks, Title, Description
 } from '@/styles/tasks';
 import { LinkedSign, Voltar, ContainerRowTasks, ContainerColumn } from '@/styles/finished-tasks';
-import { getAllTaskUser, searchTaskUser } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import { useEffect, useState } from 'react';
 import { TaskUserPageProps, TaskUserProps } from '@/services/api/routes/taskuser';
@@ -14,6 +13,7 @@ import { useSession } from '@/hooks/ctx';
 import { h, w } from '@/utils/responsiveMesures';
 import { getFontSize } from '@/utils/fontSize';
 import { InputSearch, SectionSearch } from '@/styles/all-tasks';
+import { getAllTasks, getMyTasks, searchTask, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const blue = Colors.colors.blue;
@@ -22,31 +22,25 @@ export default function TasksPage() {
     const router = useRouter();
     const { session } = useSession();
     const [searchText, setSearchText] = useState('');
-    const [taskUser, setTaskUser] = useState<TaskUserPageProps>({
-        data: [],
-        links: {},
-        meta: {}
-    });
+    const [task, setTask] = useState<TaskPageProps | null>(null);
 
     const fetchSearch = async () => {
         if (searchText.trim() === '') {
-            const allTaskUser = await getAllTaskUser(session);
-            setTaskUser(allTaskUser);
+            fetchTask()
         } else {
-            const filteredTasks = await searchTaskUser(searchText, session);
-            setTaskUser(filteredTasks);
+            const filteredTasks = await searchTask(searchText, session);
+            setTask(filteredTasks);
+        }
+    };
+    const fetchTask = async () => {
+        if (session) {
+            const allTask = await getMyTasks(session, 0);
+            setTask(allTask);
         }
     };
 
     useEffect(() => {
-        const fetchTaskUser = async () => {
-            if (session) {
-                const response = await getAllTaskUser(session);
-                setTaskUser(response);
-            }
-        };
-
-        fetchTaskUser();
+        fetchTask();
     }, [session]);
 
     useEffect(() => {
@@ -78,16 +72,16 @@ export default function TasksPage() {
             <GradientBorderBoxTasks customColor={blue} customHeight={h(65)}>
                 <BoxTasks>
                     <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-                        {taskUser.data && taskUser.data.length > 0 ? (
-                            taskUser.data.map((taskUser: TaskUserProps) => (
+                        {task?.data && task.data.length > 0 ? (
+                            task.data.map((data: TaskProps) => (
                                 <TouchableOpacity
-                                    key={taskUser.id}
+                                    key={data.id}
                                     style={{ width: '100%' }}
-                                    onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
+                                    onPress={() => router.push({ pathname: "/single-task", params: { id: `${data.id}` } })}
                                 >
                                     <Task style={{ flex: 1, alignSelf: 'stretch' }} customColor={blue}>
-                                        <Title>{taskUser.task.title}</Title>
-                                        <Description>{taskUser.task.description}</Description>
+                                        <Title>{data.title}</Title>
+                                        <Description>{data.description}</Description>
                                     </Task>
                                 </TouchableOpacity>
                             ))

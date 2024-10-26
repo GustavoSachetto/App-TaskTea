@@ -12,9 +12,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, fetchCategoryById, getAllCategories } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
-import { createTask, editTaskById, fetchTaskById, saveImageTask } from '@/services/api/routes/tasks';
-import { createTaskUser } from '@/services/api/routes/taskuser';
-import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
+import { editTaskById, fetchTaskById, saveImageTask } from '@/services/api/routes/tasks';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
 import * as ImagePicker from 'expo-image-picker';
@@ -27,13 +25,11 @@ export default function CreateTask() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tip, setTip] = useState('');
-    const [userReceiver, setUserReceiver] = useState('');
     const [difficulty, setDifficulty] = useState('easy');
     const [image, setImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
-    const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[]>([]);
     const [categoriesPicker, setCategoriesPicker] = useState<CategoryProps[]>([]);
+    const [imageTask, setImageTask] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('');
-    const [selectedRelationship, setSelectedRelationship] = useState<string>('');
     const [modalVisible, setModalVisible] = useState(false);
     const { session } = useSession();
     const router = useRouter();
@@ -44,7 +40,6 @@ export default function CreateTask() {
     useEffect(() => {
         fetchTask();
         fetchCategories();
-        fetchMyRelationship();
     }, [session]);
 
 
@@ -52,12 +47,12 @@ export default function CreateTask() {
         if (session) {
             const result = await fetchTaskById(session, numericId);
             const category = await fetchCategoryById(result.data.categories_id)
-
-            console.log(category.data.name)
+            
             setTitle(result.data.title);
             setDescription(result.data.description)
             setTip(result.data.tip)
             setDifficulty(result.data.level)
+            setImageTask(result.data.image)
             setCategoriesPicker([category.data]);
 
             const editedCategory = category.data;
@@ -84,17 +79,6 @@ export default function CreateTask() {
         }
     }
 
-    const fetchMyRelationship = async () => {
-        if (session) {
-            try {
-                const response = await getMyRelationships(session);
-                setMyRelationship(response.data);
-            } catch (error) {
-                console.log('Erro', 'Não foi pegar os seus relacionamentos');
-            }
-        }
-    }
-
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -102,9 +86,12 @@ export default function CreateTask() {
             aspect: [4, 3],
             quality: 1,
         });
-
-        if (!result.canceled) setImage(result.assets[0]);
-    }
+    
+        if (!result.canceled) {
+            setImage(result.assets[0]);
+            setImageTask(result.assets[0].uri); 
+        }
+    };
 
     const handleSubmit = async () => {
 
@@ -117,18 +104,19 @@ export default function CreateTask() {
         };
 
         if (session) {
-            const response = await editTaskById(numericId, taskData, session);
-
-            setUserReceiver(selectedRelationship);
-
-            const taskUserData = {
-                tasks_id: numericId,
-                user_receiver_id: Number(selectedRelationship)
-            };
-            console.log(response)
+           await editTaskById(numericId, taskData, session);
+           if (image != null) {
+           saveImageTask(numericId, image.uri, session);
         }
 
-
+           Toast.show({
+            text1: 'Sucesso',
+            text2: 'Desafio editado.'
+          });
+          setTimeout(() => {
+            router.push('/(auth)/(responsible)/(tabs)/tasks');
+          }, 2000);
+        }
     };
 
     const handlePickerChange = (itemValue: string | number) => {
@@ -137,12 +125,9 @@ export default function CreateTask() {
         } 
     };
 
-    const handlePickerRelationship = (itemValue: string) => {
-        setSelectedRelationship(itemValue);
-    }
-
     const handleCategoryCreated = () => {
         fetchCategories();
+
     }
 
     return (
@@ -159,7 +144,7 @@ export default function CreateTask() {
                         <ButtonEdit onPress={pickImage}>
                             <EditImage source={ImageEditar} resizeMode="contain" />
                         </ButtonEdit>
-                        <TarefaImage source={image?.uri ?? ImageTarefa} />
+                        <TarefaImage source={imageTask ? {uri: imageTask} : ImageTarefa} />
                     </Imagem>
                     <ContainerTasks >
 

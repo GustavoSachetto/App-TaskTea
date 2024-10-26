@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { Pressable, Text} from 'react-native';
 import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
@@ -42,7 +42,7 @@ export default function TasksPage() {
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
             {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
-              <TouchableOpacity 
+              <Pressable 
                 key={taskUser.id} 
                 style={{ width: '100%' }} 
                 onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
@@ -51,7 +51,7 @@ export default function TasksPage() {
                   <Title>{taskUser.task.title}</Title>
                   <Description>{taskUser.task.description}</Description>
                 </Task>
-              </TouchableOpacity>
+              </Pressable>
             )):(
               <Text>Sem nenhuma tarefa em andamento.</Text>
             )}

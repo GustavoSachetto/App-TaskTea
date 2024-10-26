@@ -130,7 +130,7 @@ export const editMyUser = async (data: PutUserProps, token: string) => {
     `/users`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
-  console.log(response.data);
+ 
   return response.data;
 } 
 

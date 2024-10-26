@@ -121,3 +121,21 @@ export const DataText = styled.Text`
   font-family: ${Fonts.RalewayRegular};
 `;
 
+export const ButtonEdit = styled.Pressable`
+  width:  50%;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+  background-color: ${Colors.colors.blue};
+  padding: ${w(2)}px ${w(7)}px;
+  margin: ${getFontSize(8)}px  auto;
+  border-radius: ${w(8)}px;
+`;
+
+export const TextButton = styled.Text`
+  font-size: ${getFontSize(8)}px;
+  text-align: center;
+  font-weight: 600;
+  color: ${Colors.colors.white};
+  font-family: ${Fonts.RalewayBold};
+`;

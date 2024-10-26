@@ -1,4 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, Pressable, View } from 'react-native';
+import { ScrollView, Text, Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
   QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,

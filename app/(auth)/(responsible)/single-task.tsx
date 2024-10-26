@@ -1,9 +1,9 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
-import {
-  Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader
-} from '@/styles/single-task';
+import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
+  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader, 
+  ButtonEdit,
+  TextButton} from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
@@ -113,6 +113,14 @@ export default function SingleTaskPage() {
           />
         </BoxTask>
       </GradientBorderBox>
+
+      <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+        <TextButton>Editar desafio</TextButton>
+      </ButtonEdit>
+      
+      <ButtonEdit style={{marginTop: -5}} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
+        <TextButton>Enviar desafio</TextButton>
+      </ButtonEdit>
     </Container>
   )
 }

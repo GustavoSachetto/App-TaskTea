@@ -126,7 +126,7 @@ export const saveBannerUser = async (base64Image?: string | null, token?: string
 }
 
 export const editMyUser = async (data: PutUserProps, token: string) => {
-  const response = await api.put<{ data: UserProps }>(
+  const response = await api.put<{ data: UserProps, message: string }>(
     `/users`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

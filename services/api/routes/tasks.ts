@@ -90,7 +90,7 @@ export const searchTasksByCategoryId = async (categoryId: number) => {
 }
 
 export const createTask = async (data: PostTaskProps, token: string) => {
-  const response = await api.post<{ data: TaskProps }>(
+  const response = await api.post<{ data: TaskProps, message: string }>(
     `/tasks`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -111,7 +111,7 @@ export const saveImageTask = async (id: number, base64Image: string, token?: str
 }
 
 export const editTaskById = async (id: number, data: PostTaskProps, token: string) => {
-  const response = await api.put<{ data: TaskProps }>(
+  const response = await api.put<{ data: TaskProps, message: string }>(
     `/tasks/${id}`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

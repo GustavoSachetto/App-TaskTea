@@ -92,7 +92,7 @@ export const searchTaskUser = async (text: string, token?: string | null, curren
 }
 
 export const createTaskUser = async (data: PostTaskUserProps, token?: string | null) => {
-  const response = await api.post<{ data: TaskUserProps }>(
+  const response = await api.post<{ data: TaskUserProps, message: string }>(
     `/taskuser`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -101,7 +101,7 @@ export const createTaskUser = async (data: PostTaskUserProps, token?: string | n
 }
 
 export const editTaskUserById = async (id: number, data: PutTaskUserProps, token?: string | null) => {
-  const response = await api.put<TaskUserPageProps>(
+  const response = await api.put<TaskUserPageProps & { message: string }>(
     `/taskuser/${id}`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })

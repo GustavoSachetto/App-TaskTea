@@ -27,6 +27,8 @@ export const Box = styled.View`
   height: 94%;
   width: 98% ;
   flex-direction:row;
+  align-self: center;
+  justify-content: center;
   border-radius: ${w(5)}px;
   z-index: 2;
   background-color: white;
@@ -63,7 +65,7 @@ export const Text = styled.Text`
 `;
 
 export const Icons = styled.Image`
-  width:50%;
+  width:40%;
   height:100%;
 `;
 
@@ -71,6 +73,15 @@ export const View = styled.View`
   flex-direction:column;
   width:50%;
   justify-content:center;
+  margin-left: 8%;
+`;
+
+
+export const Container = styled.View`
+  flex-direction:row;
+  width:${w(90)}px;
+  justify-content:center;
+  padding: 0 ${w(5)}px;
 `;
 
 

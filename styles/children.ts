@@ -5,6 +5,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 export const Container = styled.View`
   flex: 1;
@@ -12,6 +15,7 @@ export const Container = styled.View`
   background-color: #fff;
   align-items: center;
   padding: ${w(10)}px ${w(5)}px ${w(10)}px ${w(5)}px;
+  margin-top: ${statusBar}px;
 `;
 
 export const ContainerRowTask = styled.View`
@@ -51,12 +55,11 @@ export const Dica = styled.Image`
 
 export const TextChildren = styled.Text`
   color: ${Colors.colors.blue};
-  font-size: ${getFontSize(14)}px;
+  font-size: ${getFontSize(17)}px;
   font-weight: 600;
   text-align: center;
   margin:0 auto;
   font-family: ${Fonts.RalewayBold};
-  text-transform: uppercase;
 `;
 
 export const LinkedSign = styled.Pressable`

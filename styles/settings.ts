@@ -3,6 +3,9 @@ import Colors from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { colors } = Colors;
 
@@ -13,6 +16,7 @@ export const Container = styled.View`
   display: flex;
   font-family: ${Fonts.RalewayBold};
   background-color:${colors.white};
+  margin-top: ${statusBar}px;
 `;
 export const Header = styled.View`
   flex-direction: row;
@@ -29,7 +33,7 @@ export const Logo = styled.Image`
 `;
 
 export const Title = styled.Text`
-  font-size: ${getFontSize(13)}px;
+  font-size: ${getFontSize(14)}px;
   font-family: ${Fonts.RalewayBold};
   margin: 0 auto;
 `;
@@ -46,5 +50,5 @@ export const Functions = styled.Pressable`
 export const Text = styled.Text`
   margin-left:${w(2)}px;
   font-family: ${Fonts.RalewayBold};
-  font-size: ${getFontSize(8)}px;
+  font-size: ${getFontSize(9)}px;
 `;

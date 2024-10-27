@@ -4,29 +4,18 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import CodigoUser from "@/components/code-user";
-import { useEffect, useState } from 'react';
-import { useOverlay } from '@/context/OverlayContext'; 
+import { useState } from 'react';
 import ServiceTerms from '@/components/service-terms';
 import LogoutMessage from '@/components/logout-message';
-import Security from '@/components/security';
 
 const ImageRelogio = require('@/assets/icons/historico-de-desafios.png');
 const ImageCodigoUsuario = require('@/assets/icons/codigo-usuario.png');
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { showOverlay, hideOverlay } = useOverlay();
   const [modalServiceTerms, setModalServiceTerms] = useState(false);
   const [modalLogoutMessage, setModalLogoutMessage] = useState(false);
   const [modalCode, setModalCode] = useState(false);
-
-  useEffect(() => {
-    if (modalServiceTerms || modalLogoutMessage || modalCode) {
-      showOverlay();
-    } else {
-      hideOverlay();
-    }
-  }, [modalServiceTerms, modalLogoutMessage,modalCode, showOverlay, hideOverlay]);
 
   return (
     <Container>
@@ -43,7 +32,7 @@ export default function SettingsPage() {
         <Text>Termos de serviço</Text>
       </Functions>
 
-      <Functions onPress={() => handleModal('security')}>
+      <Functions onPress={() => router.push('/(auth)/security')}>
         <Ionicons name="lock-closed-outline" size={wp('4.5%')} />
         <Text>Segurança e informação</Text>
       </Functions>
@@ -67,13 +56,13 @@ export default function SettingsPage() {
         visible={modalCode} 
         onClose={() => setModalCode(false)} 
       />
-      <ServiceTerms 
-        visible={modalServiceTerms} 
-        onClose={() => setModalServiceTerms(false)} 
+      <ServiceTerms
+        visible={modalServiceTerms}
+        onClose={() => setModalServiceTerms(false)}
       />
-      <LogoutMessage 
-        visible={modalLogoutMessage} 
-        onClose={() => setModalLogoutMessage(false)} 
+      <LogoutMessage
+        visible={modalLogoutMessage}
+        onClose={() => setModalLogoutMessage(false)}
       />
     </Container>
   );

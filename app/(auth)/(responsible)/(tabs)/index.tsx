@@ -4,7 +4,6 @@ import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useRouter } from 'expo-router';
 import SelectChild from '@/components/select-child';
-import { useOverlay } from '@/context/OverlayContext';
 
 const BlueColor = Colors.colors.blue;
 const YellowColor = Colors.colors.yellow;
@@ -12,7 +11,6 @@ const YellowColor = Colors.colors.yellow;
 export default function HomePage() {
   const router = useRouter();
   const [modalVisible, setModalVisible] = useState(false); 
-  const { showOverlay, hideOverlay } = useOverlay();
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const handleSelectUser = (id: any) => {
@@ -24,13 +22,6 @@ export default function HomePage() {
     });
   };
 
-  useEffect(() => {
-    if (modalVisible) {
-      showOverlay();
-    } else {
-      hideOverlay();
-    }
-  }, [modalVisible, showOverlay, hideOverlay]);
 
   return (
     <ScrollViewContainer>

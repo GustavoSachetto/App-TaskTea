@@ -3,8 +3,6 @@ import { router, Slot } from 'expo-router';
 import { SessionProvider, useSession } from '@/hooks/ctx';
 import { FontProvider, useFonts } from '@/context/FontContext';  
 import { verifyUserRole } from '@/utils/verifyUserRole';
-import { OverlayProvider } from '@/context/OverlayContext';
-import '@/styles/uppercase.css';
 
 function InitialLayout() {
   const { session } = useSession();
@@ -39,9 +37,7 @@ function InitialLayout() {
   }
 
   return (
-    <OverlayProvider>
       <Slot />
-    </OverlayProvider>
   );
 }
 

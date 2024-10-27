@@ -18,9 +18,10 @@ export const Voltar = styled.Image`
 
 export const LinkedSign = styled.Pressable`
   position: absolute;
-  left:${w(8)}px;
+  left:${w(4)}px;
   height: ${w(4)}px;
   width: ${w(4)}px;
+  z-index:99;
 `;
 
 export const ContainerRowTasks = styled.View`

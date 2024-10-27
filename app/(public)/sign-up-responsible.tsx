@@ -8,9 +8,9 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
 import Toast from 'react-native-toast-message';
 import ServiceTerms from '@/components/service-terms';
-import { Overlay } from '@/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { h, w } from '@/utils/responsiveMesures';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 const GrayColor = Colors.colors.gray;
 const GreenColor = Colors.colors.green;
@@ -18,7 +18,6 @@ const ImageLogo = require('@/assets/images/logo.png');
 
 export default function SignUpResponsible() {
   const [modalVisible, setModalVisible] = useState(false);
-
   let bouncyCheckboxRef: typeof BouncyCheckbox | null = null;
   const [loading, setLoading] = useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -28,12 +27,13 @@ export default function SignUpResponsible() {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [age, setAge] = useState('');
+  const [birthDate, setBirthDate] = useState(new Date()); 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const toggleShowPassword = () => {
-      setShowPassword(!showPassword);
+    setShowPassword(!showPassword);
   };
 
   const handleSignUp = async () => {
@@ -42,26 +42,27 @@ export default function SignUpResponsible() {
       email,
       nickname,
       password,
-      age: Number(age),
+      birthdate: `${birthDate.getFullYear()}/${String(birthDate.getMonth()).padStart(2, '0')}/${String(birthDate.getDate()).padStart(2, '0')}`, 
       cpf,
       phone_number: phoneNumber,
     };
+
     setLoading(true);
     const response = await createUserResponsible(userData);
     setLoading(false);
-    setIsCheckboxChecked(false)
-    if (response)
+    setIsCheckboxChecked(false);
+
+    if (response) {
       Toast.show({
         text1: 'Mensagem',
-        text2: response.message
+        text2: response.message,
       });
+    }
   };
 
   return (
     <>
-      {modalVisible && <Overlay />}
       <ContainerScrollView>
-
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <ActivityIndicator size="large" color={GreenColor} />
@@ -94,7 +95,7 @@ export default function SignUpResponsible() {
                 value={cpf}
                 onChangeText={(text: string) => {
                   const numericValue = text.replace(/[^0-9]/g, '');
-                  setCpf(numericValue.slice(0, 11))
+                  setCpf(numericValue.slice(0, 11));
                 }}
                 keyboardType="numeric"
               />
@@ -117,33 +118,42 @@ export default function SignUpResponsible() {
                 keyboardType="numeric"
               />
               <Input
-                placeholder='Idade'
-                placeholderTextColor={GrayColor}
+                value={birthDate.toLocaleDateString("pt-BR")} 
+                onFocus={() => setShowDatePicker(true)}
+                placeholder="Data de nascimento"
+                editable={true} 
                 customColor={GreenColor}
-                value={age}
-                onChangeText={(text: string) => {
-                  const numericValue = text.replace(/[^0-9]/g, '');
-                  setAge(numericValue.slice(0, 2))
-                }}
               />
-                 <PasswordContainer>
-                 <InputWrapper customColor={GreenColor}>
-              <InputPassword
-                placeholder='Senha'
-                placeholderTextColor={GrayColor}
-                customColor={GreenColor}
-                value={password}
-                onChangeText={(text: string) => setPassword(text)}
-                secureTextEntry={!showPassword}
-              />
-                 <Ionicons
-          name={showPassword ? "eye-off" : "eye"}
-          onPress={toggleShowPassword}
-          color="#808080"
-          size={w(5)} 
-        />
-          </InputWrapper>
-          </PasswordContainer>
+              {showDatePicker && (
+                <DateTimePicker
+                  value={birthDate}
+                  mode="date"
+                  display="default"
+                  onChange={(event, selectedDate) => {
+                    const currentDate = selectedDate || birthDate; 
+                    setShowDatePicker(false); 
+                    setBirthDate(currentDate); 
+                  }}
+                />
+              )}
+              <PasswordContainer>
+                <InputWrapper customColor={GreenColor}>
+                  <InputPassword
+                    placeholder='Senha'
+                    placeholderTextColor={GrayColor}
+                    customColor={GreenColor}
+                    value={password}
+                    onChangeText={(text: string) => setPassword(text)}
+                    secureTextEntry={!showPassword}
+                  />
+                  <Ionicons
+                    name={showPassword ? "eye-off" : "eye"}
+                    onPress={toggleShowPassword}
+                    color="#808080"
+                    size={w(5)} 
+                  />
+                </InputWrapper>
+              </PasswordContainer>
               <ContainerRow>
                 <BouncyCheckbox
                   ref={bouncyCheckboxRef}
@@ -179,9 +189,8 @@ export default function SignUpResponsible() {
           </>
         )}
         <Toast />
-        <ServiceTerms visible={modalVisible}
-          onClose={() => setModalVisible(false)} />
+        <ServiceTerms visible={modalVisible} onClose={() => setModalVisible(false)} />
       </ContainerScrollView>
     </>
-  )
+  );
 }

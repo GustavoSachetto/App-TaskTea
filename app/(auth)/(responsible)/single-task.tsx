@@ -1,14 +1,15 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
 import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader } from '@/styles/single-task';
-import { Overlay } from "@/styles/index";
+  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader, 
+  ButtonEdit,
+  TextButton} from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { fetchTaskUserById } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
 import { useSession } from "@/hooks/ctx";
-import { TaskProps } from "@/services/api/routes/tasks";
+import { fetchTaskById, TaskProps } from "@/services/api/routes/tasks";
 import { useRouter } from "expo-router";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -17,7 +18,7 @@ const RedColor = Colors.colors.red;
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 
 type TaskUserCredential = {
-  id: number, 
+  id: number,
   done: boolean,
   user_receiver?: {
     name: string;
@@ -31,7 +32,7 @@ function initialTask() {
     title: "string",
     description: "string",
     tip: "string",
-    level:  "string",
+    level: "string",
     image: "string",
     categories_id: 0,
     user_creator_id: 0,
@@ -49,7 +50,7 @@ export default function SingleTaskPage() {
   });
   const { session } = useSession();
   const router = useRouter();
-  
+
   const { id } = useLocalSearchParams();
 
   useEffect(() => {
@@ -57,34 +58,49 @@ export default function SingleTaskPage() {
   }, [id])
 
   const fetchTaskUser = async () => {
-    const numId: number = typeof(id) === "string" ? await parseInt(id) : 1;
-    const result = await fetchTaskUserById(numId, session);
-    setTaskUser(result.data);
-    setTask(result.data.task);
-  }
+    try {
+      if (session) {
+        const numId: number = typeof id === "string" ? parseInt(id) : 1;
+        const result = await fetchTaskUserById(numId, session);
+        setTaskUser(result.data);
+        setTask(result.data.task);
+      }
+    } catch (error: any) {
+      fetchTask();
+    }
+  };
+
+  const fetchTask = async () => {
+    if (session) {
+      const numId: number = typeof id === "string" ? parseInt(id) : 1;
+      const result = await fetchTaskById(session, numId);
+      setTask(result.data);
+    }
+  };
 
   return (
     <Container>
-      {modalVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
-            <Voltar source={ImageVoltar} resizeMode="contain" />
+          <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <TextTaskDay>Desafio</TextTaskDay>
       </ContainerRowHeader>
 
       <GradientBorderBox>
-      <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+        <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
-            <DataText>
+            {taskUser?.user_receiver?.email ? (
+              <DataText>
                 Usuário que recebeu:  {"\n"}
-                {taskUser.user_receiver?.name} {"\n"}
-                {taskUser.user_receiver?.email} {"\n"}
-            </DataText>
-            
+                {taskUser.user_receiver.name} {"\n"}
+                {taskUser.user_receiver.email} {"\n"}
+              </DataText>
+            ) : null}
+
             <Button onPress={() => setModalVisible(true)}>
               <Dica source={ImageDica} />
             </Button>
@@ -97,6 +113,14 @@ export default function SingleTaskPage() {
           />
         </BoxTask>
       </GradientBorderBox>
+
+      <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+        <TextButton>Editar desafio</TextButton>
+      </ButtonEdit>
+      
+      <ButtonEdit style={{marginTop: -5}} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
+        <TextButton>Enviar desafio</TextButton>
+      </ButtonEdit>
     </Container>
   )
 }

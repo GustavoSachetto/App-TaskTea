@@ -1,21 +1,17 @@
-import { ScrollView, Text, Pressable, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
-  QuebraCabeca, ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
+  ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerRowTasks, ContainerAllTasks, TextDoing, Task,
-  BoxTasks, Title, Description,
-  AddTask,
-  TextAddTask
-} from '@/styles/tasks';
+  BoxTasks, Title, Description, Voltar, LinkedSign
+} from '@/styles/template-tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
 
-const ImageQuebraCabeca = require('@/assets/icons/quebra-cabeca-tasks.png');
-const ImageAdicionarDesafio = require('@/assets/icons/botao-criar-amarelo.png');
-const ImageEnviarDesafio = require('@/assets//icons/icon_aviao.png')
+const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 
-export default function TasksPage() {
+export default function TemplateTasks() {
   const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
   const { session } = useSession();
   const router = useRouter();
@@ -35,19 +31,23 @@ export default function TasksPage() {
     <ScrollView style={{ backgroundColor: '#fff' }}>
       <ContainerAllTasks>
         <ContainerRowTasks>
-          <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
-          <TextTask>Desafios</TextTask>
+            <LinkedSign onPress={() => router.back()}>
+                <Voltar source={ImageVoltar} resizeMode="contain" />
+            </LinkedSign>
+            <TextTask>Templates</TextTask>
         </ContainerRowTasks>
 
         <ContainerTasksDoing>
-          <TextDoing>Em andamento</TextDoing>
+          <TextDoing>Desafios prontos</TextDoing>
         </ContainerTasksDoing>
 
         <GradientBorderBoxTasks>
           <BoxTasks>
+            {/* POR ENQUATO PUXANDO OS DESAFIOS QUE ELE FEZ, FALTA PUXAR OS DESAFIOS
+            PRONTOS. */}
             <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
               {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
-                <Pressable
+                <TouchableOpacity
                   key={taskUser.id}
                   style={{ width: '100%' }}
                   onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
@@ -56,28 +56,13 @@ export default function TasksPage() {
                     <Title>{taskUser.task.title}</Title>
                     <Description>{taskUser.task.description}</Description>
                   </Task>
-                </Pressable>
+                </TouchableOpacity>
               )) : (
                 <Text>Sem nenhuma tarefa em andamento.</Text>
               )}
             </ScrollViewContainerTasks>
           </BoxTasks>
         </GradientBorderBoxTasks>
-
-        <View style={{ paddingBottom: 15, flexDirection: 'row', justifyContent:'space-between', width:'75%'}}>
-          <View >
-            <Pressable onPress={() => router.push('/(auth)/(responsible)/create-task')}>
-              <AddTask source={ImageAdicionarDesafio} resizeMode="contain" />
-            </Pressable>
-            <TextAddTask>Criar novo {"\n"}desafio!</TextAddTask>
-          </View>
-          <View>
-            <Pressable onPress={() => router.push('/(auth)/(responsible)/send-task')}> 
-              <AddTask source={ImageEnviarDesafio} resizeMode="contain" />
-            </Pressable>
-            <TextAddTask>Enviar desafio{"\n"}existente!</TextAddTask>
-          </View>
-        </View>
       </ContainerAllTasks>
     </ScrollView>
 

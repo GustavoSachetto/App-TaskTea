@@ -4,6 +4,7 @@ import { createRelationship } from '@/services/api/routes/relationship';
 import { useSession } from '@/hooks/ctx';
 import { useState } from 'react';
 import Toast from 'react-native-toast-message';
+import { ModalOverlay } from '@/styles/overlay';
 
 interface AddChildProps {
   visible: boolean;
@@ -34,31 +35,33 @@ export default function AddChild({ visible, onClose }: AddChildProps) {
 
   return (
     <>
-    
+
       <Modal
         animationType="none"
         transparent={true}
         visible={visible}
         onRequestClose={onClose}
       >
-        <CenteredView>
-          <ModalView>
-            <CloseButton onPress={onClose}>
-              <ModalImage source={require('../assets/icons/x.png')} />
-            </CloseButton>
-            <ModalText>Adicionar crianças</ModalText>
-            <Input
-              value={code}
-              placeholder='Código do usuário'
-              placeholderTextColor="#a6a6a6"
-              onChangeText={handleChange}
-              maxLength={6}
-            />
-          </ModalView>
-        </CenteredView>
+        <ModalOverlay>
+          <CenteredView>
+            <ModalView>
+              <CloseButton onPress={onClose}>
+                <ModalImage source={require('../assets/icons/x.png')} />
+              </CloseButton>
+              <ModalText>Adicionar crianças</ModalText>
+              <Input
+                value={code}
+                placeholder='Código do usuário'
+                placeholderTextColor="#a6a6a6"
+                onChangeText={handleChange}
+                maxLength={6}
+              />
+            </ModalView>
+          </CenteredView>
+        </ModalOverlay>
         <Toast />
       </Modal>
-  
+
     </>
 
   );

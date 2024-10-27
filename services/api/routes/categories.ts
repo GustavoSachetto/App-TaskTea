@@ -28,7 +28,7 @@ export const fetchCategoryById = async (id: number) => {
 }
 
 export const createCategory = async (data: PostCategoryProps, token: string) => {
-  const response = await api.post<{ data: CategoryProps }>(
+  const response = await api.post<{ data: CategoryProps, message: string }>(
     `/categories`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -37,7 +37,7 @@ export const createCategory = async (data: PostCategoryProps, token: string) => 
 }
 
 export const editCategoryById = async (id: number, data: PostCategoryProps, token: string) => {
-  const response = await api.put<{ data: CategoryProps }>(
+  const response = await api.put<{ data: CategoryProps, message: string }>(
     `/categories/${id}`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

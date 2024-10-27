@@ -3,7 +3,6 @@ import {
   AddTask,
   TextAddTask
 } from '@/styles/tasks';
-import { Overlay } from "@/styles/index";
 import { useEffect, useState } from 'react';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user'
 import { router } from 'expo-router';
@@ -37,7 +36,6 @@ export default function ChildrenPage() {
 
   return (
     <Container>
-      {modalVisible && <Overlay />}
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
           <Voltar source={ImageVoltar} resizeMode="contain" />

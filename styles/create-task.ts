@@ -5,15 +5,18 @@ import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
 import { LinearGradient } from "expo-linear-gradient";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { StatusBar } from 'react-native';
 
+const statusBar = StatusBar.currentHeight;
 
 const { title } = Colors;
 
 export const Container = styled.ScrollView`
   flex: 1;
   font-family: ${Fonts.RalewayBold};
-  padding-top: ${h(4)}px;
+  padding-top: ${h(2)}px;
   flex-direction: column;
+  margin-top: ${statusBar}px;
 `;
 
 export const Label = styled.Text<any>`
@@ -70,11 +73,11 @@ export const TarefaImage = styled.Image`
 `;
 
 export const ButtonEdit = styled.Pressable`
-  height: 6%; 
-  width: 12%;  
+  height: ${wp(10)}px; 
+  width: ${wp(10)}px; 
   position: absolute;
   right: 5%;
-  top: 2.5%; 
+  top: 8%; 
   z-index: 98;
   align-items: center; 
   justify-content: center; 

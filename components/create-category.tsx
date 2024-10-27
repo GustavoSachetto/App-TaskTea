@@ -3,6 +3,7 @@ import { Modal } from 'react-native';
 import { CenteredView, Header, ModalView, CloseButton, Button, TextStyle, Input, Label, ModalImage } from '@/styles/create-category';
 import { createCategory } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
+import { ModalOverlay } from '@/styles/overlay';
 
 type CreateCategoryProps = {
   visible?: boolean;
@@ -42,29 +43,31 @@ export default function CreateCategory({ visible, onClose, onCategoryCreated }: 
 
   return (
     <Modal
-      animationType="slide"
+      animationType="none"
       transparent={true}
       visible={visible}
       onRequestClose={handleRequestClose}
     >
-      <CenteredView>
-        <ModalView>
-          <CloseButton onPress={onClose}>
-            <ModalImage source={require('../assets/icons/x.png')} />
-          </CloseButton>
-          <Header>
-            <Label>Criar nova categoria</Label>
-          </Header>
-          <Input
-            placeholder='Inserir categoria:'
-            value={newCategory}
-            onChangeText={setNewCategory}
-          />
-          <Button onPress={handleSubmit}>
-            <TextStyle>Criar</TextStyle>
-          </Button>
-        </ModalView>
-      </CenteredView>
+      <ModalOverlay>
+        <CenteredView>
+          <ModalView>
+            <CloseButton onPress={onClose}>
+              <ModalImage source={require('../assets/icons/x.png')} />
+            </CloseButton>
+            <Header>
+              <Label>Criar nova categoria</Label>
+            </Header>
+            <Input
+              placeholder='Inserir categoria:'
+              value={newCategory}
+              onChangeText={setNewCategory}
+            />
+            <Button onPress={handleSubmit}>
+              <TextStyle>Criar</TextStyle>
+            </Button>
+          </ModalView>
+        </CenteredView>
+      </ModalOverlay>
     </Modal>
   );
 }

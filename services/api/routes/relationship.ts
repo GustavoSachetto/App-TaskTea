@@ -32,3 +32,12 @@ export const deleteRelationshipById = async (id: number, token: string) => {
 
   return response.data;
 } 
+
+export const deleteMyRelationship = async (token: string) => {
+  const response = await api.delete<{ message: string }>(
+    `/relationship`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+  return response.data;
+}

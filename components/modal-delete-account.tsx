@@ -1,5 +1,4 @@
 import { Modal } from 'react-native';
-import { useRouter } from 'expo-router';
 import {
   CenteredView,
   ModalView,
@@ -9,7 +8,8 @@ import {
   TextStyle,
   ModalText,
   ContainerButtons
-} from '@/styles/logout-message';
+} from '@/styles/modal-delete-account';
+import { deleteMyUser } from '@/services/api/routes/user';
 import { ModalOverlay } from '@/styles/overlay';
 import { useSession } from '@/hooks/ctx';
 
@@ -21,11 +21,11 @@ type LogoutMessageProps = {
 }
 
 export default function LogoutMessage({ visible, onClose, buttonColor }: LogoutMessageProps) {
-  const router = useRouter();
-  const { signOut, session } = useSession();
+  const { session, signOut } = useSession();
 
-  const handleLogout = async () => {
+  const handleDelete = async () => {
     if (session) {
+      await deleteMyUser(session);
       await signOut(session);
     }
   }
@@ -44,15 +44,15 @@ export default function LogoutMessage({ visible, onClose, buttonColor }: LogoutM
               <ModalImage source={require('../assets/icons/x.png')} />
             </CloseButton>
 
-            <ModalText>Realmente deseja </ModalText>
-            <ModalText>sair?</ModalText>
+            <ModalText>Deseja apagar a sua</ModalText>
+            <ModalText>conta?</ModalText>
             <ContainerButtons>
               <Button onPress={onClose} style={{ backgroundColor: "#737373" }}>
                 <TextStyle>Não</TextStyle>
               </Button>
 
-              <Button onPress={handleLogout} style={{ backgroundColor: "#e43b17" }}>
-                <TextStyle>Sair</TextStyle>
+              <Button onPress={handleDelete} style={{ backgroundColor: "#e43b17" }}>
+                <TextStyle>Sim</TextStyle>
               </Button>
             </ContainerButtons>
           </ModalView>

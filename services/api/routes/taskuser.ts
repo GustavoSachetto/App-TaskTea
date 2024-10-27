@@ -38,19 +38,22 @@ export const getAllTaskUser = async (token?: string | null, currentPage: number 
     headers: { 'Authorization': `Bearer ${token}` }
   })
     
+
   return response.data;
 }
 
-export const getFinishedTasks = async (token?: string | null) => {
+export const getFinishedTasks = async (token?: string | null, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
   const response = await api.get<TaskUserPageProps>(
-    `/taskuser/finished/1`, {
+    `/taskuser/finished/1?${currentPageQuery}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
 
   return response.data;
 };
 
-export const getUnfinishedTasks = async (token?: string | null) => {
+export const getUnfinishedTasks = async (token?: string | null, currentPage: number = 1) => {
+  const currentPageQuery = queryString.stringify({ page: currentPage });
   const response = await api.get<TaskUserPageProps>(
     `/taskuser/finished/0`, {
     headers: { 'Authorization': `Bearer ${token}` }
@@ -84,12 +87,12 @@ export const searchTaskUser = async (text: string, token?: string | null, curren
     `/taskuser/search/${text}?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
-    
+
   return response.data;
 }
 
 export const createTaskUser = async (data: PostTaskUserProps, token?: string | null) => {
-  const response = await api.post<{ data: TaskUserProps }>(
+  const response = await api.post<{ data: TaskUserProps, message: string }>(
     `/taskuser`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -98,7 +101,7 @@ export const createTaskUser = async (data: PostTaskUserProps, token?: string | n
 }
 
 export const editTaskUserById = async (id: number, data: PutTaskUserProps, token?: string | null) => {
-  const response = await api.put<TaskUserPageProps>(
+  const response = await api.put<TaskUserPageProps & { message: string }>(
     `/taskuser/${id}`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })

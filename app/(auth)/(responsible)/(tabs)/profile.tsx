@@ -1,11 +1,11 @@
 import { Container, Banner, ImageProfile, NameProfile, SectionProfile, Button, ButtonText, ButtonEditProfile, ButtonExit } from '@/styles/profile-page';
 import { getMyUser, saveBannerUser, saveImageUser, UserProps } from '@/services/api/routes/user';
 import { ButtonEditBanner, EditImage } from '@/styles/profile-page';
+import { pickImage } from '@/utils/imageAnalyzer';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import If from '@/components/conditional';
 
 const ImageEditar = require('@/assets/icons/editar.png');
@@ -13,8 +13,8 @@ const ImageEditar = require('@/assets/icons/editar.png');
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const { session } = useSession();
-  const router = useRouter();
   const [editStatus, setEditStatus] = useState<boolean>(false);
+  const router = useRouter();
   const [images, setImages] = useState<{ 
     banner?: string | null, 
     image?: string | null
@@ -22,7 +22,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetchUserData();
-  }, [images]);
+  }, [session, editStatus]);
 
   const fetchUserData = async () => {
     if (session) {
@@ -31,35 +31,30 @@ export default function ProfilePage() {
     }
   }
 
-  const pickImage = async () => {
-    return await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-  }
+  const handleImageBanner = async () => {
+    let imageBase64: string | undefined= await pickImage();
 
-  const pickImageBanner = async () => {
-    let result = await pickImage();
-
-    if (!result.canceled) setImages({
-      banner: result.assets[0].uri,
+    setImages({
+      banner: imageBase64,
       image: images?.image,
     });
   }
 
-  const pickImagePerfil = async () => {
-    let result = await pickImage();
+  const handleImagePerfil = async () => {
+    let imageBase64: string | undefined= await pickImage();
 
-    if (!result.canceled) setImages({
+    setImages({
       banner: images?.banner,
-      image: result.assets[0].uri,
+      image: imageBase64,
     });
   }
 
   const handleEditStatus = () => {
     setEditStatus(!editStatus);
+    setImages({
+      banner: userData?.banner,
+      image: userData?.image,
+    });
   }
 
   const handleSubmit = async () => {
@@ -78,7 +73,7 @@ export default function ProfilePage() {
     <Container>
       <View>
         <If conditional={editStatus == true}>
-          <ButtonEditBanner onPress={pickImageBanner}>
+          <ButtonEditBanner onPress={handleImageBanner}>
             <EditImage source={ImageEditar} resizeMode="contain" />
           </ButtonEditBanner>
         </If>
@@ -87,7 +82,7 @@ export default function ProfilePage() {
       
       <View>
         <If conditional={editStatus == true}>
-          <ButtonEditProfile onPress={pickImagePerfil}>
+          <ButtonEditProfile onPress={handleImagePerfil}>
             <EditImage source={ImageEditar} resizeMode="contain" />
           </ButtonEditProfile>
         </If>

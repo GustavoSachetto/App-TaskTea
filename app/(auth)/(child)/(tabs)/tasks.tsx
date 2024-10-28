@@ -17,15 +17,15 @@ export default function TasksPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchTaskUser = async () => {
-      if (session) {
-        const response = await getUnfinishedTasks(session);
-        setTaskUser(response.data); 
-      }
-    }
-
     fetchTaskUser();
   }, [session]); 
+
+  const fetchTaskUser = async () => {
+    if (session) {
+      const response = await getUnfinishedTasks(session);
+      setTaskUser(response.data); 
+    }
+  }
 
   return (
     <ContainerAllTasks>

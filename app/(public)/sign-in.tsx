@@ -19,9 +19,9 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-      const toggleShowPassword = () => {
-          setShowPassword(!showPassword);
-      };
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleLogin = async () => {
     const debug = await signIn(email, password);
@@ -50,23 +50,23 @@ export default function SignIn() {
             onChangeText={(text: string) => setEmail(text)}
             placeholder='E-mail:' 
           />
-           <PasswordContainer>
-      <InputWrapper customColor={BlueColor}>
-        <InputPassword
-          placeholderTextColor={GrayColor}
-          placeholder='Senha:'
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry={!showPassword}
-        />
-        <Ionicons
-          name={showPassword ? "eye-off" : "eye"}
-          onPress={toggleShowPassword}
-          color="#808080"
-          size={w(5)} 
-        />
-      </InputWrapper>
-    </PasswordContainer>
+          <PasswordContainer>
+            <InputWrapper customColor={BlueColor}>
+              <InputPassword
+                placeholderTextColor={GrayColor}
+                placeholder='Senha:'
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={!showPassword}
+              />
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                onPress={toggleShowPassword}
+                color="#808080"
+                size={w(5)} 
+              />
+            </InputWrapper>
+          </PasswordContainer>
           <ContainerButtonsSign>
             <Link href="/(public)/">
               <LinkedSign customColor={GrayColor}>

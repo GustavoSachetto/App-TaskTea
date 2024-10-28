@@ -13,9 +13,9 @@ import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, fetchCategoryById, getAllCategories } from '@/services/api/routes/categories';
 import { useSession } from '@/hooks/ctx';
 import { editTaskById, fetchTaskById, saveImageTask } from '@/services/api/routes/tasks';
+import { pickImage } from '@/utils/imageAnalyzer';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
-import * as ImagePicker from 'expo-image-picker';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
@@ -26,9 +26,9 @@ export default function CreateTask() {
     const [description, setDescription] = useState('');
     const [tip, setTip] = useState('');
     const [difficulty, setDifficulty] = useState('easy');
-    const [image, setImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
+    const [image, setImage] = useState<string | null | undefined>(null);
     const [categoriesPicker, setCategoriesPicker] = useState<CategoryProps[]>([]);
-    const [imageTask, setImageTask] = useState<string | null>(null);
+    const [imageTask, setImageTask] = useState<string | null | undefined>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [modalVisible, setModalVisible] = useState(false);
     const { session } = useSession();
@@ -79,19 +79,12 @@ export default function CreateTask() {
         }
     }
 
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-    
-        if (!result.canceled) {
-            setImage(result.assets[0]);
-            setImageTask(result.assets[0].uri); 
-        }
-    };
+    const handleImage = async () => {
+        let imageBase64: string | undefined= await pickImage();
+
+        setImage(imageBase64);
+        setImageTask(imageBase64);
+    }
 
     const handleSubmit = async () => {
 
@@ -106,7 +99,7 @@ export default function CreateTask() {
         if (session) {
            await editTaskById(numericId, taskData, session);
            if (image != null) {
-           saveImageTask(numericId, image.uri, session);
+           saveImageTask(numericId, image, session);
         }
 
            Toast.show({
@@ -141,10 +134,10 @@ export default function CreateTask() {
                 </Pressable>
                 <GradientBorderBoxTasks>
                     <Imagem>
-                        <ButtonEdit onPress={pickImage}>
+                        <ButtonEdit onPress={handleImage}>
                             <EditImage source={ImageEditar} resizeMode="contain" />
                         </ButtonEdit>
-                        <TarefaImage source={imageTask ? {uri: imageTask} : ImageTarefa} />
+                        <TarefaImage source={imageTask ?? ImageTarefa} />
                     </Imagem>
                     <ContainerTasks >
 

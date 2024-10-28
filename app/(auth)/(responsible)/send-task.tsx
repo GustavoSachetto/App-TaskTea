@@ -19,13 +19,14 @@ import { Description, Task, Title } from '@/styles/tasks';
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 
 export default function CreateTask() {
-  const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[]>([]);
+  const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[] | void>([]);
   const [selectedRelationship, setSelectedRelationship] = useState<string>('');
   const [task, setTask] = useState<TaskProps[]>([]);
   const [selectedTask, setSelectedTask] = useState<TaskProps[]>([]);
   const [selectedTaskValue, setSelectedTaskValue] = useState(''); // Estado para valor selecionado no Picker
-  const { session } = useSession();
   const router = useRouter();
+  
+  const { session } = useSession();
   const { id } = useLocalSearchParams();
 
   useEffect(() => {
@@ -174,7 +175,7 @@ export default function CreateTask() {
               style={styles.picker}
             >
               <Picker.Item label="Selecione o filho" value="" />
-              {myrelationship.map((data) => (
+              {myrelationship?.map((data) => (
                 <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
               ))}
             </Picker>

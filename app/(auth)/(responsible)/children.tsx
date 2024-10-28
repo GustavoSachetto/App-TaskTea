@@ -11,41 +11,40 @@ import { SubTitle } from '@/styles/index';
 import { Pressable, View } from 'react-native'
 import AddChild from '@/components/add-child'
 
-
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const DefaultProfileImage = require('@/assets/icons/perfil.png');
 const ImageAdicionarCriança = require('@/assets/icons/botao-criar-azul.png');
 
 export default function ChildrenPage() {
-  const [userRelationships, setUserRelationships] = useState<UserRelationshipProps[]>([]);
+  const [userRelationships, setUserRelationships] = useState<UserRelationshipProps[] | void>([]);
   const { session } = useSession();
   const [modalVisible, setModalVisible] = useState(false);
   
-
   useEffect(() => {
-    const fetchUserRelationships = async () => {
-      if (session) {
-        const response = await getMyRelationships(session);
-        setUserRelationships(response.data);
-      }
-    }
-
     fetchUserRelationships();
-  }, [session]);
+  }, [session, modalVisible]);
 
+  const fetchUserRelationships = async () => {
+    if (session) {
+      const response = await getMyRelationships(session);
+      setUserRelationships(response.data);
+    }
+  }
 
   return (
     <Container>
+
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <TextChildren>Crianças</TextChildren>
       </ContainerRowHeader>
+
       <GradientBorderBox>
         <BoxChildren>
           <ViewChildren>
-            {userRelationships?.length > 0 ? (
+            {userRelationships && userRelationships.length > 0 ? (
               userRelationships.map((child) => (
                 <Childs key={child.id}>
                   <ProfilePhoto
@@ -60,7 +59,6 @@ export default function ChildrenPage() {
               </SubTitle>
             )}
           </ViewChildren>
-
         </BoxChildren>
       </GradientBorderBox>
 
@@ -72,10 +70,9 @@ export default function ChildrenPage() {
         </View>
 
         <AddChild
-           visible={modalVisible}
-           onClose={() => setModalVisible(false)}
-          />
-
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+        />
     </Container>
   )
 }

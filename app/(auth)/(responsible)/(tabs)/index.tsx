@@ -23,7 +23,6 @@ export default function HomePage() {
     });
   };
 
-
   return (
     <ScrollViewContainer>
       <HeaderIndex />

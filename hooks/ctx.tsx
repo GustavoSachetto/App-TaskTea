@@ -42,6 +42,8 @@ export function SessionProvider({ children }: PropsWithChildren) {
           
           setSession(null);
 
+          localStorage.clear();
+
           return response.message;
         },
         session,

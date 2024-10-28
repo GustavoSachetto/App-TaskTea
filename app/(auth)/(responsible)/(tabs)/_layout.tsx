@@ -7,11 +7,12 @@ import { h, w } from '@/utils/responsiveMesures';
 
 export default function Layout() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
+  const [tabPress, setTabPress] = useState<boolean>(false);
   const { session } = useSession();
 
   useEffect(() => {
     fetchUserData();
-  }, [session]);
+  }, [session, tabPress]);
 
   const fetchUserData = async () => {
     if (session) {
@@ -30,7 +31,7 @@ export default function Layout() {
           tabBarIcon: ({ focused }) => {
             let iconSource;
             let customStyle = styles.icon; 
-            let resize = "contain"; 
+            let resize: string = "contain"; 
 
             switch (route.name) {
               case 'index':
@@ -62,10 +63,18 @@ export default function Layout() {
           },
         })}
       >
-        <Tabs.Screen name="index" />
-        <Tabs.Screen name="tasks" />
-        <Tabs.Screen name="profile" />
-        <Tabs.Screen name="settings" />
+        <Tabs.Screen name="index" listeners={{tabPress: () => {
+          setTabPress(!tabPress);
+        }}}/>
+        <Tabs.Screen name="tasks" listeners={{tabPress: () => {
+          setTabPress(!tabPress);
+        }}}/>
+        <Tabs.Screen name="profile" listeners={{tabPress: () => {
+          setTabPress(!tabPress);
+        }}}/>
+        <Tabs.Screen name="settings" listeners={{tabPress: () => {
+          setTabPress(!tabPress);
+        }}}/>
       </Tabs>
     </>
   );

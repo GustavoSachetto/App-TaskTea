@@ -1,7 +1,7 @@
 # TaskTea
 ## Visão Geral
+![TelaInicialUsuario](https://github.com/user-attachments/assets/dde98062-7947-45c2-9814-6249397aff4e)
 
-<img src="view/img/fotoProjeto.png" style="margin:0 auto;">
 A plataforma TaskTea fora desenvolvida para a entrega do Trabalho de Conclusão de Curso para o curso técnico informática para internet da escola Etec Dr. Emílio Hernandez do ano de 2024.
 Porém, os colaboradores desse projeto foram: <a href="https://github.com/dartres" target="_blank">Brenda Caroline</a>,
             <a href="https://github.com/iCrowleySHR" target="_blank">Gustavo Gualda</a>, 

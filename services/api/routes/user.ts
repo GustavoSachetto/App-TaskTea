@@ -26,6 +26,10 @@ export type UserRelationshipProps = {
   updated_at: string | null
 }
 
+export type RelationshipProps = {
+  data: UserRelationshipProps[] | void
+}
+
 export type ImageUserProps = {
   message: string,
   image_path: string
@@ -65,7 +69,7 @@ export const getMyUser = async (token?: string | null) => {
 } 
 
 export const getMyRelationships = async (token: string) => {
-  const response = await api.get<{ data: UserRelationshipProps[] }>(
+  const response = await api.get<RelationshipProps>(
     `/users/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

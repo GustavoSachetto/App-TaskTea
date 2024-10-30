@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Container, Logo, Title, SubTitle, TextButton } from "@/styles/index";
-import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, InputPassword, PasswordContainer, InputWrapper } from "@/styles/sign";
+import { Border, Input, Line, TextForgot, ContainerButtonsSign, ButtonSign, LinkedSign, InputPassword, PasswordContainer, InputWrapper, ForgotPasswordContainer } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { h, w } from '@/utils/responsiveMesures';
 
 const ImageLogo = require('@/assets/images/logo.png');
-const BlueColor  = Colors.colors.blue;
+const BlueColor = Colors.colors.blue;
 const GrayColor = Colors.colors.gray;
 
 export default function SignIn() {
@@ -37,18 +37,18 @@ export default function SignIn() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Container>
-        <Logo source={ImageLogo} resizeMode="contain"/>
+        <Logo source={ImageLogo} resizeMode="contain" />
         <Title>Bem-vindo de volta!</Title>
         <SubTitle>Ficamos muito felizes com seu empenho e vontade de prosseguir com seus desafios.</SubTitle>
         <Border customColor={BlueColor}>
-          <Title customColor={BlueColor} style={{padding:10}}>Entrar</Title>
+          <Title customColor={BlueColor} style={{ padding: 10 }}>Entrar</Title>
           <Line customColor={BlueColor} />
-          <Input 
+          <Input
             placeholderTextColor={GrayColor}
-            customColor={BlueColor} 
+            customColor={BlueColor}
             value={email}
             onChangeText={(text: string) => setEmail(text)}
-            placeholder='E-mail:' 
+            placeholder='E-mail:'
           />
           <PasswordContainer>
             <InputWrapper customColor={BlueColor}>
@@ -63,10 +63,13 @@ export default function SignIn() {
                 name={showPassword ? "eye-off" : "eye"}
                 onPress={toggleShowPassword}
                 color="#808080"
-                size={w(5)} 
+                size={w(5)}
               />
             </InputWrapper>
           </PasswordContainer>
+          <ForgotPasswordContainer>
+            <TextForgot>Esqueci a senha</TextForgot>
+          </ForgotPasswordContainer>
           <ContainerButtonsSign>
             <Link href="/(public)/">
               <LinkedSign customColor={GrayColor}>
@@ -79,7 +82,7 @@ export default function SignIn() {
           </ContainerButtonsSign>
         </Border>
       </Container>
-      <Toast/>
+      <Toast />
     </ScrollView>
   )
 }

@@ -175,3 +175,15 @@ export const ContainerRow = styled.View`
   margin-bottom: ${h(2.8)}px;
   margin-left: ${h(3)}px;
 `;
+
+export const ForgotPasswordContainer = styled.Pressable`
+  margin: ${w(2)}px auto;
+  width: 90%;
+
+`
+export const TextForgot = styled.Text`
+  color: ${Colors.colors.blue};
+  font-family: ${Fonts.RalewayItalic};
+  text-decoration: underline ${Colors.colors.blue};
+  text-align: right;
+`;

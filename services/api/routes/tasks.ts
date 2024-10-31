@@ -60,6 +60,20 @@ export const getMyTasks = async (token: string, currentPage: number = 1) => {
   return response.data;
 }
 
+export const getTemplates = async (token: string) => {
+
+  const response = await api.get<TaskPageProps>(
+    `/tasks/templates`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+
+console.log(response.data)
+  return response.data;
+
+  
+}
+
+
 export const fetchTaskById = async (token: string, id: number) => {
   const response = await api.get<{ data: TaskProps }>(
     `/tasks/by/${id}`, {

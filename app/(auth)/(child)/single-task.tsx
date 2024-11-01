@@ -14,6 +14,7 @@ import { TaskProps } from "@/services/api/routes/tasks";
 import { getMyUser } from "@/services/api/routes/user";
 import { useRouter } from "expo-router";
 import Congratulations from "@/components/congratulations";
+import FeedbackModal from "@/components/feedback";
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -43,6 +44,7 @@ function initialTask() {
 export default function SingleTaskPage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [congratulationsVisible, setCongratulationsVisible] = useState(false);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [name, setName] = useState<string>("");
   const [task, setTask] = useState<TaskProps>(initialTask);
   const [taskUser, setTaskUser] = useState<TaskUserCredential>({
@@ -72,21 +74,29 @@ export default function SingleTaskPage() {
 
     setName(result.data.name);
   }
-
   const finishTask = async (id: number) => {
+    const newDoneStatus = !taskUser.done;
+  
+    setTaskUser(prev => ({ ...prev, done: newDoneStatus }));
+  
     await editTaskUserById(id, {
-      done: taskUser.done ? false : true,
+      done: newDoneStatus,
       difficult_level: null
     }, session);
-    
-    if(taskUser.done == false){
+  
+
+    if (newDoneStatus) {
+      setTimeout(() => {
+        setFeedbackVisible(true);
+      }, 2900);
       setCongratulationsVisible(true);
     }
   
     setTimeout(() => {
-      router.push('/(auth)/(child)/(tabs)/'); 
-    }, 2000);
+      setCongratulationsVisible(false);
+    }, 2500);
   }
+  
 
   return (
     <Container>
@@ -131,6 +141,12 @@ export default function SingleTaskPage() {
       <Congratulations
         visible={congratulationsVisible}
         onClose={() => setCongratulationsVisible(false)}
+      />
+      <FeedbackModal 
+             visible={feedbackVisible}
+             onClose={() => setFeedbackVisible(false)}
+             taskUserId={taskUser.id}
+             done={taskUser.done}
       />
     </Container>
   )

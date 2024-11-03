@@ -91,6 +91,7 @@ export const BoxTask = styled.View`
   z-index: 2;
   background-color: white;
   position: absolute; 
+  padding: 0 5%;
   bottom: 1%;
   justify-content: space-between;
 `;

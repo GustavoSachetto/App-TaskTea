@@ -42,7 +42,6 @@ function InitialLayout() {
     }
   
     const role = response.data.role[0];
-    console.log(response, role);
     return role;
   }
   

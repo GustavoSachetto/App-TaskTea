@@ -22,6 +22,12 @@ export const ContainerRowTask = styled.View`
   padding: 0 ${w(3)}px 0 ${w(3)}px;
 `;
 
+export const CenteredCheckboxContainer = styled.View`
+  position: absolute;
+  align-items: center; 
+  width: ${w(70)}px;
+`;
+
 export const ContainerRowHeader = styled.View`
   width: 100%;
   flex-direction: row;
@@ -112,7 +118,7 @@ export const TextClick = styled.Text`
   font-size: ${getFontSize(8)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  width: 27%;
+  width: ${w(18)}px ;
 `;
 
 export const DataText = styled.Text`

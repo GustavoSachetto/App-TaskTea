@@ -2,7 +2,8 @@ import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
 import {
   Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader
+  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader,
+  CenteredCheckboxContainer
 } from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
@@ -15,6 +16,7 @@ import { getMyUser } from "@/services/api/routes/user";
 import { useRouter } from "expo-router";
 import Congratulations from "@/components/congratulations";
 import FeedbackModal from "@/components/feedback";
+import { w, h } from '@/utils/responsiveMesures';
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -76,14 +78,14 @@ export default function SingleTaskPage() {
   }
   const finishTask = async (id: number) => {
     const newDoneStatus = !taskUser.done;
-  
+
     setTaskUser(prev => ({ ...prev, done: newDoneStatus }));
-  
+
     await editTaskUserById(id, {
       done: newDoneStatus,
       difficult_level: null
     }, session);
-  
+
 
     if (newDoneStatus) {
       setTimeout(() => {
@@ -91,12 +93,12 @@ export default function SingleTaskPage() {
       }, 2900);
       setCongratulationsVisible(true);
     }
-  
+
     setTimeout(() => {
       setCongratulationsVisible(false);
     }, 2500);
   }
-  
+
 
   return (
     <Container>
@@ -114,18 +116,18 @@ export default function SingleTaskPage() {
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
             <TextClick>Clique para finalizar seu desafio</TextClick>
-
-            <BouncyCheckbox
-              disableText
-              fillColor="#46f87c"
-              size={50}
-              innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: 3.5 }}
-              iconStyle={{ borderRadius: 15 }}
-              style={{ alignSelf: 'center', marginVertical: 10 }}
-              isChecked={taskUser.done}
-              onPress={() => finishTask(taskUser.id)}
-            />
-
+            <CenteredCheckboxContainer>
+              <BouncyCheckbox
+                disableText
+                fillColor="#46f87c"
+                size={w(15)}
+                innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: w(1) }}
+                iconStyle={{ borderRadius: 15 }}
+                style={{ alignSelf: 'center', marginVertical: 10 }}
+                isChecked={taskUser.done}
+                onPress={() => finishTask(taskUser.id)}
+              />
+            </CenteredCheckboxContainer>
             <Button onPress={() => setModalVisible(true)}>
               <Dica source={ImageDica} />
             </Button>
@@ -142,11 +144,11 @@ export default function SingleTaskPage() {
         visible={congratulationsVisible}
         onClose={() => setCongratulationsVisible(false)}
       />
-      <FeedbackModal 
-             visible={feedbackVisible}
-             onClose={() => setFeedbackVisible(false)}
-             taskUserId={taskUser.id}
-             done={taskUser.done}
+      <FeedbackModal
+        visible={feedbackVisible}
+        onClose={() => setFeedbackVisible(false)}
+        taskUserId={taskUser.id}
+        done={taskUser.done}
       />
     </Container>
   )

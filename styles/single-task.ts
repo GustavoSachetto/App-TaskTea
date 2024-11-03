@@ -18,14 +18,15 @@ export const ContainerRowTask = styled.View`
   align-items:center;
   justify-content:space-between;
   width: 100%;
-  flex-direction: row;
-  padding: 0 ${w(3)}px 0 ${w(3)}px;
+  flex-direction: row; 
+  margin-bottom: 5%; 
 `;
 
 export const CenteredCheckboxContainer = styled.View`
   position: absolute;
+  left: 0;
   align-items: center; 
-  width: ${w(70)}px;
+  width: 100%;
 `;
 
 export const ContainerRowHeader = styled.View`
@@ -46,13 +47,12 @@ export const Title = styled.Text<any>`
 export const Voltar = styled.Image`
   width: ${w(9)}px ;
   height: ${w(9)}px ;
-  z-index: 99;
-  margin: 0 auto;
 `;
 
 export const Dica = styled.Image`
   width: ${h(8)}px;
   height: ${h(8)}px;
+  margin-right: ${w(5)}px;
 `;
 
 export const TextTaskDay = styled.Text`
@@ -92,7 +92,6 @@ export const BoxTask = styled.View`
   background-color: white;
   position: absolute; 
   bottom: 1%;
-  padding: 5%;
   justify-content: space-between;
 `;
 
@@ -119,6 +118,7 @@ export const TextClick = styled.Text`
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
   width: ${w(18)}px ;
+  margin-left: ${w(5)}px;
 `;
 
 export const DataText = styled.Text`

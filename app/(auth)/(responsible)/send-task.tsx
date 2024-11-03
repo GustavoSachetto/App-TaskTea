@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
   Container, GradientBorderBoxTasks, Voltar,
-  ButtonCreate, Label, ContainerTasks
+  ButtonCreate, Label, ContainerTasks,
+  SelectWrapper
 } from "@/styles/create-task";
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { getFontSize } from '@/utils/fontSize';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { useSession } from '@/hooks/ctx';
@@ -15,6 +14,7 @@ import { createTaskUser } from '@/services/api/routes/taskuser';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
 import Toast from 'react-native-toast-message';
 import { Description, Task, Title } from '@/styles/tasks';
+import { stylesPicker } from '@/styles/pickerStyle';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 
@@ -23,9 +23,9 @@ export default function CreateTask() {
   const [selectedRelationship, setSelectedRelationship] = useState<string>('');
   const [task, setTask] = useState<TaskProps[]>([]);
   const [selectedTask, setSelectedTask] = useState<TaskProps[]>([]);
-  const [selectedTaskValue, setSelectedTaskValue] = useState(''); // Estado para valor selecionado no Picker
+  const [selectedTaskValue, setSelectedTaskValue] = useState(''); 
   const router = useRouter();
-  
+
   const { session } = useSession();
   const { id } = useLocalSearchParams();
 
@@ -39,10 +39,10 @@ export default function CreateTask() {
       const foundTask = task.find((t) => t.id.toString() === id);
       if (foundTask) {
         setSelectedTask([foundTask]);
-        setSelectedTaskValue(foundTask.id.toString()); // Define o valor do Picker
+        setSelectedTaskValue(foundTask.id.toString()); 
       } else {
         setSelectedTask([]);
-        setSelectedTaskValue(''); // Limpa o valor se não encontrado
+        setSelectedTaskValue(''); 
       }
     }
   }, [id, task]);
@@ -125,7 +125,7 @@ export default function CreateTask() {
   const handlePickerTask = (itemValue: string) => {
     const selectedTaskData = task.find((taskData) => taskData.id.toString() === itemValue);
     setSelectedTask(selectedTaskData ? [selectedTaskData] : []);
-    setSelectedTaskValue(itemValue); 
+    setSelectedTaskValue(itemValue);
   };
 
   return (
@@ -157,29 +157,31 @@ export default function CreateTask() {
             )}
 
             <Label>Minhas tarefas existentes:</Label>
-            <Picker
-              selectedValue={selectedTaskValue} // Use o novo estado aqui
-              onValueChange={handlePickerTask}
-              style={styles.picker}
-            >
-              <Picker.Item label="Selecione uma tarefa" value="" />
-              {task.map((tasks) => (
-                <Picker.Item key={tasks.id} label={tasks.title} value={tasks.id.toString()} />
-              ))}
-            </Picker>
-
+            <SelectWrapper>
+              <Picker
+                selectedValue={selectedTaskValue} 
+                onValueChange={handlePickerTask}
+                style={stylesPicker.picker}
+              >
+                <Picker.Item label="Selecione uma tarefa" value="" />
+                {task.map((tasks) => (
+                  <Picker.Item key={tasks.id} label={tasks.title} value={tasks.id.toString()} />
+                ))}
+              </Picker>
+            </SelectWrapper>
             <Label>Selecionar Filho:</Label>
-            <Picker
-              selectedValue={selectedRelationship}
-              onValueChange={handlePickerRelationship}
-              style={styles.picker}
-            >
-              <Picker.Item label="Selecione o filho" value="" />
-              {myrelationship?.map((data) => (
-                <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
-              ))}
-            </Picker>
-
+            <SelectWrapper>
+              <Picker
+                selectedValue={selectedRelationship}
+                onValueChange={handlePickerRelationship}
+                style={stylesPicker.picker}
+              >
+                <Picker.Item label="Selecione o filho" value="" />
+                {myrelationship?.map((data) => (
+                  <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
+                ))}
+              </Picker>
+            </SelectWrapper>
             <ButtonCreate onPress={handleSubmit}>
               <TextButton>Enviar desafio</TextButton>
             </ButtonCreate>
@@ -189,20 +191,3 @@ export default function CreateTask() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  picker: {
-    paddingTop: wp('2%'),
-    paddingBottom: wp('2%'),
-    borderRadius: 15,
-    borderColor: '#f9d54b',
-    borderWidth: 2,
-    marginTop: 10,
-    marginVertical: 10,
-    alignSelf: 'center',
-    width: '95%',
-    fontSize: getFontSize(8),
-    color: '#737373'
-  },
-});
-

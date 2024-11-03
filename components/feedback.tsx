@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, StyleSheet } from 'react-native';
+import { Modal, StyleSheet, Text } from 'react-native';
 import { CenteredView, Header, ModalView, CloseButton, Button, TextStyle, Input, Label, ModalImage } from '@/styles/feedback';
 import { useSession } from '@/hooks/ctx';
 import { ModalOverlay } from '@/styles/overlay';
@@ -55,13 +55,13 @@ export default function FeedbackModal({ visible, onClose, taskUserId, done }: Fe
             <ModalOverlay>
                 <CenteredView>
                     <ModalView>
-                        <CloseButton onPress={onClose}>
+                     <CloseButton onPress={onClose}>
                             <ModalImage source={require('../assets/icons/x.png')} />
                         </CloseButton>
                         <Header>
-                            <Label>O que você achou desse desafio?</Label>
+                            <Text>O que você achou  {"\n"} 
+                            desse desafio?</Text>
                         </Header>
-                        <Label>Dificuldade:</Label>
                         <Picker
                             selectedValue={difficulty}
                             onValueChange={setDifficulty}

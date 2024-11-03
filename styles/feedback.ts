@@ -79,9 +79,12 @@ export const TextStyle = styled.Text`
 `;
 
 export const Header = styled.Text`
-  flex-direction: row;
-  width:100%;
-  margin-top: ${getFontSize(12)}px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction:row;
+   font-size: ${getFontSize(8)}px;
+  font-family: ${Fonts.RalewayRegular};
   text-align: center;
 `;
 

@@ -8,6 +8,7 @@ import { PutTaskUserProps, editTaskUserById } from '@/services/api/routes/taskus
 import { router } from 'expo-router';
 import { SelectWrapper } from '@/styles/create-task';
 import { stylesPicker } from '@/styles/pickerStyle';
+import { w } from '@/utils/responsiveMesures';
 
 type FeedbackProps = {
     visible?: boolean;
@@ -59,7 +60,7 @@ export default function FeedbackModal({ visible, onClose, taskUserId, done }: Fe
                             <Text>O que você achou  {"\n"}
                                 desse desafio?</Text>
                         </Header>
-                        <SelectWrapper>
+                        <SelectWrapper style={{marginTop: w(4), marginBottom: w(4)}}>
                             <Picker
                                 selectedValue={difficulty}
                                 onValueChange={setDifficulty}

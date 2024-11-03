@@ -5,7 +5,7 @@ import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, Bo
   ButtonEdit,
   TextButton} from '@/styles/single-task';
 import { Button } from '@/styles/tip';
-import { fetchTaskUserById } from '@/services/api/routes/taskuser';
+import { fetchTaskUserById, TaskUserProps } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
 import Tip from '@/components/tip';
 import { useSession } from "@/hooks/ctx";
@@ -48,6 +48,7 @@ export default function SingleTaskPage() {
     id: 1,
     done: false
   });
+  const [difficult, setDifficult] = useState<string | null>(null);
   const { session } = useSession();
   const router = useRouter();
 
@@ -63,12 +64,27 @@ export default function SingleTaskPage() {
         const numId: number = typeof id === "string" ? parseInt(id) : 1;
         const result = await fetchTaskUserById(numId, session);
         setTaskUser(result.data);
+        setDifficult(result.data.difficult_level);
         setTask(result.data.task);
       }
     } catch (error: any) {
       fetchTask();
     }
   };
+
+  const translateDifficult = (difficult: any): string => {
+    const difficulties: { [key: string]: string } = {
+      'very easy': 'muito fácil',
+      'easy': 'fácil',
+      'medium': 'média',
+      'hard': 'difícil',
+      'very hard': 'muito difícil',
+    };
+  
+    return difficulties[difficult];
+  };
+  
+  const translatedDifficult = translateDifficult(difficult);
 
   const fetchTask = async () => {
     if (session) {
@@ -92,6 +108,9 @@ export default function SingleTaskPage() {
         <BoxTask>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
+          {difficult != null ? (
+            <DataText>A criança achou a tarefa {translatedDifficult}.</DataText>
+          ) : null} 
           <ContainerRowTask>
             {taskUser?.user_receiver?.email ? (
               <DataText>

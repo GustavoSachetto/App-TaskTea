@@ -8,7 +8,6 @@ export const CenteredView = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  text-transform: uppercase;
 `;
 
 export const ModalView = styled.View`

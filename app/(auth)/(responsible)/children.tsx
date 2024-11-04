@@ -1,4 +1,4 @@
-import { Container, Voltar, TextChildren, LinkedSign, BoxChildren, GradientBorderBox, ContainerRowHeader, ViewChildren ,ProfilePhoto, Name, Childs } from '@/styles/children';
+import { Container, Voltar, TextChildren, LinkedSign, BoxChildren, GradientBorderBox, ContainerRowHeader, ViewChildren, ProfilePhoto, Name, Childs } from '@/styles/children';
 import {
   AddTask,
   TextAddTask
@@ -10,6 +10,7 @@ import { useSession } from '@/hooks/ctx';
 import { SubTitle } from '@/styles/index';
 import { Pressable, View } from 'react-native'
 import AddChild from '@/components/add-child'
+import ModalDeleteRelationship from '@/components/modal-delete-relationship';
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const DefaultProfileImage = require('@/assets/icons/perfil.png');
@@ -17,9 +18,11 @@ const ImageAdicionarCriança = require('@/assets/icons/botao-criar-azul.png');
 
 export default function ChildrenPage() {
   const [userRelationships, setUserRelationships] = useState<UserRelationshipProps[] | void>([]);
+  const [userId, setUserId] = useState<number>();
   const { session } = useSession();
   const [modalVisible, setModalVisible] = useState(false);
-  
+  const [modalDeleteRelationship, setModalDeleteRelationship] = useState(false);
+
   useEffect(() => {
     fetchUserRelationships();
   }, [session, modalVisible]);
@@ -28,6 +31,7 @@ export default function ChildrenPage() {
     if (session) {
       const response = await getMyRelationships(session);
       setUserRelationships(response.data);
+      setUserId(response.data.id)
     }
   }
 
@@ -44,35 +48,43 @@ export default function ChildrenPage() {
       <GradientBorderBox>
         <BoxChildren>
           <ViewChildren>
-            {userRelationships && userRelationships.length > 0 ? (
-              userRelationships.map((child) => (
-                <Childs key={child.id}>
-                  <ProfilePhoto
-                    source={child.image ? { uri: child.image } : DefaultProfileImage}
-                  />
-                  <Name>{child.name}</Name>
-                </Childs>
-              ))
-            ) : (
-              <SubTitle>
-                Nenhuma criança encontrada.
-              </SubTitle>
-            )}
+            <Pressable onPress={() => setModalDeleteRelationship(true)}>
+              {userRelationships && userRelationships.length > 0 ? (
+                userRelationships.map((child) => (
+                  <Childs key={child.id}>
+                    <ProfilePhoto
+                      source={child.image ? { uri: child.image } : DefaultProfileImage}
+                    />
+                    <Name>{child.name}</Name>
+                  </Childs>
+                ))
+              ) : (
+                <SubTitle>
+                  Nenhuma criança encontrada.
+                </SubTitle>
+              )}
+            </Pressable>
           </ViewChildren>
         </BoxChildren>
       </GradientBorderBox>
 
-        <View style={{paddingBottom:15}}>
-          <Pressable onPress={() => setModalVisible(true)}>
-            <AddTask source={ImageAdicionarCriança} resizeMode="contain" />
-          </Pressable>
-          <TextAddTask>Adicionar filho</TextAddTask>
-        </View>
+      <View style={{ paddingBottom: 15 }}>
+        <Pressable onPress={() => setModalVisible(true)}>
+          <AddTask source={ImageAdicionarCriança} resizeMode="contain" />
+        </Pressable>
+        <TextAddTask>Adicionar filho</TextAddTask>
+      </View>
 
-        <AddChild
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-        />
+      <AddChild
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
+      <ModalDeleteRelationship
+        visible={modalDeleteRelationship}
+        onClose={() => setModalDeleteRelationship(false)}
+        userId={userId}
+      />
     </Container>
+
   )
 }

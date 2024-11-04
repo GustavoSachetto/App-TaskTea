@@ -1,5 +1,5 @@
 import { CenteredView, CloseButton, ModalImage, ModalText, ModalView, ContainerButtons } from '@/styles/modal-delete-relationship';
-import { deleteMyRelationship } from '@/services/api/routes/relationship';
+import { deleteRelationshipById } from '@/services/api/routes/relationship';
 import { Button, TextStyle } from '@/styles/modal-delete-account';
 import { ModalOverlay } from '@/styles/overlay';
 import { Modal } from "react-native";
@@ -8,14 +8,15 @@ import { useSession } from '@/hooks/ctx';
 type ModalDeleteRelationshipProps = {
   visible: boolean;
   onClose: () => void;
+  userId: number;
 }
 
-export default function ModalDeleteRelationship({ visible, onClose }: ModalDeleteRelationshipProps) {
+export default function ModalDeleteRelationship({ visible, onClose, userId }: ModalDeleteRelationshipProps) {
   const { session } = useSession();
 
   const handleDeleteRelationship = async () => {
-    if (session) await deleteMyRelationship(session);
-    
+    if (session) await deleteRelationshipById(userId, session);
+    console.log(userId)
     onClose();
   }
 

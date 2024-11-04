@@ -63,17 +63,10 @@ export default function SettingsPage() {
         <Text>Histórico de Desafios</Text>
       </Functions>
 
-      {myRelationship?.data && myRelationship.data.length > 0 ? (
-        <Functions onPress={() => setModalDeleteRelationship(true)}>
-          <Image source={IconAlert} style={{ width: wp('5%'), height: wp('5%') }} />
-          <Text>Excluir relacionamento</Text>
-        </Functions>
-      ) : (
         <Functions onPress={() => setModalCode(true)}>
           <Image source={ImageCodigoUsuario} style={{ width: wp('5%'), height: wp('5%') }} />
           <Text>Código usuário</Text>
         </Functions>
-      )}
 
       <Functions onPress={() => setModalLogoutMessage(true)}>
         <Ionicons name="exit-outline" size={wp('4.5%')} color="#ff3f00" />

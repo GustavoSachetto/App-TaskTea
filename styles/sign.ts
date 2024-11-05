@@ -76,6 +76,7 @@ export const Border = styled.View<CustomColorProps>`
   align-items: flex-start;
   border: solid ${(props) => props.customColor || dark.background} 4px;
   border-radius: ${h(2)}px;
+  margin-bottom: ${h(5)}px;
 `;
 
 export const Line = styled.View<CustomColorProps>`
@@ -144,7 +145,7 @@ export const ContainerButtonsSign = styled.View`
   width: 100%;
   justify-content: space-between;
   flex-direction: row;
-  margin: 0 auto;
+  margin: 0 auto ${w(4)}px;
   padding: ${w(2)}px ${w(3)}px ${w(2)}px;
 `;
 
@@ -160,20 +161,19 @@ export const TextReadAndAgree = styled.Text`
   font-size: ${getFontSize(6)}px;
   color: ${Colors.colors.gray};
   font-family: ${Fonts.RalewayRegular};
-  margin-left: ${h(1)}px;
-  text-transform: none;
+  margin-left: ${h(3)}px;
+  flex: 1;
+
 `;
 
 export const ContainerRow = styled.View`
   flex: 1;
-  padding: 15px;
-  height: 85%;
-  display: flex;
+  padding: 0 ${w(6)}px; 
   align-items: center;
+  justify-content: center;
   flex-direction: row;
   margin-top: ${h(3)}px;
   margin-bottom: ${h(2.8)}px;
-  margin-left: ${h(3)}px;
 `;
 
 export const ForgotPasswordContainer = styled.Pressable`

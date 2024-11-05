@@ -133,7 +133,6 @@ export default function SignUpChild() {
               </PasswordContainer>
               <ContainerRow>
                 <BouncyCheckbox
-                  ref={BouncyCheckbox}
                   disableText
                   fillColor="#46f87c"
                   size={30}

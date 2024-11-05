@@ -34,7 +34,7 @@ font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 2%;
+  height: ${w(10)}px;
   outline: 0;
   margin: ${w(2)}px auto;
   border: solid #f9d54b 2px;
@@ -45,7 +45,7 @@ font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
   border-radius: ${w(4)}px ;
-  padding: 2%;
+  height: ${w(10)}px;
   outline: 0;
   margin: 4% auto;
   border: solid #f9d54b 2px;
@@ -125,4 +125,13 @@ export const ContainerTasks = styled.View`
   padding: ${w(2.5)}px;
   border-radius: ${w(4)}px;
   width: ${w(89)}px;
+`;
+
+export const SelectWrapper = styled.View`
+  border: solid #f9d54b 2px;
+  border-radius: ${w(4)}px;
+  width: 95%;
+  margin-top: ${w(2)}px;
+  height: ${w(10)}px;
+  justify-content: center;
 `;

@@ -44,8 +44,6 @@ export default function TemplateTasks() {
 
         <GradientBorderBoxTasks>
           <BoxTasks>
-            {/* POR ENQUATO PUXANDO OS DESAFIOS QUE ELE FEZ, FALTA PUXAR OS DESAFIOS
-            PRONTOS. */}
             <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
               {task && task.data.length > 0 ? (
                 task.data.map((taskItem: TaskProps) => (

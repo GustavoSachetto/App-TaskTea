@@ -7,19 +7,14 @@ import {
     InputWrapper
 } from "@/styles/security";
 import { useEffect, useState } from "react";
-import { Modal } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { h, w } from '@/utils/responsiveMesures';
+import { w } from '@/utils/responsiveMesures';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { router } from "expo-router";
 import ModalDeleteAccount from '@/components/modal-delete-account';
+import Toast from "react-native-toast-message";
 
-type SecurityProps = {
-    visible?: boolean,
-    onClose: () => void
-}
-
-export default function Security({ visible, onClose }: SecurityProps) {
+export default function Security() {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
     const [originalUserData, setOriginalUserData] = useState<PutUserProps | undefined>(undefined);
     const [inputNameValue, setInputNameValue] = useState("");
@@ -115,6 +110,20 @@ export default function Security({ visible, onClose }: SecurityProps) {
 
                 const response = await editMyUser(data, session);
 
+                Toast.show({
+                    text1: 'Mensagem',
+                    text2: response.message
+                  });
+                   setTimeout(() => {
+
+                    if(inputTelephoneValue){
+                    router.push('/(auth)/(responsible)/(tabs)/settings');
+                }
+                    else {
+                        router.push('/(auth)/(child)/(tabs)/settings');
+                    }
+                  }, 2000);;
+
                 if (response) {
                     setOriginalUserData({
                         ...originalUserData,
@@ -127,6 +136,8 @@ export default function Security({ visible, onClose }: SecurityProps) {
                 }
             }
         }
+
+  
     };
 
 
@@ -289,6 +300,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                 onClose={() => setModalDelete(false)}
                 visible={modalDelete}
                 />
+                <Toast />
             </CenteredView>
         </>
     );

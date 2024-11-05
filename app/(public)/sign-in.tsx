@@ -24,12 +24,13 @@ export default function SignIn() {
   };
 
   const handleLogin = async () => {
-    const debug = await signIn(email, password);
 
-    if (debug) {
+    try {
+      await signIn(email, password);
+    } catch (error) {
       Toast.show({
-        text1: 'Mensagem',
-        text2: debug
+        text1: 'Erro',
+        text2: 'Por favor, confira seu e-mail e senha e tente novamente.'
       });
     }
   }

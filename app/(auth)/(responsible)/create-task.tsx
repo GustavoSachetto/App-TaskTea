@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
   Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
   TarefaImage, Voltar, Input,
-  ButtonCreate, Label, ContainerTasks, Imagem
+  ButtonCreate, Label, ContainerTasks, Imagem,
+  SelectWrapper
 } from "@/styles/create-task";
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { getFontSize } from '@/utils/fontSize';
 import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, getAllCategories } from '@/services/api/routes/categories';
@@ -18,6 +17,8 @@ import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes
 import { pickImage } from '@/utils/imageAnalyzer';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
+import { w } from '@/utils/responsiveMesures';
+import { stylesPicker } from '@/styles/pickerStyle';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
@@ -55,7 +56,7 @@ export default function CreateTask() {
     }
   }
 
-  const fetchMyRelationship = async () =>{
+  const fetchMyRelationship = async () => {
     if (session) {
       try {
         const response = await getMyRelationships(session);
@@ -67,7 +68,7 @@ export default function CreateTask() {
   }
 
   const handleImage = async () => {
-    let imageBase64: string | undefined= await pickImage();
+    let imageBase64: string | undefined = await pickImage();
     setImage(imageBase64);
   }
 
@@ -90,18 +91,18 @@ export default function CreateTask() {
 
     if (session) {
       const response = await createTask(taskData, session);
-    
+
       const newTaskId = response.data.id;
       setIdTask(newTaskId);
       setUserReceiver(selectedRelationship);
 
       if (image != null) saveImageTask(newTaskId, image, session);
-    
+
       const taskUserData = {
-        tasks_id: newTaskId,             
-        user_receiver_id: Number(selectedRelationship) 
+        tasks_id: newTaskId,
+        user_receiver_id: Number(selectedRelationship)
       };
-    
+
       await createTaskUser(taskUserData, session);
       router.push('/(auth)/(responsible)/(tabs)/tasks');
     }
@@ -126,8 +127,8 @@ export default function CreateTask() {
 
   return (
     <>
-      <View style={{zIndex:100}}>
-        <Toast/>
+      <View style={{ zIndex: 100 }}>
+        <Toast />
       </View>
       <Container contentContainerStyle={{ flexGrow: 1 }}>
         <Pressable onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}>
@@ -159,40 +160,47 @@ export default function CreateTask() {
             />
 
             <Label>Dificuldade:</Label>
-            <Picker
-              selectedValue={difficulty}
-              onValueChange={setDifficulty}
-              style={styles.picker}
-            >
-              <Picker.Item label="Fácil" value="easy" />
-              <Picker.Item label="Médio" value="medium" />
-              <Picker.Item label="Difícil" value="hard" />
-            </Picker>
+            <SelectWrapper>
+              <Picker
+                selectedValue={difficulty}
+                onValueChange={setDifficulty}
+                style={stylesPicker.picker}
+              >
+                <Picker.Item label="Fácil" value="easy" />
+                <Picker.Item label="Médio" value="medium" />
+                <Picker.Item label="Difícil" value="hard" />
+              </Picker>
+            </SelectWrapper>
+
             <Label>Categoria:</Label>
-            <Picker
-              selectedValue={selectedCategory}
-              onValueChange={handlePickerChange}
-              style={styles.picker}
-            >
-              <Picker.Item label="Selecione uma categoria" value="" />
-              {categories.map((category) => (
-                <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
-              ))}
-              <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
-            </Picker>
+            <SelectWrapper>
+              <Picker
+                selectedValue={selectedCategory}
+                onValueChange={handlePickerChange}
+                style={stylesPicker.picker}
+              >
+                <Picker.Item label="Selecione uma categoria" value="" />
+                {categories.map((category) => (
+                  <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
+                ))}
+                <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
+              </Picker>
+            </SelectWrapper>
 
             <Label>Selecionar Filho:</Label>
-            <Picker
-              selectedValue={selectedRelationship}
-              onValueChange={handlePickerRelationship}
-              style={styles.picker}
-            >
-              <Picker.Item label="Selecione o filho" value="" />
-              {myrelationship?.map((data) => (
-                <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
-              ))}
-            </Picker>
-            <ButtonCreate onPress={handleSubmit}>
+            <SelectWrapper>
+              <Picker
+                selectedValue={selectedRelationship}
+                onValueChange={handlePickerRelationship}
+                style={stylesPicker.picker}
+              >
+                <Picker.Item label="Selecione o filho" value="" />
+                {myrelationship?.map((data) => (
+                  <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
+                ))}
+              </Picker>
+            </SelectWrapper>
+            <ButtonCreate onPress={handleSubmit} style={{ marginTop: w(6) }}>
               <TextButton>Criar</TextButton>
             </ButtonCreate>
           </ContainerTasks>
@@ -207,19 +215,3 @@ export default function CreateTask() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  picker: {
-    paddingTop: wp('2%'),
-    paddingBottom: wp('2%'),
-    borderRadius: 15,
-    borderColor: '#f9d54b',
-    borderWidth: 2,
-    marginTop: 10,
-    marginVertical: 10,
-    alignSelf: 'center',
-    width: '95%',
-    fontSize: getFontSize(8),
-    color: '#737373'
-  },
-});

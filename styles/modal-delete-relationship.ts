@@ -10,14 +10,14 @@ export const CenteredView = styled.View`
 
 export const CloseButton = styled.Pressable`
   position: absolute;
-  top: ${getFontSize(5)}px;
-  right: ${getFontSize(5)}px;
+  top: ${getFontSize(7)}px;
+  right: ${getFontSize(8)}px;
   z-index: 99;
 `;
 
 export const ModalView = styled.View`
   width: ${getFontSize(170)}px;
-  height: ${getFontSize(130)}px;
+  height: ${getFontSize(150)}px;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -32,7 +32,7 @@ export const ModalText = styled.Text`
   font-size: ${getFontSize(11)}px;
   color: black;
   text-align: center;
-  margin-top: ${getFontSize(11)}px;
+  margin-top: ${getFontSize(20)}px;
   margin-bottom: ${getFontSize(11)}px;
   font-family: ${Fonts.RalewayRegular};
 `;
@@ -47,5 +47,6 @@ export const ContainerButtons = styled.Pressable`
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
-  gap: 100px;  
+  margin-bottom: 20px;
+  gap: 70px;  
 `;

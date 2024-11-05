@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { TextButton } from "@/styles/index";
 import {
     Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
     TarefaImage, Voltar, Input,
-    ButtonCreate, Label, ContainerTasks, Imagem
+    ButtonCreate, Label, ContainerTasks, Imagem,
+    SelectWrapper
 } from "@/styles/create-task";
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { getFontSize } from '@/utils/fontSize';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { CategoryProps, fetchCategoryById, getAllCategories } from '@/services/api/routes/categories';
@@ -16,6 +15,7 @@ import { editTaskById, fetchTaskById, saveImageTask } from '@/services/api/route
 import { pickImage } from '@/utils/imageAnalyzer';
 import CreateCategory from '@/components/create-category';
 import Toast from 'react-native-toast-message';
+import { stylesPicker } from '@/styles/pickerStyle';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
@@ -47,7 +47,7 @@ export default function CreateTask() {
         if (session) {
             const result = await fetchTaskById(session, numericId);
             const category = await fetchCategoryById(result.data.categories_id)
-            
+
             setTitle(result.data.title);
             setDescription(result.data.description)
             setTip(result.data.tip)
@@ -80,7 +80,7 @@ export default function CreateTask() {
     }
 
     const handleImage = async () => {
-        let imageBase64: string | undefined= await pickImage();
+        let imageBase64: string | undefined = await pickImage();
 
         setImage(imageBase64);
         setImageTask(imageBase64);
@@ -97,25 +97,25 @@ export default function CreateTask() {
         };
 
         if (session) {
-           await editTaskById(numericId, taskData, session);
-           if (image != null) {
-           saveImageTask(numericId, image, session);
-        }
+            await editTaskById(numericId, taskData, session);
+            if (image != null) {
+                saveImageTask(numericId, image, session);
+            }
 
-           Toast.show({
-            text1: 'Sucesso',
-            text2: 'Desafio editado.'
-          });
-          setTimeout(() => {
-            router.push('/(auth)/(responsible)/(tabs)/tasks');
-          }, 2000);
+            Toast.show({
+                text1: 'Sucesso',
+                text2: 'Desafio editado.'
+            });
+            setTimeout(() => {
+                router.push('/(auth)/(responsible)/(tabs)/tasks');
+            }, 2000);
         }
     };
 
     const handlePickerChange = (itemValue: string | number) => {
         if (itemValue === 'createNew') {
             setModalVisible(true);
-        } 
+        }
     };
 
     const handleCategoryCreated = () => {
@@ -137,7 +137,7 @@ export default function CreateTask() {
                         <ButtonEdit onPress={handleImage}>
                             <EditImage source={ImageEditar} resizeMode="contain" />
                         </ButtonEdit>
-                        <TarefaImage source={imageTask ?? ImageTarefa} />
+                        <TarefaImage source={imageTask ? {uri : imageTask } : ImageTarefa} />
                     </Imagem>
                     <ContainerTasks >
 
@@ -158,28 +158,30 @@ export default function CreateTask() {
                         />
 
                         <Label>Dificuldade:</Label>
-                        <Picker
-                            selectedValue={difficulty}
-                            onValueChange={setDifficulty}
-                            style={styles.picker}
-                        >
-                            <Picker.Item label="Fácil" value="easy" />
-                            <Picker.Item label="Médio" value="medium" />
-                            <Picker.Item label="Difícil" value="hard" />
-                        </Picker>
-
+                        <SelectWrapper>
+                            <Picker
+                                selectedValue={difficulty}
+                                onValueChange={setDifficulty}
+                                style={stylesPicker.picker}
+                            >
+                                <Picker.Item label="Fácil" value="easy" />
+                                <Picker.Item label="Médio" value="medium" />
+                                <Picker.Item label="Difícil" value="hard" />
+                            </Picker>
+                        </SelectWrapper>
                         <Label>Categoria:</Label>
-                        <Picker
-                            selectedValue={selectedCategory}
-                            onValueChange={handlePickerChange}
-                            style={styles.picker}
-                        >
-                            {categoriesPicker.map((category: any) => (
-                                <Picker.Item key={category.id} label={category.name} value={category.id} />
-                            ))}
-                            <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
-                        </Picker>
-
+                        <SelectWrapper>
+                            <Picker
+                                selectedValue={selectedCategory}
+                                onValueChange={handlePickerChange}
+                                style={stylesPicker.picker}
+                            >
+                                {categoriesPicker.map((category: any) => (
+                                    <Picker.Item key={category.id} label={category.name} value={category.id} />
+                                ))}
+                                <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
+                            </Picker>
+                        </SelectWrapper>
                         <ButtonCreate onPress={handleSubmit}>
                             <TextButton>Salvar alterações</TextButton>
                         </ButtonCreate>
@@ -196,18 +198,3 @@ export default function CreateTask() {
     );
 }
 
-const styles = StyleSheet.create({
-    picker: {
-        paddingTop: wp('2%'),
-        paddingBottom: wp('2%'),
-        borderRadius: 15,
-        borderColor: '#f9d54b',
-        borderWidth: 2,
-        marginTop: 10,
-        marginVertical: 10,
-        alignSelf: 'center',
-        width: '95%',
-        fontSize: getFontSize(8),
-        color: '#737373'
-    },
-});

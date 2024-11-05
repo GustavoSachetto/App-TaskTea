@@ -2,7 +2,9 @@ import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
 import {
   Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader
+  Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader,
+  CenteredCheckboxContainer,
+  Box
 } from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
@@ -14,6 +16,9 @@ import { TaskProps } from "@/services/api/routes/tasks";
 import { getMyUser } from "@/services/api/routes/user";
 import { useRouter } from "expo-router";
 import Congratulations from "@/components/congratulations";
+import FeedbackModal from "@/components/feedback";
+import { w, h } from '@/utils/responsiveMesures';
+import { ScrollView } from "react-native";
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -43,6 +48,7 @@ function initialTask() {
 export default function SingleTaskPage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [congratulationsVisible, setCongratulationsVisible] = useState(false);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [name, setName] = useState<string>("");
   const [task, setTask] = useState<TaskProps>(initialTask);
   const [taskUser, setTaskUser] = useState<TaskUserCredential>({
@@ -72,23 +78,32 @@ export default function SingleTaskPage() {
 
     setName(result.data.name);
   }
-
   const finishTask = async (id: number) => {
+    const newDoneStatus = !taskUser.done;
+
+    setTaskUser(prev => ({ ...prev, done: newDoneStatus }));
+
     await editTaskUserById(id, {
-      done: taskUser.done ? false : true,
+      done: newDoneStatus,
       difficult_level: null
     }, session);
-    
-    if(taskUser.done == false){
+
+
+    if (newDoneStatus) {
+      setTimeout(() => {
+        setFeedbackVisible(true);
+      }, 2900);
       setCongratulationsVisible(true);
     }
-  
+
     setTimeout(() => {
-      router.push('/(auth)/(child)/(tabs)/'); 
-    }, 2000);
+      setCongratulationsVisible(false);
+    }, 2500);
   }
 
+
   return (
+    <ScrollView>
     <Container>
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
@@ -98,24 +113,26 @@ export default function SingleTaskPage() {
       </ContainerRowHeader>
 
       <GradientBorderBox>
-        <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+        
         <BoxTask>
+          <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+          <Box>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
             <TextClick>Clique para finalizar seu desafio</TextClick>
-
-            <BouncyCheckbox
-              disableText
-              fillColor="#46f87c"
-              size={50}
-              innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: 3.5 }}
-              iconStyle={{ borderRadius: 15 }}
-              style={{ alignSelf: 'center', marginVertical: 10 }}
-              isChecked={taskUser.done}
-              onPress={() => finishTask(taskUser.id)}
-            />
-
+            <CenteredCheckboxContainer>
+              <BouncyCheckbox
+                disableText
+                fillColor="#46f87c"
+                size={w(15)}
+                innerIconStyle={{ borderColor: '#46f87c', borderRadius: 15, borderWidth: w(1) }}
+                iconStyle={{ borderRadius: 15 }}
+                style={{ alignSelf: 'center', marginVertical: 10 }}
+                isChecked={taskUser.done}
+                onPress={() => finishTask(taskUser.id)}
+              />
+            </CenteredCheckboxContainer>
             <Button onPress={() => setModalVisible(true)}>
               <Dica source={ImageDica} />
             </Button>
@@ -126,12 +143,20 @@ export default function SingleTaskPage() {
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
           />
+          </Box>
         </BoxTask>
       </GradientBorderBox>
       <Congratulations
         visible={congratulationsVisible}
         onClose={() => setCongratulationsVisible(false)}
       />
+      <FeedbackModal
+        visible={feedbackVisible}
+        onClose={() => setFeedbackVisible(false)}
+        taskUserId={taskUser.id}
+        done={taskUser.done}
+      />
     </Container>
+    </ScrollView>
   )
 }

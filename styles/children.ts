@@ -149,4 +149,5 @@ export const ViewChildren = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 3%;
 `;

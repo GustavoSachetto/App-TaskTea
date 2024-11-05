@@ -7,34 +7,35 @@ import {
 } from '@/styles/template-tasks';
 import { useEffect, useState } from 'react';
 import { useSession } from '@/hooks/ctx';
-import { getUnfinishedTasks, TaskUserProps } from '@/services/api/routes/taskuser';
+import { TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
+import { getTemplates } from '@/services/api/routes/tasks';
 
 const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 
 export default function TemplateTasks() {
-  const [taskUser, setTaskUser] = useState<TaskUserProps[]>([]);
+  const [task, setTask] = useState<TaskPageProps>();
   const { session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    const fetchTaskUser = async () => {
+    const fetchTask = async () => {
       if (session) {
-        const response = await getUnfinishedTasks(session);
-        setTaskUser(response.data);
+        const response = await getTemplates(session);
+        setTask(response);
       }
     }
 
-    fetchTaskUser();
+    fetchTask();
   }, [session]);
 
   return (
     <ScrollView style={{ backgroundColor: '#fff' }}>
       <ContainerAllTasks>
         <ContainerRowTasks>
-            <LinkedSign onPress={() => router.back()}>
-                <Voltar source={ImageVoltar} resizeMode="contain" />
-            </LinkedSign>
-            <TextTask>Templates</TextTask>
+          <LinkedSign onPress={() => router.back()}>
+            <Voltar source={ImageVoltar} resizeMode="contain" />
+          </LinkedSign>
+          <TextTask>Templates</TextTask>
         </ContainerRowTasks>
 
         <ContainerTasksDoing>
@@ -44,20 +45,23 @@ export default function TemplateTasks() {
         <GradientBorderBoxTasks>
           <BoxTasks>
             <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-              {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
-                <TouchableOpacity
-                  key={taskUser.id}
-                  style={{ width: '100%' }}
-                  onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
-                >
-                  <Task style={{ flex: 1, alignSelf: 'stretch' }}>
-                    <Title>{taskUser.task.title}</Title>
-                    <Description>{taskUser.task.description}</Description>
-                  </Task>
-                </TouchableOpacity>
-              )) : (
+              {task && task.data.length > 0 ? (
+                task.data.map((taskItem: TaskProps) => (
+                  <TouchableOpacity
+                    key={taskItem.id}
+                    style={{ width: '100%' }}
+                    onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskItem.id}` } })}
+                  >
+                    <Task style={{ flex: 1, alignSelf: 'stretch' }}>
+                      <Title>{taskItem.title}</Title>
+                      <Description>{taskItem.description}</Description>
+                    </Task>
+                  </TouchableOpacity>
+                ))
+              ) : (
                 <Text>Sem nenhuma tarefa em andamento.</Text>
               )}
+
             </ScrollViewContainerTasks>
           </BoxTasks>
         </GradientBorderBoxTasks>

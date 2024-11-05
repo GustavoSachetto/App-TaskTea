@@ -4,7 +4,8 @@ import {
   Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader,
   ButtonEdit,
-  TextButton
+  TextButton,
+  Box
 } from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { fetchTaskUserById, TaskUserProps } from '@/services/api/routes/taskuser';
@@ -13,7 +14,7 @@ import Tip from '@/components/tip';
 import { useSession } from "@/hooks/ctx";
 import { fetchTaskById, TaskProps } from "@/services/api/routes/tasks";
 import { useRouter } from "expo-router";
-import { ScrollView } from "react-native";
+import { Pressable, ScrollView } from "react-native";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -108,9 +109,11 @@ export default function SingleTaskPage() {
         </ContainerRowHeader>
 
         <GradientBorderBox>
-         
+
+
+          <BoxTask>
             <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
-            <BoxTask>
+            <Box>
               <Title customColor={RedColor}>{task.title}</Title>
               <TextTarefa>{task.description}</TextTarefa>
               {difficult != null ? (
@@ -135,17 +138,21 @@ export default function SingleTaskPage() {
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
               />
-              
-            </BoxTask>
-          
+            </Box>
+          </BoxTask>
+
         </GradientBorderBox>
 
-        <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
-          <TextButton>Editar desafio</TextButton>
+        <ButtonEdit>
+          <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+            <TextButton>Editar desafio</TextButton>
+          </Pressable>
         </ButtonEdit>
 
-        <ButtonEdit style={{ marginTop: -5 }} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
-          <TextButton>Enviar desafio</TextButton>
+        <ButtonEdit>
+          <Pressable onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
+            <TextButton>Enviar desafio</TextButton>
+          </Pressable>
         </ButtonEdit>
       </Container>
     </ScrollView>

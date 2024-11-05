@@ -88,7 +88,6 @@ export const GradientBorderBox = styled<any>(LinearGradient).attrs({
 `;
 
 export const Box = styled.View`
- flex: 1;
  border-radius: ${w(4)}px ;
  z-index: 99;
  background-color: #fff;

@@ -28,8 +28,8 @@ export const CenteredView = styled.View`
 `;
 
 export const ModalView = styled.ScrollView`
-  width: 90%;
-  height: 80%;
+  width: 99%;
+  height: 90%;
   position: fixed;
   background-color: white;
   border-width: 3px;

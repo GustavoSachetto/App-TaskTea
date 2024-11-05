@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CenteredView, CloseButton, ModalImage, ModalText, ModalView, ContainerButtons } from '@/styles/modal-delete-relationship';
 import { deleteRelationshipById } from '@/services/api/routes/relationship';
 import { Button, TextStyle } from '@/styles/modal-delete-account';
@@ -20,6 +20,8 @@ type ModalDeleteRelationshipProps = {
 export default function ModalDeleteRelationship({ visible, onClose, childData }: ModalDeleteRelationshipProps) {
   const { session } = useSession();
   const [confirming, setConfirming] = useState(false);
+
+  
 
   const handleInitialConfirm = () => {
     setConfirming(true);
@@ -57,7 +59,7 @@ export default function ModalDeleteRelationship({ visible, onClose, childData }:
 
                 <ContainerRow style={{ borderRadius: 30 }}>
                   <ImageProfile source={childData?.image ? { uri: childData.image } : require('../assets/icons/perfil.png')} />
-                  <ModalText>{childData?.name}</ModalText>
+                  <Text>{childData?.name}</Text>
                 </ContainerRow>
 
                 <ContainerButtons>

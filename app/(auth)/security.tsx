@@ -7,19 +7,13 @@ import {
     InputWrapper
 } from "@/styles/security";
 import { useEffect, useState } from "react";
-import { Modal } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { h, w } from '@/utils/responsiveMesures';
+import { w } from '@/utils/responsiveMesures';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { router } from "expo-router";
 import ModalDeleteAccount from '@/components/modal-delete-account';
 
-type SecurityProps = {
-    visible?: boolean,
-    onClose: () => void
-}
-
-export default function Security({ visible, onClose }: SecurityProps) {
+export default function Security() {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
     const [originalUserData, setOriginalUserData] = useState<PutUserProps | undefined>(undefined);
     const [inputNameValue, setInputNameValue] = useState("");
@@ -127,6 +121,7 @@ export default function Security({ visible, onClose }: SecurityProps) {
                 }
             }
         }
+        router.back()
     };
 
 

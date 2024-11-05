@@ -43,8 +43,6 @@ export default function TemplateTasks() {
 
         <GradientBorderBoxTasks>
           <BoxTasks>
-            {/* POR ENQUATO PUXANDO OS DESAFIOS QUE ELE FEZ, FALTA PUXAR OS DESAFIOS
-            PRONTOS. */}
             <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
               {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
                 <TouchableOpacity

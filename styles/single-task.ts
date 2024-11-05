@@ -31,14 +31,16 @@ export const CenteredCheckboxContainer = styled.View`
 
 export const ContainerRowHeader = styled.View`
   width: 100%;
+  height: ${h(7)}px;
   flex-direction: row;
-  padding: 0 ${w(3)}px;
+  align-items: center;
+justify-content: center;
 `;
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
   font-size: ${w(6)}px;
-  margin-top: ${h(2)}px;
+  margin-top: ${w(6)}px;
   font-weight: 600;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};
@@ -60,48 +62,52 @@ export const TextTaskDay = styled.Text`
   font-size: ${getFontSize(17)}px;
   font-weight: 600;
   text-align: center;
-  margin:0 auto;
   font-family: ${Fonts.RalewayBold};
+  position: absolute;
 `;
 
 export const LinkedSign = styled.Pressable`
-  margin-right: 0;
-  height: ${w(4)}px;
-  width: ${w(4)}px;
+   width: ${w(9)}px ;
+  height: ${w(9)}px ;
+  position: absolute;
+  left:0;
 `;
 
-export const GradientBorderBox = styled(LinearGradient).attrs<any>({
-  colors: ['#0060ff', '#ffffff', '#ffffff', '#ffffff', '#0060ff'],
+export const GradientBorderBox = styled<any>(LinearGradient).attrs({
+  colors: ["#0060ff", "#ffffff", "#ffffff", "#ffffff", "#0060ff"],
 })`
-  flex: 1;
-  height: ${hp("67%")}px;
-  width: ${w(85)}px;
-  margin: ${w(8)}px auto;
-  justify-content: flex-start; 
+  padding: ${w(1.2)}px ${w(1)}px ;
+  width: ${w(90)}px;
+  align-self: center;
+  justify-content: center;
   align-items: center;
-  border-radius: ${w(5)}px ;
-  margin-bottom: ${w(4)}px ;
-  position: relative; 
+  border-radius: ${w(5)}px;
+  position: relative;
+  z-index: 98;
+  margin: ${h(4)}px 0  ;
+`;
+
+export const Box = styled.View`
+ border-radius: ${w(4)}px ;
+ z-index: 99;
+ background-color: #fff;
+ padding: 0 5%;
+ margin-top: -5%;
 `;
 
 export const BoxTask = styled.View`
-  height: 56%;
-  width: 98%;
-  border-radius: ${w(5)}px ;
-  z-index: 2;
+  width: 99%;
+  border-radius: ${w(4)}px ;
   background-color: white;
-  position: absolute; 
-  padding: 0 5%;
-  bottom: 1%;
   justify-content: space-between;
 `;
 
 export const TarefaImage = styled.Image`
-  height: 46%;
-  width: 97%;
+  height: ${h(35)}px;
+  width: 100%;
   border-top-left-radius: ${w(4.5)}px;
   border-top-right-radius: ${w(4.5)}px;
-  top: 1%;
+  z-index: 1;
 `;
 
 export const TextTarefa = styled.Text`
@@ -109,7 +115,7 @@ export const TextTarefa = styled.Text`
   font-size: ${w(4.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  margin: ${hp("1%")}px 0;
+  margin: ${hp("3%")}px 0 ${hp("2%")}px ;
   padding: 0px ${w(2)}px;
 `;
 
@@ -126,16 +132,17 @@ export const DataText = styled.Text`
   color: ${ Colors.title.gray };
   font-size: ${getFontSize(7)}px;
   font-family: ${Fonts.RalewayRegular};
+  margin-top: ${w(5)}px
 `;
 
-export const ButtonEdit = styled.Pressable`
+export const ButtonEdit = styled.View`
   width:  50%;
   flex-direction:row;
   align-items:center;
   justify-content: center;
   background-color: ${Colors.colors.blue};
   padding: ${w(2)}px ${w(7)}px;
-  margin: ${getFontSize(8)}px  auto;
+  margin: ${w(2)}px  auto;
   border-radius: ${w(8)}px;
 `;
 

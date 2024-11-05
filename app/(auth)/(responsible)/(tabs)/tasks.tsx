@@ -32,7 +32,7 @@ export default function TasksPage() {
   }, [session]);
 
   return (
-    <ScrollView style={{ backgroundColor: '#fff' }}>
+    <ScrollView style={{ backgroundColor: '#fff' , zIndex: 1 }}>
       <ContainerAllTasks>
         <ContainerRowTasks>
           <QuebraCabeca source={ImageQuebraCabeca} resizeMode="contain" />
@@ -45,7 +45,7 @@ export default function TasksPage() {
 
         <GradientBorderBoxTasks>
           <BoxTasks>
-            <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
+            <ScrollViewContainerTasks showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
               {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
                 <Pressable
                   key={taskUser.id}

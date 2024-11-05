@@ -53,27 +53,29 @@ export const ButtonChild = styled.Pressable`
   width:  95%;
   flex-direction:row;
   align-items:center;
-  height:  ${h(8)}px;
+  justify-content: center;
   background-color: ${colors.blue};
-  padding: ${w(3)}px;
-  margin: ${w(3)}px  auto;
+  padding: 0 ${w(3)}px;
+  margin: ${w(3)}px auto;
   border-radius:20px;
 `;
 
 export const ModalImage = styled.Image`
-  width:  ${w(8)}px;
-  height:  ${w(8)}px;
+  width:  ${h(5)}px;
+  height:  ${h(5)}px;
 `;
 
 export const ImageProfile = styled.Image`
-  width:  ${w(15)}px;
-  height:  ${w(15)}px;
-  margin-right:${w(3)}px;  
+  width:  ${h(6)}px;
+  height:  ${h(6)}px;
+  margin-right:  ${w(6)}px;
   border-radius: 100px;
 `;
 
 export const TextName = styled.Text`
   color: white;
-  font-size: ${getFontSize(13)}px;
+  flex: 1;
+  margin:${h(1.4)}px auto ${h(2)}px auto;
+  font-size:  ${h(3)}px;
   font-family: ${Fonts.RalewayLight};   
 `;

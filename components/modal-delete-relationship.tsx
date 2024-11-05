@@ -9,33 +9,40 @@ import { ImageProfile, TextName } from '@/styles/select-child';
 import { ContainerRow } from '@/styles';
 import { TextHelp, TextTip } from '@/styles/tip';
 import { UserRelationshipProps } from '@/services/api/routes/user';
+import Toast from 'react-native-toast-message';
 
 type ModalDeleteRelationshipProps = {
   visible: boolean;
   onClose: () => void;
-  childData?: UserRelationshipProps; 
+  childData?: UserRelationshipProps;
+  onDeleteConfirmation?: () => void;
 }
 
 
-export default function ModalDeleteRelationship({ visible, onClose, childData }: ModalDeleteRelationshipProps) {
+export default function ModalDeleteRelationship({ visible, onClose, childData, onDeleteConfirmation }: ModalDeleteRelationshipProps) {
   const { session } = useSession();
   const [confirming, setConfirming] = useState(false);
-
-  
 
   const handleInitialConfirm = () => {
     setConfirming(true);
   };
 
-  const handleDeleteRelationship = async () => {
-    if (session && childData) {
-      await deleteRelationshipById(childData.id, session);
-    }
-    onClose();
-  };
-  
+const handleDeleteRelationship = async () => {
+  if (session && childData) {
+    const response = await deleteRelationshipById(childData.id, session);
+    Toast.show({
+      text1: 'Mensagem',
+      text2: response.message
+    }); 
+    setTimeout(() => {
+      onDeleteConfirmation?.();
+      onClose()
+    }, 2000);
+  }
+};
+
   const handleClose = () => {
-    setConfirming(false); 
+    setConfirming(false);
     onClose();
   };
 
@@ -87,6 +94,7 @@ export default function ModalDeleteRelationship({ visible, onClose, childData }:
           </ModalView>
         </CenteredView>
       </ModalOverlay>
+      <Toast />
     </Modal>
   );
 }

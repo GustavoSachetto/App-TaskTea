@@ -160,8 +160,8 @@ export const Task = styled.View<any>`
   display: flex;
   margin-top: ${w(3)}px;
   flex-direction: column;
-  justify-content: space-between;
-  padding: ${w(2.8)}px ${w(5)}px;
+  justify-content: center;
+  padding: 0 ${w(5)}px;
   height: ${getFontSize(33)}px;
   width: 100%;
   border-radius: ${h(1)}px;
@@ -174,7 +174,7 @@ export const Title = styled.Text.attrs(() => ({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(8.5)}px;
+  font-size: ${getFontSize(10)}px;
   font-weight: 600;
   text-align: justify;
   font-family: ${Fonts.RalewayBold};
@@ -185,7 +185,7 @@ export const Description = styled.Text.attrs(()=>({
   ellipsizeMode: 'tail', 
 }))`
   color: ${Colors.colors.white};
-  font-size: ${getFontSize(5.8)}px;
+  font-size: ${getFontSize(8)}px;
   text-align: justify;
   font-family: ${Fonts.RalewayItalic};
   max-width: 100%; 

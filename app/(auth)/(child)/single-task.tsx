@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import {
   Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
   Dica, TextClick, TextTarefa, GradientBorderBox, ContainerRowHeader,
-  CenteredCheckboxContainer
+  CenteredCheckboxContainer,
+  Box
 } from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { editTaskUserById, fetchTaskUserById } from '@/services/api/routes/taskuser';
@@ -17,6 +18,7 @@ import { useRouter } from "expo-router";
 import Congratulations from "@/components/congratulations";
 import FeedbackModal from "@/components/feedback";
 import { w, h } from '@/utils/responsiveMesures';
+import { ScrollView } from "react-native";
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -101,6 +103,7 @@ export default function SingleTaskPage() {
 
 
   return (
+    <ScrollView>
     <Container>
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
@@ -110,8 +113,10 @@ export default function SingleTaskPage() {
       </ContainerRowHeader>
 
       <GradientBorderBox>
-        <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+        
         <BoxTask>
+          <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+          <Box>
           <Title customColor={RedColor}>{task.title}</Title>
           <TextTarefa>{task.description}</TextTarefa>
           <ContainerRowTask>
@@ -138,6 +143,7 @@ export default function SingleTaskPage() {
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
           />
+          </Box>
         </BoxTask>
       </GradientBorderBox>
       <Congratulations
@@ -151,5 +157,6 @@ export default function SingleTaskPage() {
         done={taskUser.done}
       />
     </Container>
+    </ScrollView>
   )
 }

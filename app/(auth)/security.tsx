@@ -12,6 +12,7 @@ import { w } from '@/utils/responsiveMesures';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { router } from "expo-router";
 import ModalDeleteAccount from '@/components/modal-delete-account';
+import Toast from "react-native-toast-message";
 
 export default function Security() {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -109,6 +110,20 @@ export default function Security() {
 
                 const response = await editMyUser(data, session);
 
+                Toast.show({
+                    text1: 'Mensagem',
+                    text2: response.message
+                  });
+                   setTimeout(() => {
+
+                    if(inputTelephoneValue){
+                    router.push('/(auth)/(responsible)/(tabs)/settings');
+                }
+                    else {
+                        router.push('/(auth)/(child)/(tabs)/settings');
+                    }
+                  }, 2000);;
+
                 if (response) {
                     setOriginalUserData({
                         ...originalUserData,
@@ -121,7 +136,8 @@ export default function Security() {
                 }
             }
         }
-        router.back()
+
+  
     };
 
 
@@ -284,6 +300,7 @@ export default function Security() {
                 onClose={() => setModalDelete(false)}
                 visible={modalDelete}
                 />
+                <Toast />
             </CenteredView>
         </>
     );

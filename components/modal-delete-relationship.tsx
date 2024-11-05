@@ -15,10 +15,11 @@ type ModalDeleteRelationshipProps = {
   visible: boolean;
   onClose: () => void;
   childData?: UserRelationshipProps;
+  onDeleteConfirmation?: () => void;
 }
 
 
-export default function ModalDeleteRelationship({ visible, onClose, childData }: ModalDeleteRelationshipProps) {
+export default function ModalDeleteRelationship({ visible, onClose, childData, onDeleteConfirmation }: ModalDeleteRelationshipProps) {
   const { session } = useSession();
   const [confirming, setConfirming] = useState(false);
 
@@ -26,20 +27,19 @@ export default function ModalDeleteRelationship({ visible, onClose, childData }:
     setConfirming(true);
   };
 
-  const handleDeleteRelationship = async () => {
-    if (session && childData) {
-      const response = await deleteRelationshipById(childData.id, session);
-      Toast.show({
-        text1: 'Mensagem',
-        text2: 'Relacionamento excluído com sucesso'
-      }); 
-      setTimeout(() => {
-        onClose()
-      }, 2000);
-      
-    }
-   
-  };
+const handleDeleteRelationship = async () => {
+  if (session && childData) {
+    const response = await deleteRelationshipById(childData.id, session);
+    Toast.show({
+      text1: 'Mensagem',
+      text2: response.message
+    }); 
+    setTimeout(() => {
+      onDeleteConfirmation?.();
+      onClose()
+    }, 2000);
+  }
+};
 
   const handleClose = () => {
     setConfirming(false);

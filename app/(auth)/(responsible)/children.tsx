@@ -39,10 +39,13 @@ export default function ChildrenPage() {
     setModalDeleteRelationship(true);
   };
 
-  const closeModal= () => {
+  const closeModal = () => {
     setModalDeleteRelationship(false);
-    fetchUserRelationships();
   }
+  
+  const handleDeleteConfirmation = async () => {
+    await fetchUserRelationships();
+  };
 
   return (
     <Container>
@@ -87,9 +90,10 @@ export default function ChildrenPage() {
         onClose={() => setModalVisible(false)}
       />
       <ModalDeleteRelationship
-        visible={modalDeleteRelationship}
-        onClose={closeModal}
-        childData={childData}
+          visible={modalDeleteRelationship}
+          onClose={closeModal}
+          onDeleteConfirmation={handleDeleteConfirmation} 
+          childData={childData}
       />
     </Container>
   );

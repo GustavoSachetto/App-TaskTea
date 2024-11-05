@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import {
     ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
@@ -48,49 +48,51 @@ export default function TasksPage() {
     }, [searchText]);
 
     return (
-        <ContainerAllTasks>
+        <ScrollView>
+            <ContainerAllTasks>
 
-            <ContainerRowTasks>
-                <LinkedSign onPress={() => { router.push('/(auth)/(responsible)/(tabs)/settings') }}>
-                    <Voltar source={ImageVoltar} resizeMode="contain" />
-                </LinkedSign>
-                <ContainerColumn>
-                    <TextTask customColor={blue} customFontSize={getFontSize(16)}>Todos os desafios</TextTask>
-                </ContainerColumn>
-            </ContainerRowTasks>
+                <ContainerRowTasks>
+                    <LinkedSign onPress={() => { router.push('/(auth)/(responsible)/(tabs)/settings') }}>
+                        <Voltar source={ImageVoltar} resizeMode="contain" />
+                    </LinkedSign>
+                    <ContainerColumn>
+                        <TextTask customColor={blue} customFontSize={getFontSize(16)}>Todos os desafios</TextTask>
+                    </ContainerColumn>
+                </ContainerRowTasks>
 
-            <SectionSearch>
-                <InputSearch
-                    value={searchText}
-                    onChangeText={setSearchText}
-                    placeholder="Pesquisar desafio..."
-                />
-            </SectionSearch>
+                <SectionSearch>
+                    <InputSearch
+                        value={searchText}
+                        onChangeText={setSearchText}
+                        placeholder="Pesquisar desafio..."
+                    />
+                </SectionSearch>
 
-            <ContainerTasksDoing customColor={blue}></ContainerTasksDoing>
+                <ContainerTasksDoing customColor={blue}></ContainerTasksDoing>
 
-            <GradientBorderBoxTasks customColor={blue} customHeight={h(65)}>
-                <BoxTasks>
-                    <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-                        {task?.data && task.data.length > 0 ? (
-                            task.data.map((data: TaskProps) => (
-                                <TouchableOpacity
-                                    key={data.id}
-                                    style={{ width: '100%' }}
-                                    onPress={() => router.push({ pathname: "/single-task", params: { id: `${data.id}` } })}
-                                >
-                                    <Task style={{ flex: 1, alignSelf: 'stretch' }} customColor={blue}>
-                                        <Title>{data.title}</Title>
-                                        <Description>{data.description}</Description>
-                                    </Task>
-                                </TouchableOpacity>
-                            ))
-                        ) : (
-                            <Text>Sem nenhuma tarefa em andamento.</Text>
-                        )}
-                    </ScrollViewContainerTasks>
-                </BoxTasks>
-            </GradientBorderBoxTasks>
-        </ContainerAllTasks>
+                <GradientBorderBoxTasks customColor={blue} customHeight={h(65)}>
+                    <BoxTasks>
+                        <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
+                            {task?.data && task.data.length > 0 ? (
+                                task.data.map((data: TaskProps) => (
+                                    <TouchableOpacity
+                                        key={data.id}
+                                        style={{ width: '100%' }}
+                                        onPress={() => router.push({ pathname: "/single-task", params: { id: `${data.id}` } })}
+                                    >
+                                        <Task style={{ flex: 1, alignSelf: 'stretch' }} customColor={blue}>
+                                            <Title>{data.title}</Title>
+                                            <Description>{data.description}</Description>
+                                        </Task>
+                                    </TouchableOpacity>
+                                ))
+                            ) : (
+                                <Text>Sem nenhuma tarefa em andamento.</Text>
+                            )}
+                        </ScrollViewContainerTasks>
+                    </BoxTasks>
+                </GradientBorderBoxTasks>
+            </ContainerAllTasks>
+        </ScrollView>
     );
 }

@@ -62,8 +62,7 @@ export default function ProfilePage() {
       await saveImageUser(images?.image, session);
       await saveBannerUser(images?.banner, session);
     }
-
-    setEditStatus(false);
+    setEditStatus(!editStatus);
   }
 
   const defaultBanner = require('../../../../assets/images/fundoazul.png');
@@ -77,7 +76,7 @@ export default function ProfilePage() {
             <EditImage source={ImageEditar} resizeMode="contain" />
           </ButtonEditBanner>
         </If>
-        <Banner source={images?.banner ?? userData?.banner ?? defaultBanner} />
+        <Banner source={images?.banner ? { uri: images.banner } : userData?.banner ? { uri: userData.banner } : defaultBanner} />
       </View>
       
       <View>
@@ -86,7 +85,7 @@ export default function ProfilePage() {
             <EditImage source={ImageEditar} resizeMode="contain" />
           </ButtonEditProfile>
         </If>
-        <ImageProfile source={images?.image ?? userData?.image ?? defaultImage} />
+        <ImageProfile source={images?.image ? { uri: images.image } : userData?.image ? { uri: userData.image } : defaultImage} />
       </View>
 
       <SectionProfile>

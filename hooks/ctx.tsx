@@ -1,6 +1,7 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from '@/utils/useStorageState';
 import { createLogin, logout } from '@/services/api/routes/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<string> | null;
@@ -31,18 +32,18 @@ export function SessionProvider({ children }: PropsWithChildren) {
     <AuthContext.Provider
       value={{
         signIn: async (email, password) => {
-          const response = await createLogin(email, password)
+          const response = await createLogin(email, password);
           
           setSession(response.token);
+          await AsyncStorage.setItem('session', response.token);
 
           return response.message;
         },
         signOut: async (token) => {
-          const response = await logout(token)
+          const response = await logout(token);
           
           setSession(null);
-
-          localStorage.clear();
+          await AsyncStorage.clear();
 
           return response.message;
         },

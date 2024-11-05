@@ -100,7 +100,7 @@ export const GradientBorderBoxTasks = styled<any>(LinearGradient).attrs((props) 
     props.customColor || Colors.colors.lightYellow
   ],
 }))`
-  height: ${(props) => props.customHeight || h(60)};
+  height: ${(props) => props.customHeight || h(60)}px;
   width: ${w(90)}px;
   align-self: center;
   justify-content: flex-start;

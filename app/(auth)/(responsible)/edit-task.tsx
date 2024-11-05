@@ -137,7 +137,7 @@ export default function CreateTask() {
                         <ButtonEdit onPress={handleImage}>
                             <EditImage source={ImageEditar} resizeMode="contain" />
                         </ButtonEdit>
-                        <TarefaImage source={imageTask ?? ImageTarefa} />
+                        <TarefaImage source={imageTask ? {uri : imageTask } : ImageTarefa} />
                     </Imagem>
                     <ContainerTasks >
 

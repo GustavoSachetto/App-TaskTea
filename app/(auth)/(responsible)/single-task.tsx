@@ -1,9 +1,11 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
-import { Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
-  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader, 
+import {
+  Title, Container, ContainerRowTask, Voltar, TextTaskDay, LinkedSign, BoxTask, TarefaImage,
+  Dica, DataText, TextTarefa, GradientBorderBox, ContainerRowHeader,
   ButtonEdit,
-  TextButton} from '@/styles/single-task';
+  TextButton
+} from '@/styles/single-task';
 import { Button } from '@/styles/tip';
 import { fetchTaskUserById, TaskUserProps } from '@/services/api/routes/taskuser';
 import Colors from '@/constants/Colors';
@@ -11,6 +13,7 @@ import Tip from '@/components/tip';
 import { useSession } from "@/hooks/ctx";
 import { fetchTaskById, TaskProps } from "@/services/api/routes/tasks";
 import { useRouter } from "expo-router";
+import { ScrollView } from "react-native";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -80,10 +83,10 @@ export default function SingleTaskPage() {
       'hard': 'difícil',
       'very hard': 'muito difícil',
     };
-  
+
     return difficulties[difficult];
   };
-  
+
   const translatedDifficult = translateDifficult(difficult);
 
   const fetchTask = async () => {
@@ -95,51 +98,56 @@ export default function SingleTaskPage() {
   };
 
   return (
-    <Container>
-      <ContainerRowHeader>
-        <LinkedSign onPress={() => router.back()}>
-          <Voltar source={ImageVoltar} resizeMode="contain" />
-        </LinkedSign>
-        <TextTaskDay>Desafio</TextTaskDay>
-      </ContainerRowHeader>
+    <ScrollView>
+      <Container>
+        <ContainerRowHeader>
+          <LinkedSign onPress={() => router.back()}>
+            <Voltar source={ImageVoltar} resizeMode="contain" />
+          </LinkedSign>
+          <TextTaskDay>Desafio</TextTaskDay>
+        </ContainerRowHeader>
 
-      <GradientBorderBox>
-        <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
-        <BoxTask>
-          <Title customColor={RedColor}>{task.title}</Title>
-          <TextTarefa>{task.description}</TextTarefa>
-          {difficult != null ? (
-            <DataText>A criança achou a tarefa {translatedDifficult}.</DataText>
-          ) : null} 
-          <ContainerRowTask>
-            {taskUser?.user_receiver?.email ? (
-              <DataText>
-                Usuário que recebeu:  {"\n"}
-                {taskUser.user_receiver.name} {"\n"}
-                {taskUser.user_receiver.email} {"\n"}
-              </DataText>
-            ) : null}
+        <GradientBorderBox>
+         
+            <TarefaImage source={task.image ? { uri: task.image.toString() } : ImageTarefa} />
+            <BoxTask>
+              <Title customColor={RedColor}>{task.title}</Title>
+              <TextTarefa>{task.description}</TextTarefa>
+              {difficult != null ? (
+                <DataText>A criança achou a tarefa {translatedDifficult}.</DataText>
+              ) : null}
+              <ContainerRowTask>
+                {taskUser?.user_receiver?.email ? (
+                  <DataText>
+                    Usuário que recebeu:  {"\n"}
+                    {taskUser.user_receiver.name} {"\n"}
+                    {taskUser.user_receiver.email} {"\n"}
+                  </DataText>
+                ) : null}
 
-            <Button onPress={() => setModalVisible(true)}>
-              <Dica source={ImageDica} />
-            </Button>
-          </ContainerRowTask>
-          <Tip
-            name={''}
-            text={task.tip}
-            visible={modalVisible}
-            onClose={() => setModalVisible(false)}
-          />
-        </BoxTask>
-      </GradientBorderBox>
+                <Button onPress={() => setModalVisible(true)}>
+                  <Dica source={ImageDica} />
+                </Button>
+              </ContainerRowTask>
+              <Tip
+                name={''}
+                text={task.tip}
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+              />
+              
+            </BoxTask>
+          
+        </GradientBorderBox>
 
-      <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
-        <TextButton>Editar desafio</TextButton>
-      </ButtonEdit>
-      
-      <ButtonEdit style={{marginTop: -5}} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
-        <TextButton>Enviar desafio</TextButton>
-      </ButtonEdit>
-    </Container>
+        <ButtonEdit onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+          <TextButton>Editar desafio</TextButton>
+        </ButtonEdit>
+
+        <ButtonEdit style={{ marginTop: -5 }} onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>
+          <TextButton>Enviar desafio</TextButton>
+        </ButtonEdit>
+      </Container>
+    </ScrollView>
   )
 }

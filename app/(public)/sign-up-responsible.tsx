@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ContainerScrollView, Logo, Text, Title, SubTitle, TextButton, Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, PasswordContainer, InputWrapper, InputPassword } from "@/styles/sign";
 import Colors from '@/constants/Colors';
 import { createUserResponsible } from '@/services/api/routes/user';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextReadAndAgree, LinkPopUp, ContainerRow } from "@/styles/sign";
@@ -61,7 +61,7 @@ export default function SignUpResponsible() {
   };
 
   return (
-    <>
+    <ScrollView>
       <ContainerScrollView>
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -191,6 +191,6 @@ export default function SignUpResponsible() {
         <Toast />
         <ServiceTerms visible={modalVisible} onClose={() => setModalVisible(false)} />
       </ContainerScrollView>
-    </>
+    </ScrollView>
   );
 }

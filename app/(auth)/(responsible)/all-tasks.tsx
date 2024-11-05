@@ -72,7 +72,7 @@ export default function TasksPage() {
 
                 <GradientBorderBoxTasks customColor={blue} customHeight={h(65)}>
                     <BoxTasks>
-                        <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
+                        <ScrollViewContainerTasks showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
                             {task?.data && task.data.length > 0 ? (
                                 task.data.map((data: TaskProps) => (
                                     <TouchableOpacity

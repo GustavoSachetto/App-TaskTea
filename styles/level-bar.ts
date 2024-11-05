@@ -13,7 +13,6 @@ export const ContainerLevel = styled.View`
 export const Level = styled.View<{$activate: boolean; }>`
   width: ${wp(10)}px;
   height: ${wp(10)}px;
-  padding-bottom: 4px;
   justify-content: center;
   align-items: center;
   border-radius: ${wp(50)}px;
@@ -24,6 +23,6 @@ export const Level = styled.View<{$activate: boolean; }>`
 export const LevelText = styled.Text<{$activate: boolean; }>`
   font-size: ${getFontSize(13)}px;
   font-weight: 600;
-  font-family: ${Fonts.RalewayRegular};
+  font-family: ${Fonts.LatoRegular};
   color: ${props => props.$activate ? Colors.colors.veryLightGreen : Colors.colors.lightGray };
 `;

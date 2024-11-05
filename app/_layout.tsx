@@ -3,6 +3,7 @@ import { SessionProvider, useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { router, Slot } from 'expo-router';
 import { getMyUser } from '@/services/api/routes/user';
+import '@/styles/config.css';
 
 function InitialLayout() {
   const { session } = useSession();

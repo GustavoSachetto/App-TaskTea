@@ -1,54 +1,90 @@
+import { useState } from 'react';
 import { CenteredView, CloseButton, ModalImage, ModalText, ModalView, ContainerButtons } from '@/styles/modal-delete-relationship';
 import { deleteRelationshipById } from '@/services/api/routes/relationship';
 import { Button, TextStyle } from '@/styles/modal-delete-account';
 import { ModalOverlay } from '@/styles/overlay';
-import { Modal } from "react-native";
+import { Modal, Text } from "react-native";
 import { useSession } from '@/hooks/ctx';
+import { ImageProfile, TextName } from '@/styles/select-child';
+import { ContainerRow } from '@/styles';
+import { TextHelp, TextTip } from '@/styles/tip';
+import { UserRelationshipProps } from '@/services/api/routes/user';
 
 type ModalDeleteRelationshipProps = {
   visible: boolean;
   onClose: () => void;
-  userId: number;
+  childData?: UserRelationshipProps; 
 }
 
-export default function ModalDeleteRelationship({ visible, onClose, userId }: ModalDeleteRelationshipProps) {
+
+export default function ModalDeleteRelationship({ visible, onClose, childData }: ModalDeleteRelationshipProps) {
   const { session } = useSession();
+  const [confirming, setConfirming] = useState(false);
+
+  const handleInitialConfirm = () => {
+    setConfirming(true);
+  };
 
   const handleDeleteRelationship = async () => {
-    if (session) await deleteRelationshipById(userId, session);
-    console.log(userId)
+    if (session && childData) {
+      await deleteRelationshipById(childData.id, session);
+    }
     onClose();
-  }
+  };
+  
+  const handleClose = () => {
+    setConfirming(false); 
+    onClose();
+  };
 
   return (
     <Modal
       animationType="none"
       transparent={true}
       visible={visible}
-      onRequestClose={onClose}
+      onRequestClose={handleClose}
     >
       <ModalOverlay>
         <CenteredView>
           <ModalView>
-
-            <CloseButton onPress={onClose}>
+            <CloseButton onPress={handleClose}>
               <ModalImage source={require('../assets/icons/x.png')} />
             </CloseButton>
 
-            <ModalText>Realmente deseja deletar seu relacionamento?</ModalText>
-            
-            <ContainerButtons>
-              <Button onPress={onClose} style={{ backgroundColor: "#737373" }}>
-                <TextStyle>Não</TextStyle>
-              </Button>
+            {!confirming ? (
+              <>
+                <ModalText>Você deseja remover {"\n"} esse usuário?</ModalText>
 
-              <Button onPress={handleDeleteRelationship} style={{ backgroundColor: "#e43b17" }}>
-                <TextStyle>Sim</TextStyle>
-              </Button>
-            </ContainerButtons>
+                <ContainerRow style={{ borderRadius: 30 }}>
+                  <ImageProfile source={childData?.image ? { uri: childData.image } : require('../assets/icons/perfil.png')} />
+                  <ModalText>{childData?.name}</ModalText>
+                </ContainerRow>
+
+                <ContainerButtons>
+                  <Button onPress={handleClose} style={{ backgroundColor: "#737373" }}>
+                    <TextStyle>Não</TextStyle>
+                  </Button>
+                  <Button onPress={handleInitialConfirm} style={{ backgroundColor: "#e43b17" }}>
+                    <TextStyle>Sim</TextStyle>
+                  </Button>
+                </ContainerButtons>
+              </>
+            ) : (
+              <>
+                <ModalText>Realmente deseja deletar {"\n"}seu relacionamento?</ModalText>
+                <ContainerButtons>
+                  <Button onPress={handleClose} style={{ backgroundColor: "#737373" }}>
+                    <TextStyle>Não</TextStyle>
+                  </Button>
+                  <Button onPress={handleDeleteRelationship} style={{ backgroundColor: "#e43b17" }}>
+                    <TextStyle>Sim</TextStyle>
+                  </Button>
+                </ContainerButtons>
+              </>
+            )}
           </ModalView>
         </CenteredView>
       </ModalOverlay>
     </Modal>
-  )
+  );
 }

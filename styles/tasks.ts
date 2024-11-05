@@ -47,7 +47,7 @@ export const AddTask = styled.Image`
 `;
 
 export const ContainerRowTasks = styled.View`
-  padding: ${w(5)}px;
+  padding: ${w(4)}px 0 ${w(1)}px;
   justify-content: center;
   align-items: center;
   text-align:center;
@@ -134,9 +134,9 @@ export const GradientBorderBoxTasksResponsible = styled<any>(LinearGradient).att
 `;
 
 export const ScrollViewContainerTasks = styled.ScrollView`
-  flex: 1;
+  flex:1;
   z-index: 98;
-  border-radius: ${w(2.6)}px;
+
 `;
 
 export const BoxTasks = styled.View`

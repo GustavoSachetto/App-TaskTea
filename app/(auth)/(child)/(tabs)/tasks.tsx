@@ -40,7 +40,7 @@ export default function TasksPage() {
 
       <GradientBorderBoxTasks>
         <BoxTasks>
-          <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
+          <ScrollViewContainerTasks showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
             {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
               <Pressable 
                 key={taskUser.id} 

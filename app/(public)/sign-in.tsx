@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Container, Logo, Title, SubTitle, TextButton } from "@/styles/index";
-import { Border, Input, Line, TextForgot, ContainerButtonsSign, ButtonSign, LinkedSign, InputPassword, PasswordContainer, InputWrapper, ForgotPasswordContainer } from "@/styles/sign";
+import { Border, Input, Line, ContainerButtonsSign, ButtonSign, LinkedSign, InputPassword, PasswordContainer, InputWrapper } from "@/styles/sign";
 import { useSession } from '@/hooks/ctx';
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
@@ -68,9 +68,6 @@ export default function SignIn() {
               />
             </InputWrapper>
           </PasswordContainer>
-          <ForgotPasswordContainer>
-            <TextForgot>Esqueci a senha</TextForgot>
-          </ForgotPasswordContainer>
           <ContainerButtonsSign>
             <Link href="/(public)/">
               <LinkedSign customColor={GrayColor}>

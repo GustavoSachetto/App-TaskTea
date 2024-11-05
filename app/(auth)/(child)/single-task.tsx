@@ -18,6 +18,7 @@ import { useRouter } from "expo-router";
 import Congratulations from "@/components/congratulations";
 import FeedbackModal from "@/components/feedback";
 import { w, h } from '@/utils/responsiveMesures';
+import { ScrollView } from "react-native";
 
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 const ImageVoltar = require('@/assets/icons/voltar.png');
@@ -102,6 +103,7 @@ export default function SingleTaskPage() {
 
 
   return (
+    <ScrollView>
     <Container>
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>
@@ -155,5 +157,6 @@ export default function SingleTaskPage() {
         done={taskUser.done}
       />
     </Container>
+    </ScrollView>
   )
 }

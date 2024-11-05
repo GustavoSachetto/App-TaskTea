@@ -76,7 +76,7 @@ export const LinkedSign = styled.Pressable`
 export const GradientBorderBox = styled<any>(LinearGradient).attrs({
   colors: ["#0060ff", "#ffffff", "#ffffff", "#ffffff", "#0060ff"],
 })`
-  padding: ${w(1)}px  ;
+  padding: ${w(1.2)}px ${w(1)}px ;
   width: ${w(90)}px;
   align-self: center;
   justify-content: center;

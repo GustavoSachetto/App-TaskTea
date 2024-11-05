@@ -12,11 +12,12 @@ export const Header = styled.View`
 
 export const ContainerHeader = styled.View`
   flex: 1;
+  height: ${h(8)}px;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: ${w(6)}px;
-  margin-bottom: ${w(6)}px;
+  margin-top: ${w(2)}px;
+  margin-bottom: ${w(3)}px;
 `;
 
 export const Logo = styled.Image`
@@ -53,5 +54,5 @@ export const Calendario = styled.Image`
   height: ${h(8)}px;
   width: ${w(8)}px;
   z-index: 99;
-  margin-right: ${w(2)}px;;
+  margin-right: ${w(2)}px;
 `;

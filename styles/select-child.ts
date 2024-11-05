@@ -76,6 +76,6 @@ export const TextName = styled.Text`
   color: white;
   flex: 1;
   margin:${h(1.4)}px auto ${h(2)}px auto;
-  font-size:  ${h(3.7)}px;
+  font-size:  ${h(3)}px;
   font-family: ${Fonts.RalewayLight};   
 `;

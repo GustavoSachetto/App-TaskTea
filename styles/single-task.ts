@@ -40,7 +40,7 @@ justify-content: center;
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor};
   font-size: ${w(6)}px;
-  margin-top: ${h(2)}px;
+  margin-top: ${w(6)}px;
   font-weight: 600;
   text-align: center;
   font-family:  ${Fonts.RalewayBold};
@@ -116,7 +116,7 @@ export const TextTarefa = styled.Text`
   font-size: ${w(4.5)}px;
   text-align: center;
   font-family: ${Fonts.RalewayRegular};
-  margin: ${hp("5%")}px 0;
+  margin: ${hp("3%")}px 0 ${hp("2%")}px ;
   padding: 0px ${w(2)}px;
 `;
 
@@ -133,6 +133,7 @@ export const DataText = styled.Text`
   color: ${ Colors.title.gray };
   font-size: ${getFontSize(7)}px;
   font-family: ${Fonts.RalewayRegular};
+  margin-top: ${w(5)}px
 `;
 
 export const ButtonEdit = styled.View`

@@ -115,7 +115,13 @@ export default function Security() {
                     text2: response.message
                   });
                    setTimeout(() => {
+
+                    if(inputTelephoneValue){
                     router.push('/(auth)/(responsible)/(tabs)/settings');
+                }
+                    else {
+                        router.push('/(auth)/(child)/(tabs)/settings');
+                    }
                   }, 2000);;
 
                 if (response) {

@@ -39,6 +39,11 @@ export default function ChildrenPage() {
     setModalDeleteRelationship(true);
   };
 
+  const closeModal= () => {
+    setModalDeleteRelationship(false);
+    fetchUserRelationships();
+  }
+
   return (
     <Container>
       <ContainerRowHeader>
@@ -83,7 +88,7 @@ export default function ChildrenPage() {
       />
       <ModalDeleteRelationship
         visible={modalDeleteRelationship}
-        onClose={() => setModalDeleteRelationship(false)}
+        onClose={closeModal}
         childData={childData}
       />
     </Container>

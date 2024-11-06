@@ -5,16 +5,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { button } = Colors;
 const { colors } = Colors;
 
 export const TarefaImage = styled.Image`
   height: ${h(25)}px;
-
-  border-top-left-radius:  ${w(5)}px;
-  border-top-right-radius: ${w(5)}px;
+  border-top-left-radius:  ${w(4)}px;
+  border-top-right-radius: ${w(4)}px;
 `;
 
 export const TextTarefa = styled.Text`

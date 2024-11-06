@@ -89,7 +89,7 @@ export default function Statistics() {
   ];
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: '#fff'}} >
       <Header>
         <LinkedBack onPress={() => router.push('/(auth)/(responsible)/')}>
           <Voltar source={require('@/assets/icons/voltar-verde.png')} />

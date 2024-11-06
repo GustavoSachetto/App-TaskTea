@@ -81,7 +81,7 @@ export default function SignUpChild() {
                 onChangeText={(text: string) => setName(text)}
               />
               <Input
-                placeholder='Nickname:'
+                placeholder=' Apelido:'
                 placeholderTextColor={GrayColor}
                 customColor={GreenColor}
                 value={nickname}
@@ -127,7 +127,7 @@ export default function SignUpChild() {
                     name={showPassword ? "eye-off" : "eye"}
                     onPress={toggleShowPassword}
                     color="#808080"
-                    size={w(5)} 
+                    size={w(6)} 
                   />
                 </InputWrapper>
               </PasswordContainer>
@@ -158,7 +158,7 @@ export default function SignUpChild() {
                   onPress={handleSignUp}
                   disabled={!isCheckboxChecked}
                 >
-                  <TextButton>Entrar</TextButton>
+                  <TextButton>Cadastrar</TextButton>
                 </ButtonSign>
               </ContainerButtonsSign>
             </Border>

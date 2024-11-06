@@ -74,7 +74,7 @@ export default function FeedbackModal({ visible, onClose, taskUserId, done }: Fe
                             </Picker>
                         </SelectWrapper>
                         <Button onPress={handleSubmit}>
-                            <TextStyle>Criar</TextStyle>
+                            <TextStyle>Enviar</TextStyle>
                         </Button>
                     </ModalView>
                 </CenteredView>

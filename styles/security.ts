@@ -14,7 +14,6 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: ${w(7)}px 0 0 0; 
   margin-top: ${w(4.5)}px;
 `;
 

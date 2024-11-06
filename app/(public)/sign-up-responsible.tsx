@@ -24,7 +24,6 @@ export default function SignUpResponsible() {
 
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
-  const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthDate, setBirthDate] = useState(new Date()); 
@@ -43,7 +42,6 @@ export default function SignUpResponsible() {
       nickname,
       password,
       birthdate: `${birthDate.getFullYear()}/${String(birthDate.getMonth()).padStart(2, '0')}/${String(birthDate.getDate()).padStart(2, '0')}`, 
-      cpf,
       phone_number: phoneNumber,
     };
 
@@ -82,22 +80,11 @@ export default function SignUpResponsible() {
                 onChangeText={(text: string) => setName(text)}
               />
               <Input
-                placeholder='Nickname'
+                placeholder='Apelido'
                 placeholderTextColor={GrayColor}
                 customColor={GreenColor}
                 value={nickname}
                 onChangeText={(text: string) => setNickname(text)}
-              />
-              <Input
-                placeholder='CPF'
-                placeholderTextColor={GrayColor}
-                customColor={GreenColor}
-                value={cpf}
-                onChangeText={(text: string) => {
-                  const numericValue = text.replace(/[^0-9]/g, '');
-                  setCpf(numericValue.slice(0, 11));
-                }}
-                keyboardType="numeric"
               />
               <Input
                 placeholder='E-mail'
@@ -150,7 +137,7 @@ export default function SignUpResponsible() {
                     name={showPassword ? "eye-off" : "eye"}
                     onPress={toggleShowPassword}
                     color="#808080"
-                    size={w(5)} 
+                    size={w(6)} 
                   />
                 </InputWrapper>
               </PasswordContainer>
@@ -182,7 +169,7 @@ export default function SignUpResponsible() {
                   onPress={handleSignUp}
                   disabled={!isCheckboxChecked}
                 >
-                  <TextButton>Entrar</TextButton>
+                  <TextButton>Cadastrar</TextButton>
                 </ButtonSign>
               </ContainerButtonsSign>
             </Border>

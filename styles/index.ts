@@ -16,6 +16,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #fff;
 `;
 
 export const ContainerScrollView = styled.ScrollView.attrs(() => ({
@@ -24,6 +25,7 @@ export const ContainerScrollView = styled.ScrollView.attrs(() => ({
     alignItems: 'center'
   },
 }))`
+  background-color: #fff;
   flex: 1;
   padding: 15px;
 `;
@@ -35,6 +37,7 @@ export const ContainerRow = styled.View`
   display: flex;
   font-family: ${Fonts.RalewayBold};
   align-items: center;
+  background-color: #fff;
   flex-direction: row;
 `;
 

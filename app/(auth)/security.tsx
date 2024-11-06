@@ -204,12 +204,6 @@ export default function Security() {
                         </Container>
                     )}
 
-                    {userData?.cpf && (
-                        <ContainerRow>
-                            <Label>CPF:</Label>
-                            <Text>{userData.cpf}</Text>
-                        </ContainerRow>
-                    )}
 
                     <Container>
                         <Label>Email:</Label>

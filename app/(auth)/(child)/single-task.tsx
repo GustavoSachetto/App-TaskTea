@@ -103,7 +103,7 @@ export default function SingleTaskPage() {
 
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: '#fff'}}>
     <Container>
       <ContainerRowHeader>
         <LinkedSign onPress={() => router.back()}>

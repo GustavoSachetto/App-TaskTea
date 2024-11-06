@@ -44,7 +44,6 @@ export type PostUserChildProps = {
 }
 
 export type PostUserResponsibleProps = PostUserChildProps & {
-  cpf: string,
   phone_number: string
 }
 

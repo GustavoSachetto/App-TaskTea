@@ -21,7 +21,7 @@ const ImageVoltar = require('@/assets/icons/voltarAmarelo.png');
 const ImageTarefa = require('@/assets/images/fundo-tarefa.jpeg');
 const ImageEditar = require('@/assets/icons/editar.png');
 
-export default function CreateTask() {
+export default function  EditTask() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tip, setTip] = useState('');
@@ -46,6 +46,7 @@ export default function CreateTask() {
     const fetchTask = async () => {
         if (session) {
             const result = await fetchTaskById(session, numericId);
+            console.log(result)
             const category = await fetchCategoryById(result.data.categories_id)
 
             setTitle(result.data.title);

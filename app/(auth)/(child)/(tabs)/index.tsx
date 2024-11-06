@@ -62,7 +62,7 @@ export default function HomePage() {
             )}
           </>
         ) : (
-          <TarefaImage source={ImageTarefa} />
+          <TarefaImage source={ImageTarefa}  style={{width: '100%'}}/>
         )}
         <Box>
           {taskDay?.length > 0 ? (
@@ -74,7 +74,7 @@ export default function HomePage() {
               </LinkedStartTask>
             </>
           ) : (
-            <Title customColor={BlueColor}>Nenhuma tarefa disponível no momento.</Title>
+            <Title customColor={BlueColor} style={{marginBottom: '10%'}}>Nenhuma tarefa disponível no momento.</Title>
           )}</Box>
         </BoxTask>
       </GradientBorderBox>

@@ -22,7 +22,7 @@ export default function WelcomePage() {
          <TextButton>Cadastrar</TextButton> 
         </Button>
         <LinkButton href="/(public)/sign-in">
-          <TextButton>Entrar</TextButton> 
+          <TextButton >Entrar</TextButton> 
         </LinkButton>
       </ContainerButton>
       

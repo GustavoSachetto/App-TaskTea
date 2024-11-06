@@ -5,13 +5,17 @@ export type LoginProps = {
   token: string
 }
 
-export const createLogin = async (email: string, password: string) => {
+export const createLogin = async (login: string, password: string) => {
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login);
+
   const response = await api.post<LoginProps>(
-    `/auth/login`, { email, password } 
-  )
+    '/auth/login', 
+    isEmail ? { email: login, password } : { nickname: login, password }
+  );
 
   return response.data;
-}
+};
+
 
 export const logout = async (token?: string | null) => {
   const response = await api.post<{ message: string }>(

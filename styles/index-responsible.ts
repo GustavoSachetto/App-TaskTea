@@ -44,7 +44,7 @@ export const ScrollViewContainer = styled.ScrollView`
 
 export const Title = styled.Text<any>`
   color: ${(props: any) => props.customColor || title.gray};
-  font-size: ${getFontSize(14)}px;
+  font-size: ${getFontSize(13)}px;
   font-weight: 600;
   text-align:center;
   margin: 0 0 ${w(2)}px 0;

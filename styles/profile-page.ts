@@ -2,9 +2,9 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Fonts } from '@/constants/Fonts';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
-import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import Colors from '@/constants/Colors';
+import { StatusBar } from 'react-native';
 
 const statusBar = StatusBar.currentHeight;
 

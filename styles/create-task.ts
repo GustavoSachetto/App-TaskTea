@@ -37,6 +37,7 @@ font-size: ${getFontSize(7)}px;
   height: ${w(10)}px;
   outline: 0;
   margin: ${w(2)}px auto;
+  padding-left:  ${w(2)}px;;
   border: solid #f9d54b 2px;
 `;
 
@@ -44,6 +45,7 @@ export const InputDescription = styled.TextInput<any>`
 font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
   width: 95%;
+  padding-left:  ${w(2)}px;;
   border-radius: ${w(4)}px ;
   height: ${w(10)}px;
   outline: 0;

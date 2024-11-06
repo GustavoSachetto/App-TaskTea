@@ -3,11 +3,15 @@ import { Fonts } from '@/constants/Fonts';
 import Colors from '@/constants/Colors';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 export const Header = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: ${statusBar}px;
 `;
 
 export const ContainerHeader = styled.View`
@@ -17,6 +21,7 @@ export const ContainerHeader = styled.View`
   align-items: center;
   flex-direction: row;
   margin-top: ${w(2)}px;
+  
   margin-bottom: ${w(3)}px;
 `;
 

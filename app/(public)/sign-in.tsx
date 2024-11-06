@@ -24,7 +24,6 @@ export default function SignIn() {
   };
 
   const handleLogin = async () => {
-
     try {
       await signIn(email, password);
     } catch (error) {
@@ -49,7 +48,7 @@ export default function SignIn() {
             customColor={BlueColor}
             value={email}
             onChangeText={(text: string) => setEmail(text)}
-            placeholder='E-mail:'
+            placeholder='E-mail ou Apelido:'
           />
           <PasswordContainer>
             <InputWrapper customColor={BlueColor}>
@@ -64,7 +63,7 @@ export default function SignIn() {
                 name={showPassword ? "eye-off" : "eye"}
                 onPress={toggleShowPassword}
                 color="#808080"
-                size={w(5)}
+                size={w(6)}
               />
             </InputWrapper>
           </PasswordContainer>

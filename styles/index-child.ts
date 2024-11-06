@@ -5,6 +5,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 import { getFontSize } from '@/utils/fontSize';
 import { h, w } from '@/utils/responsiveMesures';
+import { StatusBar } from 'react-native';
+
+const statusBar = StatusBar.currentHeight;
 
 const { button } = Colors;
 const { colors } = Colors;
@@ -58,6 +61,7 @@ export const Box = styled.View`
 export const ScrollViewContainer = styled.ScrollView`
   background-color: #fff;
   flex: 1;
+  margin-top: ${statusBar}px;
 `;
 
 export const LinkedStartTask = styled(Link)`

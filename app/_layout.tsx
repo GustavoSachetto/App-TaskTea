@@ -3,7 +3,6 @@ import { SessionProvider, useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { router, Slot } from 'expo-router';
 import { getMyUser } from '@/services/api/routes/user';
-import { View } from '@/styles/index-responsible';
 
 function InitialLayout() {
   const { session } = useSession();
@@ -13,16 +12,22 @@ function InitialLayout() {
 
   useEffect(() => {
     setIsMounted(true);
-    if(!session){
-      router.push("/(public)");
-    }
-
-    if (isMounted && fontsLoaded) checkUserRole();
+    if (isMounted && fontsLoaded){
+      verifySession();
+      checkUserRole();
+    } 
   }, [session, isMounted, fontsLoaded]);
 
   if (!fontsLoaded) {
-    return null;
+    return null;    
   }
+
+  function verifySession(){
+    if(!session){
+      router.push("/(public)");
+    }
+  }
+
 
   const checkUserRole = async () => {
     if (session) {

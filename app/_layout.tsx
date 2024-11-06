@@ -13,6 +13,9 @@ function InitialLayout() {
 
   useEffect(() => {
     setIsMounted(true);
+    if(!session){
+      router.push("/(public)");
+    }
 
     if (isMounted && fontsLoaded) checkUserRole();
   }, [session, isMounted, fontsLoaded]);

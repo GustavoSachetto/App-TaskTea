@@ -4,7 +4,6 @@ import Colors from '@/constants/Colors';
 import HeaderIndex from '@/components/header-index';
 import { useRouter } from 'expo-router';
 import SelectChild from '@/components/select-child';
-import { } from '@/styles/children';
 
 const BlueColor = Colors.colors.blue;
 const YellowColor = Colors.colors.yellow;

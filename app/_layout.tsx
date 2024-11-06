@@ -5,29 +5,19 @@ import { router, Slot } from 'expo-router';
 import { getMyUser } from '@/services/api/routes/user';
 
 function InitialLayout() {
-  const { session } = useSession();
+  const { session, signOut } = useSession();
   const { fontsLoaded } = useFonts();
   const [isMounted, setIsMounted] = useState(false);
-  const [[isLoading, userData], setUserData] = useState('');
 
   useEffect(() => {
     setIsMounted(true);
-    if (isMounted && fontsLoaded){
-      verifySession();
-      checkUserRole();
-    } 
+    
+    if (isMounted && fontsLoaded) checkUserRole();
   }, [session, isMounted, fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;    
   }
-
-  function verifySession(){
-    if(!session){
-      router.push("/(public)");
-    }
-  }
-
 
   const checkUserRole = async () => {
     if (session) {
@@ -40,19 +30,17 @@ function InitialLayout() {
   }
 
   const verifyUserRole: (session: string) => Promise<string | null> = async (session) => {
-    if (userData) return userData;
-
     const response = await getMyUser(session);
+
+    if(response?.message === "Unauthenticated.") return await signOut(session);
 
     if (!response.data.role) {
       console.error('Role is undefined');
       return null;
     }
 
-    const role = response.data.role[0];
-    return role;
+    return response.data.role[0];
   }
-
 
   return (
     <Slot />

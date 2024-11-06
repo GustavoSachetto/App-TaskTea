@@ -1,24 +1,24 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 
 export type LoginProps = {
   message: string,
   token: string
 }
 
-export const createLogin = async (login: string, password: string) => {
-  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login);
+export const createLogin = async (emailOrNickname: string, password: string) => {
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOrNickname);
 
-  const response = await api.post<LoginProps>(
+  const response = await api.post<LoginProps & ErrorProps>(
     '/auth/login', 
-    isEmail ? { email: login, password } : { nickname: login, password }
-  );
+    isEmail ? { email: emailOrNickname, password } : { nickname: emailOrNickname, password }
+  )
 
   return response.data;
-};
+}
 
 
 export const logout = async (token?: string | null) => {
-  const response = await api.post<{ message: string }>(
+  const response = await api.post<{ message: string } & ErrorProps>(
     `/auth/logout`, {}, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

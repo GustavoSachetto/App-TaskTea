@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 
 export type UserChallengeDifficultyProps = {
   difficult_level: string,
@@ -23,7 +23,7 @@ export type TotalProps = {
 }
 
 export const getMyStatisticTotal = async (token: string) => {
-  const response = await api.get<TotalProps>(
+  const response = await api.get<TotalProps & ErrorProps>(
     `/statisticuser/mytotal`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -32,7 +32,7 @@ export const getMyStatisticTotal = async (token: string) => {
 }
 
 export const getMyStatisticWeekly = async (token: string) => {
-  const response = await api.get<WeeklyProps>(
+  const response = await api.get<WeeklyProps & ErrorProps>(
     `/statisticuser/myweekly`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -41,7 +41,7 @@ export const getMyStatisticWeekly = async (token: string) => {
 }
 
 export const fetchStatisticTotalById = async (id: number, token: string) => {
-  const response = await api.get<TotalProps>(
+  const response = await api.get<TotalProps & ErrorProps>(
     `/statisticuser/total/${id}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -50,7 +50,7 @@ export const fetchStatisticTotalById = async (id: number, token: string) => {
 }
 
 export const fetchStatisticWeeklyById = async (id: number, token: string) => {
-  const response = await api.get<WeeklyProps>(
+  const response = await api.get<WeeklyProps & ErrorProps>(
     `/statisticuser/weekly/${id}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })

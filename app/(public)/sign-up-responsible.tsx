@@ -59,7 +59,7 @@ export default function SignUpResponsible() {
   };
 
   return (
-    <ScrollView>
+    <>
       <ContainerScrollView>
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -178,6 +178,6 @@ export default function SignUpResponsible() {
         <Toast />
         <ServiceTerms visible={modalVisible} onClose={() => setModalVisible(false)} />
       </ContainerScrollView>
-    </ScrollView>
+    </>
   );
 }

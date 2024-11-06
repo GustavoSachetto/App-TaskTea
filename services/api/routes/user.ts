@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 
 export type UserProps = {
   id: number,
@@ -13,7 +13,7 @@ export type UserProps = {
   phone_number?: string,
   created_at: string,
   updated_at: string | null
-}
+} 
 
 export type UserRelationshipProps = {
   id: number,
@@ -59,7 +59,7 @@ export type PutUserProps = {
 }
 
 export const getMyUser = async (token?: string | null) => {
-  const response = await api.get<{ data: UserProps }>(
+  const response = await api.get<{ data: UserProps } & ErrorProps>(
     `/users`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -68,7 +68,7 @@ export const getMyUser = async (token?: string | null) => {
 } 
 
 export const getMyRelationships = async (token: string) => {
-  const response = await api.get<RelationshipProps>(
+  const response = await api.get<RelationshipProps & ErrorProps>(
     `/users/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -77,7 +77,7 @@ export const getMyRelationships = async (token: string) => {
 } 
 
 export const createUserChild = async (data: PostUserChildProps) => {
-  const response = await api.post<{ data: UserProps, message: string}>(
+  const response = await api.post<{ data: UserProps, message: string } & ErrorProps>(
     `/users/child`, data
   )
 
@@ -85,7 +85,7 @@ export const createUserChild = async (data: PostUserChildProps) => {
 } 
 
 export const createUserResponsible = async (data: PostUserResponsibleProps) => {
-  const response = await api.post<{ data: UserProps, message: string}>(
+  const response = await api.post<{ data: UserProps, message: string } & ErrorProps>(
     `/users/responsible`, data
   )
 
@@ -93,7 +93,7 @@ export const createUserResponsible = async (data: PostUserResponsibleProps) => {
 } 
 
 export const saveImageTask = async (id: number, base64Image: string, token?: string | null) => {
-  const response = await api.post<ImageUserProps>(
+  const response = await api.post<ImageUserProps & ErrorProps>(
     `/tasks/image/${id}`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -105,7 +105,7 @@ export const saveImageTask = async (id: number, base64Image: string, token?: str
 }
 
 export const saveImageUser = async (base64Image?: string | null, token?: string | null) => {
-  const response = await api.post<ImageUserProps>(
+  const response = await api.post<ImageUserProps & ErrorProps>(
     `/users/image`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -117,7 +117,7 @@ export const saveImageUser = async (base64Image?: string | null, token?: string 
 }
 
 export const saveBannerUser = async (base64Image?: string | null, token?: string | null) => {
-  const response = await api.post<ImageUserProps>(
+  const response = await api.post<ImageUserProps & ErrorProps>(
     `/users/banner`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -129,7 +129,7 @@ export const saveBannerUser = async (base64Image?: string | null, token?: string
 }
 
 export const editMyUser = async (data: PutUserProps, token: string) => {
-  const response = await api.put<{ data: UserProps, message: string }>(
+  const response = await api.put<{ data: UserProps, message: string } & ErrorProps>(
     `/users`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -138,7 +138,7 @@ export const editMyUser = async (data: PutUserProps, token: string) => {
 } 
 
 export const deleteMyUser = async (token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/users`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

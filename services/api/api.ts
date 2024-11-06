@@ -19,3 +19,8 @@ api.interceptors.response.use(
   (response) => response, 
   (error) => error.response
 );
+
+export type ErrorProps = {
+  message?: string,
+  errors?: Array<object|string> | string 
+}

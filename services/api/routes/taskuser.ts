@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 import { UserProps } from "@/services/api/routes/user";
 import { TaskProps } from "@/services/api/routes/tasks";
 import queryString from "query-string";
@@ -33,7 +33,7 @@ export type PutTaskUserProps = {
 export const getAllTaskUser = async (token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
   
-  const response = await api.get<TaskUserPageProps>(
+  const response = await api.get<TaskUserPageProps & ErrorProps>(
     `/taskuser?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -44,7 +44,7 @@ export const getAllTaskUser = async (token?: string | null, currentPage: number 
 
 export const getFinishedTasks = async (token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
-  const response = await api.get<TaskUserPageProps>(
+  const response = await api.get<TaskUserPageProps & ErrorProps>(
     `/taskuser/finished/1?${currentPageQuery}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -54,7 +54,7 @@ export const getFinishedTasks = async (token?: string | null, currentPage: numbe
 
 export const getUnfinishedTasks = async (token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
-  const response = await api.get<TaskUserPageProps>(
+  const response = await api.get<TaskUserPageProps & ErrorProps>(
     `/taskuser/finished/0`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -63,7 +63,7 @@ export const getUnfinishedTasks = async (token?: string | null, currentPage: num
 };
 
 export const getTaskDay = async (token?: string | null) => {
-  const response = await api.get<{ data: TaskUserProps[] }>(
+  const response = await api.get<{ data: TaskUserProps[] } & ErrorProps>(
     `/taskuser/taskday/`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -72,7 +72,7 @@ export const getTaskDay = async (token?: string | null) => {
 };
 
 export const fetchTaskUserById = async (id: number, token?: string | null) => {
-  const response = await api.get<{ data: TaskUserProps }>(
+  const response = await api.get<{ data: TaskUserProps } & ErrorProps>(
     `/taskuser/by/${id}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -83,7 +83,7 @@ export const fetchTaskUserById = async (id: number, token?: string | null) => {
 export const searchTaskUser = async (text: string, token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
-  const response = await api.get<TaskUserPageProps>(
+  const response = await api.get<TaskUserPageProps & ErrorProps>(
     `/taskuser/search/${text}?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -92,7 +92,7 @@ export const searchTaskUser = async (text: string, token?: string | null, curren
 }
 
 export const createTaskUser = async (data: PostTaskUserProps, token?: string | null) => {
-  const response = await api.post<{ data: TaskUserProps, message: string }>(
+  const response = await api.post<{ data: TaskUserProps, message: string } & ErrorProps>(
     `/taskuser`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -101,7 +101,7 @@ export const createTaskUser = async (data: PostTaskUserProps, token?: string | n
 }
 
 export const editTaskUserById = async (id: number, data: PutTaskUserProps, token?: string | null) => {
-  const response = await api.put<TaskUserPageProps & { message: string }>(
+  const response = await api.put<TaskUserPageProps & { message: string } & ErrorProps>(
     `/taskuser/${id}`, data, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -110,7 +110,7 @@ export const editTaskUserById = async (id: number, data: PutTaskUserProps, token
 }
 
 export const deleteTaskUserById = async (id: number, token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/taskuser/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

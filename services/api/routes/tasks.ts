@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 import queryString from "query-string";
 
 export type TaskProps = {
@@ -42,7 +42,7 @@ export type PostTaskProps = {
 export const getAllTasks = async (currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
-  const response = await api.get<TaskPageProps>(
+  const response = await api.get<TaskPageProps & ErrorProps>(
     `/tasks?${currentPageQuery}`,
   )
 
@@ -52,7 +52,7 @@ export const getAllTasks = async (currentPage: number = 1) => {
 export const getMyTasks = async (token: string, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
-  const response = await api.get<TaskPageProps>(
+  const response = await api.get<TaskPageProps & ErrorProps>(
     `/tasks/mytasks?${currentPageQuery}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -62,7 +62,7 @@ export const getMyTasks = async (token: string, currentPage: number = 1) => {
 
 export const getTemplates = async (token: string) => {
 
-  const response = await api.get<TaskPageProps>(
+  const response = await api.get<TaskPageProps & ErrorProps>(
     `/tasks/templates`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -71,7 +71,7 @@ export const getTemplates = async (token: string) => {
 
 
 export const fetchTaskById = async (token: string, id: number) => {
-  const response = await api.get<{ data: TaskProps }>(
+  const response = await api.get<{ data: TaskProps } & ErrorProps>(
     `/tasks/by/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -82,7 +82,7 @@ export const fetchTaskById = async (token: string, id: number) => {
 export const searchMyTasksByTitleOrDescription = async (text: string, token?: string | null, currentPage: number = 1) => {
   const currentPageQuery = queryString.stringify({ page: currentPage });
 
-  const response = await api.get<TaskPageProps>(
+  const response = await api.get<TaskPageProps & ErrorProps>(
     `/tasks/search/${text}?${currentPageQuery}`, { 
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -92,7 +92,7 @@ export const searchMyTasksByTitleOrDescription = async (text: string, token?: st
 
 
 export const searchTasksByCategoryId = async (categoryId: number) => {
-  const response = await api.get<{ data: TaskProps[] }>(
+  const response = await api.get<{ data: TaskProps[] } & ErrorProps>(
     `/tasks/category/${categoryId}`
   )
 
@@ -100,7 +100,7 @@ export const searchTasksByCategoryId = async (categoryId: number) => {
 }
 
 export const createTask = async (data: PostTaskProps, token: string) => {
-  const response = await api.post<{ data: TaskProps, message: string }>(
+  const response = await api.post<{ data: TaskProps, message: string } & ErrorProps>(
     `/tasks`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -109,7 +109,7 @@ export const createTask = async (data: PostTaskProps, token: string) => {
 }
 
 export const saveImageTask = async (id: number, base64Image: string, token?: string | null) => {
-  const response = await api.post<ImageTaskProps>(
+  const response = await api.post<ImageTaskProps & ErrorProps>(
     `/tasks/image/${id}`, { image: base64Image }, {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -121,7 +121,7 @@ export const saveImageTask = async (id: number, base64Image: string, token?: str
 }
 
 export const editTaskById = async (id: number, data: PostTaskProps, token: string) => {
-  const response = await api.put<{ data: TaskProps, message: string }>(
+  const response = await api.put<{ data: TaskProps, message: string } & ErrorProps>(
     `/tasks/${id}`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -130,7 +130,7 @@ export const editTaskById = async (id: number, data: PostTaskProps, token: strin
 }
 
 export const deleteTaskById = async (id: number, token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/tasks/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

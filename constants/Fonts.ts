@@ -4,4 +4,5 @@ export const Fonts = {
   RalewayExtraBold: 'Raleway-ExtraBold',
   RalewayItalic: 'Raleway-Italic',
   RalewayLight: 'Raleway-Light',
+  LatoRegular: 'Lato-Regular',
 };

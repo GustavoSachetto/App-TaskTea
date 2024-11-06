@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 
 export type RelationshipTokenProps = {
   token: string,
@@ -7,7 +7,7 @@ export type RelationshipTokenProps = {
 }
 
 export const createToken = async (token?: string | null) => {
-  const response = await api.get<RelationshipTokenProps>(
+  const response = await api.get<RelationshipTokenProps & ErrorProps>(
     `/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -16,7 +16,7 @@ export const createToken = async (token?: string | null) => {
 } 
 
 export const createRelationship = async (relationshipToken: string, token: string) => {
-  const response = await api.post<{ message: string }>(
+  const response = await api.post<{ message: string } & ErrorProps>(
     `/relationship`, { token: relationshipToken }, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -25,7 +25,7 @@ export const createRelationship = async (relationshipToken: string, token: strin
 } 
 
 export const deleteRelationshipById = async (id: number, token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/relationship/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -34,7 +34,7 @@ export const deleteRelationshipById = async (id: number, token: string) => {
 } 
 
 export const deleteMyRelationship = async (token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/relationship`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

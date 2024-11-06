@@ -8,6 +8,8 @@ import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import If from '@/components/conditional';
 
+const defaultBanner = require('@/assets/images/fundo-azul.jpg');
+const defaultImage = require('@/assets/icons/perfil.png');
 const ImageEditar = require('@/assets/icons/editar.png');
 
 export default function ProfilePage() {
@@ -64,9 +66,6 @@ export default function ProfilePage() {
     }
     setEditStatus(!editStatus);
   }
-
-  const defaultBanner = require('../../../../assets/images/fundoazul.png');
-  const defaultImage = require('../../../../assets/icons/perfil.png');
 
   return (
     <Container>

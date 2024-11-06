@@ -10,6 +10,8 @@ import { View } from 'react-native';
 import If from '@/components/conditional';
 
 const ImageEditar = require('@/assets/icons/editar.png');
+const defaultBanner = require('@/assets/images/fundo-azul.jpg');
+const defaultImage = require('@/assets/icons/perfil.png');
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -74,9 +76,6 @@ export default function ProfilePage() {
     
     setEditStatus(!editStatus);
   }
-
-  const defaultBanner = require('../../../../assets/images/fundoazul.png');
-  const defaultImage = require('../../../../assets/icons/perfil.png');
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import { api } from "@/services/api/api";
+import { ErrorProps, api } from "@/services/api/api";
 
 export type CategoryProps = {
   id: number,
@@ -12,7 +12,7 @@ export type PostCategoryProps = {
 }
 
 export const getAllCategories = async () => {
-  const response = await api.get<{ data: CategoryProps[] }>(
+  const response = await api.get<{ data: CategoryProps[] } & ErrorProps>(
     `/categories`
   )
 
@@ -20,7 +20,7 @@ export const getAllCategories = async () => {
 }
 
 export const fetchCategoryById = async (id: number) => {
-  const response = await api.get<{ data: CategoryProps }>(
+  const response = await api.get<{ data: CategoryProps } & ErrorProps>(
     `/categories/${id}`
   )
 
@@ -28,7 +28,7 @@ export const fetchCategoryById = async (id: number) => {
 }
 
 export const createCategory = async (data: PostCategoryProps, token: string) => {
-  const response = await api.post<{ data: CategoryProps, message: string }>(
+  const response = await api.post<{ data: CategoryProps, message: string } & ErrorProps>(
     `/categories`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -37,7 +37,7 @@ export const createCategory = async (data: PostCategoryProps, token: string) => 
 }
 
 export const editCategoryById = async (id: number, data: PostCategoryProps, token: string) => {
-  const response = await api.put<{ data: CategoryProps, message: string }>(
+  const response = await api.put<{ data: CategoryProps, message: string } & ErrorProps>(
     `/categories/${id}`, data, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
@@ -46,7 +46,7 @@ export const editCategoryById = async (id: number, data: PostCategoryProps, toke
 }
 
 export const deleteCategoryById = async (id: number, token: string) => {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.delete<{ message: string } & ErrorProps>(
     `/categories/${id}`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })

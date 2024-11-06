@@ -15,7 +15,7 @@ const GrayColor = Colors.colors.gray;
 
 export default function SignIn() {
   const { signIn } = useSession();
-  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -25,7 +25,7 @@ export default function SignIn() {
 
   const handleLogin = async () => {
     try {
-      await signIn(email, password);
+      await signIn(login, password);
     } catch (error) {
       Toast.show({
         text1: 'Erro',
@@ -46,8 +46,8 @@ export default function SignIn() {
           <Input
             placeholderTextColor={GrayColor}
             customColor={BlueColor}
-            value={email}
-            onChangeText={(text: string) => setEmail(text)}
+            value={login}
+            onChangeText={(text: string) => setLogin(text)}
             placeholder='E-mail ou Apelido:'
           />
           <PasswordContainer>

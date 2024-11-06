@@ -105,8 +105,8 @@ export const BoxTask = styled.View`
 export const TarefaImage = styled.Image`
   height: ${h(35)}px;
   width: 100%;
-  border-top-left-radius: ${w(4.5)}px;
-  border-top-right-radius: ${w(4.5)}px;
+  border-top-left-radius: ${w(4)}px;
+  border-top-right-radius: ${w(4)}px;
   z-index: 1;
 `;
 

@@ -146,16 +146,19 @@ export default function  EditTask() {
                         <Input
                             value={title}
                             onChangeText={setTitle}
+                            multiline={true}
                         />
                         <Label>Descrição:</Label>
                         <InputDescription
                             value={description}
                             onChangeText={setDescription}
+                            multiline={true}
                         />
                         <Label>Escreva uma dica:</Label>
                         <Input
                             value={tip}
                             onChangeText={setTip}
+                            multiline={true}
                         />
 
                         <Label>Dificuldade:</Label>

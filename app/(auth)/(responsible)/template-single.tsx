@@ -15,7 +15,6 @@ import { useSession } from "@/hooks/ctx";
 import { fetchTaskById, TaskProps } from "@/services/api/routes/tasks";
 import { useRouter } from "expo-router";
 import { Pressable, ScrollView } from "react-native";
-import { getMyUser, UserProps } from "@/services/api/routes/user";
 
 const ImageVoltar = require('@/assets/icons/voltar.png');
 const ImageDica = require('@/assets/icons/dica.png');
@@ -46,7 +45,7 @@ function initialTask() {
   }
 }
 
-export default function SingleTaskPage() {
+export default function SingleTaskTemplatePage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [task, setTask] = useState<TaskProps>(initialTask);
   const [taskUser, setTaskUser] = useState<TaskUserCredential>({
@@ -54,7 +53,6 @@ export default function SingleTaskPage() {
     done: false
   });
   const [difficult, setDifficult] = useState<string | null>(null);
-  const [userData, setUserData] = useState<UserProps | undefined>(undefined);
   const { session } = useSession();
   const router = useRouter();
 
@@ -62,17 +60,8 @@ export default function SingleTaskPage() {
 
   useEffect(() => {
     fetchTaskUser();
-    fetchDataUser();
   }, [id])
 
-
-
-  const fetchDataUser = async () => {
-    if (session) {
-      const data = await getMyUser(session)
-      setUserData(data.data)
-    }
-  }
   const fetchTaskUser = async () => {
     try {
       if (session) {
@@ -152,14 +141,6 @@ export default function SingleTaskPage() {
           </BoxTask>
 
         </GradientBorderBox>
-        
-        {userData?.id === task.user_creator_id && (
-          <ButtonEdit>
-            <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
-              <TextButton>Editar desafio</TextButton>
-            </Pressable>
-          </ButtonEdit>
-        )}
 
         <ButtonEdit>
           <Pressable onPress={() => router.push({ pathname: "/send-task", params: { id: `${task.id}` } })}>

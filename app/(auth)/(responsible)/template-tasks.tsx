@@ -50,7 +50,7 @@ export default function TemplateTasks() {
                   <TouchableOpacity
                     key={taskItem.id}
                     style={{ width: '100%' }}
-                    onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskItem.id}` } })}
+                    onPress={() => router.push({ pathname: "template-single", params: { id: `${taskItem.id}` } })}
                   >
                     <Task style={{ flex: 1, alignSelf: 'stretch' }}>
                       <Title>{taskItem.title}</Title>

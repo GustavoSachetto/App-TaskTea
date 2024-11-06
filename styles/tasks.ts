@@ -13,11 +13,6 @@ import { StatusBar } from 'react-native';
 
 const statusBar = StatusBar.currentHeight;
 
-const { title } = Colors;
-const { dark } = Colors;
-const { button } = Colors;
-const { colors } = Colors;
-
 export const ContainerAllTasks = styled.View`
   flex: 1;
   background-color: #fff;

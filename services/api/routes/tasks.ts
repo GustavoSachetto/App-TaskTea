@@ -66,11 +66,7 @@ export const getTemplates = async (token: string) => {
     `/tasks/templates`, {
     headers: { 'Authorization': `Bearer ${token}` }
   })
-
-console.log(response.data)
-  return response.data;
-
-  
+  return response.data; 
 }
 
 

@@ -9,7 +9,7 @@ import {
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { useSession } from '@/hooks/ctx';
-import { getMyTasks, saveImageTask, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
+import { getMyTasks, getTemplates, saveImageTask, TaskPageProps, TaskProps } from '@/services/api/routes/tasks';
 import { createTaskUser } from '@/services/api/routes/taskuser';
 import { getMyRelationships, UserRelationshipProps } from '@/services/api/routes/user';
 import Toast from 'react-native-toast-message';
@@ -22,8 +22,9 @@ export default function CreateTask() {
   const [myrelationship, setMyRelationship] = useState<UserRelationshipProps[] | void>([]);
   const [selectedRelationship, setSelectedRelationship] = useState<string>('');
   const [task, setTask] = useState<TaskProps[]>([]);
+  const [taskTemplate, setTaskTemplate] = useState<TaskProps[]>([]);
   const [selectedTask, setSelectedTask] = useState<TaskProps[]>([]);
-  const [selectedTaskValue, setSelectedTaskValue] = useState(''); 
+  const [selectedTaskValue, setSelectedTaskValue] = useState('');
   const router = useRouter();
 
   const { session } = useSession();
@@ -32,17 +33,21 @@ export default function CreateTask() {
   useEffect(() => {
     fetchMyRelationship();
     fetchAllTasks();
+    fetchTemplates();
   }, [session]);
 
   useEffect(() => {
     if (id) {
-      const foundTask = task.find((t) => t.id.toString() === id);
+      let foundTask = task.find((t) => t.id.toString() === id);
+    if(!foundTask){
+      foundTask = taskTemplate.find((t) => t.id.toString() === id);
+    }
       if (foundTask) {
         setSelectedTask([foundTask]);
-        setSelectedTaskValue(foundTask.id.toString()); 
+        setSelectedTaskValue(foundTask.id.toString());
       } else {
         setSelectedTask([]);
-        setSelectedTaskValue(''); 
+        setSelectedTaskValue('');
       }
     }
   }, [id, task]);
@@ -61,6 +66,23 @@ export default function CreateTask() {
       } while (currentPage <= lastPage);
 
       setTask(allTasks);
+    }
+  };
+
+  const fetchTemplates = async () => {
+    if (session) {
+      let allTasks: TaskProps[] = [];
+      let currentPage = 1;
+      let lastPage = 1;
+
+      do {
+        const response = await getTemplates(session) as TaskPageProps;
+        allTasks = [...allTasks, ...response.data];
+        lastPage = response.meta.last_page ?? 1;
+        currentPage += 1;
+      } while (currentPage <= lastPage);
+
+      setTaskTemplate(allTasks);
     }
   };
 
@@ -92,7 +114,7 @@ export default function CreateTask() {
     if (session) {
       try {
         const response = await createTaskUser(taskUser, session);
-
+        console.log(response)
         if (response && response.data && response.data.id) {
           Toast.show({
             text1: 'Sucesso',
@@ -123,7 +145,10 @@ export default function CreateTask() {
   }
 
   const handlePickerTask = (itemValue: string) => {
-    const selectedTaskData = task.find((taskData) => taskData.id.toString() === itemValue);
+    let selectedTaskData = task.find((taskData) => taskData.id.toString() === itemValue);
+    if(!selectedTaskData){
+      selectedTaskData = taskTemplate.find((taskData) => taskData.id.toString() === itemValue);
+    }
     setSelectedTask(selectedTaskData ? [selectedTaskData] : []);
     setSelectedTaskValue(itemValue);
   };
@@ -159,12 +184,15 @@ export default function CreateTask() {
             <Label>Minhas tarefas existentes:</Label>
             <SelectWrapper>
               <Picker
-                selectedValue={selectedTaskValue} 
+                selectedValue={selectedTaskValue}
                 onValueChange={handlePickerTask}
                 style={stylesPicker.picker}
               >
                 <Picker.Item label="Selecione uma tarefa" value="" />
                 {task.map((tasks) => (
+                  <Picker.Item key={tasks.id} label={tasks.title} value={tasks.id.toString()} />
+                ))}
+                {taskTemplate.map((tasks) => (
                   <Picker.Item key={tasks.id} label={tasks.title} value={tasks.id.toString()} />
                 ))}
               </Picker>

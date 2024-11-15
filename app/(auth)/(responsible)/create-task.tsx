@@ -5,7 +5,7 @@ import {
   Container, ButtonEdit, GradientBorderBoxTasks, EditImage, InputDescription,
   TarefaImage, Voltar, Input,
   ButtonCreate, Label, ContainerTasks, Imagem,
-  SelectWrapper
+  SelectWrapper, LabelContainer, Asterisco
 } from "@/styles/create-task";
 import { useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
@@ -143,66 +143,100 @@ export default function CreateTask() {
           </Imagem>
           <ContainerTasks >
 
-            <Label>Título do desafio:</Label>
-            <Input
-              value={title}
-              onChangeText={setTitle}
-              multiline={true}
-            />
-            <Label>Descrição:</Label>
-            <InputDescription
-              value={description}
-              onChangeText={setDescription}
-              multiline={true}
-            />
-            <Label>Escreva uma dica:</Label>
-            <Input
-              value={tip}
-              onChangeText={setTip}
-              multiline={true}
-            />
+          
+  {/* Título */}
+  <Label>Título do desafio:</Label>  
+  <LabelContainer>
+  <Asterisco>*</Asterisco>
 
-            <Label>Dificuldade:</Label>
-            <SelectWrapper>
-              <Picker
-                selectedValue={difficulty}
-                onValueChange={setDifficulty}
-                style={stylesPicker.picker}
-              >
-                <Picker.Item label="Fácil" value="easy" />
-                <Picker.Item label="Médio" value="medium" />
-                <Picker.Item label="Difícil" value="hard" />
-              </Picker>
-            </SelectWrapper>
+    <Input
+      value={title}
+      onChangeText={setTitle}
+      multiline={true}
+    />
+  </LabelContainer>
 
-            <Label>Categoria:</Label>
-            <SelectWrapper>
-              <Picker
-                selectedValue={selectedCategory}
-                onValueChange={handlePickerChange}
-                style={stylesPicker.picker}
-              >
-                <Picker.Item label="Selecione uma categoria" value="" />
-                {categories.map((category) => (
-                  <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
-                ))}
-                <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
-              </Picker>
-            </SelectWrapper>
+  {/* Descrição */}
+  <Label>Descrição:</Label>  
+  <LabelContainer>
+  <Asterisco>*</Asterisco>
 
-            <Label>Selecionar Filho:</Label>
-            <SelectWrapper>
-              <Picker
-                selectedValue={selectedRelationship}
-                onValueChange={handlePickerRelationship}
-                style={stylesPicker.picker}
-              >
-                <Picker.Item label="Selecione o filho" value="" />
-                {myrelationship?.map((data) => (
-                  <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
-                ))}
-              </Picker>
-            </SelectWrapper>
+    <InputDescription
+      value={description}
+      onChangeText={setDescription}
+      multiline={true}
+    />
+  </LabelContainer>
+
+  {/* Dica */}
+  <Label>Escreva uma dica:</Label> 
+   <LabelContainer>
+  <Asterisco>*</Asterisco>
+
+    <Input
+      value={tip}
+      onChangeText={setTip}
+      multiline={true}
+    />
+  </LabelContainer>
+
+  {/* Dificuldade */}
+  <Label>Dificuldade:</Label> 
+   <LabelContainer>
+  <Asterisco>*</Asterisco>
+
+    <SelectWrapper>
+      <Picker
+        selectedValue={difficulty}
+        onValueChange={setDifficulty}
+        style={stylesPicker.picker}
+      >
+        <Picker.Item label="Fácil" value="easy" />
+        <Picker.Item label="Médio" value="medium" />
+        <Picker.Item label="Difícil" value="hard" />
+      </Picker>
+    </SelectWrapper>
+  </LabelContainer>
+
+  {/* Categoria */}
+  <Label>Categoria:</Label>
+    <LabelContainer>
+  <Asterisco>*</Asterisco>
+
+    <SelectWrapper>
+      <Picker
+        selectedValue={selectedCategory}
+        onValueChange={handlePickerChange}
+        style={stylesPicker.picker}
+      >
+        <Picker.Item label="Selecione uma categoria" value="" />
+        {categories.map((category) => (
+          <Picker.Item key={category.id} label={category.name} value={category.id.toString()} />
+        ))}
+        <Picker.Item label="Criar nova categoria" color='#000' value="createNew" />
+      </Picker>
+    </SelectWrapper>
+  </LabelContainer>
+
+  {/* Filho */}
+  <Label>Selecionar Filho:</Label>  
+  <LabelContainer>
+  <Asterisco>*</Asterisco>
+
+    <SelectWrapper>
+      <Picker
+        selectedValue={selectedRelationship}
+        onValueChange={handlePickerRelationship}
+        style={stylesPicker.picker}
+      >
+        <Picker.Item label="Selecione o filho" value="" />
+        {myrelationship?.map((data) => (
+          <Picker.Item key={data.id} label={data.name} value={data.id.toString()} />
+        ))}
+      </Picker>
+    </SelectWrapper>
+  </LabelContainer>
+
             <ButtonCreate onPress={handleSubmit} style={{ marginTop: w(6) }}>
               <TextButton>Criar</TextButton>
             </ButtonCreate>

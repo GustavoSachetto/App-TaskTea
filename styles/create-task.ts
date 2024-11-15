@@ -22,11 +22,18 @@ export const Container = styled.ScrollView`
 export const Label = styled.Text<any>`
   color: ${title.gray};
   font-size: ${getFontSize(9)}px;
-  text-align: left;
   font-family: ${Fonts.RalewayRegular};
   margin-left: 4%;
   margin-top: 4%;
-  width: 100%;
+`;
+
+export const Asterisco = styled.Text<any>`
+  color: ${Colors.colors.red};
+  font-size: ${getFontSize(18)}px;
+  font-family: ${Fonts.RalewayBold};  
+  position: absolute;
+  right: 0;
+  top: -50%;
 `;
 
 export const Input = styled.TextInput<any>`
@@ -36,9 +43,10 @@ font-size: ${getFontSize(7)}px;
   border-radius: ${w(4)}px ;
   min-height: ${w(10)}px;
   outline: 0;
-  margin: ${w(2)}px auto;
+  margin: 0 auto;
   padding: ${w(2)}px ;
   border: solid #f9d54b 2px;
+
 `;
 
 export const InputDescription = styled.TextInput<any>`
@@ -49,7 +57,7 @@ font-size: ${getFontSize(7)}px;
   padding: ${w(2)}px ;
   min-height: ${w(10)}px;
   outline: 0;
-  margin: 4% auto;
+  margin: 0 auto;
   border: solid #f9d54b 2px;
 `;
 
@@ -65,6 +73,12 @@ export const ButtonCreate = styled.Pressable<any>`
 export const Imagem = styled.View`
   height: ${w(58)}px;
   width:  ${w(88)}px;
+`;
+
+export const LabelContainer = styled.View`
+  width: 100%;
+  text-align: left;
+
 `;
 
 export const TarefaImage = styled.Image`
@@ -133,7 +147,7 @@ export const SelectWrapper = styled.View`
   border: solid #f9d54b 2px;
   border-radius: ${w(4)}px;
   width: 95%;
-  margin-top: ${w(2)}px;
   height: ${w(10)}px;
   justify-content: center;
+  margin: 0 auto;
 `;

@@ -25,6 +25,8 @@ export const Label = styled.Text<any>`
   font-family: ${Fonts.RalewayRegular};
   margin-left: 4%;
   margin-top: 4%;
+  margin-bottom: 2%;
+  align-self: flex-start;
 `;
 
 export const Asterisco = styled.Text<any>`
@@ -39,14 +41,13 @@ export const Asterisco = styled.Text<any>`
 export const Input = styled.TextInput<any>`
 font-size: ${getFontSize(7)}px;
  font-family: ${Fonts.RalewayRegular};
-  width: 95%;
-  border-radius: ${w(4)}px ;
-  min-height: ${w(10)}px;
-  outline: 0;
-  margin: 0 auto;
-  padding: ${w(2)}px ;
-  border: solid #f9d54b 2px;
-
+ width: 95%;
+ border-radius: ${w(4)}px ;
+ min-height: ${w(10)}px;
+ outline: 0;
+ margin: 0 auto;
+ padding: ${w(2)}px ;
+ border: solid #f9d54b 2px;
 `;
 
 export const InputDescription = styled.TextInput<any>`

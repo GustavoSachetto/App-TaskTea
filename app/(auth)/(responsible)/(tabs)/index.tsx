@@ -55,7 +55,7 @@ export default function HomePage() {
               <Title customColor={YellowColor}>Desafios</Title>
               <Button onPress={() => router.push('/(auth)/(responsible)/(tabs)/tasks')}
                 customColor={YellowColor}>
-                <Text>Ver</Text>
+                <Text>Gerenciar</Text>
               </Button>
             </View>
           </Container>

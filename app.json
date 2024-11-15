@@ -3,7 +3,7 @@
     "name": "TaskTea",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.jpg",
+    "icon": "./assets/images/icon.jpeg",
     "scheme": "myapp",
     "slug": "app-tasktea",
     "userInterfaceStyle": "automatic",

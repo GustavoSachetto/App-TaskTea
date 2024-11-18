@@ -41,7 +41,7 @@ export default function TasksPage() {
       <GradientBorderBoxTasks>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
-            {taskUser?.length > 0 ? taskUser.map((taskUser: TaskUserProps) => (
+            {taskUser?.length > 0 ? taskUser.reverse().map((taskUser: TaskUserProps) => (
               <Pressable 
                 key={taskUser.id} 
                 style={{ width: '100%' }} 

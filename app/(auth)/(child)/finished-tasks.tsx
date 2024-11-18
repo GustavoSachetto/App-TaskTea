@@ -1,6 +1,7 @@
-import { TouchableOpacity, Text  } from 'react-native';
+import { TouchableOpacity, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
+import {
+  ContainerTasksDoing, ScrollViewContainerTasks, TextTask,
   GradientBorderBoxTasks, ContainerAllTasks, TextDoing, Task,
   BoxTasks, Title, Description
 } from '@/styles/tasks';
@@ -11,9 +12,10 @@ import { ReactNode, useEffect, useState } from 'react';
 import { TaskUserPageProps } from '@/services/api/routes/taskuser';
 import { useSession } from '@/hooks/ctx';
 import { router } from 'expo-router';
+import { InputSearch, SectionSearch } from '@/styles/all-tasks';
 
 const ImageVoltar = require('@/assets/icons/voltar-verde.png');
-const green  = Colors.colors.green;
+const green = Colors.colors.green;
 
 export default function TasksPage() {
   const router = useRouter();
@@ -22,23 +24,28 @@ export default function TasksPage() {
     data: [],
     links: {},
     meta: {}
-  })
+  });
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     setMyTasks();
-  }, [])
+  }, []);
 
   const setMyTasks = async () => {
     if (session) {
       const response = await getFinishedTasks(session);
-      setTaskUser(response); 
+      setTaskUser(response);
     }
-  }
+  };
 
   const getFinishedTaskUsers: () => ReactNode = () => {
-    return taskUser.data?.length > 0 ? taskUser.data.map((taskUser) =>  
-      <TouchableOpacity 
-        style={{ width: '100%' }} 
+    const filteredTasks = taskUser.data?.filter((taskUser) =>
+      taskUser.task.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return filteredTasks?.length > 0 ? filteredTasks.reverse().map((taskUser) =>
+      <TouchableOpacity
+        style={{ width: '100%' }}
         onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
         key={taskUser.id}
       >
@@ -49,19 +56,27 @@ export default function TasksPage() {
       </TouchableOpacity>
     ) : (
       <Text>Sem tarefas</Text>
-    )
-  }
+    );
+  };
 
   return (
     <ContainerAllTasks>
-      <ContainerRowTasks >
-        <LinkedSign onPress={()=> {router.push('/(auth)/(child)/(tabs)/settings')}} >
-            <Voltar source={ImageVoltar} resizeMode="contain" />
+      <ContainerRowTasks>
+        <LinkedSign onPress={() => { router.push('/(auth)/(child)/(tabs)/settings') }} >
+          <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <ContainerColumn>
           <TextTask customColor={green}>Desafios feitos</TextTask>
         </ContainerColumn>
       </ContainerRowTasks>
+
+      <SectionSearch>
+        <InputSearch
+          placeholder="Buscar Tarefa"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      </SectionSearch>
 
       <ContainerTasksDoing customColor={green}>
         <TextDoing>Feitos</TextDoing>
@@ -70,10 +85,10 @@ export default function TasksPage() {
       <GradientBorderBoxTasks customColor={green}>
         <BoxTasks>
           <ScrollViewContainerTasks showsVerticalScrollIndicator={false}>
-            { getFinishedTaskUsers() }
+            {getFinishedTaskUsers()}
           </ScrollViewContainerTasks>
         </BoxTasks>
       </GradientBorderBoxTasks>
     </ContainerAllTasks>
-  )
+  );
 }

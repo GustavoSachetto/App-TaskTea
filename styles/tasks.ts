@@ -29,7 +29,7 @@ export const ContainerTasksResponsible = styled.View`
 export const QuebraCabeca = styled.Image`
   width: ${w(18)}px;
   height: ${w(18)}px;
-  margin-bottom: ${h(2)}px;
+  
   margin-right: ${w(1)}px;
   margin-left: -${w(11)}px;
   transform: rotate(120deg);
@@ -42,7 +42,7 @@ export const AddTask = styled.Image`
 `;
 
 export const ContainerRowTasks = styled.View`
-  padding: ${w(4)}px 0 ${w(1)}px;
+  padding: ${w(7)}px 0 ${w(0)}px;
   justify-content: center;
   align-items: center;
   text-align:center;
@@ -52,7 +52,6 @@ export const ContainerRowTasks = styled.View`
 export const TextTask = styled.Text<any>`
   color: ${(props) => props.customColor || Colors.colors.lightYellow};
   font-size: ${(props) => props.customFontSize || getFontSize(17)}px;
-  margin-top: -${w(3)}px;
   font-weight: 600;
   font-family: ${Fonts.RalewayBold};
 `;

@@ -14,7 +14,7 @@ export const SectionSearch = styled.View`
 
 export const InputSearch = styled.TextInput`
   border-radius: ${w(3)}px;
-  border: 2px solid blue;
+  border: 2px solid  ${(props: any) => props.customColor || '#0060ff'};
   font-family: ${Fonts.RalewayRegular};
   color: #808080;
   width: 90%;

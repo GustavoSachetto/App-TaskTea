@@ -58,11 +58,11 @@ export default function HomePage() {
             {taskDay[0].task.image ? (
               <TarefaImage source={{ uri: taskDay[0].task.image?.toString() }} />
             ) : (
-              <TarefaImage source={ImageTarefa} />
+              <TarefaImage source={ImageTarefa}  style={{width: '100%'}}/>
             )}
           </>
         ) : (
-          <TarefaImage source={ImageTarefa}  style={{width: '100%'}}/>
+          <TarefaImage source={ImageTarefa} style={{width: '100%'}}/>
         )}
         <Box>
           {taskDay?.length > 0 ? (

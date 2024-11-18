@@ -74,7 +74,7 @@ export default function TasksPage() {
                     <BoxTasks>
                         <ScrollViewContainerTasks showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
                             {task?.data && task.data.length > 0 ? (
-                                task.data.map((data: TaskProps) => (
+                                task.data.reverse().map((data: TaskProps) => (
                                     <TouchableOpacity
                                         key={data.id}
                                         style={{ width: '100%' }}

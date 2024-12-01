@@ -7,6 +7,10 @@ __Usuário responsável:__ cria e seleciona os desafios a ser realizado pelo usu
 
 #expo #react-native #react #styled-components
 
+## Associação
+Esse projeto é um aplicativo complementado de uma __API-RESTFULL__ designada para gerenciar o __backend__ da aplicação.
+- __Respositório da API:__ https://github.com/dartres/API-TaskTea
+
 ## Integrantes
 Desenvolvido para a entrega do Trabalho de Conclusão de Curso para o curso técnico informática para internet da escola Etec Dr. Emílio Hernandez do ano de 2024.
 
@@ -72,7 +76,7 @@ npm install
 npm start
 ```
 
-## Documentação
+## Projeto
 Toda a documentação da criação do projeto desde o planejamento até a conclusão do projeto final funcionando.
 
 - __Arquivo do TCC pdf:__ [click para download](https://github.com/user-attachments/files/17969719/Documentacao.TCC.TaskTea.pdf)

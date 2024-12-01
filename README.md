@@ -1,7 +1,9 @@
 # TaskTea
-O aplicativo TaskTea foi desenvolvido para auxiliar no tratamento social de pessoas que possuem o Transtorno do Espectro Autista (TEA). Apartir do aplicativo é possivel acessa-lo com dois modos de uso
+O aplicativo TaskTea foi desenvolvido para auxiliar no tratamento social de pessoas que possuem o Transtorno do Espectro Autista (TEA). Apartir do aplicativo é possivel acessa-lo com dois modos de uso:
 
-- __Usuário responsável:__ cria e seleciona os desafios a ser realizado pelo usuário criança, na qual ele tem completo acesso sobre toda a análise do perfil da criança.
+__Usuário criança:__ visualiza os desafios e concluí conforme for avançando de nível.
+
+__Usuário responsável:__ cria e seleciona os desafios a ser realizado pelo usuário criança, na qual ele tem completo acesso sobre toda a análise do perfil da criança.
 
 #expo #react-native #react #styled-components
 
@@ -18,7 +20,20 @@ __Os colaboradores desse projeto foram:__
 <a href="https://github.com/phpparker" target="_blank">Pedro Henrique</a>.
 
 ## Desenvolvendo
-Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, além de que foi necessário estudar
+Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, além de que foi necessário também:
+- React Native
+- Typescript 5.3
+- Javascript ES6
+- Framework Expo
+- Expo image picker
+- LocalStorage
+- Styled Components
+- Node JS e NPM
+- Acoplamento de api rest
+- Axios para requisições a api
+- Tipagem e interface dos dados
+- Context, Hooks, States e Effects
+- Versionamento de código organizado através do Git e Github
 
 ## Resultado
 - __Telas do aplicativo:__

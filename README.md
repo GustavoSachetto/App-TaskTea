@@ -28,7 +28,6 @@ Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, al
 - Expo image picker
 - LocalStorage
 - Styled Components
-- Node JS e NPM
 - Acoplamento de api rest
 - Axios para requisições a api
 - Tipagem e interface dos dados
@@ -40,12 +39,22 @@ Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, al
   
 ![Telas Task TEA](https://github.com/user-attachments/assets/338dfe17-9aec-48ad-bded-6b4e799af1d5)
 
+## Requisitos
+Expo 51 ou superior
+React Native 0.74.5 ou superior
+Typescript 5.3.3
+
 ## Comandos inciais
 Principais comandos para iniciar o projeto:
 
 - Clonar repositório do projeto
 ```
 git clone https://github.com/GustavoSachetto/App-TaskTea.git
+```
+
+- Mudar para pasta do projeto
+```
+cd App-TaskTea
 ```
 
 - Instalar as dependências do projeto

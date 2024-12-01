@@ -1,4 +1,4 @@
-# TaskTea
+# App-TaskTea
 O aplicativo TaskTea foi desenvolvido para auxiliar no tratamento social de pessoas que possuem o Transtorno do Espectro Autista (TEA). Apartir do aplicativo é possivel acessa-lo com dois modos de uso:
 
 __Usuário criança:__ visualiza os desafios e concluí conforme for avançando de nível.

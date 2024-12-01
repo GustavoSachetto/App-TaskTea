@@ -41,4 +41,20 @@ Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, al
 ![Telas Task TEA](https://github.com/user-attachments/assets/338dfe17-9aec-48ad-bded-6b4e799af1d5)
 
 ## Comandos inciais
+Principais comandos para iniciar o projeto:
+
+- Clonar repositório do projeto
+```
+git clone https://github.com/GustavoSachetto/App-TaskTea.git
+```
+
+- Instalar as dependências do projeto
+```
+npm install
+```
+
+- Iniciar projeto localmente
+```
+npm start
+```
 

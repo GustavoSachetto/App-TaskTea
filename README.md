@@ -1,19 +1,29 @@
 # TaskTea
-## Visão Geral
-![TelaInicialUsuario](https://github.com/user-attachments/assets/dde98062-7947-45c2-9814-6249397aff4e)
+O aplicativo TaskTea foi desenvolvido para auxiliar no tratamento social de pessoas que possuem o Transtorno do Espectro Autista (TEA). Apartir do aplicativo é possivel acessa-lo com dois modos de uso
 
-A plataforma TaskTea fora desenvolvida para a entrega do Trabalho de Conclusão de Curso para o curso técnico informática para internet da escola Etec Dr. Emílio Hernandez do ano de 2024.
-Porém, os colaboradores desse projeto foram: <a href="https://github.com/dartres" target="_blank">Brenda Caroline</a>,
-            <a href="https://github.com/iCrowleySHR" target="_blank">Gustavo Gualda</a>, 
-            <a href="https://github.com/GustavoSachetto" target="_blank">Gustavo Sachetto</a>, 
-            <a href="https://github.com/matheussantosrodrigues" target="_blank">Matheus Santos</a>,
-            <a href="https://github.com/Miguelzzzz" target="_blank">Miguel Marcondes</a> e 
-            <a href="https://github.com/phpparker" target="_blank">Pedro Henrique</a>.
+- __Usuário responsável:__ cria e seleciona os desafios a ser realizado pelo usuário criança, na qual ele tem completo acesso sobre toda a análise do perfil da criança.
 
-## Sobre
+#expo #react-native #react #styled-components
 
-- **Objetivo:** Auxiliar no tratamento de pessoas com o TEA (Transtorno do Espectro Autista), para um tratamento e um processo melhor.
-- **Função:** Crie desafios para o desenvolvimento de sua criança com o Transtorno do Espectro Autista. Sejam eles quais forem, e veja a evolução através de estatísticas!
+## Integrantes
+Desenvolvido para a entrega do Trabalho de Conclusão de Curso para o curso técnico informática para internet da escola Etec Dr. Emílio Hernandez do ano de 2024.
 
-## Tecnologias Utilizadas
-<img src="https://skillicons.dev/icons?i=html,css,js,php,laravel,react,git,github,gmail,mysql,nodejs,npm,postman,ts,vscode">
+__Os colaboradores desse projeto foram:__ 
+
+<a href="https://github.com/GustavoSachetto" target="_blank">Gustavo Sachetto</a>, 
+<a href="https://github.com/iCrowleySHR" target="_blank">Gustavo Gualda</a>, 
+<a href="https://github.com/dartres" target="_blank">Brenda Caroline</a>,
+<a href="https://github.com/matheussantosrodrigues" target="_blank">Matheus Santos</a>,
+<a href="https://github.com/Miguelzzzz" target="_blank">Miguel Marcondes</a> e 
+<a href="https://github.com/phpparker" target="_blank">Pedro Henrique</a>.
+
+## Desenvolvendo
+Para realizar esse aplicativo foi usado o __Expo__ como principal ferramenta, além de que foi necessário estudar
+
+## Resultado
+- __Telas do aplicativo:__
+  
+![Telas Task TEA](https://github.com/user-attachments/assets/338dfe17-9aec-48ad-bded-6b4e799af1d5)
+
+## Comandos inciais
+

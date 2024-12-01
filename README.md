@@ -57,6 +57,11 @@ git clone https://github.com/GustavoSachetto/App-TaskTea.git
 cd App-TaskTea
 ```
 
+- Instalar EAS CLI globalmente na máquina
+```
+npm install -g eas-cli
+```
+
 - Instalar as dependências do projeto
 ```
 npm install
@@ -66,5 +71,10 @@ npm install
 ```
 npm start
 ```
+
+## Documentação
+Toda a documentação da criação do projeto desde o planejamento até a conclusão do projeto final funcionando.
+
+- __Arquivo do TCC pdf:__ [click para download](https://github.com/user-attachments/files/17969719/Documentacao.TCC.TaskTea.pdf)
 
 *****************

@@ -118,7 +118,7 @@ export default function Statistics() {
 
         <ContainerLabel>
           <SquareLabel customColor="#ff3f00" />
-          <LabelChart>Tarefas Incompletas: {totalIncomplete}</LabelChart>
+          <LabelChart>Tarefas Incompletas: {weeklyIncomplete}</LabelChart>
         </ContainerLabel>
       </ContainerStatistics>
 

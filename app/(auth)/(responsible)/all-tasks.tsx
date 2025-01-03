@@ -78,7 +78,7 @@ export default function TasksPage() {
                                     <TouchableOpacity
                                         key={data.id}
                                         style={{ width: '100%' }}
-                                        onPress={() => router.push({ pathname: "/single-task", params: { id: `${data.id}` } })}
+                                        onPress={() => router.push({ pathname: "/single-task", params: { id: `${data.id}`, returnTo: 'all-tasks' } })}
                                     >
                                         <Task style={{ flex: 1, alignSelf: 'stretch' }} customColor={blue}>
                                             <Title>{data.title}</Title>

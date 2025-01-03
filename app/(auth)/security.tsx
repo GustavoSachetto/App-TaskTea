@@ -33,6 +33,7 @@ export default function Security() {
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
+    const [userRole, setUserRole] = useState<string | null>(null);
 
     const toggleShowCurrentPassword = () => {
         setShowCurrentPassword(!showCurrentPassword);
@@ -68,6 +69,21 @@ export default function Security() {
 
         fetchUserData();
     }, [session]);
+
+    useEffect(() => {
+        if(userData?.phone_number){
+            setUserRole('responsible')
+        }else{
+            setUserRole('child')
+        }
+    }, [session])
+    
+
+    const handleNavigation = () => {
+        if (userRole) {
+            router.push(`/(auth)/(${userRole})/(tabs)/settings` as any);
+        }
+    };
 
     useEffect(() => {
         if (userData) {
@@ -151,16 +167,7 @@ export default function Security() {
         <>
             <CenteredView>
                 <Header>
-                    <BackButton
-                        onPress={async () => {
-                            if (session) {
-                                const role = await verifyUserRole(session);
-                                if (role) {
-                                    router.push(`/(auth)/(${role})/(tabs)/settings` as any);
-                                }
-                            }
-                        }}
-                    >
+                    <BackButton onPress={handleNavigation}>
                         <ModalImage source={require('@/assets/icons/voltar.png')} />
                     </BackButton>
                     <Title>Segurança e informação</Title>

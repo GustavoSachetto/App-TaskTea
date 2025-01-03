@@ -50,7 +50,13 @@ export default function TasksPage() {
                 <Pressable
                   key={taskUser.id}
                   style={{ width: '100%' }}
-                  onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
+                  onPress={() => router.push({
+                    pathname: "/single-task",
+                    params: { 
+                      id: `${taskUser.id}`, 
+                      returnTo: "(tabs)/tasks" 
+                    }
+                  })}
                 >
                   <Task style={{ flex: 1, alignSelf: 'stretch' }}>
                     <Title>{taskUser.task.title}</Title>

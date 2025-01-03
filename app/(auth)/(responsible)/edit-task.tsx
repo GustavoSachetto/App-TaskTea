@@ -46,7 +46,6 @@ export default function  EditTask() {
     const fetchTask = async () => {
         if (session) {
             const result = await fetchTaskById(session, numericId);
-            console.log(result)
             const category = await fetchCategoryById(result.data.categories_id)
 
             setTitle(result.data.title);

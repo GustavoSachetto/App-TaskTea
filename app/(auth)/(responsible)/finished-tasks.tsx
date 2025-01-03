@@ -39,7 +39,7 @@ export default function TasksPage() {
     return taskUser.data?.length > 0 ? taskUser.data.map((taskUser) =>  
       <TouchableOpacity 
         style={{ width: '100%' }} 
-        onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}` } })}
+        onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskUser.id}`, returnTo: 'finished-tasks' } })}
         key={taskUser.id}
       >
         <Task customColor={green} style={{ flex: 1, alignSelf: 'stretch' }} >

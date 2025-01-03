@@ -59,6 +59,7 @@ export default function SingleTaskPage() {
   const router = useRouter();
 
   const { id } = useLocalSearchParams();
+  const { returnTo } = useLocalSearchParams();
 
   useEffect(() => {
     fetchTaskUser();
@@ -106,7 +107,7 @@ export default function SingleTaskPage() {
     <ScrollView style={{backgroundColor: '#fff'}}>
     <Container>
       <ContainerRowHeader>
-        <LinkedSign onPress={() => router.back()}>
+        <LinkedSign onPress={() => router.replace({ pathname: returnTo ? `/(auth)/(child)/${returnTo}` as any : "/(auth)"})}>
           <Voltar source={ImageVoltar} resizeMode="contain" />
         </LinkedSign>
         <TextTaskDay>Desafio do dia</TextTaskDay>

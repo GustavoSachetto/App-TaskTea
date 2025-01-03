@@ -22,6 +22,7 @@ const ImageDica = require('@/assets/icons/dica.png');
 const RedColor = Colors.colors.red;
 const ImageTarefa = require('@/assets/images/tarefa-exemplo.png');
 
+
 type TaskUserCredential = {
   id: number,
   done: boolean,
@@ -59,6 +60,7 @@ export default function SingleTaskPage() {
   const router = useRouter();
 
   const { id } = useLocalSearchParams();
+  const { returnTo } = useLocalSearchParams();
 
   useEffect(() => {
     fetchTaskUser();
@@ -113,7 +115,7 @@ export default function SingleTaskPage() {
     <ScrollView>
       <Container>
         <ContainerRowHeader>
-          <LinkedSign onPress={() => router.back()}>
+          <LinkedSign onPress={() => router.replace({ pathname: returnTo ? `/(auth)/(responsible)/${returnTo}` as any : "/(auth)"})}>
             <Voltar source={ImageVoltar} resizeMode="contain" />
           </LinkedSign>
           <TextTaskDay>Desafio</TextTaskDay>
@@ -155,7 +157,7 @@ export default function SingleTaskPage() {
         
         {userData?.id === task.user_creator_id && (
           <ButtonEdit>
-            <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+            <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}`, returnTo } })}>
               <TextButton>Editar desafio</TextButton>
             </Pressable>
           </ButtonEdit>

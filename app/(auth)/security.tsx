@@ -2,8 +2,8 @@ import { useSession } from "@/hooks/ctx";
 import { editMyUser, getMyUser, UserProps, PutUserProps } from "@/services/api/routes/user";
 import {
     ButtonSave, CenteredView, BackButton, ButtonPassword, Container,
-    Text, Header, Label, ButtonDelete, ModalImage, ModalView, TextButton, Title,
-    UserDataInput, ContainerRow,
+    Header, Label, ButtonDelete, ModalImage, ModalView, TextButton, Title,
+    UserDataInput,
     InputWrapper
 } from "@/styles/security";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/dat
 import { router } from "expo-router";
 import ModalDeleteAccount from '@/components/modal-delete-account';
 import Toast from "react-native-toast-message";
+import { verifyUserRole } from '@/utils/verifyUserRole';
 
 export default function Security() {
     const [userData, setUserData] = useState<UserProps | undefined>(undefined);
@@ -32,6 +33,7 @@ export default function Security() {
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
+    const [userRole, setUserRole] = useState<string | null>(null);
 
     const toggleShowCurrentPassword = () => {
         setShowCurrentPassword(!showCurrentPassword);
@@ -67,6 +69,21 @@ export default function Security() {
 
         fetchUserData();
     }, [session]);
+
+    useEffect(() => {
+        if(userData?.phone_number){
+            setUserRole('responsible')
+        }else{
+            setUserRole('child')
+        }
+    }, [session])
+    
+
+    const handleNavigation = () => {
+        if (userRole) {
+            router.push(`/(auth)/(${userRole})/(tabs)/settings` as any);
+        }
+    };
 
     useEffect(() => {
         if (userData) {
@@ -113,16 +130,16 @@ export default function Security() {
                 Toast.show({
                     text1: 'Mensagem',
                     text2: response.message
-                  });
-                   setTimeout(() => {
+                });
+                setTimeout(() => {
 
-                    if(inputTelephoneValue){
-                    router.push('/(auth)/(responsible)/(tabs)/settings');
-                }
+                    if (inputTelephoneValue) {
+                        router.push('/(auth)/(responsible)/(tabs)/settings');
+                    }
                     else {
                         router.push('/(auth)/(child)/(tabs)/settings');
                     }
-                  }, 2000);;
+                }, 2000);
 
                 if (response) {
                     setOriginalUserData({
@@ -136,8 +153,6 @@ export default function Security() {
                 }
             }
         }
-
-  
     };
 
 
@@ -150,10 +165,9 @@ export default function Security() {
 
     return (
         <>
-
             <CenteredView>
                 <Header>
-                    <BackButton onPress={() => router.back()}>
+                    <BackButton onPress={handleNavigation}>
                         <ModalImage source={require('@/assets/icons/voltar.png')} />
                     </BackButton>
                     <Title>Segurança e informação</Title>
@@ -291,8 +305,8 @@ export default function Security() {
                 </ModalView>
 
                 <ModalDeleteAccount
-                onClose={() => setModalDelete(false)}
-                visible={modalDelete}
+                    onClose={() => setModalDelete(false)}
+                    visible={modalDelete}
                 />
                 <Toast />
             </CenteredView>

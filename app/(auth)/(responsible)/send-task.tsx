@@ -170,7 +170,7 @@ export default function CreateTask() {
               <Pressable
                 key={taskData.id}
                 style={{ width: '100%' }}
-                onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskData.id}` } })}
+                onPress={() => router.push({ pathname: "/single-task", params: { id: `${taskData.id}`, returnTo: `send-task?id=${taskData.id}` } })}
               >
                 <Task style={{ flex: 1, alignSelf: 'stretch' }}>
                   <Title>{taskData.title}</Title>

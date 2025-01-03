@@ -27,6 +27,7 @@ export default function Layout() {
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
+          tabBarStyle: {height:  h(8)},
           tabBarIcon: ({ focused }) => {
             let iconSource;
             let customStyle = styles.icon; 

@@ -157,7 +157,7 @@ export default function SingleTaskPage() {
         
         {userData?.id === task.user_creator_id && (
           <ButtonEdit>
-            <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}` } })}>
+            <Pressable onPress={() => router.push({ pathname: "/edit-task", params: { id: `${task.id}`, returnTo } })}>
               <TextButton>Editar desafio</TextButton>
             </Pressable>
           </ButtonEdit>

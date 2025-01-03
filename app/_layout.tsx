@@ -2,7 +2,7 @@ import { FontProvider, useFonts } from '@/context/FontContext';
 import { SessionProvider, useSession } from '@/hooks/ctx';
 import { useEffect, useState } from 'react';
 import { router, Slot } from 'expo-router';
-import { getMyUser } from '@/services/api/routes/user';
+import { verifyUserRole } from '@/utils/verifyUserRole';
 
 function InitialLayout() {
   const { session, signOut } = useSession();
@@ -22,25 +22,13 @@ function InitialLayout() {
   const checkUserRole = async () => {
     if (session) {
       const role = await verifyUserRole(session);
-
+      
       !role ? router.push("/(public)") : router.push(`/(auth)/(${role})` as any);
     } else {
       router.push("/(public)");
     }
   }
 
-  const verifyUserRole: (session: string) => Promise<string | null> = async (session) => {
-    const response = await getMyUser(session);
-
-    if(response?.message === "Unauthenticated.") return await signOut(session);
-
-    if (!response.data.role) {
-      console.error('Role is undefined');
-      return null;
-    }
-
-    return response.data.role[0];
-  }
 
   return (
     <Slot />
